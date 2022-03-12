@@ -1,0 +1,60 @@
+[2022-03-11 20:22:24.570] [remoteagent] [info] Extension host agent started.
+[2022-03-11 20:22:25.491] [remoteagent] [info] [127.0.0.1][3a0289c8][ExtensionHostConnection] New connection established.
+[2022-03-11 20:22:25.494] [remoteagent] [info] [127.0.0.1][7474607d][ManagementConnection] New connection established.
+[2022-03-11 20:22:25.503] [remoteagent] [info] [127.0.0.1][3a0289c8][ExtensionHostConnection] <237584> Launched Extension Host Process.
+[2022-03-11 20:23:20.573] [remoteagent] [info] [127.0.0.1][7474607d][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[2022-03-11 20:23:20.613] [remoteagent] [info] [127.0.0.1][3a0289c8][ExtensionHostConnection] <237584> Extension Host Process exited with code: 0, signal: null.
+[2022-03-11 20:23:20.613] [remoteagent] [info] Last EH closed, waiting before shutting down
+[2022-03-11 20:23:41.496] [remoteagent] [info] Got delay-shutdown request while in shutdown timeout, delaying
+[2022-03-11 20:23:41.496] [remoteagent] [info] Cancelling previous shutdown timeout
+[2022-03-11 20:23:42.544] [remoteagent] [info] [127.0.0.1][9df2e59f][ManagementConnection] New connection established.
+[2022-03-11 20:23:42.546] [remoteagent] [info] [127.0.0.1][d530ae21][ExtensionHostConnection] New connection established.
+[2022-03-11 20:23:42.556] [remoteagent] [info] [127.0.0.1][d530ae21][ExtensionHostConnection] <238010> Launched Extension Host Process.
+[2022-03-11 20:28:41.500] [remoteagent] [info] New EH opened, aborting shutdown
+[2022-03-11 20:30:40.267] [remoteagent] [info] Getting Manifest... utsavm9.c-cpp-flag-debugging
+[2022-03-11 20:30:40.410] [remoteagent] [info] Installing extension: utsavm9.c-cpp-flag-debugging
+[2022-03-11 20:30:40.794] [remoteagent] [info] Downloaded extension: utsavm9.c-cpp-flag-debugging /opt/projectcode/MightyWarriors/.vscode-server/data/CachedExtensionVSIXs/utsavm9.c-cpp-flag-debugging-0.0.1
+[2022-03-11 20:30:40.818] [remoteagent] [info] Extracted extension to /opt/projectcode/MightyWarriors/.vscode-server/extensions/.ca333118-3e8e-4751-882c-0f0e63f71347: utsavm9.c-cpp-flag-debugging
+[2022-03-11 20:30:40.827] [remoteagent] [info] Renamed to /opt/projectcode/MightyWarriors/.vscode-server/extensions/utsavm9.c-cpp-flag-debugging-0.0.1
+[2022-03-11 20:30:40.827] [remoteagent] [info] Extracting completed. utsavm9.c-cpp-flag-debugging
+[2022-03-11 20:30:40.828] [remoteagent] [info] Extension installed successfully: utsavm9.c-cpp-flag-debugging
+[2022-03-11 20:31:28.460] [remoteagent] [info] [127.0.0.1][9df2e59f][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[2022-03-11 20:31:28.633] [remoteagent] [info] [127.0.0.1][d530ae21][ExtensionHostConnection] <238010> Extension Host Process exited with code: 0, signal: null.
+[2022-03-11 20:31:28.633] [remoteagent] [info] Last EH closed, waiting before shutting down
+[2022-03-11 20:32:03.801] [remoteagent] [info] Got delay-shutdown request while in shutdown timeout, delaying
+[2022-03-11 20:32:03.801] [remoteagent] [info] Cancelling previous shutdown timeout
+[2022-03-11 20:32:04.277] [remoteagent] [info] [127.0.0.1][1b761c32][ManagementConnection] New connection established.
+[2022-03-11 20:32:04.393] [remoteagent] [info] [127.0.0.1][aef0b53f][ExtensionHostConnection] New connection established.
+[2022-03-11 20:32:04.410] [remoteagent] [info] [127.0.0.1][aef0b53f][ExtensionHostConnection] <239737> Launched Extension Host Process.
+[2022-03-11 20:32:20.284] [remoteagent] [info] [127.0.0.1][1b761c32][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[2022-03-11 20:32:20.314] [remoteagent] [info] [127.0.0.1][aef0b53f][ExtensionHostConnection] <239737> Extension Host Process exited with code: 0, signal: null.
+[2022-03-11 20:32:20.314] [remoteagent] [info] Cancelling previous shutdown timeout
+[2022-03-11 20:32:20.315] [remoteagent] [info] Last EH closed, waiting before shutting down
+[2022-03-11 20:32:34.676] [remoteagent] [info] Got delay-shutdown request while in shutdown timeout, delaying
+[2022-03-11 20:32:34.677] [remoteagent] [info] Cancelling previous shutdown timeout
+[2022-03-11 20:32:35.501] [remoteagent] [info] [127.0.0.1][f8daa6b8][ManagementConnection] New connection established.
+[2022-03-11 20:32:35.584] [remoteagent] [info] [127.0.0.1][8773b0d5][ExtensionHostConnection] New connection established.
+[2022-03-11 20:32:35.594] [remoteagent] [info] [127.0.0.1][8773b0d5][ExtensionHostConnection] <240078> Launched Extension Host Process.
+[2022-03-11 20:37:34.678] [remoteagent] [info] New EH opened, aborting shutdown
+[2022-03-11 20:40:15.379] [remoteagent] [info] [127.0.0.1][f8daa6b8][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[2022-03-11 20:40:15.439] [remoteagent] [info] [127.0.0.1][8773b0d5][ExtensionHostConnection] <240078> Extension Host Process exited with code: 0, signal: null.
+[2022-03-11 20:40:15.439] [remoteagent] [info] Last EH closed, waiting before shutting down
+[2022-03-11 20:43:30.543] [remoteagent] [info] Got delay-shutdown request while in shutdown timeout, delaying
+[2022-03-11 20:43:30.543] [remoteagent] [info] Cancelling previous shutdown timeout
+[2022-03-11 20:43:31.096] [remoteagent] [info] [127.0.0.1][38b26853][ManagementConnection] New connection established.
+[2022-03-11 20:43:31.143] [remoteagent] [info] [127.0.0.1][db91fada][ExtensionHostConnection] New connection established.
+[2022-03-11 20:43:31.153] [remoteagent] [info] [127.0.0.1][db91fada][ExtensionHostConnection] <240953> Launched Extension Host Process.
+[2022-03-11 20:44:10.316] [remoteagent] [info] [127.0.0.1][38b26853][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[2022-03-11 20:44:10.398] [remoteagent] [info] [127.0.0.1][db91fada][ExtensionHostConnection] <240953> Extension Host Process exited with code: 0, signal: null.
+[2022-03-11 20:44:10.399] [remoteagent] [info] Cancelling previous shutdown timeout
+[2022-03-11 20:44:10.399] [remoteagent] [info] Last EH closed, waiting before shutting down
+[2022-03-11 20:44:26.907] [remoteagent] [info] Got delay-shutdown request while in shutdown timeout, delaying
+[2022-03-11 20:44:26.907] [remoteagent] [info] Cancelling previous shutdown timeout
+[2022-03-11 20:44:27.795] [remoteagent] [info] [127.0.0.1][ffdd935a][ManagementConnection] New connection established.
+[2022-03-11 20:44:27.801] [remoteagent] [info] [127.0.0.1][d777ba2c][ExtensionHostConnection] New connection established.
+[2022-03-11 20:44:27.812] [remoteagent] [info] [127.0.0.1][d777ba2c][ExtensionHostConnection] <241353> Launched Extension Host Process.
+[2022-03-11 20:49:26.908] [remoteagent] [info] New EH opened, aborting shutdown
+[2022-03-11 20:58:54.200] [remoteagent] [info] [127.0.0.1][ffdd935a][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[2022-03-11 20:58:54.250] [remoteagent] [info] [127.0.0.1][d777ba2c][ExtensionHostConnection] <241353> Extension Host Process exited with code: 0, signal: null.
+[2022-03-11 20:58:54.250] [remoteagent] [info] Last EH closed, waiting before shutting down
+[2022-03-11 21:03:54.250] [remoteagent] [info] Last EH closed, shutting down

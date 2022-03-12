@@ -1,0 +1,83 @@
+[2022-03-11 20:32:39.101] [exthost] [info] Extension host with pid 240078 started
+[2022-03-11 20:32:39.111] [exthost] [info] Lock '/opt/projectcode/MightyWarriors/.vscode-server/data/User/workspaceStorage/34374b986d6c75f0046fb3f4b330f69e/vscode.lock': Lock acquired.
+[2022-03-11 20:32:39.865] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: true, activationEvent: '*'
+[2022-03-11 20:32:39.870] [exthost] [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.github
+[2022-03-11 20:32:39.874] [exthost] [info] ExtensionService#_doActivateExtension vscode.ipynb, startup: true, activationEvent: '*'
+[2022-03-11 20:32:43.031] [exthost] [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+[2022-03-11 20:32:43.101] [exthost] [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+[2022-03-11 20:32:43.455] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onStartupFinished'
+[2022-03-11 20:32:43.470] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+[2022-03-11 20:32:43.473] [exthost] [info] Eager extensions activated
+[2022-03-11 20:32:43.552] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1220
+[2022-03-11 20:32:46.602] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-server-ready, startup: false, activationEvent: 'onDebugResolve'
+[2022-03-11 20:32:46.757] [exthost] [info] ExtensionService#_doActivateExtension vscode.grunt, startup: false, activationEvent: 'onTaskType:grunt'
+[2022-03-11 20:32:46.767] [exthost] [info] ExtensionService#_doActivateExtension vscode.gulp, startup: false, activationEvent: 'onTaskType:gulp'
+[2022-03-11 20:32:46.775] [exthost] [info] ExtensionService#_doActivateExtension vscode.jake, startup: false, activationEvent: 'onTaskType:jake'
+[2022-03-11 20:32:46.784] [exthost] [info] ExtensionService#_doActivateExtension vscode.npm, startup: false, activationEvent: 'onTaskType:npm'
+[2022-03-11 20:32:46.820] [exthost] [info] ExtensionService#_doActivateExtension vscode.typescript-language-features, startup: false, activationEvent: 'onTaskType:typescript'
+[2022-03-11 20:32:47.534] [exthost] [info] ExtensionService#_doActivateExtension vscode.configuration-editing, startup: false, activationEvent: 'onLanguage:json'
+[2022-03-11 20:32:47.551] [exthost] [info] ExtensionService#_doActivateExtension vscode.extension-editing, startup: false, activationEvent: 'onLanguage:json'
+[2022-03-11 20:32:47.577] [exthost] [info] ExtensionService#_doActivateExtension vscode.json-language-features, startup: false, activationEvent: 'onLanguage:json'
+[2022-03-11 20:32:50.273] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:33:06.787] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:33:11.849] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:33:16.914] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:33:21.975] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:33:27.036] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:33:32.127] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:33:37.249] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:33:42.318] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:33:47.383] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:33:52.479] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:33:57.583] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:34:02.652] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:34:07.715] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:34:12.777] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:34:17.874] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:34:22.967] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:34:28.037] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:34:33.141] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:34:38.213] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:34:43.310] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:34:48.388] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:34:53.457] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:34:58.529] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:35:06.280] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:35:11.379] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:35:16.450] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:35:37.049] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:35:42.129] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:35:47.224] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:35:52.313] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:35:57.376] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:36:02.435] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:36:07.536] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:36:12.601] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:36:17.659] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:36:22.769] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:36:27.827] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:36:32.900] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:36:37.971] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:36:43.041] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:36:48.126] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:36:53.187] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:36:58.258] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:37:03.354] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:37:08.420] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:37:13.484] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:37:18.546] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:37:23.648] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:37:28.709] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:37:33.780] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:37:38.849] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:37:43.951] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:37:49.020] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:37:54.128] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:37:59.225] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:38:04.341] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:38:09.422] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:40:08.064] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:40:13.129] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1223
+[2022-03-11 20:40:15.395] [exthost] [info] extension host terminating: received terminate message from renderer
+[2022-03-11 20:40:15.397] [exthost] [info] Lock '/opt/projectcode/MightyWarriors/.vscode-server/data/User/workspaceStorage/34374b986d6c75f0046fb3f4b330f69e/vscode.lock': Marking the lockfile as scheduled to be released in 6000 ms.
+[2022-03-11 20:40:15.430] [exthost] [info] Extension host with pid 240078 exiting with code 0
