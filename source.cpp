@@ -74,13 +74,13 @@ void dostuff(int sock) {
     if (n < 0) error("ERROR reading from socket");
     string str_file_content;
     string s = buffer;
-    printf("Here is the message: %s\n", buffer);
+    printf("Here is the message from the User: %s\n", buffer);
     size_t saveOpenCheck = s.find(delimiter);
     size_t pos = 0;
     string token;
 
     //Outputting the value of str_file_content to look a little nicer and remove the delimiter character
-    string message = string(" Conneced to Server SAVING <") + str_file_content + s + string(">");  //had been outputting buffer instead to troubleshoot and get full picture of what I was getting
+    string message = string(" Thanks for conneceting to the Server! Your Message was: \"") + str_file_content + s + string("\"");  //had been outputting buffer instead to troubleshoot and get full picture of what I was getting
         n = write(sock, message.c_str(), sizeof(message) + sizeof(buffer));
         if (n < 0) error("ERROR writing to socket");
 
