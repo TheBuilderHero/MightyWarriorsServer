@@ -13,14 +13,33 @@
 using namespace std;
 
 void dostuff(int); /* function prototype */
+
+//defining the player and all their caracteristics and items
+class Player {
+    public:
+        string name;
+        double baseHealth, baseDefense, baseAbility, baseAgility, baseDamage;
+        double xp;
+        int level;
+        
+        struct playersWeapon{
+            string weaponName;
+            int weaponPower;
+        };
+        
+};
+
+
+//this function is called for an error and used to exit the program
 void error(const char* msg)
 {
     perror(msg);
     exit(1);
 }
 
+//this function takes an input of port when starting the run process of the program
 void communicate(int argc, char* argv[])
-{
+{ // the job of this function is to indefinitily accept incomming messages and send a message in response to them
     int sockfd, newsockfd, portno, pid;
     socklen_t clilen;
     struct sockaddr_in serv_addr, cli_addr;
@@ -88,6 +107,8 @@ void dostuff(int sock) {
     n += write(sock, prg_saved.c_str(), sizeof(prg_saved) + sizeof(buffer));
     if (n < 0) error("ERROR writing to socket");
 }
+
+
 int main(int argc, char* argv[]){
     cout << "Server Started..." << endl << "Press \"ctrl + c\" to stop the running program 1.1" << endl;
     communicate(argc, argv);

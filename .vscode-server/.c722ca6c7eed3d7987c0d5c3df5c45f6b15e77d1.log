@@ -5,91 +5,10 @@
 * the Visual Studio Code Server License Terms (https://aka.ms/vscode-server-license) and
 * the Microsoft Privacy Statement (https://privacy.microsoft.com/en-US/privacystatement).
 *
-Server bound to 127.0.0.1:45021 (IPv4)
-Extension host agent listening on 45021
+Server bound to 127.0.0.1:38869 (IPv4)
+Extension host agent listening on 38869
 
-[20:22:24] Extension host agent started.
-[20:22:25] [127.0.0.1][3a0289c8][ExtensionHostConnection] New connection established.
-[20:22:25] [127.0.0.1][7474607d][ManagementConnection] New connection established.
-[20:22:25] [127.0.0.1][3a0289c8][ExtensionHostConnection] <237584> Launched Extension Host Process.
-[20:23:20] [127.0.0.1][7474607d][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
-[20:23:20] [127.0.0.1][3a0289c8][ExtensionHostConnection] <237584> Extension Host Process exited with code: 0, signal: null.
-Last EH closed, waiting before shutting down
-[20:23:20] Last EH closed, waiting before shutting down
-Got delay-shutdown request while in shutdown timeout, delaying
-[20:23:41] Got delay-shutdown request while in shutdown timeout, delaying
-Cancelling previous shutdown timeout
-[20:23:41] Cancelling previous shutdown timeout
-[20:23:42] [127.0.0.1][9df2e59f][ManagementConnection] New connection established.
-[20:23:42] [127.0.0.1][d530ae21][ExtensionHostConnection] New connection established.
-[20:23:42] [127.0.0.1][d530ae21][ExtensionHostConnection] <238010> Launched Extension Host Process.
-New EH opened, aborting shutdown
-[20:28:41] New EH opened, aborting shutdown
-[20:30:40] Getting Manifest... utsavm9.c-cpp-flag-debugging
-[20:30:40] Installing extension: utsavm9.c-cpp-flag-debugging
-[20:30:40] Downloaded extension: utsavm9.c-cpp-flag-debugging /opt/projectcode/MightyWarriors/.vscode-server/data/CachedExtensionVSIXs/utsavm9.c-cpp-flag-debugging-0.0.1
-[20:30:40] Extracted extension to /opt/projectcode/MightyWarriors/.vscode-server/extensions/.ca333118-3e8e-4751-882c-0f0e63f71347: utsavm9.c-cpp-flag-debugging
-[20:30:40] Renamed to /opt/projectcode/MightyWarriors/.vscode-server/extensions/utsavm9.c-cpp-flag-debugging-0.0.1
-[20:30:40] Extracting completed. utsavm9.c-cpp-flag-debugging
-[20:30:40] Extension installed successfully: utsavm9.c-cpp-flag-debugging
-[20:31:28] [127.0.0.1][9df2e59f][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
-[20:31:28] [127.0.0.1][d530ae21][ExtensionHostConnection] <238010> Extension Host Process exited with code: 0, signal: null.
-Last EH closed, waiting before shutting down
-[20:31:28] Last EH closed, waiting before shutting down
-Got delay-shutdown request while in shutdown timeout, delaying
-[20:32:03] Got delay-shutdown request while in shutdown timeout, delaying
-Cancelling previous shutdown timeout
-[20:32:03] Cancelling previous shutdown timeout
-[20:32:04] [127.0.0.1][1b761c32][ManagementConnection] New connection established.
-[20:32:04] [127.0.0.1][aef0b53f][ExtensionHostConnection] New connection established.
-[20:32:04] [127.0.0.1][aef0b53f][ExtensionHostConnection] <239737> Launched Extension Host Process.
-[20:32:20] [127.0.0.1][1b761c32][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
-[20:32:20] [127.0.0.1][aef0b53f][ExtensionHostConnection] <239737> Extension Host Process exited with code: 0, signal: null.
-Cancelling previous shutdown timeout
-[20:32:20] Cancelling previous shutdown timeout
-Last EH closed, waiting before shutting down
-[20:32:20] Last EH closed, waiting before shutting down
-Got delay-shutdown request while in shutdown timeout, delaying
-[20:32:34] Got delay-shutdown request while in shutdown timeout, delaying
-Cancelling previous shutdown timeout
-[20:32:34] Cancelling previous shutdown timeout
-[20:32:35] [127.0.0.1][f8daa6b8][ManagementConnection] New connection established.
-[20:32:35] [127.0.0.1][8773b0d5][ExtensionHostConnection] New connection established.
-[20:32:35] [127.0.0.1][8773b0d5][ExtensionHostConnection] <240078> Launched Extension Host Process.
-New EH opened, aborting shutdown
-[20:37:34] New EH opened, aborting shutdown
-[20:40:15] [127.0.0.1][f8daa6b8][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
-[20:40:15] [127.0.0.1][8773b0d5][ExtensionHostConnection] <240078> Extension Host Process exited with code: 0, signal: null.
-Last EH closed, waiting before shutting down
-[20:40:15] Last EH closed, waiting before shutting down
-Got delay-shutdown request while in shutdown timeout, delaying
-[20:43:30] Got delay-shutdown request while in shutdown timeout, delaying
-Cancelling previous shutdown timeout
-[20:43:30] Cancelling previous shutdown timeout
-[20:43:31] [127.0.0.1][38b26853][ManagementConnection] New connection established.
-[20:43:31] [127.0.0.1][db91fada][ExtensionHostConnection] New connection established.
-[20:43:31] [127.0.0.1][db91fada][ExtensionHostConnection] <240953> Launched Extension Host Process.
-[20:44:10] [127.0.0.1][38b26853][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
-[20:44:10] [127.0.0.1][db91fada][ExtensionHostConnection] <240953> Extension Host Process exited with code: 0, signal: null.
-Cancelling previous shutdown timeout
-[20:44:10] Cancelling previous shutdown timeout
-Last EH closed, waiting before shutting down
-[20:44:10] Last EH closed, waiting before shutting down
-Got delay-shutdown request while in shutdown timeout, delaying
-[20:44:26] Got delay-shutdown request while in shutdown timeout, delaying
-Cancelling previous shutdown timeout
-[20:44:26] Cancelling previous shutdown timeout
-[20:44:27] [127.0.0.1][ffdd935a][ManagementConnection] New connection established.
-[20:44:27] [127.0.0.1][d777ba2c][ExtensionHostConnection] New connection established.
-[20:44:27] [127.0.0.1][d777ba2c][ExtensionHostConnection] <241353> Launched Extension Host Process.
-rejected promise not handled within 1 second: Error: Could not find pty on pty host
-stack trace: Error: Could not find pty on pty host,    at o._throwIfNoPty (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:17:5354),    at o.updateIcon (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:17:1754),    at Object.call (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:13:8348),    at L.onPromise (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:4866),    at L.onRawMessage (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:4261),    at /opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:3553,    at a.invoke (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:8:145),    at I.fire (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:8:1856),    at process.f (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:6:34341),    at process.emit (events.js:315:20),    at emit (internal/child_process.js:903:12),    at processTicksAndRejections (internal/process/task_queues.js:81:21)
-[Error: Could not find pty on pty host,    at o._throwIfNoPty (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:17:5354),    at o.updateIcon (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:17:1754),    at Object.call (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:13:8348),    at L.onPromise (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:4866),    at L.onRawMessage (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:4261),    at /opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:3553,    at a.invoke (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:8:145),    at I.fire (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:8:1856),    at process.f (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:6:34341),    at process.emit (events.js:315:20),    at emit (internal/child_process.js:903:12),    at processTicksAndRejections (internal/process/task_queues.js:81:21)]
-New EH opened, aborting shutdown
-[20:49:26] New EH opened, aborting shutdown
-[20:58:54] [127.0.0.1][ffdd935a][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
-[20:58:54] [127.0.0.1][d777ba2c][ExtensionHostConnection] <241353> Extension Host Process exited with code: 0, signal: null.
-Last EH closed, waiting before shutting down
-[20:58:54] Last EH closed, waiting before shutting down
-Last EH closed, shutting down
-[21:03:54] Last EH closed, shutting down
+[03:29:22] Extension host agent started.
+[03:29:22] [127.0.0.1][521c727e][ManagementConnection] New connection established.
+[03:29:22] [127.0.0.1][0c64b8ca][ExtensionHostConnection] New connection established.
+[03:29:22] [127.0.0.1][0c64b8ca][ExtensionHostConnection] <265048> Launched Extension Host Process.
