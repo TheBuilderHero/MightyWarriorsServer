@@ -18,6 +18,7 @@ void dostuff(int); /* function prototype */
 class Player {
     public:
         string name;
+        string race; // is one of the following: Human - Elf - Dino - Dryad - Ghost
         double baseHealth, baseDefense, baseAbility, baseAgility, baseDamage;
         double xp;
         int level;
@@ -36,6 +37,76 @@ void error(const char* msg)
     perror(msg);
     exit(1);
 }
+
+//this function is intended to pull out the users request and the data associated with each request
+string decipher(char messageFromClient[]){
+    string delimiter = "~"; //a character that marks the beginning or end of a unit of data
+    string message = messageFromClient; // change the message into a string
+
+    int item1, item2, item3;
+    string s = messageFromClient;
+    string str_file_content;
+    string token, output;
+    int loopPass = 0;
+    size_t pos = 0; // position variable for removing the delimiters to view the message
+    while ((pos = s.find(delimiter)) != std::string::npos) {
+        token = s.substr(0, pos);
+        output = token;
+        str_file_content += std::string(token); // we do not need to add spaces between the information for now so I removed: + std::string(" ")
+        s.erase(0, pos + delimiter.length());
+        if (loopPass == 1) {
+            //first item after delimiter
+            if (output.length() > 0) item1 = std::stoi(output);
+        } else if (loopPass == 2) {
+            //second item after delimiter
+            if (output.length() > 0) item2 = std::stoi(output);
+        } else if (loopPass == 3) {
+            //third item after delimiter
+            if (output.length() > 0) item3 = std::stoi(output);
+        }
+        loopPass++;
+    }
+    return str_file_content;
+}
+
+void requestActions(int socket, char messageFromClient[]) {
+    //output the message recieved from the user to the consol.
+    printf("V1.1-Here is the message from the User: %s\n", messageFromClient);
+    //make a decision based off the message from the user
+
+    // The following was for testing purposes and can be removed once the decipher() function is complete
+    /**/
+    string userMessage = decipher(messageFromClient); // this runs the function dcipher taking off the delimiter value which is currently "~".  This gives us the intended message
+    string returnMessage;
+    int n;
+    if (userMessage == "1"){
+        //print message to consol
+        printf("The user has selected the number 1\n");
+        //this will be the message sent back to the client
+        returnMessage = "Thisis the message you sent us \"" + userMessage + "\"";
+        //send message back to the client
+        n = write(socket, returnMessage.c_str(), returnMessage.length()+1);
+        if (n < 0) error("ERROR writing to socket");
+    } else if (userMessage == "123") {
+        //print message to consol
+        printf("The user has input 3 seperated numbers thus giving us: 123\n");
+        //this will be the message sent back to the client
+        returnMessage = "This is the message you sent us \"" + userMessage + "\"";
+        //send message back to the client
+        n = write(socket, returnMessage.c_str(), returnMessage.length()+1);
+        if (n < 0) error("ERROR writing to socket");
+    } else {
+        //print message to consol
+        printf("The user has selected a number other than 1 and 123\n");
+        //this will be the message sent back to the client
+        returnMessage = "This is the message you sent us \"" + userMessage + "\"";
+        //send message back to the client
+        n = write(socket, returnMessage.c_str(), returnMessage.length()+1);
+        if (n < 0) error("ERROR writing to socket");
+    }
+    /**/
+}
+
 
 //this function takes an input of port when starting the run process of the program
 void communicate(int argc, char* argv[])
@@ -87,25 +158,13 @@ void communicate(int argc, char* argv[])
 void dostuff(int sock) {
     int n;
     char buffer[256];
-    string delimiter = "~~~";
     bzero(buffer, 256);
     n = read(sock, buffer, 255);
     if (n < 0) error("ERROR reading from socket");
-    string str_file_content;
-    string s = buffer;
-    printf("Here is the message from the User: %s\n", buffer);
-    size_t saveOpenCheck = s.find(delimiter);
-    size_t pos = 0;
-    string token;
+    //printf("Here is the message from the User: %s\n", buffer);
 
-    //Outputting the value of str_file_content to look a little nicer and remove the delimiter character
-    string message = string(" Thanks for conneceting to the Server! Your Message was: \"") + str_file_content + s + string("\"");  //had been outputting buffer instead to troubleshoot and get full picture of what I was getting
-        n = write(sock, message.c_str(), sizeof(message) + sizeof(buffer));
-        if (n < 0) error("ERROR writing to socket");
-
-    string prg_saved = string(" Progress Saved!");
-    n += write(sock, prg_saved.c_str(), sizeof(prg_saved) + sizeof(buffer));
-    if (n < 0) error("ERROR writing to socket");
+    //test message from user to see if it is within the function of requestActions
+    requestActions(sock, buffer);
 }
 
 
