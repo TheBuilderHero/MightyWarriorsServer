@@ -19,3 +19,6 @@
 [2022-03-13 03:29:40.539] [exthost] [info] ExtensionService#_doActivateExtension vscode.json-language-features, startup: false, activationEvent: 'onLanguage:json'
 [2022-03-13 03:50:31.007] [exthost] [info] ExtensionService#_doActivateExtension vscode.markdown-language-features, startup: false, activationEvent: 'onLanguage:markdown'
 [2022-03-13 03:50:31.445] [exthost] [info] ExtensionService#_doActivateExtension vscode.markdown-math, startup: false, activationEvent: 'api', root cause: vscode.markdown-language-features
+[2022-03-13 05:39:22.005] [exthost] [info] extension host terminating: received terminate message from renderer
+[2022-03-13 05:39:22.006] [exthost] [info] Lock '/opt/projectcode/MightyWarriors/.vscode-server/data/User/workspaceStorage/34374b986d6c75f0046fb3f4b330f69e/vscode.lock': Marking the lockfile as scheduled to be released in 6000 ms.
+[2022-03-13 05:39:22.044] [exthost] [info] Extension host with pid 265048 exiting with code 0

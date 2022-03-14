@@ -41,10 +41,10 @@ void error(const char* msg)
 //this function is intended to pull out the users request and the data associated with each request
 string decipher(char messageFromClient[]){
     string delimiter = "~"; //a character that marks the beginning or end of a unit of data
-    string message = messageFromClient; // change the message into a string
 
-    int item1, item2, item3;
-    string s = messageFromClient;
+    string item1, item2, item3, item4, item5, item6, item7; // declare the variables that are being used to store the message from the client
+    // the above variables may later be replaced with a more wide veriety of variables however, for testing we are using all strings
+    string s = messageFromClient;// change the message into a string
     string str_file_content;
     string token, output;
     int loopPass = 0;
@@ -56,52 +56,106 @@ string decipher(char messageFromClient[]){
         s.erase(0, pos + delimiter.length());
         if (loopPass == 1) {
             //first item after delimiter
-            if (output.length() > 0) item1 = std::stoi(output);
+            if (output.length() > 0) item1 = output; // we many need to change the variable to an int with stoi(output) later but right now we just want a string version
         } else if (loopPass == 2) {
             //second item after delimiter
-            if (output.length() > 0) item2 = std::stoi(output);
+            if (output.length() > 0) item2 = output;
         } else if (loopPass == 3) {
             //third item after delimiter
-            if (output.length() > 0) item3 = std::stoi(output);
+            if (output.length() > 0) item3 = output;
+        } else if (loopPass == 4) {
+            //forth item after delimiter
+            if (output.length() > 0) item4 = output;
+        } else if (loopPass == 5) {
+            //fith item after delimiter
+            if (output.length() > 0) item5 = output;
+        } else if (loopPass == 6) {
+            //sixth item after delimiter
+            if (output.length() > 0) item6 = output;
+        } else if (loopPass == 7) {
+            //seventh item after delimiter
+            if (output.length() > 0) item7 = output;
         }
         loopPass++;
     }
     return str_file_content;
 }
 
+//this functions purpose it to add the delimiters to given items 
+string cipher(string item1 = "", string item2= "", string item3= "", string item4= "", string item5= "", string item6= "", string item7= ""){ // the default values have been set to "" in case no input is given
+    int numberOfItems = 7; //max number of items that we can cipher
+    string delimiter = "~"; //a character that marks the beginning or end of a unit of data
+
+    string str_file_content;
+    int loopPass = 1; // start at loop instance 1 to not add extra delimiters to the front of the message.
+    while (loopPass != numberOfItems) {
+        str_file_content += delimiter; // this will add the seperating delimiter before the a given item
+        if (loopPass == 1) {
+            //first item after delimiter
+            if (item1.length() > 0) str_file_content += item1;
+        } else if (loopPass == 2) {
+            //second item after delimiter
+            if (item2.length() > 0) str_file_content += item2;
+        } else if (loopPass == 3) {
+            //third item after delimiter
+            if (item3.length() > 0) str_file_content += item3;
+        } else if (loopPass == 4) {
+            //second item after delimiter
+            if (item2.length() > 0) str_file_content += item4;
+        } else if (loopPass == 5) {
+            //third item after delimiter
+            if (item3.length() > 0) str_file_content += item5;
+        } else if (loopPass == 6) {
+            //second item after delimiter
+            if (item2.length() > 0) str_file_content += item6;
+        } else if (loopPass == 7) {
+            //third item after delimiter
+            if (item3.length() > 0) str_file_content += item7;
+        }
+        str_file_content += delimiter; // this will add the seperating delimiter after the given item
+        loopPass++;
+    }
+    return str_file_content;
+}
+
 void requestActions(int socket, char messageFromClient[]) {
+    
     //output the message recieved from the user to the consol.
     printf("V1.1-Here is the message from the User: %s\n", messageFromClient);
-    //make a decision based off the message from the user
+    
 
-    // The following was for testing purposes and can be removed once the decipher() function is complete
+    // The following was for testing purposes and can be removed later to impliment a better version for decicion making
     /**/
     string userMessage = decipher(messageFromClient); // this runs the function dcipher taking off the delimiter value which is currently "~".  This gives us the intended message
     string returnMessage;
     int n;
+    //make a decision based off the message from the user
     if (userMessage == "1"){
-        //print message to consol
-        printf("The user has selected the number 1\n");
-        //this will be the message sent back to the client
-        returnMessage = "Thisis the message you sent us \"" + userMessage + "\"";
-        //send message back to the client
-        n = write(socket, returnMessage.c_str(), returnMessage.length()+1);
+        
+        printf("The user has selected the number 1\n");//print message to consol
+        
+        returnMessage = "Thisis the message you sent us \"" + userMessage + "\"";//this will be the message sent back to the client
+        returnMessage = cipher(returnMessage); // run the function adding the delimiter
+        
+        n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
         if (n < 0) error("ERROR writing to socket");
-    } else if (userMessage == "123") {
-        //print message to consol
-        printf("The user has input 3 seperated numbers thus giving us: 123\n");
-        //this will be the message sent back to the client
-        returnMessage = "This is the message you sent us \"" + userMessage + "\"";
-        //send message back to the client
-        n = write(socket, returnMessage.c_str(), returnMessage.length()+1);
+    } else if (userMessage == "2") {
+        
+        printf("The user has input the number 2\n");//print message to consol
+        
+        returnMessage = "This is the message you sent us \"" + userMessage + "\"";//this will be the message sent back to the client
+        returnMessage = cipher(returnMessage); // run the function adding the delimiter
+        
+        n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
         if (n < 0) error("ERROR writing to socket");
     } else {
-        //print message to consol
-        printf("The user has selected a number other than 1 and 123\n");
-        //this will be the message sent back to the client
-        returnMessage = "This is the message you sent us \"" + userMessage + "\"";
-        //send message back to the client
-        n = write(socket, returnMessage.c_str(), returnMessage.length()+1);
+        
+        printf("The user has selected something other than 1 and 2\n");//print message to consol
+        
+        returnMessage = "This is the message you sent us \"" + userMessage + "\"";//this will be the message sent back to the client
+        returnMessage = cipher(returnMessage); // run the function adding the delimiter
+        
+        n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
         if (n < 0) error("ERROR writing to socket");
     }
     /**/
@@ -168,6 +222,7 @@ void dostuff(int sock) {
 }
 
 
+//main function of the source.cpp file
 int main(int argc, char* argv[]){
     cout << "Server Started..." << endl << "Press \"ctrl + c\" to stop the running program 1.1" << endl;
     communicate(argc, argv);
