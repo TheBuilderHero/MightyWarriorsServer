@@ -11,6 +11,7 @@
 #include <fstream>
 
 using namespace std;
+string delimiter = "~"; //a character that marks the beginning or end of a unit of data
 
 void dostuff(int); /* function prototype */
 
@@ -38,6 +39,25 @@ void error(const char* msg)
     exit(1);
 }
 
+void userDataDeliminationWrite(string username, string data2 = "", string data3 = "", string data4 = "", string data5 = "", string data6 = "", string data7 = ""){
+    ofstream userfile;
+    userfile.open("./userdata/" + username +".dat"); // all user data is stored in the folder called userdata with a naming scheme of "[username].dat"
+
+    userfile << delimiter << username; // these are all adding data to the file with delimiter seperation.
+    if (data2.length() > 0) {userfile << delimiter << data2;} else {userfile << delimiter;}
+    if (data3.length() > 0) {userfile << delimiter << data3;} else {userfile << delimiter;}
+    if (data4.length() > 0) {userfile << delimiter << data4;} else {userfile << delimiter;}
+    if (data5.length() > 0) {userfile << delimiter << data5;} else {userfile << delimiter;}
+    if (data6.length() > 0) {userfile << delimiter << data6;} else {userfile << delimiter;}
+    if (data7.length() > 0) {userfile << delimiter << data7;} else {userfile << delimiter;}
+    userfile << delimiter;
+    userfile.close(); // done writting to file and now it is closed
+}
+
+void userDataDeliminationRead(string username){
+
+}
+
 class Decipher {
     public:
     int typeOfRequest;
@@ -46,7 +66,7 @@ class Decipher {
 
     //this function is intended to pull out the users request and the data associated with each request
     string decipher(char messageFromClient[]){
-        string delimiter = "~"; //a character that marks the beginning or end of a unit of data
+        
 
         
         string s = messageFromClient;// change the message into a string
@@ -123,14 +143,15 @@ string cipher(int responseType = 0, string item2= "", string item3= "", string i
             if (item7.length() > 0) str_file_content += item7;
             break;
         }
-        str_file_content += delimiter; // this will add the seperating delimiter after the given item
         loopPass++;
     }
+    str_file_content += delimiter; // this will add the final delimiter after all the data to mark the end
     return str_file_content;
 }
 
 void requestActions(int socket, char messageFromClient[]) {
     Decipher code;
+    ifstream testUsername;
     string returnMessage = "0"; //this is hard setting the function to always say that the username does not exist.  This will need to be changed to checking for usernames use.
     string message = code.decipher(messageFromClient);
     int n;
@@ -142,58 +163,30 @@ void requestActions(int socket, char messageFromClient[]) {
     switch (code.typeOfRequest) {
         case 1:
             //this mimics the confimation of username uniquness. - need to replace with working file check code to actually confirm usernames
-            message = code.decipher(messageFromClient);
-            returnMessage = cipher(1, returnMessage);
-            n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
-            if (n < 0) error("ERROR writing to socket");
+            message = code.decipher(messageFromClient); //unpack the message from the user
+            testUsername.open("./userdata/" + code.username + ".dat"); //opens file to check if it exists
+            if (testUsername) { // test user is true if it does exist and false if is does not // this means that when it exists you can not user that username
+                returnMessage = "0"; //not valid username - already in use
+                returnMessage = cipher(1, returnMessage); //deliminates return message
+                n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+                if (n < 0) error("ERROR writing to socket");
+            } else {
+                returnMessage = "1";  //valid username - not in use
+                returnMessage = cipher(1, returnMessage); // deliminates return message
+                n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+                if (n < 0) error("ERROR writing to socket");
+            }
             break;
         case 2:
             //this is the user creation type
+            userDataDeliminationWrite(code.username, code.item3);
+
             break;
         case 3:
             //check logon info to confirm user identity - user logon
             break;
         
     }
-
-    
-    
-
-    // The following was for testing purposes and can be removed later to impliment a better version for decicion making
-    /*
-    string userMessage = decipher(messageFromClient); // this runs the function dcipher taking off the delimiter value which is currently "~".  This gives us the intended message
-    string returnMessage;
-    int n;
-    //make a decision based off the message from the user
-    if (userMessage == "1"){
-        
-        printf("The user has selected the number 1\n");//print message to consol
-        
-        returnMessage = "Thisis the message you sent us \"" + userMessage + "\"";//this will be the message sent back to the client
-        returnMessage = cipher(0, returnMessage); // run the function adding the delimiter
-        
-        n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
-        if (n < 0) error("ERROR writing to socket");
-    } else if (userMessage == "2") {
-        
-        printf("The user has input the number 2\n");//print message to consol
-        
-        returnMessage = "This is the message you sent us \"" + userMessage + "\"";//this will be the message sent back to the client
-        returnMessage = cipher(0, returnMessage); // run the function adding the delimiter
-        
-        n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
-        if (n < 0) error("ERROR writing to socket");
-    } else {
-        
-        printf("The user has selected something other than 1 and 2\n");//print message to consol
-        
-        returnMessage = "This is the message you sent us \"" + userMessage + "\"";//this will be the message sent back to the client
-        returnMessage = cipher(0, returnMessage); // run the function adding the delimiter
-        
-        n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
-        if (n < 0) error("ERROR writing to socket");
-    }
-    */
 }
 
 
@@ -259,7 +252,7 @@ void dostuff(int sock) {
 
 //main function of the source.cpp file
 int main(int argc, char* argv[]){
-    cout << "Server Started..." << endl << "Press \"ctrl + c\" to stop the running program 1.1" << endl;
+    cout << "Server Started..." << endl << "Press \"ctrl + c\" to stop the running program 1.4" << endl;
     communicate(argc, argv);
 
     return 0; /* we never get here */
