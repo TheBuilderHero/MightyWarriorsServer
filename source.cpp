@@ -54,27 +54,29 @@ string decipher(char messageFromClient[]){
         output = token;
         str_file_content += std::string(token); // we do not need to add spaces between the information for now so I removed: + std::string(" ")
         s.erase(0, pos + delimiter.length());
-        if (loopPass == 1) {
-            //first item after delimiter
+        
+        switch (loopPass){
+            case 1: //first item after delimiter
             if (output.length() > 0) item1 = output; // we many need to change the variable to an int with stoi(output) later but right now we just want a string version
-        } else if (loopPass == 2) {
-            //second item after delimiter
+            break;
+            case 2://second item after delimiter
             if (output.length() > 0) item2 = output;
-        } else if (loopPass == 3) {
-            //third item after delimiter
+            break;
+            case 3://third item after delimiter
             if (output.length() > 0) item3 = output;
-        } else if (loopPass == 4) {
-            //forth item after delimiter
+            break;
+            case 4://forth item after delimiter
             if (output.length() > 0) item4 = output;
-        } else if (loopPass == 5) {
-            //fith item after delimiter
+            break;
+            case 5://fith item after delimiter
             if (output.length() > 0) item5 = output;
-        } else if (loopPass == 6) {
-            //sixth item after delimiter
+            break;
+            case 6://sixth item after delimiter
             if (output.length() > 0) item6 = output;
-        } else if (loopPass == 7) {
-            //seventh item after delimiter
+            break;
+            case 7://seventh item after delimiter
             if (output.length() > 0) item7 = output;
+            break;
         }
         loopPass++;
     }
@@ -90,27 +92,30 @@ string cipher(string item1 = "", string item2= "", string item3= "", string item
     int loopPass = 1; // start at loop instance 1 to not add extra delimiters to the front of the message.
     while (loopPass != numberOfItems) {
         str_file_content += delimiter; // this will add the seperating delimiter before the a given item
-        if (loopPass == 1) {
-            //first item after delimiter
+
+        switch (loopPass)
+        {
+            case 1://first item after delimiter
             if (item1.length() > 0) str_file_content += item1;
-        } else if (loopPass == 2) {
-            //second item after delimiter
+            break;
+            case 2://first item after delimiter
             if (item2.length() > 0) str_file_content += item2;
-        } else if (loopPass == 3) {
-            //third item after delimiter
+            break;
+            case 3://first item after delimiter
             if (item3.length() > 0) str_file_content += item3;
-        } else if (loopPass == 4) {
-            //second item after delimiter
-            if (item2.length() > 0) str_file_content += item4;
-        } else if (loopPass == 5) {
-            //third item after delimiter
-            if (item3.length() > 0) str_file_content += item5;
-        } else if (loopPass == 6) {
-            //second item after delimiter
-            if (item2.length() > 0) str_file_content += item6;
-        } else if (loopPass == 7) {
-            //third item after delimiter
-            if (item3.length() > 0) str_file_content += item7;
+            break;
+            case 4://first item after delimiter
+            if (item4.length() > 0) str_file_content += item4;
+            break;
+            case 5://first item after delimiter
+            if (item5.length() > 0) str_file_content += item5;
+            break;
+            case 6://first item after delimiter
+            if (item6.length() > 0) str_file_content += item6;
+            break;
+            case 7://first item after delimiter
+            if (item7.length() > 0) str_file_content += item7;
+            break;
         }
         str_file_content += delimiter; // this will add the seperating delimiter after the given item
         loopPass++;

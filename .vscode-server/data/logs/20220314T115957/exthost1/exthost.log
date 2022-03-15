@@ -11,3 +11,6 @@
 [2022-03-14 12:00:01.501] [exthost] [info] ExtensionService#_doActivateExtension vscode.configuration-editing, startup: false, activationEvent: 'onLanguage:jsonc'
 [2022-03-14 12:00:01.517] [exthost] [info] ExtensionService#_doActivateExtension vscode.json-language-features, startup: false, activationEvent: 'onLanguage:jsonc'
 [2022-03-14 12:00:01.578] [exthost] [info] ExtensionService#_doActivateExtension vscode.typescript-language-features, startup: false, activationEvent: 'onLanguage:jsonc'
+[2022-03-14 13:55:57.798] [exthost] [info] extension host terminating: received terminate message from renderer
+[2022-03-14 13:55:57.799] [exthost] [info] Lock '/opt/projectcode/MightyWarriors/.vscode-server/data/User/workspaceStorage/34374b986d6c75f0046fb3f4b330f69e/vscode.lock': Marking the lockfile as scheduled to be released in 6000 ms.
+[2022-03-14 13:55:57.841] [exthost] [info] Extension host with pid 294072 exiting with code 0
