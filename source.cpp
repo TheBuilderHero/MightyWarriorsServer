@@ -38,53 +38,59 @@ void error(const char* msg)
     exit(1);
 }
 
-//this function is intended to pull out the users request and the data associated with each request
-string decipher(char messageFromClient[]){
-    string delimiter = "~"; //a character that marks the beginning or end of a unit of data
-
-    string item1, item2, item3, item4, item5, item6, item7; // declare the variables that are being used to store the message from the client
+class Decipher {
+    public:
+    int typeOfRequest;
+    string username, item3, item4, item5, item6, item7; // declare the variables that are being used to store the message from the client
     // the above variables may later be replaced with a more wide veriety of variables however, for testing we are using all strings
-    string s = messageFromClient;// change the message into a string
-    string str_file_content;
-    string token, output;
-    int loopPass = 0;
-    size_t pos = 0; // position variable for removing the delimiters to view the message
-    while ((pos = s.find(delimiter)) != std::string::npos) {
-        token = s.substr(0, pos);
-        output = token;
-        str_file_content += std::string(token); // we do not need to add spaces between the information for now so I removed: + std::string(" ")
-        s.erase(0, pos + delimiter.length());
+
+    //this function is intended to pull out the users request and the data associated with each request
+    string decipher(char messageFromClient[]){
+        string delimiter = "~"; //a character that marks the beginning or end of a unit of data
+
         
-        switch (loopPass){
-            case 1: //first item after delimiter
-            if (output.length() > 0) item1 = output; // we many need to change the variable to an int with stoi(output) later but right now we just want a string version
-            break;
-            case 2://second item after delimiter
-            if (output.length() > 0) item2 = output;
-            break;
-            case 3://third item after delimiter
-            if (output.length() > 0) item3 = output;
-            break;
-            case 4://forth item after delimiter
-            if (output.length() > 0) item4 = output;
-            break;
-            case 5://fith item after delimiter
-            if (output.length() > 0) item5 = output;
-            break;
-            case 6://sixth item after delimiter
-            if (output.length() > 0) item6 = output;
-            break;
-            case 7://seventh item after delimiter
-            if (output.length() > 0) item7 = output;
-            break;
+        string s = messageFromClient;// change the message into a string
+        string str_file_content;
+        string token, output;
+        int loopPass = 0;
+        size_t pos = 0; // position variable for removing the delimiters to view the message
+        while ((pos = s.find(delimiter)) != std::string::npos) {
+            token = s.substr(0, pos);
+            output = token;
+            str_file_content += std::string(token); // we do not need to add spaces between the information for now so I removed: + std::string(" ")
+            s.erase(0, pos + delimiter.length());
+            
+            switch (loopPass){
+                case 1: //first item after delimiter
+                if (output.length() > 0) typeOfRequest = stoi(output); // request numbers give different outputs 1 is username usage, 2 is create user account, 3 is logon
+                break;
+                case 2://second item after delimiter
+                if (output.length() > 0) username = output; // we many need to change the variable to an int with stoi(output) later but right now we just want a string version
+                break;
+                case 3://third item after delimiter
+                if (output.length() > 0) item3 = output;
+                break;
+                case 4://forth item after delimiter
+                if (output.length() > 0) item4 = output;
+                break;
+                case 5://fith item after delimiter
+                if (output.length() > 0) item5 = output;
+                break;
+                case 6://sixth item after delimiter
+                if (output.length() > 0) item6 = output;
+                break;
+                case 7://seventh item after delimiter
+                if (output.length() > 0) item7 = output;
+                break;
+            }
+            loopPass++;
         }
-        loopPass++;
+        return str_file_content;
     }
-    return str_file_content;
-}
+};
 
 //this functions purpose it to add the delimiters to given items 
-string cipher(string item1 = "", string item2= "", string item3= "", string item4= "", string item5= "", string item6= "", string item7= ""){ // the default values have been set to "" in case no input is given
+string cipher(int responseType = 0, string item2= "", string item3= "", string item4= "", string item5= "", string item6= "", string item7= ""){ // the default values have been set to "" in case no input is given
     int numberOfItems = 7; //max number of items that we can cipher
     string delimiter = "~"; //a character that marks the beginning or end of a unit of data
 
@@ -96,7 +102,7 @@ string cipher(string item1 = "", string item2= "", string item3= "", string item
         switch (loopPass)
         {
             case 1://first item after delimiter
-            if (item1.length() > 0) str_file_content += item1;
+            if (responseType > 0) str_file_content += to_string(responseType);
             break;
             case 2://first item after delimiter
             if (item2.length() > 0) str_file_content += item2;
@@ -124,13 +130,37 @@ string cipher(string item1 = "", string item2= "", string item3= "", string item
 }
 
 void requestActions(int socket, char messageFromClient[]) {
+    Decipher code;
+    string returnMessage = "0"; //this is hard setting the function to always say that the username does not exist.  This will need to be changed to checking for usernames use.
+    string message = code.decipher(messageFromClient);
+    int n;
     
     //output the message recieved from the user to the consol.
     printf("V1.1-Here is the message from the User: %s\n", messageFromClient);
+
+    //testing to see what action the user is requesting by switching between cases of typeOfRequest
+    switch (code.typeOfRequest) {
+        case 1:
+            //this mimics the confimation of username uniquness. - need to replace with working file check code to actually confirm usernames
+            message = code.decipher(messageFromClient);
+            returnMessage = cipher(1, returnMessage);
+            n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+            if (n < 0) error("ERROR writing to socket");
+            break;
+        case 2:
+            //this is the user creation type
+            break;
+        case 3:
+            //check logon info to confirm user identity - user logon
+            break;
+        
+    }
+
+    
     
 
     // The following was for testing purposes and can be removed later to impliment a better version for decicion making
-    /**/
+    /*
     string userMessage = decipher(messageFromClient); // this runs the function dcipher taking off the delimiter value which is currently "~".  This gives us the intended message
     string returnMessage;
     int n;
@@ -140,7 +170,7 @@ void requestActions(int socket, char messageFromClient[]) {
         printf("The user has selected the number 1\n");//print message to consol
         
         returnMessage = "Thisis the message you sent us \"" + userMessage + "\"";//this will be the message sent back to the client
-        returnMessage = cipher(returnMessage); // run the function adding the delimiter
+        returnMessage = cipher(0, returnMessage); // run the function adding the delimiter
         
         n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
         if (n < 0) error("ERROR writing to socket");
@@ -149,7 +179,7 @@ void requestActions(int socket, char messageFromClient[]) {
         printf("The user has input the number 2\n");//print message to consol
         
         returnMessage = "This is the message you sent us \"" + userMessage + "\"";//this will be the message sent back to the client
-        returnMessage = cipher(returnMessage); // run the function adding the delimiter
+        returnMessage = cipher(0, returnMessage); // run the function adding the delimiter
         
         n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
         if (n < 0) error("ERROR writing to socket");
@@ -158,12 +188,12 @@ void requestActions(int socket, char messageFromClient[]) {
         printf("The user has selected something other than 1 and 2\n");//print message to consol
         
         returnMessage = "This is the message you sent us \"" + userMessage + "\"";//this will be the message sent back to the client
-        returnMessage = cipher(returnMessage); // run the function adding the delimiter
+        returnMessage = cipher(0, returnMessage); // run the function adding the delimiter
         
         n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
         if (n < 0) error("ERROR writing to socket");
     }
-    /**/
+    */
 }
 
 
