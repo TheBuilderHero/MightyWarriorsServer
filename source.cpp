@@ -44,28 +44,38 @@ void error(const char* msg)
     exit(1);
 }
 
-void userDataDeliminationWrite(string username, string data2 = "", string data3 = "", string data4 = "", string data5 = "", string data6 = "", string data7 = ""){
-    mkdir(("./userdata/" + username).c_str(), 0774);
+void userDataDeliminationWrite(int newOrUpdate, string username, string data2 = "", string data3 = "", string data4 = "", string data5 = "", string data6 = "", string data7 = ""){
     ofstream userfile;
     ofstream logonfile;
-    //userfile.open("./userdata/" + username + "/" + username +".dat"); // all user data is stored in the folder called userdata with a naming scheme of "[username].dat"
+    switch (newOrUpdate){ //newOrUpdate is for the password, whether it is just getting updated or if this is a new user.
+        case 1:
+            mkdir(("./userdata/" + username).c_str(), 0774);
+            
+            //userfile.open("./userdata/" + username + "/" + username +".dat"); // all user data is stored in the folder called userdata with a naming scheme of "[username].dat"
+            userfile.open("./userdata/" + username + "/" + username + ".dat");
+            userfile << delimiter << username; // these are all adding data to the file with delimiter seperation.
+            if (data2.length() > 0) {userfile << delimiter << data2;} else {userfile << delimiter;}
+            if (data3.length() > 0) {userfile << delimiter << data3;} else {userfile << delimiter;}
+            if (data4.length() > 0) {userfile << delimiter << data4;} else {userfile << delimiter;}
+            if (data5.length() > 0) {userfile << delimiter << data5;} else {userfile << delimiter;}
+            if (data6.length() > 0) {userfile << delimiter << data6;} else {userfile << delimiter;}
+            if (data7.length() > 0) {userfile << delimiter << data7;} else {userfile << delimiter;}
+            userfile << delimiter;
+            userfile.close(); // done writting to file and now it is closed
 
-    userfile.open("./userdata/" + username + "/" + username + ".dat");
-    userfile << delimiter << username; // these are all adding data to the file with delimiter seperation.
-    if (data2.length() > 0) {userfile << delimiter << data2;} else {userfile << delimiter;}
-    if (data3.length() > 0) {userfile << delimiter << data3;} else {userfile << delimiter;}
-    if (data4.length() > 0) {userfile << delimiter << data4;} else {userfile << delimiter;}
-    if (data5.length() > 0) {userfile << delimiter << data5;} else {userfile << delimiter;}
-    if (data6.length() > 0) {userfile << delimiter << data6;} else {userfile << delimiter;}
-    if (data7.length() > 0) {userfile << delimiter << data7;} else {userfile << delimiter;}
-    userfile << delimiter;
-    userfile.close(); // done writting to file and now it is closed
-
-    logonfile.open("./userdata/" + username + "/" + username + ".act"); // this is the file which will store the users accout logon info
-    logonfile << delimiter << username;
-    logonfile << delimiter << "0000"; // set defualt password for the account
-    logonfile << delimiter;
-    logonfile.close();
+            logonfile.open("./userdata/" + username + "/" + username + ".act"); // this is the file which will store the users accout logon info
+            logonfile << delimiter << username;
+            logonfile << delimiter << "0000"; // set defualt password for the account
+            logonfile << delimiter;
+            logonfile.close();
+            break;
+        case 2:
+            logonfile.open("./userdata/" + username + "/" + username + ".act"); // this is the file which will store the users accout logon info
+            logonfile << delimiter << username;
+            logonfile << delimiter << data2; // set defualt password for the account
+            logonfile << delimiter;
+            logonfile.close();
+    }
 }
 
 void userDataDeliminationRead(string username){
@@ -231,7 +241,7 @@ void requestActions(int socket, char messageFromClient[]) {
             }
             break;
         case 2://this is the user creation type
-            userDataDeliminationWrite(code.username, code.item3);
+            userDataDeliminationWrite(1, code.username, code.item3);
 
             break;
         case 3://check logon info to confirm user identity - user logon
@@ -240,6 +250,9 @@ void requestActions(int socket, char messageFromClient[]) {
             returnMessage = cipher(3, to_string(ableToLogon));
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
+            break;
+        case 4: //change password
+            userDataDeliminationWrite(2, code.username, code.item3);
             break;
         
     }
