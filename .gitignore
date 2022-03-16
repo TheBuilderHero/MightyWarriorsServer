@@ -1,2 +1,2 @@
-/opt/projectcode/MightyWarriors/userdata/*
-/opt/projectcode/MightyWarriors/.vscode-server/*
+/opt/projectcode/MightyWarriors/userdata/**
+/opt/projectcode/MightyWarriors/.vscode-server/**
