@@ -8,3 +8,6 @@
 [2022-03-15 12:57:48.001] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onStartupFinished'
 [2022-03-15 12:57:48.015] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
 [2022-03-15 12:57:48.019] [exthost] [info] Eager extensions activated
+[2022-03-15 17:24:11.178] [exthost] [info] extension host terminating: received terminate message from renderer
+[2022-03-15 17:24:11.179] [exthost] [info] Lock '/opt/projectcode/MightyWarriors/.vscode-server/data/User/workspaceStorage/34374b986d6c75f0046fb3f4b330f69e/vscode.lock': Marking the lockfile as scheduled to be released in 6000 ms.
+[2022-03-15 17:24:11.210] [exthost] [info] Extension host with pid 319982 exiting with code 0

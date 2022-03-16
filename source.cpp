@@ -1,4 +1,9 @@
 #include <iostream>
+#include <bits/stdc++.h>
+#include <iostream>
+#include <sys/stat.h>
+#include <sys/types.h>
+
 #include <vector>
 #include <stdio.h>
 #include <unistd.h>
@@ -40,9 +45,12 @@ void error(const char* msg)
 }
 
 void userDataDeliminationWrite(string username, string data2 = "", string data3 = "", string data4 = "", string data5 = "", string data6 = "", string data7 = ""){
+    mkdir(("./userdata/" + username).c_str(), 0774);
     ofstream userfile;
-    userfile.open("./userdata/" + username +".dat"); // all user data is stored in the folder called userdata with a naming scheme of "[username].dat"
+    ofstream logonfile;
+    //userfile.open("./userdata/" + username + "/" + username +".dat"); // all user data is stored in the folder called userdata with a naming scheme of "[username].dat"
 
+    userfile.open("./userdata/" + username + "/" + username + ".dat");
     userfile << delimiter << username; // these are all adding data to the file with delimiter seperation.
     if (data2.length() > 0) {userfile << delimiter << data2;} else {userfile << delimiter;}
     if (data3.length() > 0) {userfile << delimiter << data3;} else {userfile << delimiter;}
@@ -52,9 +60,54 @@ void userDataDeliminationWrite(string username, string data2 = "", string data3 
     if (data7.length() > 0) {userfile << delimiter << data7;} else {userfile << delimiter;}
     userfile << delimiter;
     userfile.close(); // done writting to file and now it is closed
+
+    logonfile.open("./userdata/" + username + "/" + username + ".act"); // this is the file which will store the users accout logon info
+    logonfile << delimiter << username;
+    logonfile << delimiter << "0000"; // set defualt password for the account
+    logonfile << delimiter;
+    logonfile.close();
 }
 
 void userDataDeliminationRead(string username){
+
+}
+
+int userLogon(string usernameE, string passwordE) { //This code pulls the passwords out of the .act file so that we can compare them with the password entered by the user.
+    
+    string username, password;
+    string logonContent;
+    ifstream logon;
+    logon.open("./userdata/" + usernameE + "/" + usernameE + ".act"); //open file to read content
+    logon >> logonContent;
+    logon.close();
+    string token, output;
+    int loopPass = 0;
+    size_t pos = 0; // position variable for removing the delimiters to view the message
+    while ((pos = logonContent.find(delimiter)) != std::string::npos) { //removing the delimiters to view each variable
+        token = logonContent.substr(0, pos);
+        output = token;
+        logonContent.erase(0, pos + delimiter.length());
+            
+        switch (loopPass){
+            case 1: //first item after delimiter
+                if (output.length() > 0) username = output; //assign username variable
+                break;
+            case 2://second item after delimiter
+                if (output.length() > 0) password = output; //assign password variable
+                break;
+        }
+        loopPass++;
+    }
+
+    if (username == usernameE){ // test the logon info entered from the user against what is saved to the file. // 1 for working logon and pass, 0 for invalid
+        if (password == passwordE){
+            return 1;
+        } else {
+            return 0;
+        }
+    } else {
+        return 0;
+    }
 
 }
 
@@ -161,11 +214,11 @@ void requestActions(int socket, char messageFromClient[]) {
 
     //testing to see what action the user is requesting by switching between cases of typeOfRequest
     switch (code.typeOfRequest) {
-        case 1:
-            //this mimics the confimation of username uniquness. - need to replace with working file check code to actually confirm usernames
+        case 1://check for non-taken usernames
             message = code.decipher(messageFromClient); //unpack the message from the user
-            testUsername.open("./userdata/" + code.username + ".dat"); //opens file to check if it exists
+            testUsername.open("./userdata/" + code.username + "/" + code.username + ".dat"); //opens file to check if it exists
             if (testUsername) { // test user is true if it does exist and false if is does not // this means that when it exists you can not user that username
+                testUsername.close();// closing opened file
                 returnMessage = "0"; //not valid username - already in use
                 returnMessage = cipher(1, returnMessage); //deliminates return message
                 n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
@@ -177,13 +230,16 @@ void requestActions(int socket, char messageFromClient[]) {
                 if (n < 0) error("ERROR writing to socket");
             }
             break;
-        case 2:
-            //this is the user creation type
+        case 2://this is the user creation type
             userDataDeliminationWrite(code.username, code.item3);
 
             break;
-        case 3:
-            //check logon info to confirm user identity - user logon
+        case 3://check logon info to confirm user identity - user logon
+            int ableToLogon;
+            ableToLogon = userLogon(code.username, code.item3);
+            returnMessage = cipher(3, to_string(ableToLogon));
+            n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+            if (n < 0) error("ERROR writing to socket");
             break;
         
     }
