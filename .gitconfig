@@ -1,3 +1,7 @@
 [user]
 	name = Dakota Stephens
 	email = kota.helives@gmail.com
+[core]
+	excludesFile = /opt/projectcode/MightyWarriors/.gitignore
+	excludesFile = /opt/projectcode/MightyWarriors/.vscode-server
+	excludesFile = /opt/projectcode/MightyWarriors/userdata/*
