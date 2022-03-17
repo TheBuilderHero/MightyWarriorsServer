@@ -15,6 +15,8 @@
 #include <netinet/in.h>
 #include <fstream>
 
+#include "Enemies.h"
+
 using namespace std;
 string delimiter = "~"; //a character that marks the beginning or end of a unit of data
 
@@ -322,6 +324,8 @@ void dostuff(int sock) {
 //main function of the source.cpp file
 int main(int argc, char* argv[]){
     cout << "Server Started..." << endl << "Press \"ctrl + c\" to stop the running program 1.4" << endl;
+    Enemies test;
+    test.mutantElf();
     communicate(argc, argv);
 
     return 0; /* we never get here */
