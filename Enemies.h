@@ -1,15 +1,11 @@
 #include <string>
+#include "Characters.h"
+
 #pragma once
 
 using namespace std;
 
-class Enemies {
+class Enemies : Characters {
     public:
-        string name;
-        int level;
-        double baseHealth;
-        double baseArmor;
-        double baseMagicResistance;
-        double baseDamage;
         void mutantElf();
 };

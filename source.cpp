@@ -16,28 +16,13 @@
 #include <fstream>
 
 #include "Enemies.h"
+#include "Players.h"
+#include "Characters.h"
 
 using namespace std;
 string delimiter = "~"; //a character that marks the beginning or end of a unit of data
 
 void dostuff(int); /* function prototype */
-
-//defining the player and all their caracteristics and items
-class Player {
-    public:
-        string name;
-        string race; // is one of the following: Human - Elf - Dino - Dryad - Ghost
-        double baseHealth, baseDefense, baseAbility, baseAgility, baseDamage;
-        double xp;
-        int level;
-        
-        struct playersWeapon{
-            string weaponName;
-            int weaponPower;
-        };
-        
-};
-
 
 //this function is called for an error and used to exit the program
 void error(const char* msg)
@@ -323,10 +308,11 @@ void dostuff(int sock) {
 
 //main function of the source.cpp file
 int main(int argc, char* argv[]){
-    cout << "Server Started..." << endl << "Press \"ctrl + c\" to stop the running program 1.4" << endl;
-    Enemies test;
-    test.mutantElf();
-    communicate(argc, argv);
+    cout << "Server Started..." << endl << "Press \"ctrl + c\" to stop the running program 1.4" << endl; //I use this line to make sure the server is running and test the compiles
+    
+    Enemies test;     
+    test.mutantElf();  //testing the multie file classes
 
+    communicate(argc, argv); //Start the servers function
     return 0; /* we never get here */
 }
