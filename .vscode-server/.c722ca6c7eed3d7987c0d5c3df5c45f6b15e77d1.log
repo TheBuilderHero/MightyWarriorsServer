@@ -5,26 +5,17 @@
 * the Visual Studio Code Server License Terms (https://aka.ms/vscode-server-license) and
 * the Microsoft Privacy Statement (https://privacy.microsoft.com/en-US/privacystatement).
 *
-Server bound to 127.0.0.1:41797 (IPv4)
-Extension host agent listening on 41797
+Server bound to 127.0.0.1:38027 (IPv4)
+Extension host agent listening on 38027
 
-[15:26:50] Extension host agent started.
-[15:26:50] [127.0.0.1][196587b3][ManagementConnection] New connection established.
-[15:26:50] [127.0.0.1][2ac9ccfc][ExtensionHostConnection] New connection established.
-[15:26:50] [127.0.0.1][2ac9ccfc][ExtensionHostConnection] <391220> Launched Extension Host Process.
-[15:44:07] [127.0.0.1][196587b3][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
-[15:44:07] [127.0.0.1][2ac9ccfc][ExtensionHostConnection] <391220> Extension Host Process exited with code: 0, signal: null.
-Last EH closed, waiting before shutting down
-[15:44:07] Last EH closed, waiting before shutting down
-Got delay-shutdown request while in shutdown timeout, delaying
-[15:44:28] Got delay-shutdown request while in shutdown timeout, delaying
-Cancelling previous shutdown timeout
-[15:44:28] Cancelling previous shutdown timeout
-[15:44:29] [127.0.0.1][f2c0a7e1][ManagementConnection] New connection established.
-[15:44:29] [127.0.0.1][f6ca72f3][ExtensionHostConnection] New connection established.
-[15:44:29] [127.0.0.1][f6ca72f3][ExtensionHostConnection] <392126> Launched Extension Host Process.
-rejected promise not handled within 1 second: Error: Could not find pty on pty host
-stack trace: Error: Could not find pty on pty host,    at o._throwIfNoPty (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:17:5354),    at o.updateTitle (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:17:1694),    at Object.call (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:13:8348),    at L.onPromise (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:4866),    at L.onRawMessage (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:4261),    at /opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:3553,    at a.invoke (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:8:145),    at I.fire (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:8:1856),    at process.f (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:6:34341),    at process.emit (events.js:315:20),    at emit (internal/child_process.js:903:12),    at processTicksAndRejections (internal/process/task_queues.js:81:21)
-[Error: Could not find pty on pty host,    at o._throwIfNoPty (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:17:5354),    at o.updateTitle (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:17:1694),    at Object.call (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:13:8348),    at L.onPromise (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:4866),    at L.onRawMessage (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:4261),    at /opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:3553,    at a.invoke (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:8:145),    at I.fire (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:8:1856),    at process.f (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:6:34341),    at process.emit (events.js:315:20),    at emit (internal/child_process.js:903:12),    at processTicksAndRejections (internal/process/task_queues.js:81:21)]
-New EH opened, aborting shutdown
-[15:49:28] New EH opened, aborting shutdown
+[10:03:25] Extension host agent started.
+[10:03:25] [127.0.0.1][9c0d94c2][ManagementConnection] New connection established.
+[10:03:25] [127.0.0.1][93126cdc][ExtensionHostConnection] New connection established.
+[10:03:25] [127.0.0.1][93126cdc][ExtensionHostConnection] <407462> Launched Extension Host Process.
+[10:03:29] Getting Manifest... eamodio.gitlens
+[10:03:30] Installing extension: eamodio.gitlens
+[10:03:31] Downloaded extension: eamodio.gitlens /opt/projectcode/MightyWarriors/.vscode-server/data/CachedExtensionVSIXs/eamodio.gitlens-12.0.5
+[10:03:31] Extracted extension to /opt/projectcode/MightyWarriors/.vscode-server/extensions/.8c1bcc12-dbe1-4aa8-b01b-843b868622a5: eamodio.gitlens
+[10:03:31] Renamed to /opt/projectcode/MightyWarriors/.vscode-server/extensions/eamodio.gitlens-12.0.5
+[10:03:31] Extracting completed. eamodio.gitlens
+[10:03:31] Extension installed successfully: eamodio.gitlens
