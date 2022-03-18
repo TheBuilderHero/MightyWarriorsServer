@@ -5,17 +5,10 @@
 * the Visual Studio Code Server License Terms (https://aka.ms/vscode-server-license) and
 * the Microsoft Privacy Statement (https://privacy.microsoft.com/en-US/privacystatement).
 *
-Server bound to 127.0.0.1:38027 (IPv4)
-Extension host agent listening on 38027
+Server bound to 127.0.0.1:43701 (IPv4)
+Extension host agent listening on 43701
 
-[10:03:25] Extension host agent started.
-[10:03:25] [127.0.0.1][9c0d94c2][ManagementConnection] New connection established.
-[10:03:25] [127.0.0.1][93126cdc][ExtensionHostConnection] New connection established.
-[10:03:25] [127.0.0.1][93126cdc][ExtensionHostConnection] <407462> Launched Extension Host Process.
-[10:03:29] Getting Manifest... eamodio.gitlens
-[10:03:30] Installing extension: eamodio.gitlens
-[10:03:31] Downloaded extension: eamodio.gitlens /opt/projectcode/MightyWarriors/.vscode-server/data/CachedExtensionVSIXs/eamodio.gitlens-12.0.5
-[10:03:31] Extracted extension to /opt/projectcode/MightyWarriors/.vscode-server/extensions/.8c1bcc12-dbe1-4aa8-b01b-843b868622a5: eamodio.gitlens
-[10:03:31] Renamed to /opt/projectcode/MightyWarriors/.vscode-server/extensions/eamodio.gitlens-12.0.5
-[10:03:31] Extracting completed. eamodio.gitlens
-[10:03:31] Extension installed successfully: eamodio.gitlens
+[17:28:44] Extension host agent started.
+[17:28:44] [127.0.0.1][a968b883][ManagementConnection] New connection established.
+[17:28:44] [127.0.0.1][9bec17e9][ExtensionHostConnection] New connection established.
+[17:28:44] [127.0.0.1][9bec17e9][ExtensionHostConnection] <421931> Launched Extension Host Process.
