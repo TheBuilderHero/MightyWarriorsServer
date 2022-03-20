@@ -11,10 +11,10 @@
 #include "Cipher.h"
 
 //********************************************
-int gameVersion     = 1;
-int gameMajorBuild  = 0;
-int gameMinorBuild  = 0;
-int gamePatch       = 0;
+const int gameVersion     = 1;
+const int gameMajorBuild  = 0;
+const int gameMinorBuild  = 0;
+const int gamePatch       = 0;
 //********************************************
 
 using namespace std;
