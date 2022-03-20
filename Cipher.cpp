@@ -24,7 +24,7 @@ string Cipher::decipher(char messageFromClient[]){
         
         switch (loopPass){
             case 1: //first item after delimiter
-            if (output.length() > 0) typeOfRequest = stoi(output); // request numbers give different outputs 1 is username usage, 2 is create user account, 3 is logon
+            if (output.length() > 0) typeOfRequest = output; // request numbers give different outputs 1 is username usage, 2 is create user account, 3 is logon
             break;
             case 2://second item after delimiter
             if (output.length() > 0) username = output; // we many need to change the variable to an int with stoi(output) later but right now we just want a string version
@@ -52,7 +52,7 @@ string Cipher::decipher(char messageFromClient[]){
 
 //int responseType = 0, string item2= "", string item3= "", string item4= "", string item5= "", string item6= "", string item7= ""
 //this functions purpose it to add the delimiters to given items 
-string Cipher::cipher(int responseType, string item2, string item3, string item4, string item5, string item6, string item7){ // the default values have been set to "" in case no input is given
+string Cipher::cipher(string responseType, string item2, string item3, string item4, string item5, string item6, string item7){ // the default values have been set to "" in case no input is given
     int numberOfItems = 7; //max number of items that we can cipher
     string delimiter = "~"; //a character that marks the beginning or end of a unit of data
 
@@ -64,7 +64,7 @@ string Cipher::cipher(int responseType, string item2, string item3, string item4
         switch (loopPass)
         {
             case 1://first item after delimiter
-            if (responseType > 0) str_file_content += to_string(responseType);
+            if (responseType.length() > 0) str_file_content += responseType;
             break;
             case 2://first item after delimiter
             if (item2.length() > 0) str_file_content += item2;

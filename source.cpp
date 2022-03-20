@@ -10,18 +10,12 @@
 #include "Characters.h"
 #include "Cipher.h"
 
-/*
-The following is a list of either no longer needed includes or never needed includes that were being used for testing:
-#include <iostream>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <vector>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/types.h>
-#include <fstream>
-*/
+//********************************************
+int gameVersion     = 1;
+int gameMajorBuild  = 0;
+int gameMinorBuild  = 0;
+int gamePatch       = 0;
+//********************************************
 
 using namespace std;
 string delimiter = "~"; //a character that marks the beginning or end of a unit of data
@@ -85,19 +79,19 @@ void requestActions(int socket, char messageFromClient[]) {
     printf("V1.1-Here is the message from the User: %s\n", messageFromClient);
 
     //testing to see what action the user is requesting by switching between cases of typeOfRequest
-    switch (code.typeOfRequest) {
+    switch (stoi(code.typeOfRequest)) {
         case 1://check new users entered username against list of usernames to make sure it is unique
             message = code.decipher(messageFromClient); //unpack the message from the user
             testUsername.open("./userdata/" + code.username + "/" + code.username + ".dat"); //opens file to check if it exists
             if (testUsername) { // test user is true if it does exist and false if is does not // this means that when it exists you can not user that username
                 testUsername.close();// closing opened file
                 returnMessage = "0"; //not valid username - already in use
-                returnMessage = code.cipher(1, returnMessage); //deliminates return message
+                returnMessage = code.cipher("1", returnMessage); //deliminates return message
                 n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
                 if (n < 0) error("ERROR writing to socket");
             } else {
                 returnMessage = "1";  //valid username - not in use
-                returnMessage = code.cipher(1, returnMessage); // deliminates return message
+                returnMessage = code.cipher("1", returnMessage); // deliminates return message
                 n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
                 if (n < 0) error("ERROR writing to socket");
             }
@@ -109,14 +103,47 @@ void requestActions(int socket, char messageFromClient[]) {
         case 3://check logon info to confirm user identity - user logon
             int ableToLogon;
             ableToLogon = userLogon(code.username, code.item3);
-            returnMessage = code.cipher(3, to_string(ableToLogon));
+            returnMessage = code.cipher("3", to_string(ableToLogon));
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
         case 4: //change password
             code.userDataDeliminationWrite(2, code.username, code.item3);
             break;
-        
+        case 0: //check for version compatibility - This is done before using can continue to create account or logon
+            int gameVersionT, gameMajorBuildT, gameMinorBuildT, gamePatchT; //client game versions which we are going to test against the server's version
+            gameVersionT = stoi(code.item3);
+            gameMajorBuildT = stoi(code.item4);
+            gameMinorBuildT = stoi(code.item5);
+            gamePatchT = stoi(code.item6);
+            if (gameVersion == gameVersionT){
+                if(gameMajorBuild == gameMajorBuildT){
+                    if (gameMinorBuild == gameMinorBuildT){
+                        if (gamePatch == gamePatchT){
+                            //then the version is current and can be used - return true
+                            returnMessage = code.cipher("0", "true"); //send current version to client
+                            n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+                            if (n < 0) error("ERROR writing to socket");
+                        } else {//then the version is NOT current and cannot be used - return false
+                            returnMessage = code.cipher("0", "false"); //send current version to client
+                            n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+                            if (n < 0) error("ERROR writing to socket");
+                        }
+                    } else {//then the version is NOT current and cannot be used - return false
+                        returnMessage = code.cipher("0", "false"); //send current version to client
+                        n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+                        if (n < 0) error("ERROR writing to socket");
+                    }
+                } else {//then the version is NOT current and cannot be used - return false
+                    returnMessage = code.cipher("0", "false"); //send current version to client
+                    n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+                    if (n < 0) error("ERROR writing to socket");
+                }
+            } else {//then the version is NOT current and cannot be used - return false
+                returnMessage = code.cipher("0", "false"); //send current version to client
+                n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+                if (n < 0) error("ERROR writing to socket");
+            }
     }
 }
 
