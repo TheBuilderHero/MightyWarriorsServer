@@ -124,7 +124,7 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             logonfile.close();
         case 3: //Overwrite the user's stats
             userfile.open("./userdata/" + username + "/" + username + ".stat");
-            userfile << delimiter; // these are all adding data to the file with delimiter seperation.
+            userfile << delimiter << username; // these are all adding data to the file with delimiter seperation.
             if (data2.length() > 0) {userfile << delimiter << data2;} else {userfile << delimiter;}
             if (data3.length() > 0) {userfile << delimiter << data3;} else {userfile << delimiter;}
             if (data4.length() > 0) {userfile << delimiter << data4;} else {userfile << delimiter;}
