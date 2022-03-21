@@ -110,6 +110,12 @@ void requestActions(int socket, char messageFromClient[]) {
         case 4: //change password
             code.userDataDeliminationWrite(2, code.username, code.item3);
             break;
+        case 5:
+            code.userDataDeliminationWrite(3, "", code.item3, code.item4, code.item5, code.item6);
+            returnMessage = code.cipher("4", "wasAbleToSave");
+            n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+            if (n < 0) error("ERROR writing to socket");
+            break;
         case 0: //check for version compatibility - This is done before using can continue to create account or logon
             int gameVersionT, gameMajorBuildT, gameMinorBuildT, gamePatchT; //client game versions which we are going to test against the server's version
             gameVersionT = stoi(code.item3);

@@ -10,7 +10,7 @@ using namespace std;
 
 //char messageFromClient[]
 //this function is intended to pull out the users request and the data associated with each request
-string Cipher::decipher(char messageFromClient[]){
+string Cipher::decipher(char messageFromClient[]){ //requestActions takes all the different typeOfRequest
     string s = messageFromClient;// change the message into a string
     string str_file_content;
     string token, output;
@@ -91,10 +91,10 @@ string Cipher::cipher(string responseType, string item2, string item3, string it
     return str_file_content;
 }
 
-void Cipher::userDataDeliminationWrite(int newOrUpdate, string username, string data2, string data3, string data4, string data5, string data6, string data7){
+void Cipher::userDataDeliminationWrite(int updateValue, string username, string data2, string data3, string data4, string data5, string data6, string data7){
     ofstream userfile;
     ofstream logonfile;
-    switch (newOrUpdate){ //newOrUpdate is for the password, whether it is just getting updated or if this is a new user.
+    switch (updateValue){ //updateValue is for the password, whether it is just getting updated or if this is a new user.
         case 1: //New user account
             mkdir(("./userdata/" + username).c_str(), 0774);
             
@@ -122,6 +122,17 @@ void Cipher::userDataDeliminationWrite(int newOrUpdate, string username, string 
             logonfile << delimiter << data2; //this sets the defualt password to the information input in data2 which was given by the user
             logonfile << delimiter;
             logonfile.close();
+        case 3: //Overwrite the user's stats
+            userfile.open("./userdata/" + username + "/" + username + ".stat");
+            userfile << delimiter; // these are all adding data to the file with delimiter seperation.
+            if (data2.length() > 0) {userfile << delimiter << data2;} else {userfile << delimiter;}
+            if (data3.length() > 0) {userfile << delimiter << data3;} else {userfile << delimiter;}
+            if (data4.length() > 0) {userfile << delimiter << data4;} else {userfile << delimiter;}
+            if (data5.length() > 0) {userfile << delimiter << data5;} else {userfile << delimiter;}
+            if (data6.length() > 0) {userfile << delimiter << data6;} else {userfile << delimiter;}
+            if (data7.length() > 0) {userfile << delimiter << data7;} else {userfile << delimiter;}
+            userfile << delimiter;
+            userfile.close(); // done writting to file and now it is closed
     }
 }
 
