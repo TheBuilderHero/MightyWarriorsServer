@@ -11,7 +11,7 @@ class Cipher {
     public:
     string delimiter = "~";
     string typeOfRequest;
-    string username, item3, item4, item5, item6, item7; // declare the variables that are being used to store the message from the client
+    string username, item3, item4, item5, item6, item7, item2; // declare the variables that are being used to store the message from the client // in some cases item2 is used.
     // the above variables may later be replaced with a more wide veriety of variables however, for testing we are using all strings
 
     //this function is intended to pull out the users request and the data associated with each request
@@ -24,5 +24,5 @@ class Cipher {
     void userDataDeliminationWrite(int updateValue, string username, string data2 = "", string data3 = "", string data4 = "", string data5 = "", string data6 = "", string data7 = "");
     
     //currently no function but it will read from the user's data file
-    void userDataDeliminationRead(string username);
+    void userDataDeliminationRead(int updateValue, string username);
 };

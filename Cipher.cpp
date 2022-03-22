@@ -136,6 +136,50 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
     }
 }
 
-void Cipher::userDataDeliminationRead(string username){
-
+void Cipher::userDataDeliminationRead(int updateValue, string username){
+    ifstream userstats;
+    switch (updateValue){ //updateValue is for the password, whether it is just getting updated or if this is a new user.
+        case 1:
+            string s;
+            userstats.open("./userdata/" + username + "/" + username + ".stat");
+            userstats >> s;
+            string str_file_content;
+            string token, output;
+            int loopPass = 0;
+            size_t pos = 0; // position variable for removing the delimiters to view the message
+            while ((pos = s.find(delimiter)) != std::string::npos) {
+                token = s.substr(0, pos);
+                output = token;
+                str_file_content += std::string(token); // we do not need to add spaces between the information for now so I removed: + std::string(" ")
+                s.erase(0, pos + delimiter.length());
+                
+                switch (loopPass){
+                    case 1: //first item after delimiter
+                    if (output.length() > 0) username = output; // request numbers give different outputs 1 is username usage, 2 is create user account, 3 is logon
+                    break;
+                    case 2://second item after delimiter
+                    if (output.length() > 0) item2 = output; // we many need to change the variable to an int with stoi(output) later but right now we just want a string version
+                    break;
+                    case 3://third item after delimiter
+                    if (output.length() > 0) item3 = output;
+                    break;
+                    case 4://forth item after delimiter
+                    if (output.length() > 0) item4 = output;
+                    break;
+                    case 5://fith item after delimiter
+                    if (output.length() > 0) item5 = output;
+                    break;
+                    case 6://sixth item after delimiter
+                    if (output.length() > 0) item6 = output;
+                    break;
+                    case 7://seventh item after delimiter
+                    if (output.length() > 0) item7 = output;
+                    break;
+                }
+                loopPass++;
+            }
+            userstats.close();
+            //return str_file_content; //we are not having this return anything right now, however, we may change this later.
+            break;
+    }
 }

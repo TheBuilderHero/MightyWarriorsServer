@@ -110,9 +110,15 @@ void requestActions(int socket, char messageFromClient[]) {
         case 4: //change password
             code.userDataDeliminationWrite(2, code.username, code.item3);
             break;
-        case 5:
+        case 5: //write the user stats to file
             code.userDataDeliminationWrite(3, code.username, code.item3, code.item4, code.item5, code.item6);
             returnMessage = code.cipher("4", "wasAbleToSave");
+            n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+            if (n < 0) error("ERROR writing to socket");
+            break;
+        case 6: //try to read to user's stats from file - need to get this fully setup.
+            code.userDataDeliminationRead(1, code.username); //sets the items3 - 6 to the current stat values
+            returnMessage = code.cipher("5", code.item2, code.item3, code.item4, code.item5); // set the "" to some value so that items 3 - 6 are the health, attack, armor, and magic res.
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
