@@ -10,6 +10,7 @@
 #include "Characters.h"
 #include "Cipher.h"
 
+//Make sure that game sersion is changed along with client or go to the version check function and allow for older versions of the client. (We must make sure to be acceptable in functionality)
 //********************************************
 const int gameVersion     = 1;
 const int gameMajorBuild  = 0;
@@ -19,12 +20,10 @@ const int gamePatch       = 0;
 
 using namespace std;
 string delimiter = "~"; //a character that marks the beginning or end of a unit of data
-
 void dostuff(int); /* function prototype */
 
-//this function is called for an error and used to exit the program
-void error(const char* msg)
-{
+
+void error(const char* msg){//this function is called for an error and used to exit the program
     perror(msg);
     exit(1);
 }
@@ -68,7 +67,7 @@ int userLogon(string usernameE, string passwordE) { //This code pulls the passwo
 
 }
 
-void requestActions(int socket, char messageFromClient[]) {
+void requestActions(int socket, char messageFromClient[]) { //This function takes a socket and the message from the user and then performs an action based on the variable typeOfRequest which is contained in the message from th user.
     Cipher code;
     ifstream testUsername;
     string returnMessage = "0"; //this is hard setting the function to always say that the username does not exist.  This will need to be changed to checking for usernames use.
@@ -159,10 +158,8 @@ void requestActions(int socket, char messageFromClient[]) {
     }
 }
 
-
 //this function takes an input of port when starting the run process of the program
-void communicate(int argc, char* argv[])
-{ // the job of this function is to indefinitily accept incomming messages and send a message in response to them
+void communicate(int argc, char* argv[]) { // the job of this function is to indefinitily accept incomming messages and send a message in response to them
     int sockfd, newsockfd, portno, pid;
     socklen_t clilen;
     struct sockaddr_in serv_addr, cli_addr;
@@ -219,10 +216,9 @@ void dostuff(int sock) {
     requestActions(sock, buffer);
 }
 
-
 //main function of the source.cpp file
 int main(int argc, char* argv[]){
-    cout << "Server Started..." << endl << "Press \"ctrl + c\" to stop the running program 1.4" << endl; //I use this line to make sure the server is running and test the compiles
+    cout << "Server Successfully Running..." << endl << "Press \"ctrl + c\" to stop the running program\nServer Version: " << to_string(gameVersion) << "." << to_string(gameMajorBuild) << "." << to_string(gameMinorBuild) << "." << to_string(gamePatch) << endl; //I use this line to make sure the server is running and test the compiles
     
     Enemies test;     
     test.mutantElf();  //testing the multie file classes
