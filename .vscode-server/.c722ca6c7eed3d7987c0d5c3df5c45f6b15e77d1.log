@@ -5,10 +5,12 @@
 * the Visual Studio Code Server License Terms (https://aka.ms/vscode-server-license) and
 * the Microsoft Privacy Statement (https://privacy.microsoft.com/en-US/privacystatement).
 *
-Server bound to 127.0.0.1:41193 (IPv4)
-Extension host agent listening on 41193
+Server bound to 127.0.0.1:34877 (IPv4)
+Extension host agent listening on 34877
 
-[01:33:41] Extension host agent started.
-[01:33:41] [127.0.0.1][7457f1a2][ManagementConnection] New connection established.
-[01:33:41] [127.0.0.1][91fdfc77][ExtensionHostConnection] New connection established.
-[01:33:41] [127.0.0.1][91fdfc77][ExtensionHostConnection] <557809> Launched Extension Host Process.
+[14:00:37] Extension host agent started.
+[14:00:37] [127.0.0.1][bf638bfa][ManagementConnection] New connection established.
+[14:00:37] [127.0.0.1][f77640ac][ExtensionHostConnection] New connection established.
+[14:00:37] [127.0.0.1][f77640ac][ExtensionHostConnection] <591307> Launched Extension Host Process.
+[14:44:50] [127.0.0.1][52bf33dc] Unauthorized client refused: auth mismatch.
+[14:44:52] [127.0.0.1][12c72605] Unauthorized client refused: auth mismatch.
