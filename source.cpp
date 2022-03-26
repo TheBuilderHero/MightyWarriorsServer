@@ -220,8 +220,7 @@ void dostuff(int sock) {
 int main(int argc, char* argv[]){
     cout << "Server Successfully Running..." << endl << "Press \"ctrl + c\" to stop the running program\nServer Version: " << to_string(gameVersion) << "." << to_string(gameMajorBuild) << "." << to_string(gameMinorBuild) << "." << to_string(gamePatch) << endl; //I use this line to make sure the server is running and test the compiles
     
-    Enemies test;     
-    test.mutantElf();  //testing the multie file classes
+    //potato
 
     communicate(argc, argv); //Start the servers function
     return 0; /* we never get here */
