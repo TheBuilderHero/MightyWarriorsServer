@@ -5,122 +5,16 @@
 * the Visual Studio Code Server License Terms (https://aka.ms/vscode-server-license) and
 * the Microsoft Privacy Statement (https://privacy.microsoft.com/en-US/privacystatement).
 *
-Server bound to 127.0.0.1:34877 (IPv4)
-Extension host agent listening on 34877
+Server bound to 127.0.0.1:45991 (IPv4)
+Extension host agent listening on 45991
 
-[14:00:37] Extension host agent started.
-[14:00:37] [127.0.0.1][bf638bfa][ManagementConnection] New connection established.
-[14:00:37] [127.0.0.1][f77640ac][ExtensionHostConnection] New connection established.
-[14:00:37] [127.0.0.1][f77640ac][ExtensionHostConnection] <591307> Launched Extension Host Process.
-[14:44:50] [127.0.0.1][52bf33dc] Unauthorized client refused: auth mismatch.
-[14:44:52] [127.0.0.1][12c72605] Unauthorized client refused: auth mismatch.
-[14:46:20] [127.0.0.1][bf638bfa][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
-[14:46:20] [127.0.0.1][f77640ac][ExtensionHostConnection] <591307> Extension Host Process exited with code: 0, signal: null.
-Last EH closed, waiting before shutting down
-[14:46:20] Last EH closed, waiting before shutting down
-Got delay-shutdown request while in shutdown timeout, delaying
-[14:47:37] Got delay-shutdown request while in shutdown timeout, delaying
-Cancelling previous shutdown timeout
-[14:47:37] Cancelling previous shutdown timeout
-[14:47:38] [127.0.0.1][aaaf59e8] Unauthorized client refused: auth mismatch.
-[14:47:41] [127.0.0.1][592fe0cc] Unauthorized client refused: auth mismatch.
-Got delay-shutdown request while in shutdown timeout, delaying
-[14:52:07] Got delay-shutdown request while in shutdown timeout, delaying
-Cancelling previous shutdown timeout
-[14:52:07] Cancelling previous shutdown timeout
-[14:52:08] [127.0.0.1][177c604e][ManagementConnection] New connection established.
-[14:52:08] [127.0.0.1][e87aabdf][ExtensionHostConnection] New connection established.
-[14:52:08] [127.0.0.1][e87aabdf][ExtensionHostConnection] <593804> Launched Extension Host Process.
-Got delay-shutdown request while in shutdown timeout, delaying
-[14:52:39] Got delay-shutdown request while in shutdown timeout, delaying
-Cancelling previous shutdown timeout
-[14:52:39] Cancelling previous shutdown timeout
-[14:52:39] [127.0.0.1][02acd9ae][ManagementConnection] New connection established.
-[14:52:39] [127.0.0.1][df8bd25e][ExtensionHostConnection] New connection established.
-[14:52:39] [127.0.0.1][df8bd25e][ExtensionHostConnection] <593973> Launched Extension Host Process.
-[IPC Library: Pty Host]  INFO Persistent process "11": Replaying 761 chars and 1 size events
-[14:53:48] [127.0.0.1][177c604e][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
-[14:53:48] [127.0.0.1][e87aabdf][ExtensionHostConnection] <593804> Extension Host Process exited with code: 0, signal: null.
-Cancelling previous shutdown timeout
-[14:53:48] Cancelling previous shutdown timeout
-[14:54:04] [127.0.0.1][4f663a08][ManagementConnection] New connection established.
-[14:54:04] [127.0.0.1][fad250bb][ExtensionHostConnection] New connection established.
-[14:54:04] [127.0.0.1][fad250bb][ExtensionHostConnection] <594349> Launched Extension Host Process.
-[14:54:09] RequestStore#acceptReply was called without receiving a matching request 241
-[14:54:09] RequestStore#acceptReply was called without receiving a matching request 242
-[14:54:09] RequestStore#acceptReply was called without receiving a matching request 243
-[14:54:09] RequestStore#acceptReply was called without receiving a matching request 244
-[14:54:09] RequestStore#acceptReply was called without receiving a matching request 245
-[14:54:09] RequestStore#acceptReply was called without receiving a matching request 246
-[14:54:09] RequestStore#acceptReply was called without receiving a matching request 247
-[14:54:09] RequestStore#acceptReply was called without receiving a matching request 248
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 249
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 250
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 251
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 252
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 253
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 254
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 255
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 256
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 257
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 258
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 259
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 260
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 261
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 262
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 263
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 264
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 265
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 266
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 267
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 268
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 269
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 270
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 271
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 272
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 273
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 274
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 275
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 276
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 277
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 278
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 279
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 280
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 281
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 282
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 283
-[14:54:10] RequestStore#acceptReply was called without receiving a matching request 284
-[14:54:11] RequestStore#acceptReply was called without receiving a matching request 285
-[14:54:11] RequestStore#acceptReply was called without receiving a matching request 286
-[14:54:11] RequestStore#acceptReply was called without receiving a matching request 287
-[14:54:11] RequestStore#acceptReply was called without receiving a matching request 288
-[14:54:12] RequestStore#acceptReply was called without receiving a matching request 289
-[14:54:12] RequestStore#acceptReply was called without receiving a matching request 290
-[14:54:12] RequestStore#acceptReply was called without receiving a matching request 291
-[14:54:12] RequestStore#acceptReply was called without receiving a matching request 292
-[14:54:12] RequestStore#acceptReply was called without receiving a matching request 293
-[14:54:12] RequestStore#acceptReply was called without receiving a matching request 294
-[14:54:12] RequestStore#acceptReply was called without receiving a matching request 295
-[14:54:12] RequestStore#acceptReply was called without receiving a matching request 296
-[14:54:12] RequestStore#acceptReply was called without receiving a matching request 297
-[14:54:12] RequestStore#acceptReply was called without receiving a matching request 298
-[14:54:12] RequestStore#acceptReply was called without receiving a matching request 299
-[14:54:13] RequestStore#acceptReply was called without receiving a matching request 300
-rejected promise not handled within 1 second: Error: Could not find pty on pty host
-stack trace: Error: Could not find pty on pty host,    at o._throwIfNoPty (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:17:5354),    at o.updateIcon (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:17:1754),    at Object.call (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:13:8348),    at L.onPromise (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:4866),    at L.onRawMessage (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:4261),    at /opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:3553,    at a.invoke (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:8:145),    at I.fire (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:8:1856),    at process.f (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:6:34341),    at process.emit (events.js:315:20),    at emit (internal/child_process.js:903:12),    at processTicksAndRejections (internal/process/task_queues.js:81:21)
-[Error: Could not find pty on pty host,    at o._throwIfNoPty (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:17:5354),    at o.updateIcon (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:17:1754),    at Object.call (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:13:8348),    at L.onPromise (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:4866),    at L.onRawMessage (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:4261),    at /opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:3553,    at a.invoke (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:8:145),    at I.fire (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:8:1856),    at process.f (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:6:34341),    at process.emit (events.js:315:20),    at emit (internal/child_process.js:903:12),    at processTicksAndRejections (internal/process/task_queues.js:81:21)]
+[05:13:28] Extension host agent started.
+[05:13:28] [127.0.0.1][a3cef5e6][ManagementConnection] New connection established.
+[05:13:28] [127.0.0.1][dc631b94][ExtensionHostConnection] New connection established.
+[05:13:28] [127.0.0.1][dc631b94][ExtensionHostConnection] <609480> Launched Extension Host Process.
 rejected promise not handled within 1 second: Error: Could not find pty on pty host
 stack trace: Error: Could not find pty on pty host,    at o._throwIfNoPty (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:17:5354),    at o.updateTitle (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:17:1694),    at Object.call (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:13:8348),    at L.onPromise (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:4866),    at L.onRawMessage (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:4261),    at /opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:3553,    at a.invoke (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:8:145),    at I.fire (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:8:1856),    at process.f (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:6:34341),    at process.emit (events.js:315:20),    at emit (internal/child_process.js:903:12),    at processTicksAndRejections (internal/process/task_queues.js:81:21)
 [Error: Could not find pty on pty host,    at o._throwIfNoPty (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:17:5354),    at o.updateTitle (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:17:1694),    at Object.call (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:13:8348),    at L.onPromise (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:4866),    at L.onRawMessage (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:4261),    at /opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:3553,    at a.invoke (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:8:145),    at I.fire (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:8:1856),    at process.f (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:6:34341),    at process.emit (events.js:315:20),    at emit (internal/child_process.js:903:12),    at processTicksAndRejections (internal/process/task_queues.js:81:21)]
-[14:55:02] RequestStore#acceptReply was called without receiving a matching request 301
-[14:55:02] RequestStore#acceptReply was called without receiving a matching request 302
-[14:55:02] RequestStore#acceptReply was called without receiving a matching request 303
-[14:55:02] RequestStore#acceptReply was called without receiving a matching request 304
-[14:55:02] RequestStore#acceptReply was called without receiving a matching request 305
-[14:55:02] RequestStore#acceptReply was called without receiving a matching request 306
-[14:55:02] RequestStore#acceptReply was called without receiving a matching request 307
-[14:55:02] RequestStore#acceptReply was called without receiving a matching request 308
-[14:55:02] RequestStore#acceptReply was called without receiving a matching request 309
-[14:55:02] RequestStore#acceptReply was called without receiving a matching request 310
-[14:55:02] RequestStore#acceptReply was called without receiving a matching request 311
-[14:55:02] RequestStore#acceptReply was called without receiving a matching request 312
+rejected promise not handled within 1 second: Error: Could not find pty on pty host
+stack trace: Error: Could not find pty on pty host,    at o._throwIfNoPty (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:17:5354),    at o.updateIcon (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:17:1754),    at Object.call (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:13:8348),    at L.onPromise (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:4866),    at L.onRawMessage (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:4261),    at /opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:3553,    at a.invoke (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:8:145),    at I.fire (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:8:1856),    at process.f (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:6:34341),    at process.emit (events.js:315:20),    at emit (internal/child_process.js:903:12),    at processTicksAndRejections (internal/process/task_queues.js:81:21)
+[Error: Could not find pty on pty host,    at o._throwIfNoPty (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:17:5354),    at o.updateIcon (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:17:1754),    at Object.call (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:13:8348),    at L.onPromise (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:4866),    at L.onRawMessage (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:4261),    at /opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:12:3553,    at a.invoke (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:8:145),    at I.fire (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:8:1856),    at process.f (/opt/projectcode/MightyWarriors/.vscode-server/bin/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/out/vs/platform/terminal/node/ptyHostMain.js:6:34341),    at process.emit (events.js:315:20),    at emit (internal/child_process.js:903:12),    at processTicksAndRejections (internal/process/task_queues.js:81:21)]
