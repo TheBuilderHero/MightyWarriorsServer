@@ -12,6 +12,15 @@
 
 //Make sure that game sersion is changed along with client or go to the version check function and allow for older versions of the client. (We must make sure to be acceptable in functionality)
 //********************************************
+//             Server Version
+//********************************************
+const int ServerVersion     = 1;
+const int ServerMajorBuild  = 0;
+const int ServerMinorBuild  = 0;
+const int ServerPatch       = 0;
+//********************************************
+//         Required Client Version
+//********************************************
 const int gameVersion     = 1;
 const int gameMajorBuild  = 0;
 const int gameMinorBuild  = 0;
@@ -218,10 +227,7 @@ void dostuff(int sock) {
 
 //main function of the source.cpp file
 int main(int argc, char* argv[]){
-    cout << "Server Successfully Running..." << endl << "Press \"ctrl + c\" to stop the running program\nServer Version: " << to_string(gameVersion) << "." << to_string(gameMajorBuild) << "." << to_string(gameMinorBuild) << "." << to_string(gamePatch) << endl; //I use this line to make sure the server is running and test the compiles
-    
-    //potato
-
+    cout << "Server Successfully Running..." << endl << "Press \"ctrl + c\" to stop the running program\nServer Version: " << to_string(ServerVersion) << "." << to_string(ServerMajorBuild) << "." << to_string(ServerMinorBuild) << "." << to_string(ServerPatch) << endl; //I use this line to make sure the server is running and test the compiles
     communicate(argc, argv); //Start the servers function
     return 0; /* we never get here */
 }
