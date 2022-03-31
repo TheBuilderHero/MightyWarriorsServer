@@ -9,6 +9,7 @@
 #include "Players.h"
 #include "Characters.h"
 #include "Cipher.h"
+#include "Battle.h"
 
 //Make sure that game sersion is changed along with client or go to the version check function and allow for older versions of the client. (We must make sure to be acceptable in functionality)
 //********************************************
@@ -131,15 +132,15 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             if (n < 0) error("ERROR writing to socket");
             break;
         case 0: //check for version compatibility - This is done before using can continue to create account or logon
-            int gameVersionT, gameMajorBuildT, gameMinorBuildT, gamePatchT; //client game versions which we are going to test against the server's version
-            gameVersionT = stoi(code.item3);
-            gameMajorBuildT = stoi(code.item4);
-            gameMinorBuildT = stoi(code.item5);
-            gamePatchT = stoi(code.item6);
-            if (gameVersion == gameVersionT){
-                if(gameMajorBuild == gameMajorBuildT){
-                    if (gameMinorBuild == gameMinorBuildT){
-                        if (gamePatch == gamePatchT){
+            int gameVersionClient, gameMajorBuildClient, gameMinorBuildClient, gamePatchClient; //client game versions which we are going to test against the server's version
+            gameVersionClient = stoi(code.item3);
+            gameMajorBuildClient = stoi(code.item4);
+            gameMinorBuildClient = stoi(code.item5);
+            gamePatchClient = stoi(code.item6);
+            if (gameVersion == gameVersionClient){ //these nested if statements check to makte sure that the client version the user is using is the same as the valid client version on the server.
+                if(gameMajorBuild == gameMajorBuildClient){
+                    if (gameMinorBuild == gameMinorBuildClient){
+                        if (gamePatch == gamePatchClient){
                             //then the version is current and can be used - return true
                             returnMessage = code.cipher("0", "true"); //send current version to client
                             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
@@ -228,6 +229,11 @@ void dostuff(int sock) {
 //main function of the source.cpp file
 int main(int argc, char* argv[]){
     cout << "Server Successfully Running..." << endl << "Press \"ctrl + c\" to stop the running program\nServer Version: " << to_string(ServerVersion) << "." << to_string(ServerMajorBuild) << "." << to_string(ServerMinorBuild) << "." << to_string(ServerPatch) << endl; //I use this line to make sure the server is running and test the compiles
+    Battle battle;
+    cout <<"Test:" << endl;
+    double amountNeeded = battle.increaseXP(1, 499);
+    cout << "User XP:" << amountNeeded << endl;
+    cout << "^The above^" << endl;
     communicate(argc, argv); //Start the servers function
     return 0; /* we never get here */
 }
