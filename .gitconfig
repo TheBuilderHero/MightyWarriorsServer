@@ -1,6 +1,0 @@
-[user]
-	name = Quackattackjack
-	email = Quackattackjack@users.noreply.github.com
-[core]
-	excludesFile = /opt/projectcode/MightyWarriors/.gitignore
-	excludesFile = /opt/projectcode/MightyWarriors/userdata/*
