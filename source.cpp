@@ -226,7 +226,7 @@ void dostuff(int sock) {
     requestActions(sock, buffer);
 }
 
-//main function of the source.cpp file
+//main function of the source.cpp file -
 int main(int argc, char* argv[]){
     cout << "Server Successfully Running..." << endl << "Press \"ctrl + c\" to stop the running program\nServer Version: " << to_string(ServerVersion) << "." << to_string(ServerMajorBuild) << "." << to_string(ServerMinorBuild) << "." << to_string(ServerPatch) << endl; //I use this line to make sure the server is running and test the compiles
     Battle battle;
