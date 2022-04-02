@@ -226,12 +226,12 @@ void dostuff(int sock) {
     requestActions(sock, buffer);
 }
 
-//main function of the source.cpp file -
+//main function of the source.cpp file
 int main(int argc, char* argv[]){
     cout << "Server Successfully Running..." << endl << "Press \"ctrl + c\" to stop the running program\nServer Version: " << to_string(ServerVersion) << "." << to_string(ServerMajorBuild) << "." << to_string(ServerMinorBuild) << "." << to_string(ServerPatch) << endl; //I use this line to make sure the server is running and test the compiles
     Battle battle;
     cout <<"Test:" << endl;
-    double amountNeeded = battle.increaseXP(1, 499);
+    double amountNeeded = battle.increaseXP(1, 499); //This is just a test of the XP mechanic - I made this comment to test the Kyle making GitHub Commits
     cout << "User XP:" << amountNeeded << endl;
     cout << "^The above^" << endl;
     communicate(argc, argv); //Start the servers function
