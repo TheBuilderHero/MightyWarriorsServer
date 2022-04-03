@@ -79,6 +79,8 @@ int userLogon(string usernameE, string passwordE) { //This code pulls the passwo
 
 void requestActions(int socket, char messageFromClient[]) { //This function takes a socket and the message from the user and then performs an action based on the variable typeOfRequest which is contained in the message from th user.
     Cipher code;
+    Characters characters;
+    Players players;
     ifstream testUsername;
     string returnMessage = "0"; //this is hard setting the function to always say that the username does not exist.  This will need to be changed to checking for usernames use.
     string message = code.decipher(messageFromClient);
@@ -125,9 +127,12 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
-        case 6: //try to read to user's stats from file - need to get this fully setup.
+        case 6: //Making this read all user info form file  ---------------------------//try to read to user's stats from file - need to get this fully setup.
             code.userDataDeliminationRead(1, code.username); //sets the items3 - 6 to the current stat values
-            returnMessage = code.cipher("5", code.item2, code.item3, code.item4, code.item5); // set the "" to some value so that items 3 - 6 are the health, attack, armor, and magic res.
+            characters.Human(code.username); //set the proper stat values for the input of the base stats (This is used in the following long statment)
+            returnMessage = code.cipher("5", players.getHealthStat(code.username, characters.baseHealth, stoi(code.item2)), players.getArmorStat(code.username, characters.baseArmor, stoi(code.item3)),
+            players.getMagicResistanceStat(code.username, characters.baseMagicResistance, stoi(code.item4)), players.getPhysicalDamageStat(code.username, characters.basePhysicalDamage, stoi(code.item5)), 
+            players.getMagicDamageStat(code.username, characters.baseAgility, stoi(code.item6))); // This very long input put into simple terms calculates stats by adding base to bonus then spitting it out as a string for Health, armor, magicResistance, physicalDamage, MagicDamage, Agility
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;

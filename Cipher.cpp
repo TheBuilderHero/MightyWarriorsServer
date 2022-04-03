@@ -43,6 +43,15 @@ string Cipher::decipher(char messageFromClient[]){ //requestActions takes all th
             break;
             case 7://seventh item after delimiter
             if (output.length() > 0) item7 = output;
+            break; 
+            case 8://the eighth item enclosed in delimiters
+            if (output.length() > 0) item8 = output; 
+            break;
+            case 9://the ninth item enclosed in delimiters
+            if (output.length() > 0) item9 = output; 
+            break;
+            case 10://the tenth item enclosed in delimiters
+            if (output.length() > 0) item10 = output; 
             break;
         }
         loopPass++;
@@ -52,8 +61,8 @@ string Cipher::decipher(char messageFromClient[]){ //requestActions takes all th
 
 //int responseType = 0, string item2= "", string item3= "", string item4= "", string item5= "", string item6= "", string item7= ""
 //this functions purpose it to add the delimiters to given items 
-string Cipher::cipher(string responseType, string item2, string item3, string item4, string item5, string item6, string item7){ // the default values have been set to "" in case no input is given
-    int numberOfItems = 7; //max number of items that we can cipher
+string Cipher::cipher(string responseType, string item2, string item3, string item4, string item5, string item6, string item7, string item8, string item9, string item10){ // the default values have been set to "" in case no input is given
+    int numberOfItems = 10; //max number of items that we can cipher
     string delimiter = "~"; //a character that marks the beginning or end of a unit of data
 
     string str_file_content;
@@ -66,23 +75,32 @@ string Cipher::cipher(string responseType, string item2, string item3, string it
             case 1://first item after delimiter
             if (responseType.length() > 0) str_file_content += responseType;
             break;
-            case 2://first item after delimiter
+            case 2://second item after delimiter
             if (item2.length() > 0) str_file_content += item2;
             break;
-            case 3://first item after delimiter
+            case 3://third item after delimiter
             if (item3.length() > 0) str_file_content += item3;
             break;
-            case 4://first item after delimiter
+            case 4://forth item after delimiter
             if (item4.length() > 0) str_file_content += item4;
             break;
-            case 5://first item after delimiter
+            case 5://fith item after delimiter
             if (item5.length() > 0) str_file_content += item5;
             break;
-            case 6://first item after delimiter
+            case 6://sixth item after delimiter
             if (item6.length() > 0) str_file_content += item6;
             break;
-            case 7://first item after delimiter
+            case 7://seventh item after delimiter
             if (item7.length() > 0) str_file_content += item7;
+            break;
+            case 8://eighth item after delimiter
+            if (item8.length() > 0) str_file_content += item8;
+            break;
+            case 9://ninth item after delimiter
+            if (item9.length() > 0) str_file_content += item9;
+            break;
+            case 10://tenth item after delimiter
+            if (item10.length() > 0) str_file_content += item10;
             break;
         }
         loopPass++;
@@ -126,12 +144,12 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
         case 3: //Overwrite the user's stats
             userfile.open("./userdata/" + username + "/" + username + ".stat");
             userfile << delimiter << username; // these are all adding data to the file with delimiter seperation.
-            if (data2.length() > 0) {userfile << delimiter << data2;} else {userfile << delimiter;}
-            if (data3.length() > 0) {userfile << delimiter << data3;} else {userfile << delimiter;}
-            if (data4.length() > 0) {userfile << delimiter << data4;} else {userfile << delimiter;}
-            if (data5.length() > 0) {userfile << delimiter << data5;} else {userfile << delimiter;}
-            if (data6.length() > 0) {userfile << delimiter << data6;} else {userfile << delimiter;}
-            if (data7.length() > 0) {userfile << delimiter << data7;} else {userfile << delimiter;}
+            if (data2.length() > 0) {userfile << delimiter << data2;} else {userfile << delimiter;} //health stat
+            if (data3.length() > 0) {userfile << delimiter << data3;} else {userfile << delimiter;} //armor stat
+            if (data4.length() > 0) {userfile << delimiter << data4;} else {userfile << delimiter;} //magic res stat
+            if (data5.length() > 0) {userfile << delimiter << data5;} else {userfile << delimiter;} //physical damage stat
+            if (data6.length() > 0) {userfile << delimiter << data6;} else {userfile << delimiter;} //magic damage stat
+            if (data7.length() > 0) {userfile << delimiter << data7;} else {userfile << delimiter;} //Agility stat
             userfile << delimiter;
             userfile.close(); // done writting to file and now it is closed
             break;
