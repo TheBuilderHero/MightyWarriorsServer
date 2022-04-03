@@ -2,3 +2,4 @@ userdata/*
 .vscode-server/*
 .gitconfig*
 .cache*
+.config*
