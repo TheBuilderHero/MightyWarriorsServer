@@ -170,9 +170,6 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
                 n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
                 if (n < 0) error("ERROR writing to socket");
             }
-        //default: //add statement
-        //test Change 2
-        //3
     }
 }
 
