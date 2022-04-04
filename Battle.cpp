@@ -3,11 +3,32 @@
 #include <iostream> //can remove this later when increaseXP() is fully integrated
 
 #include "Battle.h"
+#include "Enemies.h"
 
 using namespace std;
 
-void Battle::setEnemyBattleStats(std::string name, int level, int health, int armor, int magicResistance, int magicDamage, int agility, int physicalDamage){ //set the enemy battle stats
-    //code for setting the enemies battle stats - This will pull the stats from the specific enemy stat file on battle start
+string Battle::getEnemyBattleStats(int enemyRandomChoice, int level, string statChoice){ //set the enemy battle stats based on the level and statChoice which can be [health, armor, magicResistance, physicalDamage, magicDamage, agility, stealth]
+    //This code is intended to be used for each individual stat from health to stealth by the different inputs of level and enemyRandomChoice's value
+    Enemies enemy;
+    //level needs to be implimented later down the road
+    if (statChoice == "health") {
+        return to_string(enemy.enemyChoice(enemyRandomChoice, 1));
+    } else if (statChoice == "armor") {
+        return to_string(enemy.enemyChoice(enemyRandomChoice, 2));
+    } else if (statChoice == "magicResistance") {
+        return to_string(enemy.enemyChoice(enemyRandomChoice, 3));
+    } else if (statChoice == "physicalDamage") {
+        return to_string(enemy.enemyChoice(enemyRandomChoice, 4));
+    } else if (statChoice == "magicDamage") {
+        return to_string(enemy.enemyChoice(enemyRandomChoice, 5));
+    } else if (statChoice == "agility") {
+        return to_string(enemy.enemyChoice(enemyRandomChoice, 6));
+    } else if (statChoice == "stealth") {
+        return to_string(enemy.enemyChoice(enemyRandomChoice, 7));
+    } else {
+        return "0";
+    }
+    return "0";
 }
 void Battle::setPlayerBattleStats(std::string name, int level, int health, int armor, int magicResistance, int magicDamage, int agility, int physicalDamage){ //set the player battle stats
     //code for setting the players battle stats - This will pull the stats from the Players stat file on battle start

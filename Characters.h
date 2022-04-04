@@ -23,5 +23,4 @@ class Characters {
         void Dino(std::string username);
         void Dryad(std::string username);
         void Ghost(std::string username);
-
 };

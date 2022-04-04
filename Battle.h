@@ -4,7 +4,7 @@
 
 class Battle{//This class will have all the functions needed for the algorythms needed to complete a battle from start to finish.
     public:
-    void setEnemyBattleStats(std::string name, int level, int health, int armor, int magicResistance, int magicDamage, int agility, int physicalDamage); //set the enemy battle stats
+    std::string getEnemyBattleStats(int enemyRandomChoice, int level, std::string statChoice); //set the enemy battle stats //return a value of type int but converted to a string
     void setPlayerBattleStats(std::string name, int level, int health, int armor, int magicResistance, int magicDamage, int agility, int physicalDamage); //set the player battle stats
     //(depending on race) These abilities will have different effects and damages.  So we need to take some input for race
     int doQOption(std::string race); //this will be the main damage ability - output is damage amount in type int

@@ -81,6 +81,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
     Cipher code;
     Characters characters;
     Players players;
+    Battle battle;
     ifstream testUsername;
     string returnMessage = "0"; //this is hard setting the function to always say that the username does not exist.  This will need to be changed to checking for usernames use.
     string message = code.decipher(messageFromClient);
@@ -132,7 +133,13 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             characters.Human(code.username); //set the proper stat values for the input of the base stats (This is used in the following long statment)
             returnMessage = code.cipher("5", players.getHealthStat(code.username, characters.baseHealth, stoi(code.item2)), players.getArmorStat(code.username, characters.baseArmor, stoi(code.item3)),
             players.getMagicResistanceStat(code.username, characters.baseMagicResistance, stoi(code.item4)), players.getPhysicalDamageStat(code.username, characters.basePhysicalDamage, stoi(code.item5)), 
-            players.getMagicDamageStat(code.username, characters.baseAgility, stoi(code.item6))); // This very long input put into simple terms calculates stats by adding base to bonus then spitting it out as a string for Health, armor, magicResistance, physicalDamage, MagicDamage, Agility
+            players.getMagicDamageStat(code.username, characters.baseMagicDamage, stoi(code.item6))); // This very long input put into simple terms calculates stats by adding base to bonus then spitting it out as a string for Health, armor, magicResistance, physicalDamage, MagicDamage, Agility
+            n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+            if (n < 0) error("ERROR writing to socket");
+            break;
+        case 7: //read the enemy stats for battle
+            returnMessage = code.cipher("5", battle.getEnemyBattleStats(1, 1, "health"), battle.getEnemyBattleStats(1, 1, "armor"), battle.getEnemyBattleStats(1, 1, "magicResistance"), 
+            battle.getEnemyBattleStats(1, 1, "physicalDamage"), battle.getEnemyBattleStats(1, 1, "magicDamage")); //get all the values for the enemy to be sent to the client
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
