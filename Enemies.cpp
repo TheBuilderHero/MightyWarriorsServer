@@ -4,13 +4,12 @@
 using namespace std;
 
 void Enemies::mutantElf() {
-    cout << "Mutant Elf V2!" << endl;
     name = "Mutant Elf";
-    health = 40;
-    attack = 10;
-    armor = 2;
-    magicAttack = 5;
-    magicResistence = 5;
+    baseHealth = 40;
+    basePhysicalDamage = 10;
+    baseArmor = 2;
+    baseMagicDamage = 5;
+    baseMagicResistance = 5;
     level = 1;
     xpDrop = 20;
 }

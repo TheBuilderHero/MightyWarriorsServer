@@ -34,7 +34,7 @@ void Characters::Dino(string username) {
     race = "Dino";
     baseHealth = 100;
     baseArmor = 15;
-    baseMagicResistence = 5;
+    baseMagicResistance = 5;
     baseMagicDamage = 20;
     baseAgility = 8;
     basePhysicalDamage = 15;
@@ -47,7 +47,7 @@ void Characters::Dryad(string username) {
     race = "Dryad";
     baseHealth = 100;
     baseArmor = 5;
-    baseMagicResistence = 20;
+    baseMagicResistance = 20;
     baseMagicDamage = 20;
     baseAgility = 20;
     basePhysicalDamage = 5;
@@ -60,7 +60,7 @@ void Characters::Ghost(string username) {
     race = "Ghost";
     baseHealth = 100;
     baseArmor = 2;
-    baseMagicResistence = 20;
+    baseMagicResistance = 20;
     baseMagicDamage = 20;
     baseAgility = 15;
     basePhysicalDamage = 5;

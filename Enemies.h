@@ -5,5 +5,6 @@
 
 class Enemies : Characters {
     public:
+        double xpDrop;
         void mutantElf();
 };
