@@ -9,8 +9,8 @@ void Kit::tank(){
     kitArmor = 20;
     kitMagicDamage = 1;
     kitMagicResistance = 10;
-    kitAgility = -10; //does not have any
-    kitStealth = -10; //does not have any
+    kitAgility = -10;
+    kitStealth = -10;
 }
 void Kit::assasin(){
     kitHealth = 5;
@@ -18,8 +18,8 @@ void Kit::assasin(){
     kitArmor = 5;
     kitMagicDamage = 5;
     kitMagicResistance = 5;
-    kitAgility = 10; //does not have any
-    kitStealth = 10; //does not have any
+    kitAgility = 10;
+    kitStealth = 10;
 }
 void Kit::archer(){
     kitHealth = 15;
@@ -27,8 +27,8 @@ void Kit::archer(){
     kitArmor = 10;
     kitMagicDamage = 3;
     kitMagicResistance = 5;
-    kitAgility = 7; //does not have any
-    kitStealth = 8; //does not have any
+    kitAgility = 7;
+    kitStealth = 8;
 }
 void Kit::wizard(){
     kitHealth = 15;
@@ -36,8 +36,8 @@ void Kit::wizard(){
     kitArmor = 5;
     kitMagicDamage = 25;
     kitMagicResistance = 15;
-    kitAgility = 3; //does not have any
-    kitStealth = 2; //does not have any
+    kitAgility = 3;
+    kitStealth = 2;
 }
 void Kit::ninja(){
     kitHealth = 5;
@@ -45,6 +45,6 @@ void Kit::ninja(){
     kitArmor = 5;
     kitMagicDamage = 5;
     kitMagicResistance = 5;
-    kitAgility = 15; //does not have any
-    kitStealth = 15; //does not have any
+    kitAgility = 15;
+    kitStealth = 15;
 }
