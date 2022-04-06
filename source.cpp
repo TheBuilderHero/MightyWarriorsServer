@@ -10,6 +10,7 @@
 #include "Characters.h"
 #include "Cipher.h"
 #include "Battle.h"
+#include "PlayerElements/Kit.h"
 
 //Make sure that game sersion is changed along with client or go to the version check function and allow for older versions of the client. (We must make sure to be acceptable in functionality)
 //********************************************
@@ -139,7 +140,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             break;
         case 7: //read the enemy stats for battle
             returnMessage = code.cipher("5", battle.getEnemyBattleStats(1, 1, "health"), battle.getEnemyBattleStats(1, 1, "armor"), battle.getEnemyBattleStats(1, 1, "magicResistance"), 
-            battle.getEnemyBattleStats(1, 1, "physicalDamage"), battle.getEnemyBattleStats(1, 1, "magicDamage")); //get all the values for the enemy to be sent to the client
+            battle.getEnemyBattleStats(1, 1, "physicalDamage"), battle.getEnemyBattleStats(1, 1, "magicDamage")); //get all the values for the enemy to be sent to the client (Change 1 later so that it depends on input from client)
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
@@ -241,11 +242,6 @@ void dostuff(int sock) {
 //main function of the source.cpp file
 int main(int argc, char* argv[]){
     cout << "Server Successfully Running..." << endl << "Press \"ctrl + c\" to stop the running program\nServer Version: " << to_string(ServerVersion) << "." << to_string(ServerMajorBuild) << "." << to_string(ServerMinorBuild) << "." << to_string(ServerPatch) << endl; //I use this line to make sure the server is running and test the compiles
-    Battle battle;
-    cout <<"Test:" << endl;
-    double amountNeeded = battle.increaseXP(1, 499); //This is just a test of the XP mechanic - I made this comment to test the Kyle making GitHub Commits
-    cout << "User XP:" << amountNeeded << endl;
-    cout << "^The above^" << endl;
     communicate(argc, argv); //Start the servers function
     return 0; /* we never get here */
 }
