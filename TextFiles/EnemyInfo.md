@@ -1,4 +1,4 @@
-Stats, Names, Weapon info, and other item and enemy related information. - Dominic,
+Stats, Names, Weapon info, and other item and enemy related information. - Dominic. 
 	Enemy type and level:
 		
 		Basic:
