@@ -6,3 +6,7 @@ Kits
 			- very sharp short sword with less armor(What do these stats look like?)
         	Archer
 			- a bow with light armor - maybe more then the assasin though (What do these stats look like?)
+		Wizard
+			-
+		Ninja
+			-
