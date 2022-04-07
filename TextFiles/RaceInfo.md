@@ -12,7 +12,7 @@ Each will have a passive strength and later we will add active ability (because 
    				Agility - 10
 				Physical Damage - 5
 				Stealth - 5
-			- Passive: plus one to all stats
+			- Passive: plus one to all stats. a stat is increased by 3* determined at battle start
 			- Attacks:
 
         	Elf 
@@ -29,14 +29,14 @@ Each will have a passive strength and later we will add active ability (because 
 
         	Dino 
 			- Stats:
-				Health - 100
+				Health - 200
 				Armor - 15
 				Magic Resistance - 5
 				Magic Damage - 20
 				Agility - 8
 				Physical Damage - 15
 				Stealth - 1
-			- Passive: every attack theres a 10% chance to stun enemy. lasts 2* moves
+			- Passive: every attack theres a 5% chance to stun enemy. lasts 2* moves
 			- Attacks
 
         	Dryad 
@@ -48,7 +48,7 @@ Each will have a passive strength and later we will add active ability (because 
 				Agility - 20
 				Physical Damage - 5
 				Stealth - 10
-			- Passive: 7%* chance to reflect abilities
+			- Passive: 7%* chance to reflect abilities occurs only once* per battle
 			- Attacks
 
         	Ghost 
@@ -60,5 +60,5 @@ Each will have a passive strength and later we will add active ability (because 
 				Agility - 15
 				Physical Damage - 5
 				Stealth - 30
-			- Passive: 7% chance to ignore 3* attacks
+			- Passive: 7% chance to ignore 3* attacks. occurs once* per batttle
 			- Attacks
