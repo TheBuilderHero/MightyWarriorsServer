@@ -1,8 +1,9 @@
 Races
 
-Each will have a passive strength and later we will add active ability (because of this it is okay if the stats are not all the same because the plan would be that the ability makes up for that difference)
+Each will have a passive strength and later we will add active ability (because of this it is okay if the stats are not all the same because the plan would be that the ability makes up for that difference) *increases with level
 
 		Human 
+		Description:
 			- stats:
 				health - 100
 				armor - 10
@@ -11,7 +12,8 @@ Each will have a passive strength and later we will add active ability (because 
    				Agility - 10
 				Physical Damage - 5
 				Stealth - 5
-			- Attacks
+			- Passive: plus one to all stats
+			- Attacks:
 
         	Elf 
 			- Stats:
@@ -22,7 +24,8 @@ Each will have a passive strength and later we will add active ability (because 
 				Agility - 25
 				Physical Damage - 5
 				Stealth - 10
-			- Attacks
+			- Passive: 10%* chance extra attack
+			- Attacks:
 
         	Dino 
 			- Stats:
@@ -33,6 +36,7 @@ Each will have a passive strength and later we will add active ability (because 
 				Agility - 8
 				Physical Damage - 15
 				Stealth - 1
+			- Passive: every attack theres a 10% chance to stun enemy. lasts 2* moves
 			- Attacks
 
         	Dryad 
@@ -44,6 +48,7 @@ Each will have a passive strength and later we will add active ability (because 
 				Agility - 20
 				Physical Damage - 5
 				Stealth - 10
+			- Passive: 7%* chance to reflect abilities
 			- Attacks
 
         	Ghost 
@@ -55,4 +60,5 @@ Each will have a passive strength and later we will add active ability (because 
 				Agility - 15
 				Physical Damage - 5
 				Stealth - 30
+			- Passive: 7% chance to ignore 3* attacks
 			- Attacks
