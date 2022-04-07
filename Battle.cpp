@@ -12,19 +12,19 @@ string Battle::getEnemyBattleStats(int enemyRandomChoice, int level, string stat
     Enemies enemy;
     //level needs to be implimented later down the road
     if (statChoice == "health") {
-        return to_string(enemy.enemyChoice(enemyRandomChoice, 1));
+        return to_string(enemy.enemyChoice(enemyRandomChoice, 1, level));
     } else if (statChoice == "armor") {
-        return to_string(enemy.enemyChoice(enemyRandomChoice, 2));
+        return to_string(enemy.enemyChoice(enemyRandomChoice, 2, level));
     } else if (statChoice == "magicResistance") {
-        return to_string(enemy.enemyChoice(enemyRandomChoice, 3));
+        return to_string(enemy.enemyChoice(enemyRandomChoice, 3, level));
     } else if (statChoice == "physicalDamage") {
-        return to_string(enemy.enemyChoice(enemyRandomChoice, 4));
+        return to_string(enemy.enemyChoice(enemyRandomChoice, 4, level));
     } else if (statChoice == "magicDamage") {
-        return to_string(enemy.enemyChoice(enemyRandomChoice, 5));
+        return to_string(enemy.enemyChoice(enemyRandomChoice, 5, level));
     } else if (statChoice == "agility") {
-        return to_string(enemy.enemyChoice(enemyRandomChoice, 6));
+        return to_string(enemy.enemyChoice(enemyRandomChoice, 6, level));
     } else if (statChoice == "stealth") {
-        return to_string(enemy.enemyChoice(enemyRandomChoice, 7));
+        return to_string(enemy.enemyChoice(enemyRandomChoice, 7, level));
     } else {
         return "0";
     }

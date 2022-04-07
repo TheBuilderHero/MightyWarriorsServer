@@ -139,8 +139,11 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             if (n < 0) error("ERROR writing to socket");
             break;
         case 7: //read the enemy stats for battle
-            returnMessage = code.cipher("5", battle.getEnemyBattleStats(1, 1, "health"), battle.getEnemyBattleStats(1, 1, "armor"), battle.getEnemyBattleStats(1, 1, "magicResistance"), 
-            battle.getEnemyBattleStats(1, 1, "physicalDamage"), battle.getEnemyBattleStats(1, 1, "magicDamage")); //get all the values for the enemy to be sent to the client (Change 1 later so that it depends on input from client)
+            int enemyChice, enemyLevel;
+            enemyChice = 2; //this is the type of enemy which you will fight
+            enemyLevel = 1; //level of boss
+            returnMessage = code.cipher("5", battle.getEnemyBattleStats(enemyChice, enemyLevel, "health"), battle.getEnemyBattleStats(enemyChice, enemyLevel, "armor"), battle.getEnemyBattleStats(enemyChice, enemyLevel, "magicResistance"), 
+            battle.getEnemyBattleStats(enemyChice, enemyLevel, "physicalDamage"), battle.getEnemyBattleStats(enemyChice, enemyLevel, "magicDamage")); //get all the values for the enemy to be sent to the client (Change 1 later so that it depends on input from client)
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
