@@ -9,8 +9,8 @@ Stats, Names, Weapon info, and other item and enemy related information. - Domin
 		Hard:
 		Death:
 			1 - The Builder
-			2	-	The Phantom
+			2 - The Phantom
 			3 - The Quak
 			4 - Jonny
 			Ultimate: 
-				1- Void cat
+				1 - Void cat
