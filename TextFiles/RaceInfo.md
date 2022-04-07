@@ -1,6 +1,7 @@
 Races
 
 Each will have a passive strength and later we will add active ability (because of this it is okay if the stats are not all the same because the plan would be that the ability makes up for that difference)
+
 		Human 
 			- stats:
 				health - 100
@@ -17,7 +18,7 @@ Each will have a passive strength and later we will add active ability (because 
 				baseHealth - 100
     				Armor - 5
     				Magic Resistance - 10
-   				Magic Damage - 15
+				Magic Damage - 15
     				Agility - 25
     				Physical Damage - 5
     				Stealth - 10
