@@ -10,7 +10,7 @@ Kits
 			Magic Resistance: 10
 			Agility: -10
 			Stealth: -10
-        Assasin
+	Assasin
 		Description: very sharp short sword with less armor
 		Stats:
 			Health: 5
@@ -20,7 +20,7 @@ Kits
 			Magic Resistance: 5
 			Agility: 10
 			Stealth: 10
-        Archer
+	Archer
 		Description: a bow with light armor - maybe more then the assasin though
 		Stats:
 			Health: 15
@@ -40,7 +40,6 @@ Kits
 			Magic Resistance: 15
 			Agility: 3
 			Stealth: 2
-			-
 	Ninja
 		Description:
 		Stats:
