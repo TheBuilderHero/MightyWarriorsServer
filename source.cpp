@@ -124,7 +124,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             code.userDataDeliminationWrite(2, code.username, code.item3);
             break;
         case 5: //write the user stats to file
-            code.userDataDeliminationWrite(3, code.username, code.item3, code.item4, code.item5, code.item6);
+            code.userDataDeliminationWrite(3, code.username, code.item3, code.item4, code.item5, code.item6, code.item7, code.item8);
             returnMessage = code.cipher("4", "wasAbleToSave");
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
