@@ -15,7 +15,8 @@ Each will have a passive strength and later we will add active ability (because 
 			- Passive: plus one to all stats. a stat is increased by 3* determined at battle start
 			- Attacks:
 
-        	Elf 
+        	Elf
+		Description:
 			- Stats:
 				baseHealth - 100
 				Armor - 5
@@ -27,7 +28,8 @@ Each will have a passive strength and later we will add active ability (because 
 			- Passive: 10%* chance extra attack
 			- Attacks:
 
-        	Dino 
+        	Dino
+		Description:
 			- Stats:
 				Health - 200
 				Armor - 15
@@ -39,7 +41,8 @@ Each will have a passive strength and later we will add active ability (because 
 			- Passive: every attack theres a 5% chance to stun enemy. lasts 2* moves
 			- Attacks
 
-        	Dryad 
+        	Dryad
+		Description:
 			- Stats:
 				Health - 100
 				Armor - 5
@@ -51,7 +54,8 @@ Each will have a passive strength and later we will add active ability (because 
 			- Passive: 7%* chance to reflect abilities occurs only once* per battle
 			- Attacks
 
-        	Ghost 
+        	Ghost
+		Description:
 			- Stats:
 				Health - 100
 				Armor - 2
