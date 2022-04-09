@@ -151,7 +151,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             break;
         case 8: //user race selection and write to file
             // using code.item3 from the client (which is raceChoice) and code.item4 (which is kitChoice) we will determine the race which the user selected which is the reutrn of getPlayerRace
-            code.userDataDeliminationWrite(1, code.username, players.getPlayerRace(code.username, stoi(code.item3)), kit.kit); //write that race to file
+            code.userDataDeliminationWrite(1, code.username, players.getPlayerRace(code.username, stoi(code.item3)), kit.getPlayerKit(code.username, stoi(kit.kit))); //write that race to file
             //instead of kit.kit we need to take code.item4 and determine what kit they chose and input that.
             break;
         case 0: //check for version compatibility - This is done before using can continue to create account or logon
