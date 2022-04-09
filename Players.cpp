@@ -7,6 +7,29 @@
 
 using namespace std;
 
+std::string Players::getPlayerRace(std::string username, int raceChoice){ //returns the user's race
+    switch (raceChoice)
+    {
+    case 1: //human selected
+        return RACE_HUMAN;
+        break;
+    case 2: //Ghost selected
+        return RACE_GHOST;
+        break;
+    case 3: //Dino Selected
+        return RACE_DINO;
+        break;
+    case 4: //Elf selected
+        return RACE_ELF;
+        break;
+    case 5: //Dryad selected
+        return RACE_DRYAD;
+        break;
+    default:
+        break;
+    }
+    return RACE_HUMAN;
+}
 std::string Players::getPlayerRace(std::string username){ //returns the user's race
     Cipher code;
     ifstream raceInfo;

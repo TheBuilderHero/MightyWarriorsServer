@@ -79,6 +79,7 @@ int userLogon(string usernameE, string passwordE) { //This code pulls the passwo
 }
 
 void requestActions(int socket, char messageFromClient[]) { //This function takes a socket and the message from the user and then performs an action based on the variable typeOfRequest which is contained in the message from th user.
+    Kit kit;
     Cipher code;
     Characters characters;
     Players players;
@@ -147,6 +148,11 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             battle.getEnemyBattleStats(enemyChice, enemyLevel, "physicalDamage"), battle.getEnemyBattleStats(enemyChice, enemyLevel, "magicDamage")); //get all the values for the enemy to be sent to the client (Change 1 later so that it depends on input from client)
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
+            break;
+        case 8: //user race selection and write to file
+            // using code.item3 from the client (which is raceChoice) and code.item4 (which is kitChoice) we will determine the race which the user selected which is the reutrn of getPlayerRace
+            code.userDataDeliminationWrite(1, code.username, players.getPlayerRace(code.username, stoi(code.item3)), kit.kit); //write that race to file
+            //instead of kit.kit we need to take code.item4 and determine what kit they chose and input that.
             break;
         case 0: //check for version compatibility - This is done before using can continue to create account or logon
             int gameVersionClient, gameMajorBuildClient, gameMinorBuildClient, gamePatchClient; //client game versions which we are going to test against the server's version
