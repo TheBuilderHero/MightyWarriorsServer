@@ -7,6 +7,8 @@
 
 class Players : Characters { //defining the player and all their caracteristics and items
     public:
+        std::string getPlayerRace(std::string username); //return the string name of the players race
+
         std::string getHealthStat(std::string username, int baseHealth, int bonusHealth);
         std::string getPhysicalDamageStat(std::string username, int basePhysicalDamage, int bonusPhysicalDamage);
         std::string getMagicDamageStat(std::string username, int baseMagicDamage, int bonusMagicDamage);

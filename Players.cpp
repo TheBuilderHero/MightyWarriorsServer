@@ -1,10 +1,18 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 
 #include "Players.h"
+#include "Cipher.h"
 
 using namespace std;
 
+std::string Players::getPlayerRace(std::string username){ //returns the user's race
+    Cipher code;
+    ifstream raceInfo;
+    code.userDataDeliminationRead(2, username);
+    return code.item2;
+}
 string Players::getHealthStat(std::string username, int baseHealth, int bonusHealth){ //this funciton calculates to total health stat of a user and makes it into a string to be sent to the client
     int totalHealthValue = baseHealth + bonusHealth;
     return to_string(totalHealthValue);

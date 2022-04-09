@@ -131,7 +131,8 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             break;
         case 6: //Making this read all user info form file  ---------------------------//try to read to user's stats from file - need to get this fully setup.
             code.userDataDeliminationRead(1, code.username); //sets the items3 - 6 to the current stat values
-            characters.Human(code.username); //set the proper stat values for the input of the base stats (This is used in the following long statment)
+            characters.pullRaceStats(players.getPlayerRace(code.username), code.username);//set the stats of the Player for the race in their file
+            // old way to test: characters.Human(code.username); //set the proper stat values for the input of the base stats (This is used in the following long statment)
             returnMessage = code.cipher("5", players.getHealthStat(code.username, characters.baseHealth, stoi(code.item2)), players.getArmorStat(code.username, characters.baseArmor, stoi(code.item3)),
             players.getMagicResistanceStat(code.username, characters.baseMagicResistance, stoi(code.item4)), players.getPhysicalDamageStat(code.username, characters.basePhysicalDamage, stoi(code.item5)), 
             players.getMagicDamageStat(code.username, characters.baseMagicDamage, stoi(code.item6))); // This very long input put into simple terms calculates stats by adding base to bonus then spitting it out as a string for Health, armor, magicResistance, physicalDamage, MagicDamage, Agility

@@ -30,7 +30,7 @@ string Battle::getEnemyBattleStats(int enemyRandomChoice, int level, string stat
     }
     return "0";
 }
-void Battle::setPlayerBattleStats(std::string name, int level, int health, int armor, int magicResistance, int magicDamage, int agility, int physicalDamage){ //set the player battle stats
+void Battle::loadPlayerBattleStats(std::string name, int level, int health, int armor, int magicResistance, int magicDamage, int agility, int physicalDamage){ //set the player battle stats
     //code for setting the players battle stats - This will pull the stats from the Players stat file on battle start
     //we will also need to get the weapon the player is using to know about the extra damage
 }

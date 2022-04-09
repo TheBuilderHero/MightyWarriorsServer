@@ -158,15 +158,16 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
 
 void Cipher::userDataDeliminationRead(int updateValue, string username){
     ifstream userstats;
+    ifstream userdata;
+    string s;
+    string str_file_content;
+    string token, output;
+    int loopPass = 0;
+    size_t pos = 0; // position variable for removing the delimiters to view the message
     switch (updateValue){ //updateValue is for the password, whether it is just getting updated or if this is a new user.
-        case 1:
-            string s;
+        case 1: //get user additional stats
             userstats.open("./userdata/" + username + "/" + username + ".stat");
             userstats >> s;
-            string str_file_content;
-            string token, output;
-            int loopPass = 0;
-            size_t pos = 0; // position variable for removing the delimiters to view the message
             while ((pos = s.find(delimiter)) != std::string::npos) {
                 token = s.substr(0, pos);
                 output = token;
@@ -200,6 +201,27 @@ void Cipher::userDataDeliminationRead(int updateValue, string username){
             }
             userstats.close();
             //return str_file_content; //we are not having this return anything right now, however, we may change this later.
+            break;
+        case 2: //returns the player's race
+            userdata.open("./userdata/" + username + "/" + username + ".dat");
+            userdata >> s;
+            while ((pos = s.find(delimiter)) != std::string::npos) {
+                token = s.substr(0, pos);
+                output = token;
+                str_file_content += std::string(token); // we do not need to add spaces between the information for now so I removed: + std::string(" ")
+                s.erase(0, pos + delimiter.length());
+                
+                switch (loopPass){
+                    case 1: //first item after delimiter
+                    if (output.length() > 0) username = output;
+                    break;
+                    case 2://second item after delimiter
+                    if (output.length() > 0) item2 = output; //this will be where the user's race is stored
+                    break;
+                }
+                loopPass++;
+            }
+            userdata.close();
             break;
     }
 }
