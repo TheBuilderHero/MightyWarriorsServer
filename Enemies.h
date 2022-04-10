@@ -5,8 +5,10 @@
 
 class Enemies : Characters {
     public:
+        std::string displayName;
         double xpDrop;
-        int enemyChoice(int enemyChoice, int returnType, int enemyLevel = 1); //returns amount of health/armor/magicResistance/etc...
+        int enemyChoiceGetStat(int enemyChoice, int returnType = 0, int enemyLevel = 1); //returns amount of health/armor/magicResistance/etc...
+        std::string getEnemyName(int enemyChoice);
         void mutantElf();
         void voidCat();
 };

@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int Enemies::enemyChoice(int enemyChoice, int returnType, int enemyLevel){ //This function retrives the requested stat (returnType) of a given apponent (enemyChoice) - more then likely we will have the enemy choice randomly generated.
+int Enemies::enemyChoiceGetStat(int enemyChoice, int returnType, int enemyLevel){ //This function retrives the requested stat (returnType) of a given apponent (enemyChoice) - more then likely we will have the enemy choice randomly generated.
     switch (enemyChoice){
         case 1:
             mutantElf();
@@ -45,8 +45,25 @@ int Enemies::enemyChoice(int enemyChoice, int returnType, int enemyLevel){ //Thi
     }
 }
 
+string Enemies::getEnemyName(int enemyChoice){
+    switch (enemyChoice){
+        case 1:
+            mutantElf();
+            return displayName;
+            break;
+        case 2:
+            voidCat();
+            return displayName;
+            break;
+        default:
+            mutantElf();
+            return displayName;
+            break;
+    }
+}
+
 void Enemies::mutantElf() {
-    name = "Mutant Elf";
+    displayName = "Mutant Elf";
     baseHealth = 40;
     basePhysicalDamage = 10;
     baseArmor = 2;
@@ -59,7 +76,7 @@ void Enemies::mutantElf() {
 }
 
 void Enemies::voidCat() {
-    name = "Void Cat";
+    displayName = "Void Cat";
     baseHealth = 1000;
     basePhysicalDamage = 10;
     baseArmor = 2;

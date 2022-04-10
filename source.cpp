@@ -84,6 +84,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
     Characters characters;
     Players players;
     Battle battle;
+    Enemies enemy;
     ifstream testUsername;
     string returnMessage = "0"; //this is hard setting the function to always say that the username does not exist.  This will need to be changed to checking for usernames use.
     string message = code.decipher(messageFromClient);
@@ -125,7 +126,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             code.userDataDeliminationWrite(2, code.username, code.item3);
             break;
         case 5: //write the user stats to file
-            code.userDataDeliminationWrite(3, code.username, code.item3, code.item4, code.item5, code.item6, code.item7, code.item8);
+            code.userDataDeliminationWrite(3, code.username, code.item3, code.item4, code.item5, code.item6, code.item7, code.item8, code.item9, code.item10);
             returnMessage = code.cipher("4", "wasAbleToSave");
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
@@ -141,17 +142,17 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             if (n < 0) error("ERROR writing to socket");
             break;
         case 7: //read the enemy stats for battle
-            int enemyChice, enemyLevel;
-            enemyChice = 2; //this is the type of enemy which you will fight
+            int enemyNumPicked, enemyLevel;
+            enemyNumPicked = 2; //this is the type of enemy which you will fight
             enemyLevel = 1; //level of boss
-            returnMessage = code.cipher("5", battle.getEnemyBattleStats(enemyChice, enemyLevel, "health"), battle.getEnemyBattleStats(enemyChice, enemyLevel, "armor"), battle.getEnemyBattleStats(enemyChice, enemyLevel, "magicResistance"), 
-            battle.getEnemyBattleStats(enemyChice, enemyLevel, "physicalDamage"), battle.getEnemyBattleStats(enemyChice, enemyLevel, "magicDamage")); //get all the values for the enemy to be sent to the client (Change 1 later so that it depends on input from client)
+            returnMessage = code.cipher("5", enemy.getEnemyName(enemyNumPicked) ,battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "health"), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "armor"), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "magicResistance"), 
+            battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "physicalDamage"), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "magicDamage")); //get all the values for the enemy to be sent to the client (Change 1 later so that it depends on input from client)
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
         case 8: //user race selection and write to file
             // using code.item3 from the client (which is raceChoice) and code.item4 (which is kitChoice) we will determine the race which the user selected which is the reutrn of getPlayerRace
-            code.userDataDeliminationWrite(1, code.username, players.getPlayerRace(code.username, stoi(code.item3)), kit.getPlayerKit(code.username, stoi(kit.kit))); //write that race to file
+            code.userDataDeliminationWrite(1, code.username, players.getPlayerRace(code.username, stoi(code.item3)), kit.getPlayerKit(code.username, stoi(code.item4))); //write that race to file
             //instead of kit.kit we need to take code.item4 and determine what kit they chose and input that.
             break;
         case 0: //check for version compatibility - This is done before using can continue to create account or logon
@@ -251,7 +252,9 @@ void dostuff(int sock) {
 
 //main function of the source.cpp file
 int main(int argc, char* argv[]){
+    Battle battle;
     cout << "Server Successfully Running..." << endl << "Press \"ctrl + c\" to stop the running program\nServer Version: " << to_string(ServerVersion) << "." << to_string(ServerMajorBuild) << "." << to_string(ServerMinorBuild) << "." << to_string(ServerPatch) << endl; //I use this line to make sure the server is running and test the compiles
+    cout << "Q: " << battle.doQOption("kota3","Physical", 1) << endl;
     communicate(argc, argv); //Start the servers function
     return 0; /* we never get here */
 }

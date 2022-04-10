@@ -4,6 +4,10 @@
 
 #include "Battle.h"
 #include "Enemies.h"
+#include "Characters.h"
+#include "Players.h"
+#include "Cipher.h"
+
 
 using namespace std;
 
@@ -12,19 +16,19 @@ string Battle::getEnemyBattleStats(int enemyRandomChoice, int level, string stat
     Enemies enemy;
     //level needs to be implimented later down the road
     if (statChoice == "health") {
-        return to_string(enemy.enemyChoice(enemyRandomChoice, 1, level));
+        return to_string(enemy.enemyChoiceGetStat(enemyRandomChoice, 1, level));
     } else if (statChoice == "armor") {
-        return to_string(enemy.enemyChoice(enemyRandomChoice, 2, level));
+        return to_string(enemy.enemyChoiceGetStat(enemyRandomChoice, 2, level));
     } else if (statChoice == "magicResistance") {
-        return to_string(enemy.enemyChoice(enemyRandomChoice, 3, level));
+        return to_string(enemy.enemyChoiceGetStat(enemyRandomChoice, 3, level));
     } else if (statChoice == "physicalDamage") {
-        return to_string(enemy.enemyChoice(enemyRandomChoice, 4, level));
+        return to_string(enemy.enemyChoiceGetStat(enemyRandomChoice, 4, level));
     } else if (statChoice == "magicDamage") {
-        return to_string(enemy.enemyChoice(enemyRandomChoice, 5, level));
+        return to_string(enemy.enemyChoiceGetStat(enemyRandomChoice, 5, level));
     } else if (statChoice == "agility") {
-        return to_string(enemy.enemyChoice(enemyRandomChoice, 6, level));
+        return to_string(enemy.enemyChoiceGetStat(enemyRandomChoice, 6, level));
     } else if (statChoice == "stealth") {
-        return to_string(enemy.enemyChoice(enemyRandomChoice, 7, level));
+        return to_string(enemy.enemyChoiceGetStat(enemyRandomChoice, 7, level));
     } else {
         return "0";
     }
@@ -34,9 +38,27 @@ void Battle::loadPlayerBattleStats(std::string name, int level, int health, int 
     //code for setting the players battle stats - This will pull the stats from the Players stat file on battle start
     //we will also need to get the weapon the player is using to know about the extra damage
 }
-int Battle::doQOption(std::string race){ //this will be the main damage ability - output is damage amount in type int
-    //code for q
-    return 1;
+int Battle::doQOption(string username, string attackMagicOrPhysical, int enemyChoice){ //this will be the main damage ability - output is damage amount in type int
+    //this should take into account wether it is magic or physical
+    Players players;
+    Cipher code;
+    Enemies enemy;
+    double qDamage = 0;
+    //pull in the player attack stats
+    double physicalDamage = stoi(players.getPhysicalDamageStat(username));
+    double magicDamage = stoi(players.getMagicDamageStat(username));
+    
+    //pull in the enemy defense stats
+    double armor = enemy.enemyChoiceGetStat(enemyChoice, 2);
+    double magicResistance = enemy.enemyChoiceGetStat(enemyChoice, 3);
+
+    //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the enemy
+    if (attackMagicOrPhysical == "Physical") qDamage = physicalDamage -= (physicalDamage * (armor/DEFENSE_RATIO));
+    if (attackMagicOrPhysical == "Magic") qDamage = magicDamage -= (magicDamage * (magicResistance/DEFENSE_RATIO));
+
+
+    //return the damage done by Q rounded to a whole number
+    return round(qDamage);
 }
 int Battle::doWOption(std::string race){ //this will be the main utility ability - output is dmage amount in type int
     //code for w

@@ -11,7 +11,6 @@ void Characters::pullRaceStats(string race, string username){//sets the stats in
     if(race == RACE_DINO) dino(username);
     if(race == RACE_DRYAD) dryad(username);
     if(race == RACE_GHOST) ghost(username);
-    cout << race << endl;
 }
 
 void Characters::human(string username) {  //Kyle
