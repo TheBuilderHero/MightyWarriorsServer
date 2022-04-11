@@ -4,17 +4,9 @@
 using namespace std;
 
 int Enemies::enemyChoiceGetStat(int enemyChoice, int returnType, int enemyLevel){ //This function retrives the requested stat (returnType) of a given apponent (enemyChoice) - more then likely we will have the enemy choice randomly generated.
-    switch (enemyChoice){
-        case 1:
-            mutantElf();
-            break;
-        case 2:
-            voidCat();
-            break;
-        default:
-            mutantElf();
-            break;
-    }
+    if(enemyChoice == MUTANT_ELF) mutantElf();
+    if(enemyChoice == VOID_CAT) voidCat();
+
     switch (returnType)
     {
     case 1: //health
@@ -62,7 +54,16 @@ string Enemies::getEnemyName(int enemyChoice){
     }
 }
 
+int Enemies::getEnemyPickedFromName(string enemyName){ //This function is intended to go through and test which enemy the client is fighting currently and output that asociated number value
+    mutantElf();
+    if (enemyName == displayName) return enemyNum;
+    voidCat();
+    if (enemyName == displayName) return enemyNum;
+    return enemyNum; //if it gets to this point it will just return the value stored in enemyNum.
+}
+
 void Enemies::mutantElf() {
+    enemyNum = MUTANT_ELF; //this is the number associated with this enemy declared in the Enemies.h file
     displayName = "Mutant Elf";
     baseHealth = 40;
     basePhysicalDamage = 10;
@@ -76,6 +77,7 @@ void Enemies::mutantElf() {
 }
 
 void Enemies::voidCat() {
+    enemyNum = VOID_CAT; //this is the number associated with this enemy declared in the Enemies.h file
     displayName = "Void Cat";
     baseHealth = 1000;
     basePhysicalDamage = 10;

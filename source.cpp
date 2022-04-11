@@ -86,7 +86,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
     Battle battle;
     Enemies enemy;
     ifstream testUsername;
-    string returnMessage = "0"; //this is hard setting the function to always say that the username does not exist.  This will need to be changed to checking for usernames use.
+    string returnMessage = "0"; //this is hard setting the function to always say that the username does not exist if no other value is setup.
     string message = code.decipher(messageFromClient);
     int n;
     
@@ -154,6 +154,11 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             // using code.item3 from the client (which is raceChoice) and code.item4 (which is kitChoice) we will determine the race which the user selected which is the reutrn of getPlayerRace
             code.userDataDeliminationWrite(1, code.username, players.getPlayerRace(code.username, stoi(code.item3)), kit.getPlayerKit(code.username, stoi(code.item4))); //write that race to file
             //instead of kit.kit we need to take code.item4 and determine what kit they chose and input that.
+            break;
+        case 9: //this takes the input of battle attacks to then reply with the damage amount.
+            returnMessage = code.cipher("4", to_string(battle.determineOption(code.username, stoi(code.item4), "Magic", enemy.getEnemyPickedFromName(code.item3)))); //get the damage for the Q ability and cipher return message.
+            n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+            if (n < 0) error("ERROR writing to socket");
             break;
         case 0: //check for version compatibility - This is done before using can continue to create account or logon
             int gameVersionClient, gameMajorBuildClient, gameMinorBuildClient, gamePatchClient; //client game versions which we are going to test against the server's version
