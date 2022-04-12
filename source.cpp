@@ -262,4 +262,5 @@ int main(int argc, char* argv[]){
     cout << "Q: " << battle.doQOption("kota3","Physical", 1) << endl;
     communicate(argc, argv); //Start the servers function
     return 0; /* we never get here */
+    //Test coder3 account github submit.
 }
