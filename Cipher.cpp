@@ -8,7 +8,7 @@
 
 using namespace std;
 
-string Cipher::getItem(int itemNumberToReturn){
+string Cipher::getItem(int itemNumberToReturn){ //the purpose of this function is to return data that has been deciphered.
     switch (itemNumberToReturn)
     {
     case 2:

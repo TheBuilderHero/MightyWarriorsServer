@@ -14,9 +14,6 @@ class Cipher {
         string username, item2, item3, item4, item5, item6, item7, item8, item9, item10; // declare the variables that are being used to store the message from the client // in some cases item2 is used.
         // the above variables may later be replaced with a more wide veriety of variables however, for testing we are using all strings
     public:
-    
-    
-
     //this function is intended to pull out the users request and the data associated with each request
     string decipher(char messageFromClient[]);
 
@@ -33,6 +30,6 @@ class Cipher {
     std::string getDelimiter() { return delimiter; }
     std::string getTypeOfRequest() { return typeOfRequest; }
     std::string getUsername() { return username; }
-    std::string getItem(int itemNumberToReturn); //note there is no item1 because that place is being used by response type.
+    std::string getItem(int itemNumberToReturn); //the purpose of this function is to return data that has been deciphered. //note there is no item1 because that place is being used by response type.
 
 };
