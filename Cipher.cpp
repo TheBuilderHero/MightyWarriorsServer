@@ -8,6 +8,43 @@
 
 using namespace std;
 
+string Cipher::getItem(int itemNumberToReturn){
+    switch (itemNumberToReturn)
+    {
+    case 2:
+        return item2;
+        break;
+    case 3:
+        return item3;
+        break;
+    case 4:
+        return item4;
+        break;
+    case 5:
+        return item5;
+        break;
+    case 6:
+        return item6;
+        break;
+    case 7:
+        return item7;
+        break;
+    case 8:
+        return item8;
+        break;
+    case 9:
+        return item9;
+        break;
+    case 10:
+        return item10;
+        break;
+
+    default:
+        return "Default Output Given";
+        break;
+    }
+}
+
 //char messageFromClient[]
 //this function is intended to pull out the users request and the data associated with each request
 string Cipher::decipher(char messageFromClient[]){ //requestActions takes all the different typeOfRequest

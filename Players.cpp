@@ -34,7 +34,7 @@ std::string Players::getPlayerRace(std::string username){ //returns the user's r
     Cipher code;
     ifstream raceInfo;
     code.userDataDeliminationRead(2, username);
-    return code.item2;
+    return code.getItem(2);
 }
 string Players::getHealthStat(std::string username, int baseHealth, int bonusHealth){ //this funciton calculates to total health stat of a user and makes it into a string to be sent to the client
     int totalHealthValue = baseHealth + bonusHealth;
@@ -51,7 +51,7 @@ string Players::getPhysicalDamageStat(std::string username){ //this funciton cal
     Players players;
     code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
     characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
-    int totalPhysicalDamageValue = characters.basePhysicalDamage + stoi(code.item5);
+    int totalPhysicalDamageValue = characters.basePhysicalDamage + stoi(code.getItem(5));
     return to_string(totalPhysicalDamageValue);
 }
 string Players::getMagicDamageStat(std::string username, int baseMagicDamage, int bonusMagicDamage){ //this funciton calculates to total MagicDamage stat of a user and makes it into a string to be sent to the client
@@ -65,7 +65,7 @@ string Players::getMagicDamageStat(std::string username){ //this funciton calcul
     Players players;
     code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
     characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
-    int totalMagicDamageValue = characters.baseMagicDamage + stoi(code.item6);
+    int totalMagicDamageValue = characters.baseMagicDamage + stoi(code.getItem(6));
     return to_string(totalMagicDamageValue);
 }
 string Players::getArmorStat(std::string username, int baseArmor, int bonusArmor){//this funciton calculates to total Armor stat of a user and makes it into a string to be sent to the client

@@ -8,11 +8,14 @@
 using namespace std;
 
 class Cipher {
+    private:
+        string delimiter = "~";
+        string typeOfRequest;
+        string username, item2, item3, item4, item5, item6, item7, item8, item9, item10; // declare the variables that are being used to store the message from the client // in some cases item2 is used.
+        // the above variables may later be replaced with a more wide veriety of variables however, for testing we are using all strings
     public:
-    string delimiter = "~";
-    string typeOfRequest;
-    string username, item2, item3, item4, item5, item6, item7, item8, item9, item10; // declare the variables that are being used to store the message from the client // in some cases item2 is used.
-    // the above variables may later be replaced with a more wide veriety of variables however, for testing we are using all strings
+    
+    
 
     //this function is intended to pull out the users request and the data associated with each request
     string decipher(char messageFromClient[]);
@@ -25,4 +28,11 @@ class Cipher {
     
     //currently no function but it will read from the user's data file
     void userDataDeliminationRead(int updateValue, string username);
+
+    //getVariable functions:
+    std::string getDelimiter() { return delimiter; }
+    std::string getTypeOfRequest() { return typeOfRequest; }
+    std::string getUsername() { return username; }
+    std::string getItem(int itemNumberToReturn); //note there is no item1 because that place is being used by response type.
+
 };
