@@ -3,4 +3,4 @@ userdata/*
 .gitconfig*
 .cache*
 .config*
-.wget-hsts*
+.wget-hsts
