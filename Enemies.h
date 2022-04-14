@@ -14,4 +14,14 @@ class Enemies : Characters {
         int getEnemyPickedFromName(std::string enemyName);
         void mutantElf();
         void voidCat();
+        void highwayRobber();
+        void orc();
+        void sasquatch();
+        void skunk();
+        void mutantSkunk();
+        void giantRaccoon();
+        void evilWizard();
+        void witch();
+        void mutantGhost();
+        void wereWolf();
 };

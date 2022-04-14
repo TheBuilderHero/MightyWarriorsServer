@@ -93,45 +93,47 @@ void Enemies::voidCat() {
 
 void Enemies::highwayRobber(){
     name = "Highway Robber";
-    health = 60;
-    attack = 15;
-    armor = 10;
-    magicAttack = 2;
-    magicResistence = 2;
+    baseHealth = 60;
+    basePhysicalDamage = 15;
+    baseArmor = 10;
+    baseMagicDamage = 2;
+    baseMagicResistance = 2;
+    baseAgility = 0; //does not have any
+    baseStealth = 0; //does not have any
     level = 1;
     xpDrop = 10;
 }
 
 void Enemies::orc(){
     name = "Orc";
-    health = 70;
-    attack = 20;
-    armor = 15;
-    magicAttack = 10;
-    magicResistence = 7;
+    baseHealth = 70;
+    basePhysicalDamage = 20;
+    baseArmor = 15;
+    baseMagicDamage = 10;
+    baseMagicResistance = 7;
     level = 1;
     xpDrop = 10;
 }
 
 void Enemies::sasquatch(){
     name = "Sasquatch";
-    health = 120;
-    attack = 35;
-    armor = 20;
-    magicAttack = 15;
-    magicResistence = 3;
+    baseHealth = 120;
+    basePhysicalDamage = 35;
+    baseArmor = 20;
+    baseMagicDamage = 15;
+    baseMagicResistance = 3;
     level = 1;
     xpDrop = 80;
 }
 
 void Enemies::skunk(){
     name = "Skunk";
-    health = 25;
-    attack = 10;
-    armor = 1;
-    magicAttack = 2;
-    magicResistence = 2;
-    toxicAttack = 17;
+    baseHealth = 25;
+    basePhysicalDamage = 10;
+    baseArmor = 1;
+    baseMagicDamage = 2;
+    baseMagicResistance = 2;
+    //toxicAttack = 17; //need to declare in headerfile
     level = 1;
     xpDrop = 7;
     //Skunk has very low armor and magic stats to compensate for toxic damage.
@@ -139,24 +141,24 @@ void Enemies::skunk(){
 
 void Enemies::mutantSkunk(){
     name = "Mutant Skunk";
-    health = 25;
-    attack = 10;
-    armor = 1;
-    magicAttack = 0;
-    magicResistence = 0;
-    toxicAttack = 17;
-    radiation = 10;
+    baseHealth = 25;
+    basePhysicalDamage = 10;
+    baseArmor = 1;
+    baseMagicDamage = 0;
+    baseMagicResistance = 0;
+    //toxicAttack = 17; //need to declare in headerfile
+    //radiation = 10; //need to declare in headerfile
     level = 1;
     xpDrop = 12;
 }
 
 void Enemies::giantRaccoon(){
     name = "Giant Raccoon";
-    health = 350;
-    attack = 65;
-    armor = 80;
-    magicAttack = 25;
-    magicResistence = 15;
+    baseHealth = 350;
+    basePhysicalDamage = 65;
+    baseArmor = 80;
+    baseMagicDamage = 25;
+    baseMagicResistance = 15;
     level = 1;
     xpDrop = 500;
     //GIANT RACCOON!!! Mini-boss.
@@ -164,22 +166,22 @@ void Enemies::giantRaccoon(){
 
 void Enemies::evilWizard(){
     name = "Evil Wizard";
-    health = 80;
-    attack = 20;
-    armor = 8;
-    magicAttack = 20;
-    magicResistence = 12;
+    baseHealth = 80;
+    basePhysicalDamage = 20;
+    baseArmor = 8;
+    baseMagicDamage = 20;
+    baseMagicResistance = 12;
     level = 1;
     xpDrop = 80;
 }
 
 void Enemies::witch(){
     name = "Witch";
-    health = 70;
-    attack = 13;
-    armor = 10;
-    magicAttack = 30;
-    magicResistence = 15;
+    baseHealth = 70;
+    basePhysicalDamage = 13;
+    baseArmor = 10;
+    baseMagicDamage = 30;
+    baseMagicResistance = 15;
     level = 1;
     xpDrop = 80;
 }
@@ -187,22 +189,22 @@ void Enemies::witch(){
 void Enemies::mutantGhost(){
     cout << "BOOO!!";
     name = "Mutant Ghost";
-    health = 95;
-    attack = 20;
-    armor = 1;
-    magicAttack = 35;
-    magicResistence = 23;
+    baseHealth = 95;
+    basePhysicalDamage = 20;
+    baseArmor = 1;
+    baseMagicDamage = 35;
+    baseMagicResistance = 23;
     level = 1;
     xpDrop = 100;
 }
 
 void Enemies::wereWolf(){
     name = "Werewolf";
-    health = 80;
-    attack = 25;
-    armor = 5;
-    magicAttack = 12;
-    magicResistence = 8;
+    baseHealth = 80;
+    basePhysicalDamage = 25;
+    baseArmor = 5;
+    baseMagicDamage = 12;
+    baseMagicResistance = 8;
     level = 1;
     xpDrop = 70;
 }
