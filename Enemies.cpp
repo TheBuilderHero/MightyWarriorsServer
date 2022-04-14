@@ -47,7 +47,48 @@ string Enemies::getEnemyName(int enemyChoice){
             voidCat();
             return displayName;
             break;
-        default:
+        case 3:
+            highwayRobber();
+            return displayName;
+            break;
+        case 4:
+            orc();
+            return displayName;
+            break;
+        case 5:
+            sasquatch();
+            return displayName;
+            break;
+        case 6:
+            skunk();
+            return displayName;
+            break;
+        case 7:
+            mutantSkunk();
+            return displayName;
+            break;
+        case 8:
+            giantRaccoon();
+            return displayName;
+            break;
+        case 9:
+            evilWizard();
+            return displayName;
+            break;
+        case 10:
+            witch();
+            return displayName;
+            break;
+        case 11:
+            mutantGhost();
+            return displayName;
+            break;
+        case 12:
+            wereWolf();
+            return displayName;
+            break;
+            //Please note, if you add more enemies to this list you will need to update the range of the random number generator switch statement case 7, in the funcion requestActions() in the file source.cpp
+        default: //if none of these we will input mutantElf()
             mutantElf();
             return displayName;
             break;
