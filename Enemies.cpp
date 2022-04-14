@@ -143,7 +143,8 @@ void Enemies::voidCat() {
 }
 
 void Enemies::highwayRobber(){
-    name = "Highway Robber";
+    enemyNum = HIGHWAY_ROBBER;
+    displayName = "Highway Robber";
     baseHealth = 60;
     basePhysicalDamage = 15;
     baseArmor = 10;
@@ -156,7 +157,8 @@ void Enemies::highwayRobber(){
 }
 
 void Enemies::orc(){
-    name = "Orc";
+    enemyNum = ORC_ENEMY;
+    displayName = "Orc";
     baseHealth = 70;
     basePhysicalDamage = 20;
     baseArmor = 15;
@@ -167,7 +169,8 @@ void Enemies::orc(){
 }
 
 void Enemies::sasquatch(){
-    name = "Sasquatch";
+    enemyNum = SASQUATCH_ENEMY;
+    displayName = "Sasquatch";
     baseHealth = 120;
     basePhysicalDamage = 35;
     baseArmor = 20;
@@ -178,7 +181,8 @@ void Enemies::sasquatch(){
 }
 
 void Enemies::skunk(){
-    name = "Skunk";
+    enemyNum = SKUNK_ENEMY;
+    displayName = "Skunk";
     baseHealth = 25;
     basePhysicalDamage = 10;
     baseArmor = 1;
@@ -191,7 +195,8 @@ void Enemies::skunk(){
 }
 
 void Enemies::mutantSkunk(){
-    name = "Mutant Skunk";
+    enemyNum = MUTANT_SKUNK;
+    displayName = "Mutant Skunk";
     baseHealth = 25;
     basePhysicalDamage = 10;
     baseArmor = 1;
@@ -204,7 +209,8 @@ void Enemies::mutantSkunk(){
 }
 
 void Enemies::giantRaccoon(){
-    name = "Giant Raccoon";
+    enemyNum = GIANT_RACCOON;
+    displayName = "Giant Raccoon";
     baseHealth = 350;
     basePhysicalDamage = 65;
     baseArmor = 80;
@@ -216,7 +222,8 @@ void Enemies::giantRaccoon(){
 }
 
 void Enemies::evilWizard(){
-    name = "Evil Wizard";
+    enemyNum = EVIL_WIZARD;
+    displayName = "Evil Wizard";
     baseHealth = 80;
     basePhysicalDamage = 20;
     baseArmor = 8;
@@ -227,7 +234,8 @@ void Enemies::evilWizard(){
 }
 
 void Enemies::witch(){
-    name = "Witch";
+    enemyNum = WITCH_ENEMY;
+    displayName = "Witch";
     baseHealth = 70;
     basePhysicalDamage = 13;
     baseArmor = 10;
@@ -238,8 +246,8 @@ void Enemies::witch(){
 }
 
 void Enemies::mutantGhost(){
-    cout << "BOOO!!";
-    name = "Mutant Ghost";
+    enemyNum = MUTANT_GHOST;
+    displayName = "Mutant Ghost";
     baseHealth = 95;
     basePhysicalDamage = 20;
     baseArmor = 1;
@@ -250,7 +258,8 @@ void Enemies::mutantGhost(){
 }
 
 void Enemies::wereWolf(){
-    name = "Werewolf";
+    enemyNum = WERE_WOLF;
+    displayName = "Werewolf";
     baseHealth = 80;
     basePhysicalDamage = 25;
     baseArmor = 5;
