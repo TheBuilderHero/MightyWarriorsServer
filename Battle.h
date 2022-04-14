@@ -10,8 +10,8 @@ class Battle{//This class will have all the functions needed for the algorythms 
     //(depending on race) These abilities will have different effects and damages.  So we need to take some input for race
     int determineOption(std::string username, int selectedOption, std::string attackMagicOrPhysical, int enemyChoice); //from info sent from client we will determine the ability/option used. 
     int doQOption(std::string username, std::string attackMagicOrPhysical, int enemyChoice); //this will be the main damage ability - output is damage amount in type int
-    int doWOption(std::string race); //this will be the main utility ability - output is dmage amount in type int
-    int doEOption(std::string race); //this will be the main dodge or block ability - output is damage amount in type int
+    int doWOption(std::string username, std::string attackMagicOrPhysical, int enemyChoice); //this will be the main utility ability - output is dmage amount in type int
+    int doEOption(std::string username, std::string attackMagicOrPhysical, int enemyChoice); //this will be the main dodge or block ability - output is damage amount in type int
     int doROption(std::string username, std::string attackMagicOrPhysical, int enemyChoice); //this will be the ultimate ability - output is damage amount in type int
     //end battle proccess
     double increaseXP(int playerLevel, double playerCurrentXP);//std::string enemyName, int level, int difficulty);

@@ -44,10 +44,10 @@ int Battle::determineOption(string username, int selectedOption, string attackMa
             return doQOption(username, attackMagicOrPhysical, enemyChoice);
             break;
         case 2:
-            //return doWOption(username, attackMagicOrPhysical, enemyChoice);
+            return doWOption(username, attackMagicOrPhysical, enemyChoice);
             break;
         case 3:
-            //return doEOption(username, attackMagicOrPhysical, enemyChoice);
+            return doEOption(username, attackMagicOrPhysical, enemyChoice);
             break;
         case 4:
             return doROption(username, attackMagicOrPhysical, enemyChoice);
@@ -77,13 +77,51 @@ int Battle::doQOption(string username, string attackMagicOrPhysical, int enemyCh
     //return the damage done by Q rounded to a whole number
     return round(qDamage);
 }
-int Battle::doWOption(std::string race){ //this will be the main utility ability - output is dmage amount in type int
-    //code for w
-    return 1;
+int Battle::doWOption(string username, string attackMagicOrPhysical, int enemyChoice){ //this will be the main utility ability - output is dmage amount in type int
+    //code for w - duplicate of Q
+    //this should take into account wether it is magic or physical
+    Players players;
+    Cipher code;
+    Enemies enemy;
+    double wDamage = 0;
+    //pull in the player attack stats
+    double physicalDamage = stoi(players.getPhysicalDamageStat(username));
+    double magicDamage = stoi(players.getMagicDamageStat(username));
+    
+    //pull in the enemy defense stats
+    double armor = enemy.enemyChoiceGetStat(enemyChoice, 2);
+    double magicResistance = enemy.enemyChoiceGetStat(enemyChoice, 3);
+
+    //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the enemy
+    if (attackMagicOrPhysical == "Physical") wDamage = physicalDamage -= (physicalDamage * (armor/DEFENSE_RATIO));
+    if (attackMagicOrPhysical == "Magic") wDamage = magicDamage -= (magicDamage * (magicResistance/DEFENSE_RATIO));
+
+
+    //return the damage done by Q rounded to a whole number
+    return round(wDamage);
 }
-int Battle::doEOption(std::string race){ //this will be the main dodge or block ability - output is damage amount in type int
-    //code for e
-    return 1;
+int Battle::doEOption(string username, string attackMagicOrPhysical, int enemyChoice){ //this will be the main dodge or block ability - output is damage amount in type int
+    //code for e - duplicate of Q
+    //this should take into account wether it is magic or physical
+    Players players;
+    Cipher code;
+    Enemies enemy;
+    double eDamage = 0;
+    //pull in the player attack stats
+    double physicalDamage = stoi(players.getPhysicalDamageStat(username));
+    double magicDamage = stoi(players.getMagicDamageStat(username));
+    
+    //pull in the enemy defense stats
+    double armor = enemy.enemyChoiceGetStat(enemyChoice, 2);
+    double magicResistance = enemy.enemyChoiceGetStat(enemyChoice, 3);
+
+    //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the enemy
+    if (attackMagicOrPhysical == "Physical") eDamage = physicalDamage -= (physicalDamage * (armor/DEFENSE_RATIO));
+    if (attackMagicOrPhysical == "Magic") eDamage = magicDamage -= (magicDamage * (magicResistance/DEFENSE_RATIO));
+
+
+    //return the damage done by Q rounded to a whole number
+    return round(eDamage);
 }
 int Battle::doROption(string username, string attackMagicOrPhysical, int enemyChoice){ //this will be the ultimate ability - output is damage amount in type int
     //code for r
