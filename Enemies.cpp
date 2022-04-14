@@ -6,6 +6,16 @@ using namespace std;
 int Enemies::enemyChoiceGetStat(int enemyChoice, int returnType, int enemyLevel){ //This function retrives the requested stat (returnType) of a given apponent (enemyChoice) - more then likely we will have the enemy choice randomly generated.
     if(enemyChoice == MUTANT_ELF) mutantElf();
     if(enemyChoice == VOID_CAT) voidCat();
+    if(enemyChoice == HIGHWAY_ROBBER) highwayRobber();
+    if(enemyChoice == ORC_ENEMY) orc();
+    if(enemyChoice == SASQUATCH_ENEMY) sasquatch();
+    if(enemyChoice == SKUNK_ENEMY) skunk();
+    if(enemyChoice == MUTANT_SKUNK) mutantSkunk();
+    if(enemyChoice == GIANT_RACCOON) giantRaccoon();
+    if(enemyChoice == EVIL_WIZARD) evilWizard();
+    if(enemyChoice == WITCH_ENEMY) witch();
+    if(enemyChoice == MUTANT_GHOST) mutantGhost();
+    if(enemyChoice == WERE_WOLF) wereWolf();
 
     switch (returnType)
     {
