@@ -26,9 +26,9 @@ std::string Players::getPlayerRace(std::string username, int raceChoice){ //retu
         return RACE_DRYAD;
         break;
     default:
+        return RACE_HUMAN;
         break;
     }
-    return RACE_HUMAN;
 }
 std::string Players::getPlayerRace(std::string username){ //returns the user's race
     Cipher code;
