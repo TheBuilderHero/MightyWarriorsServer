@@ -197,6 +197,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
                 if (n < 0) error("ERROR writing to socket");
             }
     }
+    cout << "Return Message from Server: " << returnMessage << endl;
 }
 
 //this function takes an input of port when starting the run process of the program
