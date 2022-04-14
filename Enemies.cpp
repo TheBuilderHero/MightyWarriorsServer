@@ -185,6 +185,7 @@ void Enemies::witch(){
 }
 
 void Enemies::mutantGhost(){
+    cout << "BOOO!!";
     name = "Mutant Ghost";
     health = 95;
     attack = 20;
