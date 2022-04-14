@@ -3,19 +3,79 @@
 #include <iostream> //can remove this later when increaseXP() is fully integrated
 
 #include "Battle.h"
+#include "Enemies.h"
+#include "Characters.h"
+#include "Players.h"
+#include "Cipher.h"
+
 
 using namespace std;
 
-void Battle::setEnemyBattleStats(std::string name, int level, int health, int armor, int magicResistance, int magicDamage, int agility, int physicalDamage){ //set the enemy battle stats
-    //code for setting the enemies battle stats - This will pull the stats from the specific enemy stat file on battle start
+string Battle::getEnemyBattleStats(int enemyRandomChoice, int level, string statChoice){ //set the enemy battle stats based on the level and statChoice which can be [health, armor, magicResistance, physicalDamage, magicDamage, agility, stealth]
+    //This code is intended to be used for each individual stat from health to stealth by the different inputs of level and enemyRandomChoice's value
+    Enemies enemy;
+    //level needs to be implimented later down the road
+    if (statChoice == "health") {
+        return to_string(enemy.enemyChoiceGetStat(enemyRandomChoice, 1, level));
+    } else if (statChoice == "armor") {
+        return to_string(enemy.enemyChoiceGetStat(enemyRandomChoice, 2, level));
+    } else if (statChoice == "magicResistance") {
+        return to_string(enemy.enemyChoiceGetStat(enemyRandomChoice, 3, level));
+    } else if (statChoice == "physicalDamage") {
+        return to_string(enemy.enemyChoiceGetStat(enemyRandomChoice, 4, level));
+    } else if (statChoice == "magicDamage") {
+        return to_string(enemy.enemyChoiceGetStat(enemyRandomChoice, 5, level));
+    } else if (statChoice == "agility") {
+        return to_string(enemy.enemyChoiceGetStat(enemyRandomChoice, 6, level));
+    } else if (statChoice == "stealth") {
+        return to_string(enemy.enemyChoiceGetStat(enemyRandomChoice, 7, level));
+    } else {
+        return "0";
+    }
+    return "0";
 }
-void Battle::setPlayerBattleStats(std::string name, int level, int health, int armor, int magicResistance, int magicDamage, int agility, int physicalDamage){ //set the player battle stats
+void Battle::loadPlayerBattleStats(std::string name, int level, int health, int armor, int magicResistance, int magicDamage, int agility, int physicalDamage){ //set the player battle stats
     //code for setting the players battle stats - This will pull the stats from the Players stat file on battle start
     //we will also need to get the weapon the player is using to know about the extra damage
 }
-int Battle::doQOption(std::string race){ //this will be the main damage ability - output is damage amount in type int
-    //code for q
-    return 1;
+int Battle::determineOption(string username, int selectedOption, string attackMagicOrPhysical, int enemyChoice){ //this function is used to determine the ability/attack option to perform
+    switch(selectedOption){ //based on this value they either pressed Q(1), W(1), E(3), or R(4)
+        case 1:
+            return doQOption(username, attackMagicOrPhysical, enemyChoice);
+            break;
+        case 2:
+            //return doWOption(username, attackMagicOrPhysical, enemyChoice);
+            break;
+        case 3:
+            //return doEOption(username, attackMagicOrPhysical, enemyChoice);
+            break;
+        case 4:
+            return doROption(username, attackMagicOrPhysical, enemyChoice);
+            break;
+    }
+    return 0; //This should never be reached
+}
+int Battle::doQOption(string username, string attackMagicOrPhysical, int enemyChoice){ //this will be the main damage ability - output is damage amount in type int
+    //this should take into account wether it is magic or physical
+    Players players;
+    Cipher code;
+    Enemies enemy;
+    double qDamage = 0;
+    //pull in the player attack stats
+    double physicalDamage = stoi(players.getPhysicalDamageStat(username));
+    double magicDamage = stoi(players.getMagicDamageStat(username));
+    
+    //pull in the enemy defense stats
+    double armor = enemy.enemyChoiceGetStat(enemyChoice, 2);
+    double magicResistance = enemy.enemyChoiceGetStat(enemyChoice, 3);
+
+    //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the enemy
+    if (attackMagicOrPhysical == "Physical") qDamage = physicalDamage -= (physicalDamage * (armor/DEFENSE_RATIO));
+    if (attackMagicOrPhysical == "Magic") qDamage = magicDamage -= (magicDamage * (magicResistance/DEFENSE_RATIO));
+
+
+    //return the damage done by Q rounded to a whole number
+    return round(qDamage);
 }
 int Battle::doWOption(std::string race){ //this will be the main utility ability - output is dmage amount in type int
     //code for w
@@ -25,9 +85,29 @@ int Battle::doEOption(std::string race){ //this will be the main dodge or block 
     //code for e
     return 1;
 }
-int Battle::doROption(std::string race){ //this will be the ultimate ability - output is damage amount in type int
+int Battle::doROption(string username, string attackMagicOrPhysical, int enemyChoice){ //this will be the ultimate ability - output is damage amount in type int
     //code for r
-    return 1;
+    //this should take into account wether it is magic or physical just like Q
+    Players players;
+    Cipher code;
+    Enemies enemy;
+    double rDamage = 0;
+    //pull in the player attack stats
+    double physicalDamage = stoi(players.getPhysicalDamageStat(username));
+    double magicDamage = stoi(players.getMagicDamageStat(username));
+    
+    //pull in the enemy defense stats
+    double armor = enemy.enemyChoiceGetStat(enemyChoice, 2);
+    double magicResistance = enemy.enemyChoiceGetStat(enemyChoice, 3);
+
+    //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the enemy
+    if (attackMagicOrPhysical == "Physical") rDamage = physicalDamage -= (physicalDamage * (armor/DEFENSE_RATIO));
+    if (attackMagicOrPhysical == "Magic") rDamage = magicDamage -= (magicDamage * (magicResistance/DEFENSE_RATIO));
+
+
+    //The Damage of R is buffed by a factor of 5 after the subtraction of armor/magic resistance calculations since it is the ultimate ability
+    //return the damage done by Q rounded to a whole number
+    return round(rDamage * 5);
 }
 //end battle proccess
 //kyle -->

@@ -1,11 +1,21 @@
 #include <iostream>
+
 #include "Characters.h"
+#include "Cipher.h"
 
 using namespace std;
 
-void Characters::Human(string username) {  //Kyle
+void Characters::pullRaceStats(string race, string username){//sets the stats in the character class for the specific race of the player
+    if(race == RACE_HUMAN) human(username);
+    if(race == RACE_ELF) elf(username);
+    if(race == RACE_DINO) dino(username);
+    if(race == RACE_DRYAD) dryad(username);
+    if(race == RACE_GHOST) ghost(username);
+}
+
+void Characters::human(string username) {  //Kyle
     name = username;
-    race = "Human";
+    race = RACE_HUMAN;
     baseHealth = 100;
     baseArmor = 10;
     baseMagicResistance = 5;
@@ -16,9 +26,9 @@ void Characters::Human(string username) {  //Kyle
     level = 0;
 }
 
-void Characters::Elf(string username) {
+void Characters::elf(string username) {
     name = username;
-    race = "Elf";
+    race = RACE_ELF;
     baseHealth = 100;
     baseArmor = 5;
     baseMagicResistance = 10;
@@ -29,12 +39,12 @@ void Characters::Elf(string username) {
     level = 0;
 }
 
-void Characters::Dino(string username) {
+void Characters::dino(string username) {
     name = username;
-    race = "Dino";
+    race = RACE_DINO;
     baseHealth = 100;
     baseArmor = 15;
-    baseMagicResistence = 5;
+    baseMagicResistance = 5;
     baseMagicDamage = 20;
     baseAgility = 8;
     basePhysicalDamage = 15;
@@ -42,12 +52,12 @@ void Characters::Dino(string username) {
     level = 0;
 }
 
-void Characters::Dryad(string username) {
+void Characters::dryad(string username) {
     name = username;
-    race = "Dryad";
+    race = RACE_DRYAD;
     baseHealth = 100;
     baseArmor = 5;
-    baseMagicResistence = 20;
+    baseMagicResistance = 20;
     baseMagicDamage = 20;
     baseAgility = 20;
     basePhysicalDamage = 5;
@@ -55,12 +65,12 @@ void Characters::Dryad(string username) {
     level = 0;
 }
 
-void Characters::Ghost(string username) {
+void Characters::ghost(string username) {
     name = username;
-    race = "Ghost";
+    race = RACE_GHOST;
     baseHealth = 100;
     baseArmor = 2;
-    baseMagicResistence = 20;
+    baseMagicResistance = 20;
     baseMagicDamage = 20;
     baseAgility = 15;
     basePhysicalDamage = 5;

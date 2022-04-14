@@ -10,6 +10,7 @@
 #include "Characters.h"
 #include "Cipher.h"
 #include "Battle.h"
+#include "PlayerElements/Kit.h"
 
 //Make sure that game sersion is changed along with client or go to the version check function and allow for older versions of the client. (We must make sure to be acceptable in functionality)
 //********************************************
@@ -29,7 +30,8 @@ const int gamePatch       = 0;
 //********************************************
 
 using namespace std;
-string delimiter = "~"; //a character that marks the beginning or end of a unit of data
+Cipher Delim; //just for the use of the delimiter.
+string delimiter = Delim.getDelimiter(); //a character that marks the beginning or end of a unit of data which is declared in the Cipher Class
 void dostuff(int); /* function prototype */
 
 
@@ -78,11 +80,14 @@ int userLogon(string usernameE, string passwordE) { //This code pulls the passwo
 }
 
 void requestActions(int socket, char messageFromClient[]) { //This function takes a socket and the message from the user and then performs an action based on the variable typeOfRequest which is contained in the message from th user.
+    Kit kit;
     Cipher code;
     Characters characters;
     Players players;
+    Battle battle;
+    Enemies enemy;
     ifstream testUsername;
-    string returnMessage = "0"; //this is hard setting the function to always say that the username does not exist.  This will need to be changed to checking for usernames use.
+    string returnMessage = "0"; //this is hard setting the function to always say that the username does not exist if no other value is setup.
     string message = code.decipher(messageFromClient);
     int n;
     
@@ -90,10 +95,10 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
     printf("V1.1-Here is the message from the User: %s\n", messageFromClient);
 
     //testing to see what action the user is requesting by switching between cases of typeOfRequest
-    switch (stoi(code.typeOfRequest)) {
+    switch (stoi(code.getTypeOfRequest())) {
         case 1://check new users entered username against list of usernames to make sure it is unique
             message = code.decipher(messageFromClient); //unpack the message from the user
-            testUsername.open("./userdata/" + code.username + "/" + code.username + ".dat"); //opens file to check if it exists
+            testUsername.open("./userdata/" + code.getUsername() + "/" + code.getUsername() + ".dat"); //opens file to check if it exists
             if (testUsername) { // test user is true if it does exist and false if is does not // this means that when it exists you can not user that username
                 testUsername.close();// closing opened file
                 returnMessage = "0"; //not valid username - already in use
@@ -108,40 +113,60 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             }
             break;
         case 2://this is the user creation type
-            code.userDataDeliminationWrite(1, code.username, code.item3);
+            code.userDataDeliminationWrite(1, code.getUsername(), code.getItem(3));
 
             break;
         case 3://check logon info to confirm user identity - user logon
             int ableToLogon;
-            ableToLogon = userLogon(code.username, code.item3);
+            ableToLogon = userLogon(code.getUsername(), code.getItem(3));
             returnMessage = code.cipher("3", to_string(ableToLogon));
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
         case 4: //change password
-            code.userDataDeliminationWrite(2, code.username, code.item3);
+            code.userDataDeliminationWrite(2, code.getUsername(), code.getItem(3));
             break;
         case 5: //write the user stats to file
-            code.userDataDeliminationWrite(3, code.username, code.item3, code.item4, code.item5, code.item6);
+            code.userDataDeliminationWrite(3, code.getUsername(), code.getItem(3), code.getItem(4), code.getItem(5), code.getItem(6), code.getItem(7), code.getItem(8), code.getItem(9), code.getItem(10));
             returnMessage = code.cipher("4", "wasAbleToSave");
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
         case 6: //Making this read all user info form file  ---------------------------//try to read to user's stats from file - need to get this fully setup.
-            code.userDataDeliminationRead(1, code.username); //sets the items3 - 6 to the current stat values
-            characters.Human(code.username); //set the proper stat values for the input of the base stats (This is used in the following long statment)
-            returnMessage = code.cipher("5", players.getHealthStat(code.username, characters.baseHealth, stoi(code.item2)), players.getArmorStat(code.username, characters.baseArmor, stoi(code.item3)),
-            players.getMagicResistanceStat(code.username, characters.baseMagicResistance, stoi(code.item4)), players.getPhysicalDamageStat(code.username, characters.basePhysicalDamage, stoi(code.item5)), 
-            players.getMagicDamageStat(code.username, characters.baseAgility, stoi(code.item6))); // This very long input put into simple terms calculates stats by adding base to bonus then spitting it out as a string for Health, armor, magicResistance, physicalDamage, MagicDamage, Agility
+            code.userDataDeliminationRead(1, code.getUsername()); //sets the items3 - 6 to the current stat values
+            characters.pullRaceStats(players.getPlayerRace(code.getUsername()), code.getUsername());//set the stats of the Player for the race in their file
+            // old way to test: characters.Human(code.getUsername()); //set the proper stat values for the input of the base stats (This is used in the following long statment)
+            returnMessage = code.cipher("5", players.getHealthStat(code.getUsername(), characters.baseHealth, stoi(code.getItem(2))), players.getArmorStat(code.getUsername(), characters.baseArmor, stoi(code.getItem(3))),
+            players.getMagicResistanceStat(code.getUsername(), characters.baseMagicResistance, stoi(code.getItem(4))), players.getPhysicalDamageStat(code.getUsername(), characters.basePhysicalDamage, stoi(code.getItem(5))), 
+            players.getMagicDamageStat(code.getUsername(), characters.baseMagicDamage, stoi(code.getItem(6)))); // This very long input put into simple terms calculates stats by adding base to bonus then spitting it out as a string for Health, armor, magicResistance, physicalDamage, MagicDamage, Agility
+            n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+            if (n < 0) error("ERROR writing to socket");
+            break;
+        case 7: //read the enemy stats for battle
+            int enemyNumPicked, enemyLevel;
+            enemyNumPicked = 2; //this is the type of enemy which you will fight
+            enemyLevel = 1; //level of boss
+            returnMessage = code.cipher("5", enemy.getEnemyName(enemyNumPicked) ,battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "health"), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "armor"), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "magicResistance"), 
+            battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "physicalDamage"), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "magicDamage")); //get all the values for the enemy to be sent to the client (Change 1 later so that it depends on input from client)
+            n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+            if (n < 0) error("ERROR writing to socket");
+            break;
+        case 8: //user race selection and write to file
+            // using code.getItem(3) from the client (which is raceChoice) and code.getItem(4) (which is kitChoice) we will determine the race which the user selected which is the reutrn of getPlayerRace
+            code.userDataDeliminationWrite(1, code.getUsername(), players.getPlayerRace(code.getUsername(), stoi(code.getItem(3))), kit.getPlayerKit(code.getUsername(), stoi(code.getItem(4)))); //write that race to file
+            //instead of kit.kit we need to take code.getItem(4) and determine what kit they chose and input that.
+            break;
+        case 9: //this takes the input of battle attacks to then reply with the damage amount.
+            returnMessage = code.cipher("4", to_string(battle.determineOption(code.getUsername(), stoi(code.getItem(4)), "Magic", enemy.getEnemyPickedFromName(code.getItem(3))))); //get the damage for the Q ability and cipher return message.
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
         case 0: //check for version compatibility - This is done before using can continue to create account or logon
             int gameVersionClient, gameMajorBuildClient, gameMinorBuildClient, gamePatchClient; //client game versions which we are going to test against the server's version
-            gameVersionClient = stoi(code.item3);
-            gameMajorBuildClient = stoi(code.item4);
-            gameMinorBuildClient = stoi(code.item5);
-            gamePatchClient = stoi(code.item6);
+            gameVersionClient = stoi(code.getItem(3));
+            gameMajorBuildClient = stoi(code.getItem(4));
+            gameMinorBuildClient = stoi(code.getItem(5));
+            gamePatchClient = stoi(code.getItem(6));
             if (gameVersion == gameVersionClient){ //these nested if statements check to makte sure that the client version the user is using is the same as the valid client version on the server.
                 if(gameMajorBuild == gameMajorBuildClient){
                     if (gameMinorBuild == gameMinorBuildClient){
@@ -170,7 +195,6 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
                 n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
                 if (n < 0) error("ERROR writing to socket");
             }
-            //test
     }
 }
 
@@ -234,12 +258,10 @@ void dostuff(int sock) {
 
 //main function of the source.cpp file
 int main(int argc, char* argv[]){
-    cout << "Server Successfully Running..." << endl << "Press \"ctrl + c\" to stop the running program\nServer Version: " << to_string(ServerVersion) << "." << to_string(ServerMajorBuild) << "." << to_string(ServerMinorBuild) << "." << to_string(ServerPatch) << endl; //I use this line to make sure the server is running and test the compiles
     Battle battle;
-    cout <<"Test:" << endl;
-    double amountNeeded = battle.increaseXP(1, 499); //This is just a test of the XP mechanic - I made this comment to test the Kyle making GitHub Commits
-    cout << "User XP:" << amountNeeded << endl;
-    cout << "^The above^" << endl;
+    cout << "Server Successfully Running..." << endl << "Press \"ctrl + c\" to stop the running program\nServer Version: " << to_string(ServerVersion) << "." << to_string(ServerMajorBuild) << "." << to_string(ServerMinorBuild) << "." << to_string(ServerPatch) << endl; //I use this line to make sure the server is running and test the compiles
+    cout << "Q: " << battle.doQOption("kota3","Physical", 1) << endl;
     communicate(argc, argv); //Start the servers function
     return 0; /* we never get here */
+    //Test coder3 account github submit.
 }
