@@ -147,6 +147,33 @@ int Battle::doROption(string username, string attackMagicOrPhysical, int enemyCh
     //return the damage done by Q rounded to a whole number
     return round(rDamage * 5);
 }
+//Enemy attack functions:
+int Battle::doEnemyOption1(string username, string attackMagicOrPhysical, int enemyChoice){ //one of the enemies options for attacking the player
+    //this should take into account wether it is magic or physical
+    Players players;
+    Cipher code;
+    Enemies enemy;
+    double Option1Damage = 0;
+    //pull in the enemy attack stats
+    double physicalDamage = enemy.enemyChoiceGetStat(enemyChoice, 4);
+    double magicDamage = enemy.enemyChoiceGetStat(enemyChoice, 5);
+    
+    //pull in the player defense stats
+    double armor = stoi(players.getArmorStat(username)); //enemy.enemyChoiceGetStat(enemyChoice, 2);
+    double magicResistance = stoi(players.getMagicResistanceStat(username));
+
+    //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the player's stats
+    if (attackMagicOrPhysical == "Physical") Option1Damage = physicalDamage -= (physicalDamage * (armor/DEFENSE_RATIO));
+    if (attackMagicOrPhysical == "Magic") Option1Damage = magicDamage -= (magicDamage * (magicResistance/DEFENSE_RATIO));
+
+    //add random amount of damage from 10 - 30:
+    srand (time(NULL)); //seed random number based on time
+    Option1Damage += rand() % 31 + 10; //add random value
+
+    //return the damage done by this option rounded to a whole number
+    return round(Option1Damage);
+}
+
 //end battle proccess
 //kyle -->
 double Battle::increaseXP(int playerLevel, double playerCurrentXP){//std::string enemyName, int level, int difficulty){ // we need to incorperate the inputs "enemyName", "level", and "difficulty" into the the following code

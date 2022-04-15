@@ -136,9 +136,8 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             code.userDataDeliminationRead(1, code.getUsername()); //sets the items3 - 6 to the current stat values
             characters.pullRaceStats(players.getPlayerRace(code.getUsername()), code.getUsername());//set the stats of the Player for the race in their file
             // old way to test: characters.Human(code.getUsername()); //set the proper stat values for the input of the base stats (This is used in the following long statment)
-            returnMessage = code.cipher("5", players.getHealthStat(code.getUsername(), characters.baseHealth, stoi(code.getItem(2))), players.getArmorStat(code.getUsername(), characters.baseArmor, stoi(code.getItem(3))),
-            players.getMagicResistanceStat(code.getUsername(), characters.baseMagicResistance, stoi(code.getItem(4))), players.getPhysicalDamageStat(code.getUsername(), characters.basePhysicalDamage, stoi(code.getItem(5))), 
-            players.getMagicDamageStat(code.getUsername(), characters.baseMagicDamage, stoi(code.getItem(6)))); // This very long input put into simple terms calculates stats by adding base to bonus then spitting it out as a string for Health, armor, magicResistance, physicalDamage, MagicDamage, Agility
+            returnMessage = code.cipher("5", players.getHealthStat(code.getUsername()), players.getArmorStat(code.getUsername())),players.getMagicResistanceStat(code.getUsername()), 
+            players.getPhysicalDamageStat(code.getUsername()), players.getMagicDamageStat(code.getUsername()); // This very long input put into simple terms calculates stats by adding base to bonus then spitting it out as a string for Health, armor, magicResistance, physicalDamage, MagicDamage, Agility
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
@@ -159,6 +158,11 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             break;
         case 9: //this takes the input of battle attacks to then reply with the damage amount.
             returnMessage = code.cipher("4", to_string(battle.determineOption(code.getUsername(), stoi(code.getItem(4)), "Magic", enemy.getEnemyPickedFromName(code.getItem(3))))); //get the damage for the Q ability and cipher return message.
+            n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+            if (n < 0) error("ERROR writing to socket");
+            break;
+        case 10: //enemy attacks
+            returnMessage = code.cipher("4", to_string(battle.doEnemyOption1(code.getUsername(), "Magic", enemy.getEnemyPickedFromName(code.getItem(3))))); //get the damage for the Q ability and cipher return message.
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
@@ -260,9 +264,7 @@ void dostuff(int sock) {
 
 //main function of the source.cpp file
 int main(int argc, char* argv[]){
-    Battle battle;
     cout << "Server Successfully Running..." << endl << "Press \"ctrl + c\" to stop the running program\nServer Version: " << to_string(ServerVersion) << "." << to_string(ServerMajorBuild) << "." << to_string(ServerMinorBuild) << "." << to_string(ServerPatch) << endl; //I use this line to make sure the server is running and test the compiles
-    cout << "Q: " << battle.doQOption("kota3","Physical", 1) << endl;
     communicate(argc, argv); //Start the servers function
     return 0; /* we never get here */
     //Test coder3 account github submit.

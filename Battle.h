@@ -15,6 +15,12 @@ class Battle{//This class will have all the functions needed for the algorythms 
     int doWOption(std::string username, std::string attackMagicOrPhysical, int enemyChoice); //this will be the main utility ability - output is dmage amount in type int
     int doEOption(std::string username, std::string attackMagicOrPhysical, int enemyChoice); //this will be the main dodge or block ability - output is damage amount in type int
     int doROption(std::string username, std::string attackMagicOrPhysical, int enemyChoice); //this will be the ultimate ability - output is damage amount in type int
+    //enemy attacks:
+    int doEnemyOption1(std::string username, std::string attackMagicOrPhysical, int enemyChoice);
+    int doEnemyOption2(std::string username, std::string attackMagicOrPhysical, int enemyChoice);
+    int doEnemyOption3(std::string username, std::string attackMagicOrPhysical, int enemyChoice);
+    int doEnemyOption4(std::string username, std::string attackMagicOrPhysical, int enemyChoice);
+
     //end battle proccess
     double increaseXP(int playerLevel, double playerCurrentXP);//std::string enemyName, int level, int difficulty);
     void enemyDrops(std::string enemyName, int level, int difficulty);

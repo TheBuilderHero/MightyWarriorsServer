@@ -38,6 +38,9 @@ string Cipher::getItem(int itemNumberToReturn){ //the purpose of this function i
     case 10:
         return item10;
         break;
+    case 11:
+        return item11;
+        break;
 
     default:
         return "Default Output Given";
@@ -146,7 +149,7 @@ string Cipher::cipher(string responseType, string item2, string item3, string it
     return str_file_content;
 }
 
-void Cipher::userDataDeliminationWrite(int updateValue, string username, string data2, string data3, string data4, string data5, string data6, string data7, string data8, string data9){
+void Cipher::userDataDeliminationWrite(int updateValue, string username, string data2, string data3, string data4, string data5, string data6, string data7, string data8, string data9, string data10){
     ofstream userfile;
     ofstream logonfile;
     switch (updateValue){ //updateValue is for the password, whether it is just getting updated or if this is a new user.
@@ -189,8 +192,9 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             if (data5.length() > 0) {userfile << delimiter << data5;} else {userfile << delimiter;} //physical damage stat
             if (data6.length() > 0) {userfile << delimiter << data6;} else {userfile << delimiter;} //magic damage stat
             if (data7.length() > 0) {userfile << delimiter << data7;} else {userfile << delimiter;} //Agility stat
-            if (data8.length() > 0) {userfile << delimiter << data8;} else {userfile << delimiter;} //Stamina stat
-            if (data9.length() > 0) {userfile << delimiter << data9;} else {userfile << delimiter;} //Mana stat
+            if (data8.length() > 0) {userfile << delimiter << data8;} else {userfile << delimiter;} //stealth stat
+            if (data9.length() > 0) {userfile << delimiter << data9;} else {userfile << delimiter;} //Stamina stat
+            if (data10.length() > 0) {userfile << delimiter << data10;} else {userfile << delimiter;} //Mana stat
             userfile << delimiter;
             userfile.close(); // done writting to file and now it is closed
             break;
@@ -245,6 +249,9 @@ void Cipher::userDataDeliminationRead(int updateValue, string username){
                     break;
                     case 10://tenth item after delimiter
                     if (output.length() > 0) item10 = output;
+                    break;
+                    case 11://tenth item after delimiter
+                    if (output.length() > 0) item11 = output;
                     break;
                 }
                 loopPass++;
