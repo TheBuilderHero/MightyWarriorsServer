@@ -148,7 +148,7 @@ int Battle::doROption(string username, string attackMagicOrPhysical, int enemyCh
     return round(rDamage * 5);
 }
 //Enemy attack functions:
-int Battle::doEnemyOption1(string username, string attackMagicOrPhysical, int enemyChoice){ //one of the enemies options for attacking the player
+int Battle::doEnemyOption1(string username, string attackMagicOrPhysical, int enemyChoice, string playerBlocking){ //one of the enemies options for attacking the player
     //this should take into account wether it is magic or physical
     Players players;
     Cipher code;
@@ -168,7 +168,10 @@ int Battle::doEnemyOption1(string username, string attackMagicOrPhysical, int en
 
     //add random amount of damage from 10 - 30:
     srand (time(NULL)); //seed random number based on time
-    Option1Damage += rand() % 31 + 10; //add random value
+    Option1Damage += rand() % (30 + 1) + 10; //add random value
+
+    //check if player was blocking - If yes, we do 75% damage
+    if (playerBlocking == "1") Option1Damage /= 4; //1 being true
 
     //return the damage done by this option rounded to a whole number
     return round(Option1Damage);
