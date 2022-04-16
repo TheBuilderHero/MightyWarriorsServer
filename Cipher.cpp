@@ -41,6 +41,9 @@ string Cipher::getItem(int itemNumberToReturn){ //the purpose of this function i
     case 11:
         return item11;
         break;
+    case 12:
+        return item12;
+        break;
 
     default:
         return "Default Output Given";
@@ -93,23 +96,27 @@ string Cipher::decipher(char messageFromClient[]){ //requestActions takes all th
             case 10://the tenth item enclosed in delimiters
             if (output.length() > 0) item10 = output; 
             break;
+            case 11://the tenth item enclosed in delimiters
+            if (output.length() > 0) item11 = output; 
+            break;
+            case 12://the tenth item enclosed in delimiters
+            if (output.length() > 0) item12 = output; 
+            break;
         }
         loopPass++;
     }
     return str_file_content;
 }
 
-//int responseType = 0, string item2= "", string item3= "", string item4= "", string item5= "", string item6= "", string item7= ""
 //this functions purpose it to add the delimiters to given items 
-string Cipher::cipher(string responseType, string item2, string item3, string item4, string item5, string item6, string item7, string item8, string item9, string item10){ // the default values have been set to "" in case no input is given
-    int numberOfItems = 10; //max number of items that we can cipher
+string Cipher::cipher(string responseType, string item2, string item3, string item4, string item5, string item6, string item7, string item8, string item9, string item10, string item11, string item12){ // the default values have been set to "" in case no input is given
+    int numberOfItems = 12; //max number of items that we can cipher
     string delimiter = "~"; //a character that marks the beginning or end of a unit of data
 
     string str_file_content;
     int loopPass = 1; // start at loop instance 1 to not add extra delimiters to the front of the message.
     while (loopPass != numberOfItems) {
         str_file_content += delimiter; // this will add the seperating delimiter before the a given item
-
         switch (loopPass)
         {
             case 1://first item after delimiter
@@ -141,6 +148,12 @@ string Cipher::cipher(string responseType, string item2, string item3, string it
             break;
             case 10://tenth item after delimiter
             if (item10.length() > 0) str_file_content += item10;
+            break;
+            case 11://eleventh item after delimiter
+            if (item11.length() > 0) str_file_content += item11;
+            break;
+            case 12://twelth item after delimiter
+            if (item12.length() > 0) str_file_content += item12;
             break;
         }
         loopPass++;
