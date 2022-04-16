@@ -115,7 +115,7 @@ string Cipher::cipher(string responseType, string item2, string item3, string it
 
     string str_file_content;
     int loopPass = 1; // start at loop instance 1 to not add extra delimiters to the front of the message.
-    while (loopPass != numberOfItems) {
+    while (loopPass <= numberOfItems) {
         str_file_content += delimiter; // this will add the seperating delimiter before the a given item
         switch (loopPass)
         {
