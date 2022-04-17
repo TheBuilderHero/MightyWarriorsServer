@@ -47,6 +47,7 @@ string Kit::getRaceDamageTypeForAbility(string username, char abilityLetter){ //
     if(abilityLetter == 'w') return wAbilityDamageType;
     if(abilityLetter == 'e') return eAbilityDamageType;
     if(abilityLetter == 'r') return rAbilityDamageType;
+    return "BadDamageTypeReturn"; //should never get here
 }
 
 void Kit::tank(){
