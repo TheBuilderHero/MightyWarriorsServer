@@ -158,7 +158,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             //instead of kit.kit we need to take code.getItem(4) and determine what kit they chose and input that.
             break;
         case 9: //this takes the input of battle attacks to then reply with the damage amount.
-            returnMessage = code.cipher("4", to_string(battle.determineOption(code.getUsername(), stoi(code.getItem(4)), "Magic", enemy.getEnemyPickedFromName(code.getItem(3))))); //get the damage for the Q ability and cipher return message.
+            returnMessage = code.cipher("4", to_string(battle.determineOption(code.getUsername(), stoi(code.getItem(4)), enemy.getEnemyPickedFromName(code.getItem(3))))); //get the damage for one of the abilites and cipher return message.
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;

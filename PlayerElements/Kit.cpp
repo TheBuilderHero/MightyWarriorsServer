@@ -1,6 +1,7 @@
 #include <string>
 
 #include "Kit.h"
+#include "../Cipher.h"
 
 using namespace std;
 
@@ -26,6 +27,11 @@ string Kit::getPlayerKit(std::string username, int kitChoice){
     }
     return KIT_TANK;
 }
+string Kit::getPlayerKit(std::string username){
+    Cipher code;
+    code.userDataDeliminationRead(2, username); 
+    return code.getItem(3);//now the kit value is stored in item3 //this will be the string name of the kit
+}
 void Kit::pullKitStats(string kitInput, string username){
     if(kitInput == KIT_TANK) tank();
     if(kitInput == KIT_ASSASIN) assasin();
@@ -34,8 +40,21 @@ void Kit::pullKitStats(string kitInput, string username){
     if(kitInput == KIT_NINJA) ninja();
 }
 
+string Kit::getRaceDamageTypeForAbility(string username, char abilityLetter){ //this function returns the type of damage a user inflicts based on their kit
+    string playerKit = getPlayerKit(username);
+    pullKitStats(playerKit, username); //get the info from the players race
+    if(abilityLetter == 'q') return qAbilityDamageType;
+    if(abilityLetter == 'w') return wAbilityDamageType;
+    if(abilityLetter == 'e') return eAbilityDamageType;
+    if(abilityLetter == 'r') return rAbilityDamageType;
+}
+
 void Kit::tank(){
     kit = KIT_TANK;
+    qAbilityDamageType = DAMAGETYPE_PHYSICAL; //tanks are not magical
+    wAbilityDamageType = DAMAGETYPE_PHYSICAL;
+    eAbilityDamageType = DAMAGETYPE_PHYSICAL;
+    rAbilityDamageType = DAMAGETYPE_PHYSICAL;
     kitHealth = 30;
     kitPhysicalDamage = 5;
     kitArmor = 20;
@@ -46,6 +65,10 @@ void Kit::tank(){
 }
 void Kit::assasin(){
     kit = KIT_ASSASIN;
+    qAbilityDamageType = DAMAGETYPE_PHYSICAL; //assasins have some magic
+    wAbilityDamageType = DAMAGETYPE_PHYSICAL;
+    eAbilityDamageType = DAMAGETYPE_MAGIC;
+    rAbilityDamageType = DAMAGETYPE_PHYSICAL;
     kitHealth = 5;
     kitPhysicalDamage = 30;
     kitArmor = 5;
@@ -56,6 +79,10 @@ void Kit::assasin(){
 }
 void Kit::archer(){
     kit = KIT_ARCHER;
+    qAbilityDamageType = DAMAGETYPE_PHYSICAL; //archers have some magic
+    wAbilityDamageType = DAMAGETYPE_PHYSICAL;
+    eAbilityDamageType = DAMAGETYPE_MAGIC;
+    rAbilityDamageType = DAMAGETYPE_PHYSICAL;
     kitHealth = 15;
     kitPhysicalDamage = 20;
     kitArmor = 10;
@@ -66,6 +93,10 @@ void Kit::archer(){
 }
 void Kit::mage(){
     kit = KIT_MAGE;
+    qAbilityDamageType = DAMAGETYPE_MAGIC; //mages are sol magic users
+    wAbilityDamageType = DAMAGETYPE_MAGIC;
+    eAbilityDamageType = DAMAGETYPE_MAGIC;
+    rAbilityDamageType = DAMAGETYPE_MAGIC;
     kitHealth = 15;
     kitPhysicalDamage = 5;
     kitArmor = 5;
@@ -76,6 +107,10 @@ void Kit::mage(){
 }
 void Kit::ninja(){
     kit = KIT_NINJA;
+    qAbilityDamageType = DAMAGETYPE_PHYSICAL; //Ninja is half and half physical and magic
+    wAbilityDamageType = DAMAGETYPE_PHYSICAL;
+    eAbilityDamageType = DAMAGETYPE_MAGIC;
+    rAbilityDamageType = DAMAGETYPE_MAGIC;
     kitHealth = 5;
     kitPhysicalDamage = 20;
     kitArmor = 5;

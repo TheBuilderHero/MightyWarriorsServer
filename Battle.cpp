@@ -7,6 +7,7 @@
 #include "Characters.h"
 #include "Players.h"
 #include "Cipher.h"
+#include "PlayerElements/Kit.h"
 
 
 using namespace std;
@@ -38,19 +39,20 @@ void Battle::loadPlayerBattleStats(std::string name, int level, int health, int 
     //code for setting the players battle stats - This will pull the stats from the Players stat file on battle start
     //we will also need to get the weapon the player is using to know about the extra damage
 }
-int Battle::determineOption(string username, int selectedOption, string attackMagicOrPhysical, int enemyChoice){ //this function is used to determine the ability/attack option to perform
+int Battle::determineOption(string username, int selectedOption, int enemyChoice){ //this function is used to determine the ability/attack option to perform
+    Kit kit;
     switch(selectedOption){ //based on this value they either pressed Q(1), W(1), E(3), or R(4)
         case 1:
-            return doQOption(username, attackMagicOrPhysical, enemyChoice);
+            return doQOption(username, kit.getRaceDamageTypeForAbility(username, 'q'), enemyChoice);
             break;
         case 2:
-            return doWOption(username, attackMagicOrPhysical, enemyChoice);
+            return doWOption(username, kit.getRaceDamageTypeForAbility(username, 'w'), enemyChoice);
             break;
         case 3:
-            return doEOption(username, attackMagicOrPhysical, enemyChoice);
+            return doEOption(username, kit.getRaceDamageTypeForAbility(username, 'e'), enemyChoice);
             break;
         case 4:
-            return doROption(username, attackMagicOrPhysical, enemyChoice);
+            return doROption(username, kit.getRaceDamageTypeForAbility(username, 'r'), enemyChoice);
             break;
     }
     return 0; //This should never be reached

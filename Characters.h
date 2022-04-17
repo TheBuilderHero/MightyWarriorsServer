@@ -7,7 +7,7 @@
 class Characters {
     private:
         std::string name; // in the case of Enemies we will give them names - for players it will be their username
-        std::string race; // is one of the following: human - elf - dino - dryad - ghost 
+        std::string race; // is one of the following: human - elf - dino - dryad - ghost
         
     public:
         //these probably need to be made private:
