@@ -163,7 +163,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             if (n < 0) error("ERROR writing to socket");
             break;
         case 10: //enemy attacks
-            returnMessage = code.cipher("4", to_string(battle.doEnemyOption1(code.getUsername(), "Magic", enemy.getEnemyPickedFromName(code.getItem(3)), code.getItem(4)))); //get the damage for the Q ability and cipher return message.
+            returnMessage = code.cipher("4", to_string(battle.determineEnemyAttackOption(code.getUsername(), enemy.getEnemyPickedFromName(code.getItem(3)), code.getItem(4)))); //get the damage for the enemy and cipher return message.
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;

@@ -56,7 +56,7 @@ void Kit::tank(){
     wAbilityDamageType = DAMAGETYPE_PHYSICAL;
     eAbilityDamageType = DAMAGETYPE_PHYSICAL;
     rAbilityDamageType = DAMAGETYPE_PHYSICAL;
-    kitHealth = 30;
+    kitHealth = 50;
     kitPhysicalDamage = 5;
     kitArmor = 20;
     kitMagicDamage = 1;
@@ -101,7 +101,7 @@ void Kit::mage(){
     kitHealth = 15;
     kitPhysicalDamage = 5;
     kitArmor = 5;
-    kitMagicDamage = 25;
+    kitMagicDamage = 35;
     kitMagicResistance = 15;
     kitAgility = 3;
     kitStealth = 2;
