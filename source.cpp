@@ -167,6 +167,11 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
+        case 11: //check if enemy is blocking next attack
+            returnMessage = code.cipher("5", to_string(battle.isEnemyBlocking()), to_string(battle.getBLOCK_REDUCTION_VALUE())); //get the damage for one of the abilites and cipher return message.
+            n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+            if (n < 0) error("ERROR writing to socket");
+            break;
         case 0: //check for version compatibility - This is done before using can continue to create account or logon
             int gameVersionClient, gameMajorBuildClient, gameMinorBuildClient, gamePatchClient; //client game versions which we are going to test against the server's version
             gameVersionClient = stoi(code.getItem(3));

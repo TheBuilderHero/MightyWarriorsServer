@@ -162,16 +162,16 @@ int Battle::determineEnemyAttackOption(string username, int enemyChoice, string 
     switch (option){ //the random number is used to pick the type of attack which will be done
 
     //right now all the below do the same thing with a different damage type.  We will need to update them to each have a unigue function.
-    case 1:
+    case 1: //magical attack
         return doEnemyOption1(username, enemy.getDAMAGETYPE_MAGIC(), enemyChoice, playerBlocking);
         break;
-    case 2:
+    case 2: //physical attack
         return doEnemyOption2(username, enemy.getDAMAGETYPE_PHYSICAL(), enemyChoice, playerBlocking);
         break;
-    case 3:
+    case 3://magical attack
         return doEnemyOption3(username, enemy.getDAMAGETYPE_MAGIC(), enemyChoice, playerBlocking);
         break;
-    case 4:
+    case 4: //physical attack
         return doEnemyOption4(username, enemy.getDAMAGETYPE_PHYSICAL(), enemyChoice, playerBlocking);
         break;
     
@@ -203,10 +203,8 @@ int Battle::doEnemyOption1(string username, string attackMagicOrPhysical, int en
     srand (time(NULL)); //seed random number based on time
     option1Damage += rand() % (30 + 1) + 10; //add random value
 
-    cout << option1Damage << endl;
     //check if player was blocking - If yes, we do 75% damage //1 being true
-    if (playerBlocking == "1") option1Damage /= 4; 
-    cout << option1Damage << endl;
+    if (playerBlocking == "1") option1Damage *= BLOCK_REDUCTION_VALUE; 
 
     //return the damage done by this option rounded to a whole number
     return round(option1Damage);
@@ -234,7 +232,7 @@ int Battle::doEnemyOption2(string username, string attackMagicOrPhysical, int en
     option1Damage += rand() % (30 + 1) + 10; //add random value
 
     //check if player was blocking - If yes, we do 75% damage //1 being true
-    if (playerBlocking == "1") option1Damage /= 4; 
+    if (playerBlocking == "1") option1Damage *= BLOCK_REDUCTION_VALUE; 
 
     //return the damage done by this option rounded to a whole number
     return round(option1Damage);
@@ -262,7 +260,7 @@ int Battle::doEnemyOption3(string username, string attackMagicOrPhysical, int en
     option1Damage += rand() % (30 + 1) + 10; //add random value
 
     //check if player was blocking - If yes, we do 75% damage //1 being true
-    if (playerBlocking == "1") option1Damage /= 4; 
+    if (playerBlocking == "1") option1Damage *= BLOCK_REDUCTION_VALUE; 
 
     //return the damage done by this option rounded to a whole number
     return round(option1Damage);
@@ -290,10 +288,22 @@ int Battle::doEnemyOption4(string username, string attackMagicOrPhysical, int en
     option1Damage += rand() % (30 + 1) + 10; //add random value
 
     //check if player was blocking - If yes, we do 75% damage //1 being true
-    if (playerBlocking == "1") option1Damage /= 4; 
+    if (playerBlocking == "1") option1Damage *= BLOCK_REDUCTION_VALUE; 
 
     //return the damage done by this option rounded to a whole number
     return round(option1Damage);
+}
+//Check if the enemy is blocking this next attack:
+bool Battle::isEnemyBlocking(){  //replies randomly with a 1 in 5 chance of yes
+    bool block = false; //initalize local variable
+    //get random number 1 - 5 for a 1 in 5 chance of the enemy blocking
+    srand (time(NULL)); //seed random number based on time
+    int option = rand() % 5 + 1; //random number
+    
+    if(option == 1) block = true; //the number has to be 1 for the enemy to be blocking
+
+    //return if the enemy is blocking or not
+    return block;
 }
 
 //end battle proccess

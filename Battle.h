@@ -5,6 +5,8 @@
 class Battle{//This class will have all the functions needed for the algorythms needed to complete a battle from start to finish.
     private:
     const float DEFENSE_RATIO = 100; //this gives the armor it effect without being op (armor devided by DEFENSE_RATIO)
+    const float BLOCK_REDUCTION_VALUE = .10;
+    //bool enemyBlocking = false; //isEnemyBlocking does not use this as of now
     
     public:
     std::string getEnemyBattleStats(int enemyRandomChoice, int level, std::string statChoice); //set the enemy battle stats //return a value of type int but converted to a string
@@ -21,6 +23,8 @@ class Battle{//This class will have all the functions needed for the algorythms 
     int doEnemyOption2(std::string username, std::string attackMagicOrPhysical, int enemyChoice, std::string playerBlocking);
     int doEnemyOption3(std::string username, std::string attackMagicOrPhysical, int enemyChoice, std::string playerBlocking);
     int doEnemyOption4(std::string username, std::string attackMagicOrPhysical, int enemyChoice, std::string playerBlocking);
+    bool isEnemyBlocking();
+    float getBLOCK_REDUCTION_VALUE() { return BLOCK_REDUCTION_VALUE; }
 
     //end battle proccess
     double increaseXP(int playerLevel, double playerCurrentXP);//std::string enemyName, int level, int difficulty);
