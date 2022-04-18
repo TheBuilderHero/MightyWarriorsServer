@@ -62,6 +62,7 @@ int Battle::doQOption(string username, string attackMagicOrPhysical, int enemyCh
     Players players;
     Cipher code;
     Enemies enemy;
+    Kit kit;
     double qDamage = 0;
     //pull in the player attack stats
     double physicalDamage = stoi(players.getPhysicalDamageStat(username));
@@ -71,9 +72,11 @@ int Battle::doQOption(string username, string attackMagicOrPhysical, int enemyCh
     double armor = enemy.enemyChoiceGetStat(enemyChoice, 2);
     double magicResistance = enemy.enemyChoiceGetStat(enemyChoice, 3);
 
+    cout << attackMagicOrPhysical << endl << endl;
+
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the enemy
-    if (attackMagicOrPhysical == "Physical") qDamage = physicalDamage -= (physicalDamage * (armor/DEFENSE_RATIO));
-    if (attackMagicOrPhysical == "Magic") qDamage = magicDamage -= (magicDamage * (magicResistance/DEFENSE_RATIO));
+    if (attackMagicOrPhysical == kit.getDAMAGETYPE_PHYSICAL()) qDamage = physicalDamage -= (physicalDamage * (armor/DEFENSE_RATIO));
+    if (attackMagicOrPhysical == kit.getDAMAGETYPE_MAGIC()) qDamage = magicDamage -= (magicDamage * (magicResistance/DEFENSE_RATIO));
 
 
     //return the damage done by Q rounded to a whole number
@@ -85,6 +88,7 @@ int Battle::doWOption(string username, string attackMagicOrPhysical, int enemyCh
     Players players;
     Cipher code;
     Enemies enemy;
+    Kit kit;
     double wDamage = 0;
     //pull in the player attack stats
     double physicalDamage = stoi(players.getPhysicalDamageStat(username));
@@ -95,8 +99,8 @@ int Battle::doWOption(string username, string attackMagicOrPhysical, int enemyCh
     double magicResistance = enemy.enemyChoiceGetStat(enemyChoice, 3);
 
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the enemy
-    if (attackMagicOrPhysical == "Physical") wDamage = physicalDamage -= (physicalDamage * (armor/DEFENSE_RATIO));
-    if (attackMagicOrPhysical == "Magic") wDamage = magicDamage -= (magicDamage * (magicResistance/DEFENSE_RATIO));
+    if (attackMagicOrPhysical == kit.getDAMAGETYPE_PHYSICAL()) wDamage = physicalDamage -= (physicalDamage * (armor/DEFENSE_RATIO));
+    if (attackMagicOrPhysical == kit.getDAMAGETYPE_MAGIC()) wDamage = magicDamage -= (magicDamage * (magicResistance/DEFENSE_RATIO));
 
 
     //return the damage done by Q rounded to a whole number
@@ -108,6 +112,7 @@ int Battle::doEOption(string username, string attackMagicOrPhysical, int enemyCh
     Players players;
     Cipher code;
     Enemies enemy;
+    Kit kit;
     double eDamage = 0;
     //pull in the player attack stats
     double physicalDamage = stoi(players.getPhysicalDamageStat(username));
@@ -118,8 +123,8 @@ int Battle::doEOption(string username, string attackMagicOrPhysical, int enemyCh
     double magicResistance = enemy.enemyChoiceGetStat(enemyChoice, 3);
 
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the enemy
-    if (attackMagicOrPhysical == "Physical") eDamage = physicalDamage -= (physicalDamage * (armor/DEFENSE_RATIO));
-    if (attackMagicOrPhysical == "Magic") eDamage = magicDamage -= (magicDamage * (magicResistance/DEFENSE_RATIO));
+    if (attackMagicOrPhysical == kit.getDAMAGETYPE_PHYSICAL()) eDamage = physicalDamage -= (physicalDamage * (armor/DEFENSE_RATIO));
+    if (attackMagicOrPhysical == kit.getDAMAGETYPE_MAGIC()) eDamage = magicDamage -= (magicDamage * (magicResistance/DEFENSE_RATIO));
 
 
     //return the damage done by Q rounded to a whole number
@@ -131,6 +136,7 @@ int Battle::doROption(string username, string attackMagicOrPhysical, int enemyCh
     Players players;
     Cipher code;
     Enemies enemy;
+    Kit kit;
     double rDamage = 0;
     //pull in the player attack stats
     double physicalDamage = stoi(players.getPhysicalDamageStat(username));
@@ -141,8 +147,8 @@ int Battle::doROption(string username, string attackMagicOrPhysical, int enemyCh
     double magicResistance = enemy.enemyChoiceGetStat(enemyChoice, 3);
 
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the enemy
-    if (attackMagicOrPhysical == "Physical") rDamage = physicalDamage -= (physicalDamage * (armor/DEFENSE_RATIO));
-    if (attackMagicOrPhysical == "Magic") rDamage = magicDamage -= (magicDamage * (magicResistance/DEFENSE_RATIO));
+    if (attackMagicOrPhysical == kit.getDAMAGETYPE_PHYSICAL()) rDamage = physicalDamage -= (physicalDamage * (armor/DEFENSE_RATIO));
+    if (attackMagicOrPhysical == kit.getDAMAGETYPE_MAGIC()) rDamage = magicDamage -= (magicDamage * (magicResistance/DEFENSE_RATIO));
 
 
     //The Damage of R is buffed by a factor of 5 after the subtraction of armor/magic resistance calculations since it is the ultimate ability
