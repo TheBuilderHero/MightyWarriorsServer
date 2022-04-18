@@ -186,7 +186,7 @@ int Battle::doEnemyOption1(string username, string attackMagicOrPhysical, int en
     Players players;
     Cipher code;
     Enemies enemy;
-    double Option1Damage = 0;
+    double option1Damage = 0;
     //pull in the enemy attack stats
     double physicalDamage = enemy.enemyChoiceGetStat(enemyChoice, 4);
     double magicDamage = enemy.enemyChoiceGetStat(enemyChoice, 5);
@@ -196,25 +196,27 @@ int Battle::doEnemyOption1(string username, string attackMagicOrPhysical, int en
     double magicResistance = stoi(players.getMagicResistanceStat(username));
 
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the player's stats
-    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_PHYSICAL()) Option1Damage = physicalDamage -= (physicalDamage * (armor/DEFENSE_RATIO));
-    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_MAGIC()) Option1Damage = magicDamage -= (magicDamage * (magicResistance/DEFENSE_RATIO));
+    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_PHYSICAL()) option1Damage = physicalDamage -= (physicalDamage * (armor/DEFENSE_RATIO));
+    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_MAGIC()) option1Damage = magicDamage -= (magicDamage * (magicResistance/DEFENSE_RATIO));
 
     //add random amount of damage from 10 - 30:
     srand (time(NULL)); //seed random number based on time
-    Option1Damage += rand() % (30 + 1) + 10; //add random value
+    option1Damage += rand() % (30 + 1) + 10; //add random value
 
+    cout << option1Damage << endl;
     //check if player was blocking - If yes, we do 75% damage //1 being true
-    if (playerBlocking == "1") Option1Damage /= 4; 
+    if (playerBlocking == "1") option1Damage /= 4; 
+    cout << option1Damage << endl;
 
     //return the damage done by this option rounded to a whole number
-    return round(Option1Damage);
+    return round(option1Damage);
 }
 int Battle::doEnemyOption2(string username, string attackMagicOrPhysical, int enemyChoice, string playerBlocking){ //one of the enemies options for attacking the player
     //this should take into account wether it is magic or physical
     Players players;
     Cipher code;
     Enemies enemy;
-    double Option1Damage = 0;
+    double option1Damage = 0;
     //pull in the enemy attack stats
     double physicalDamage = enemy.enemyChoiceGetStat(enemyChoice, 4);
     double magicDamage = enemy.enemyChoiceGetStat(enemyChoice, 5);
@@ -224,25 +226,25 @@ int Battle::doEnemyOption2(string username, string attackMagicOrPhysical, int en
     double magicResistance = stoi(players.getMagicResistanceStat(username));
 
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the player's stats
-    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_PHYSICAL()) Option1Damage = physicalDamage -= (physicalDamage * (armor/DEFENSE_RATIO));
-    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_MAGIC()) Option1Damage = magicDamage -= (magicDamage * (magicResistance/DEFENSE_RATIO));
+    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_PHYSICAL()) option1Damage = physicalDamage -= (physicalDamage * (armor/DEFENSE_RATIO));
+    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_MAGIC()) option1Damage = magicDamage -= (magicDamage * (magicResistance/DEFENSE_RATIO));
 
     //add random amount of damage from 10 - 30:
     srand (time(NULL)); //seed random number based on time
-    Option1Damage += rand() % (30 + 1) + 10; //add random value
+    option1Damage += rand() % (30 + 1) + 10; //add random value
 
     //check if player was blocking - If yes, we do 75% damage //1 being true
-    if (playerBlocking == "1") Option1Damage /= 4; 
+    if (playerBlocking == "1") option1Damage /= 4; 
 
     //return the damage done by this option rounded to a whole number
-    return round(Option1Damage);
+    return round(option1Damage);
 }
 int Battle::doEnemyOption3(string username, string attackMagicOrPhysical, int enemyChoice, string playerBlocking){ //one of the enemies options for attacking the player
     //this should take into account wether it is magic or physical
     Players players;
     Cipher code;
     Enemies enemy;
-    double Option1Damage = 0;
+    double option1Damage = 0;
     //pull in the enemy attack stats
     double physicalDamage = enemy.enemyChoiceGetStat(enemyChoice, 4);
     double magicDamage = enemy.enemyChoiceGetStat(enemyChoice, 5);
@@ -252,25 +254,25 @@ int Battle::doEnemyOption3(string username, string attackMagicOrPhysical, int en
     double magicResistance = stoi(players.getMagicResistanceStat(username));
 
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the player's stats
-    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_PHYSICAL()) Option1Damage = physicalDamage -= (physicalDamage * (armor/DEFENSE_RATIO));
-    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_MAGIC()) Option1Damage = magicDamage -= (magicDamage * (magicResistance/DEFENSE_RATIO));
+    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_PHYSICAL()) option1Damage = physicalDamage -= (physicalDamage * (armor/DEFENSE_RATIO));
+    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_MAGIC()) option1Damage = magicDamage -= (magicDamage * (magicResistance/DEFENSE_RATIO));
 
     //add random amount of damage from 10 - 30:
     srand (time(NULL)); //seed random number based on time
-    Option1Damage += rand() % (30 + 1) + 10; //add random value
+    option1Damage += rand() % (30 + 1) + 10; //add random value
 
     //check if player was blocking - If yes, we do 75% damage //1 being true
-    if (playerBlocking == "1") Option1Damage /= 4; 
+    if (playerBlocking == "1") option1Damage /= 4; 
 
     //return the damage done by this option rounded to a whole number
-    return round(Option1Damage);
+    return round(option1Damage);
 }
 int Battle::doEnemyOption4(string username, string attackMagicOrPhysical, int enemyChoice, string playerBlocking){ //one of the enemies options for attacking the player
     //this should take into account wether it is magic or physical
     Players players;
     Cipher code;
     Enemies enemy;
-    double Option1Damage = 0;
+    double option1Damage = 0;
     //pull in the enemy attack stats
     double physicalDamage = enemy.enemyChoiceGetStat(enemyChoice, 4);
     double magicDamage = enemy.enemyChoiceGetStat(enemyChoice, 5);
@@ -280,18 +282,18 @@ int Battle::doEnemyOption4(string username, string attackMagicOrPhysical, int en
     double magicResistance = stoi(players.getMagicResistanceStat(username));
 
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the player's stats
-    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_PHYSICAL()) Option1Damage = physicalDamage -= (physicalDamage * (armor/DEFENSE_RATIO));
-    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_MAGIC()) Option1Damage = magicDamage -= (magicDamage * (magicResistance/DEFENSE_RATIO));
+    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_PHYSICAL()) option1Damage = physicalDamage -= (physicalDamage * (armor/DEFENSE_RATIO));
+    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_MAGIC()) option1Damage = magicDamage -= (magicDamage * (magicResistance/DEFENSE_RATIO));
 
     //add random amount of damage from 10 - 30:
     srand (time(NULL)); //seed random number based on time
-    Option1Damage += rand() % (30 + 1) + 10; //add random value
+    option1Damage += rand() % (30 + 1) + 10; //add random value
 
     //check if player was blocking - If yes, we do 75% damage //1 being true
-    if (playerBlocking == "1") Option1Damage /= 4; 
+    if (playerBlocking == "1") option1Damage /= 4; 
 
     //return the damage done by this option rounded to a whole number
-    return round(Option1Damage);
+    return round(option1Damage);
 }
 
 //end battle proccess
