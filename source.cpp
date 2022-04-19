@@ -135,7 +135,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
         case 6: //Making this read all user info form file  ---------------------------//try to read to user's stats from file - need to get this fully setup.
             code.userDataDeliminationRead(1, code.getUsername()); //sets the items3 - 6 to the current stat values
             characters.pullRaceStats(players.getPlayerRace(code.getUsername()), code.getUsername());//set the stats of the Player for the race in their file
-            // old way to test: characters.Human(code.getUsername()); //set the proper stat values for the input of the base stats (This is used in the following long statment)
+            //set the proper stat values for the input of the base stats (This is used in the following long statment)
             returnMessage = code.cipher("5", players.getHealthStat(code.getUsername()), players.getArmorStat(code.getUsername()), players.getMagicResistanceStat(code.getUsername()), 
             players.getPhysicalDamageStat(code.getUsername()), players.getMagicDamageStat(code.getUsername()), players.getAgilityStat(code.getUsername()), players.getStealthStat(code.getUsername()), 
             players.getStaminaStat(code.getUsername()), players.getManaStat(code.getUsername())); // This very long input put into simple terms calculates stats by adding base to bonus then spitting it out as a string for Health, armor, magicResistance, physicalDamage, MagicDamage, Agility
@@ -175,6 +175,11 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
         case 12: //send the user the abilities which correspond to thier damage types (e.g. their Q does magic, their E does phycial)
             returnMessage = code.cipher("5", kit.getRaceDamageTypeForAbility(code.getUsername(), 'q'), kit.getRaceDamageTypeForAbility(code.getUsername(), 'w'), 
             kit.getRaceDamageTypeForAbility(code.getUsername(), 'e'), kit.getRaceDamageTypeForAbility(code.getUsername(), 'r')); //send back the damage type per ability with the order q, w, e, r
+            n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+            if (n < 0) error("ERROR writing to socket");
+            break;
+        case 13:
+            returnMessage = code.cipher("5", players.getPlayerRace(code.getUsername()), kit.getPlayerKit(code.getUsername())); //
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
