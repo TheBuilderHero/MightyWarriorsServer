@@ -39,6 +39,14 @@ void Kit::pullKitStats(string kitInput, string username){
     if(kitInput == KIT_MAGE) mage();
     if(kitInput == KIT_NINJA) ninja();
 }
+void Kit::pullKitStats(string username){ //overridden version wich should replace the other
+    string kitInput = getPlayerKit(username);
+    if(kitInput == KIT_TANK) tank();
+    if(kitInput == KIT_ASSASIN) assasin();
+    if(kitInput == KIT_ARCHER) archer();
+    if(kitInput == KIT_MAGE) mage();
+    if(kitInput == KIT_NINJA) ninja();
+}
 
 string Kit::getRaceDamageTypeForAbility(string username, char abilityLetter){ //this function returns the type of damage a user inflicts based on their kit
     string playerKit = getPlayerKit(username);
@@ -58,9 +66,9 @@ void Kit::tank(){
     rAbilityDamageType = DAMAGETYPE_PHYSICAL;
     kitHealth = 50;
     kitPhysicalDamage = 5;
-    kitArmor = 20;
+    kitArmor = 50;
     kitMagicDamage = 1;
-    kitMagicResistance = 10;
+    kitMagicResistance = 50;
     kitAgility = -10;
     kitStealth = -10;
 }

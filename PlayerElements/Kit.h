@@ -14,6 +14,17 @@ class Kit{
     std::string getPlayerKit(std::string username, int kitChoice); //this helps with the inital account setup.
     std::string getPlayerKit(std::string username); //overidden for the sake of getting the players kit after setting it.
     void pullKitStats(std::string race, std::string username);
+    void pullKitStats(std::string username);
+
+    //get the individual stats:
+    int getHealth(){ return kitHealth; }
+    int getPhysicalDamage(){ return kitPhysicalDamage; }
+    int getArmor(){ return kitArmor; }
+    int getMagicDamage(){ return kitMagicDamage; }
+    int getMagicResistance (){ return kitMagicResistance; }
+    int getAgility(){ return kitAgility; }
+    int getStealth(){ return kitStealth; }
+
     std::string getRaceDamageTypeForAbility(std::string username, char abilityLetter);//this function returns the type of damage a user inflicts based on their kit
     void tank();
     void assasin();
