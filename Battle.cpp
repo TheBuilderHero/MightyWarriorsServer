@@ -293,8 +293,8 @@ int Battle::doEnemyOption4(string username, string attackMagicOrPhysical, int en
     //return the damage done by this option rounded to a whole number
     return round(option1Damage);
 }
-//Check if the enemy is blocking this next attack:
-bool Battle::isEnemyBlocking(){  //replies randomly with a 1 in 5 chance of yes
+
+bool Battle::isEnemyBlocking(){  //Check if the enemy is blocking this next attack: //replies randomly with a 1 in 5 chance of yes
     bool block = false; //initalize local variable
     //get random number 1 - 5 for a 1 in 5 chance of the enemy blocking
     srand (time(NULL)); //seed random number based on time

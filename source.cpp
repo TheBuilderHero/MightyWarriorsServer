@@ -172,6 +172,12 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
+        case 12: //send the user the abilities which correspond to thier damage types (e.g. their Q does magic, their E does phycial)
+            returnMessage = code.cipher("5", kit.getRaceDamageTypeForAbility(code.getUsername(), 'q'), kit.getRaceDamageTypeForAbility(code.getUsername(), 'w'), 
+            kit.getRaceDamageTypeForAbility(code.getUsername(), 'e'), kit.getRaceDamageTypeForAbility(code.getUsername(), 'r')); //send back the damage type per ability with the order q, w, e, r
+            n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+            if (n < 0) error("ERROR writing to socket");
+            break;
         case 0: //check for version compatibility - This is done before using can continue to create account or logon
             int gameVersionClient, gameMajorBuildClient, gameMinorBuildClient, gamePatchClient; //client game versions which we are going to test against the server's version
             gameVersionClient = stoi(code.getItem(3));
