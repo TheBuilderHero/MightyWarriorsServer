@@ -127,7 +127,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             code.userDataDeliminationWrite(2, code.getUsername(), code.getItem(3));
             break;
         case 5: //write the user stats to file
-            code.userDataDeliminationWrite(3, code.getUsername(), code.getItem(3), code.getItem(4), code.getItem(5), code.getItem(6), code.getItem(7), code.getItem(8), code.getItem(9), code.getItem(10));
+            code.userDataDeliminationWrite(3, code.getUsername(), code.getItem(3), code.getItem(4), code.getItem(5), code.getItem(6), code.getItem(7), code.getItem(8), code.getItem(9), code.getItem(10), code.getItem(11));
             returnMessage = code.cipher("4", "wasAbleToSave");
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
@@ -135,16 +135,17 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
         case 6: //Making this read all user info form file  ---------------------------//try to read to user's stats from file - need to get this fully setup.
             code.userDataDeliminationRead(1, code.getUsername()); //sets the items3 - 6 to the current stat values
             characters.pullRaceStats(players.getPlayerRace(code.getUsername()), code.getUsername());//set the stats of the Player for the race in their file
-            // old way to test: characters.Human(code.getUsername()); //set the proper stat values for the input of the base stats (This is used in the following long statment)
-            returnMessage = code.cipher("5", players.getHealthStat(code.getUsername(), characters.baseHealth, stoi(code.getItem(2))), players.getArmorStat(code.getUsername(), characters.baseArmor, stoi(code.getItem(3))),
-            players.getMagicResistanceStat(code.getUsername(), characters.baseMagicResistance, stoi(code.getItem(4))), players.getPhysicalDamageStat(code.getUsername(), characters.basePhysicalDamage, stoi(code.getItem(5))), 
-            players.getMagicDamageStat(code.getUsername(), characters.baseMagicDamage, stoi(code.getItem(6)))); // This very long input put into simple terms calculates stats by adding base to bonus then spitting it out as a string for Health, armor, magicResistance, physicalDamage, MagicDamage, Agility
+            //set the proper stat values for the input of the base stats (This is used in the following long statment)
+            returnMessage = code.cipher("5", players.getHealthStat(code.getUsername()), players.getArmorStat(code.getUsername()), players.getMagicResistanceStat(code.getUsername()), 
+            players.getPhysicalDamageStat(code.getUsername()), players.getMagicDamageStat(code.getUsername()), players.getAgilityStat(code.getUsername()), players.getStealthStat(code.getUsername()), 
+            players.getStaminaStat(code.getUsername()), players.getManaStat(code.getUsername())); // This very long input put into simple terms calculates stats by adding base to bonus then spitting it out as a string for Health, armor, magicResistance, physicalDamage, MagicDamage, Agility
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
         case 7: //read the enemy stats for battle
             int enemyNumPicked, enemyLevel;
-            enemyNumPicked = 2; //this is the type of enemy which you will fight
+            srand (time(NULL)); //initialize random seed
+            enemyNumPicked = rand() % 12 + 1;     //in the range 1 to 12 //this is the type of enemy which you will fight
             enemyLevel = 1; //level of boss
             returnMessage = code.cipher("5", enemy.getEnemyName(enemyNumPicked) ,battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "health"), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "armor"), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "magicResistance"), 
             battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "physicalDamage"), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "magicDamage")); //get all the values for the enemy to be sent to the client (Change 1 later so that it depends on input from client)
@@ -157,7 +158,40 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             //instead of kit.kit we need to take code.getItem(4) and determine what kit they chose and input that.
             break;
         case 9: //this takes the input of battle attacks to then reply with the damage amount.
-            returnMessage = code.cipher("4", to_string(battle.determineOption(code.getUsername(), stoi(code.getItem(4)), "Magic", enemy.getEnemyPickedFromName(code.getItem(3))))); //get the damage for the Q ability and cipher return message.
+            returnMessage = code.cipher("4", to_string(battle.determineOption(code.getUsername(), stoi(code.getItem(4)), enemy.getEnemyPickedFromName(code.getItem(3))))); //get the damage for one of the abilites and cipher return message.
+            n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+            if (n < 0) error("ERROR writing to socket");
+            break;
+        case 10: //enemy attacks
+            returnMessage = code.cipher("4", to_string(battle.determineEnemyAttackOption(code.getUsername(), enemy.getEnemyPickedFromName(code.getItem(3)), code.getItem(4)))); //get the damage for the enemy and cipher return message.
+            n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+            if (n < 0) error("ERROR writing to socket");
+            break;
+        case 11: //check if enemy is blocking next attack
+            returnMessage = code.cipher("5", to_string(battle.isEnemyBlocking()), to_string(battle.getBLOCK_REDUCTION_VALUE())); //get the damage for one of the abilites and cipher return message.
+            n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+            if (n < 0) error("ERROR writing to socket");
+            break;
+        case 12: //send the user the abilities which correspond to thier damage types (e.g. their Q does magic, their E does phycial)
+            returnMessage = code.cipher("5", kit.getRaceDamageTypeForAbility(code.getUsername(), 'q'), kit.getRaceDamageTypeForAbility(code.getUsername(), 'w'), 
+            kit.getRaceDamageTypeForAbility(code.getUsername(), 'e'), kit.getRaceDamageTypeForAbility(code.getUsername(), 'r')); //send back the damage type per ability with the order q, w, e, r
+            n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+            if (n < 0) error("ERROR writing to socket");
+            break;
+        case 13: //sends the players race, kit, level, and XP to client
+            returnMessage = code.cipher("5", players.getPlayerRace(code.getUsername()), kit.getPlayerKit(code.getUsername())); //
+            n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+            if (n < 0) error("ERROR writing to socket");
+            break;
+        case 14: //updates the players level and XP
+            int currentLevel;
+            double currentXP, newXPAmount;
+            currentLevel = stoi(code.getItem(3));
+            currentXP = stod(code.getItem(4));
+            newXPAmount = battle.increaseXP(currentLevel, currentXP);
+            code.userDataDeliminationWrite(4, code.getUsername(), players.getPlayerRace(code.getUsername()), kit.getPlayerKit(code.getUsername()), to_string(currentLevel), to_string(newXPAmount));
+            code.userDataDeliminationRead(2, code.getUsername());
+            returnMessage = code.cipher("5", players.getPlayerRace(code.getUsername()), kit.getPlayerKit(code.getUsername()), code.getItem(4), code.getItem(5));
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
@@ -196,6 +230,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
                 if (n < 0) error("ERROR writing to socket");
             }
     }
+    cout << "Return Message from Server: " << returnMessage << endl;
 }
 
 //this function takes an input of port when starting the run process of the program
@@ -258,9 +293,7 @@ void dostuff(int sock) {
 
 //main function of the source.cpp file
 int main(int argc, char* argv[]){
-    Battle battle;
     cout << "Server Successfully Running..." << endl << "Press \"ctrl + c\" to stop the running program\nServer Version: " << to_string(ServerVersion) << "." << to_string(ServerMajorBuild) << "." << to_string(ServerMinorBuild) << "." << to_string(ServerPatch) << endl; //I use this line to make sure the server is running and test the compiles
-    cout << "Q: " << battle.doQOption("kota3","Physical", 1) << endl;
     communicate(argc, argv); //Start the servers function
     return 0; /* we never get here */
     //Test coder3 account github submit.

@@ -38,6 +38,12 @@ string Cipher::getItem(int itemNumberToReturn){ //the purpose of this function i
     case 10:
         return item10;
         break;
+    case 11:
+        return item11;
+        break;
+    case 12:
+        return item12;
+        break;
 
     default:
         return "Default Output Given";
@@ -90,23 +96,27 @@ string Cipher::decipher(char messageFromClient[]){ //requestActions takes all th
             case 10://the tenth item enclosed in delimiters
             if (output.length() > 0) item10 = output; 
             break;
+            case 11://the tenth item enclosed in delimiters
+            if (output.length() > 0) item11 = output; 
+            break;
+            case 12://the tenth item enclosed in delimiters
+            if (output.length() > 0) item12 = output; 
+            break;
         }
         loopPass++;
     }
     return str_file_content;
 }
 
-//int responseType = 0, string item2= "", string item3= "", string item4= "", string item5= "", string item6= "", string item7= ""
 //this functions purpose it to add the delimiters to given items 
-string Cipher::cipher(string responseType, string item2, string item3, string item4, string item5, string item6, string item7, string item8, string item9, string item10){ // the default values have been set to "" in case no input is given
-    int numberOfItems = 10; //max number of items that we can cipher
+string Cipher::cipher(string responseType, string item2, string item3, string item4, string item5, string item6, string item7, string item8, string item9, string item10, string item11, string item12){ // the default values have been set to "" in case no input is given
+    int numberOfItems = 12; //max number of items that we can cipher
     string delimiter = "~"; //a character that marks the beginning or end of a unit of data
 
     string str_file_content;
     int loopPass = 1; // start at loop instance 1 to not add extra delimiters to the front of the message.
-    while (loopPass != numberOfItems) {
+    while (loopPass <= numberOfItems) {
         str_file_content += delimiter; // this will add the seperating delimiter before the a given item
-
         switch (loopPass)
         {
             case 1://first item after delimiter
@@ -139,6 +149,12 @@ string Cipher::cipher(string responseType, string item2, string item3, string it
             case 10://tenth item after delimiter
             if (item10.length() > 0) str_file_content += item10;
             break;
+            case 11://eleventh item after delimiter
+            if (item11.length() > 0) str_file_content += item11;
+            break;
+            case 12://twelth item after delimiter
+            if (item12.length() > 0) str_file_content += item12;
+            break;
         }
         loopPass++;
     }
@@ -146,11 +162,11 @@ string Cipher::cipher(string responseType, string item2, string item3, string it
     return str_file_content;
 }
 
-void Cipher::userDataDeliminationWrite(int updateValue, string username, string data2, string data3, string data4, string data5, string data6, string data7, string data8, string data9){
+void Cipher::userDataDeliminationWrite(int updateValue, string username, string data2, string data3, string data4, string data5, string data6, string data7, string data8, string data9, string data10){
     ofstream userfile;
     ofstream logonfile;
     switch (updateValue){ //updateValue is for the password, whether it is just getting updated or if this is a new user.
-        case 1: //New user account
+        case 1: //sets the player's username, race, and kit on account setup.
             mkdir(("./userdata/" + username).c_str(), 0774);
             
             //some user data is stored in "[username].dat"
@@ -189,8 +205,33 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             if (data5.length() > 0) {userfile << delimiter << data5;} else {userfile << delimiter;} //physical damage stat
             if (data6.length() > 0) {userfile << delimiter << data6;} else {userfile << delimiter;} //magic damage stat
             if (data7.length() > 0) {userfile << delimiter << data7;} else {userfile << delimiter;} //Agility stat
-            if (data8.length() > 0) {userfile << delimiter << data8;} else {userfile << delimiter;} //Stamina stat
-            if (data9.length() > 0) {userfile << delimiter << data9;} else {userfile << delimiter;} //Mana stat
+            if (data8.length() > 0) {userfile << delimiter << data8;} else {userfile << delimiter;} //stealth stat
+            if (data9.length() > 0) {userfile << delimiter << data9;} else {userfile << delimiter;} //Stamina stat
+            if (data10.length() > 0) {userfile << delimiter << data10;} else {userfile << delimiter;} //Mana stat
+            userfile << delimiter;
+            userfile.close(); // done writting to file and now it is closed
+            break;
+        case 4: //update the players's level and XP
+        /*
+            userDataDeliminationRead(2, username);
+            string race = item2;
+            string kit = item3;
+            string level = item4;
+            string xp = item5;
+            data2 = race;
+            data3 = kit;
+        */
+            //some user data is stored in "[username].dat"
+            userfile.open("./userdata/" + username + "/" + username + ".dat");
+            userfile << delimiter << username; // these are all adding data to the file with delimiter seperation.
+            if (data2.length() > 0) {userfile << delimiter << data2;} else {userfile << delimiter;}
+            if (data3.length() > 0) {userfile << delimiter << data3;} else {userfile << delimiter;}
+            if (data4.length() > 0) {userfile << delimiter << data4;} else {userfile << delimiter;}
+            if (data5.length() > 0) {userfile << delimiter << data5;} else {userfile << delimiter;}
+            if (data6.length() > 0) {userfile << delimiter << data6;} else {userfile << delimiter;}
+            if (data7.length() > 0) {userfile << delimiter << data7;} else {userfile << delimiter;}
+            if (data8.length() > 0) {userfile << delimiter << data8;} else {userfile << delimiter;}
+            if (data9.length() > 0) {userfile << delimiter << data9;} else {userfile << delimiter;}
             userfile << delimiter;
             userfile.close(); // done writting to file and now it is closed
             break;
@@ -246,13 +287,16 @@ void Cipher::userDataDeliminationRead(int updateValue, string username){
                     case 10://tenth item after delimiter
                     if (output.length() > 0) item10 = output;
                     break;
+                    case 11://tenth item after delimiter
+                    if (output.length() > 0) item11 = output;
+                    break;
                 }
                 loopPass++;
             }
             userstats.close();
             //return str_file_content; //we are not having this return anything right now, however, we may change this later.
             break;
-        case 2: //returns the player's race and kit
+        case 2: //reads the player's race, kit, level, and XP to items 2, 3, 4, and 5
             userdata.open("./userdata/" + username + "/" + username + ".dat");
             userdata >> s;
             while ((pos = s.find(delimiter)) != std::string::npos) {
@@ -270,6 +314,12 @@ void Cipher::userDataDeliminationRead(int updateValue, string username){
                     break;
                     case 3://third item after delimiter
                     if (output.length() > 0) item3 = output; //this will be where the user's kit is stored
+                    break;
+                    case 4:
+                    if (output.length() > 0) item4 = output; //this will be where the user's level is stored
+                    break;
+                    case 5:
+                    if (output.length() > 0) item5 = output; //this will be where the user's XP is stored
                     break;
                 }
                 loopPass++;

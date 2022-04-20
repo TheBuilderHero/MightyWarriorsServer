@@ -6,6 +6,16 @@ using namespace std;
 int Enemies::enemyChoiceGetStat(int enemyChoice, int returnType, int enemyLevel){ //This function retrives the requested stat (returnType) of a given apponent (enemyChoice) - more then likely we will have the enemy choice randomly generated.
     if(enemyChoice == MUTANT_ELF) mutantElf();
     if(enemyChoice == VOID_CAT) voidCat();
+    if(enemyChoice == HIGHWAY_ROBBER) highwayRobber();
+    if(enemyChoice == ORC_ENEMY) orc();
+    if(enemyChoice == SASQUATCH_ENEMY) sasquatch();
+    if(enemyChoice == SKUNK_ENEMY) skunk();
+    if(enemyChoice == MUTANT_SKUNK) mutantSkunk();
+    if(enemyChoice == GIANT_RACCOON) giantRaccoon();
+    if(enemyChoice == EVIL_WIZARD) evilWizard();
+    if(enemyChoice == WITCH_ENEMY) witch();
+    if(enemyChoice == MUTANT_GHOST) mutantGhost();
+    if(enemyChoice == WERE_WOLF) wereWolf();
 
     switch (returnType)
     {
@@ -47,7 +57,48 @@ string Enemies::getEnemyName(int enemyChoice){
             voidCat();
             return displayName;
             break;
-        default:
+        case 3:
+            highwayRobber();
+            return displayName;
+            break;
+        case 4:
+            orc();
+            return displayName;
+            break;
+        case 5:
+            sasquatch();
+            return displayName;
+            break;
+        case 6:
+            skunk();
+            return displayName;
+            break;
+        case 7:
+            mutantSkunk();
+            return displayName;
+            break;
+        case 8:
+            giantRaccoon();
+            return displayName;
+            break;
+        case 9:
+            evilWizard();
+            return displayName;
+            break;
+        case 10:
+            witch();
+            return displayName;
+            break;
+        case 11:
+            mutantGhost();
+            return displayName;
+            break;
+        case 12:
+            wereWolf();
+            return displayName;
+            break;
+            //Please note, if you add more enemies to this list you will need to update the range of the random number generator switch statement case 7, in the funcion requestActions() in the file source.cpp
+        default: //if none of these we will input mutantElf()
             mutantElf();
             return displayName;
             break;
@@ -92,117 +143,128 @@ void Enemies::voidCat() {
 }
 
 void Enemies::highwayRobber(){
-    name = "Highway Robber";
-    health = 60;
-    attack = 15;
-    armor = 10;
-    magicAttack = 2;
-    magicResistence = 2;
+    enemyNum = HIGHWAY_ROBBER;
+    displayName = "Highway Robber";
+    baseHealth = 60;
+    basePhysicalDamage = 15;
+    baseArmor = 10;
+    baseMagicDamage = 2;
+    baseMagicResistance = 2;
+    baseAgility = 0; //does not have any
+    baseStealth = 0; //does not have any
     level = 1;
     xpDrop = 10;
 }
 
 void Enemies::orc(){
-    name = "Orc";
-    health = 70;
-    attack = 20;
-    armor = 15;
-    magicAttack = 10;
-    magicResistence = 7;
+    enemyNum = ORC_ENEMY;
+    displayName = "Orc";
+    baseHealth = 70;
+    basePhysicalDamage = 20;
+    baseArmor = 15;
+    baseMagicDamage = 10;
+    baseMagicResistance = 7;
     level = 1;
     xpDrop = 10;
 }
 
 void Enemies::sasquatch(){
-    name = "Sasquatch";
-    health = 120;
-    attack = 35;
-    armor = 20;
-    magicAttack = 15;
-    magicResistence = 3;
+    enemyNum = SASQUATCH_ENEMY;
+    displayName = "Sasquatch";
+    baseHealth = 120;
+    basePhysicalDamage = 35;
+    baseArmor = 20;
+    baseMagicDamage = 15;
+    baseMagicResistance = 3;
     level = 1;
     xpDrop = 80;
 }
 
 void Enemies::skunk(){
-    name = "Skunk";
-    health = 25;
-    attack = 10;
-    armor = 1;
-    magicAttack = 2;
-    magicResistence = 2;
-    toxicAttack = 17;
+    enemyNum = SKUNK_ENEMY;
+    displayName = "Skunk";
+    baseHealth = 25;
+    basePhysicalDamage = 10;
+    baseArmor = 1;
+    baseMagicDamage = 2;
+    baseMagicResistance = 2;
+    //toxicAttack = 17; //need to declare in headerfile
     level = 1;
     xpDrop = 7;
     //Skunk has very low armor and magic stats to compensate for toxic damage.
 }
 
 void Enemies::mutantSkunk(){
-    name = "Mutant Skunk";
-    health = 25;
-    attack = 10;
-    armor = 1;
-    magicAttack = 0;
-    magicResistence = 0;
-    toxicAttack = 17;
-    radiation = 10;
+    enemyNum = MUTANT_SKUNK;
+    displayName = "Mutant Skunk";
+    baseHealth = 25;
+    basePhysicalDamage = 10;
+    baseArmor = 1;
+    baseMagicDamage = 0;
+    baseMagicResistance = 0;
+    //toxicAttack = 17; //need to declare in headerfile
+    //radiation = 10; //need to declare in headerfile
     level = 1;
     xpDrop = 12;
 }
 
 void Enemies::giantRaccoon(){
-    name = "Giant Raccoon";
-    health = 350;
-    attack = 65;
-    armor = 80;
-    magicAttack = 25;
-    magicResistence = 15;
+    enemyNum = GIANT_RACCOON;
+    displayName = "Giant Raccoon";
+    baseHealth = 350;
+    basePhysicalDamage = 65;
+    baseArmor = 80;
+    baseMagicDamage = 25;
+    baseMagicResistance = 15;
     level = 1;
     xpDrop = 500;
     //GIANT RACCOON!!! Mini-boss.
 }
 
 void Enemies::evilWizard(){
-    name = "Evil Wizard";
-    health = 80;
-    attack = 20;
-    armor = 8;
-    magicAttack = 20;
-    magicResistence = 12;
+    enemyNum = EVIL_WIZARD;
+    displayName = "Evil Wizard";
+    baseHealth = 80;
+    basePhysicalDamage = 20;
+    baseArmor = 8;
+    baseMagicDamage = 20;
+    baseMagicResistance = 12;
     level = 1;
     xpDrop = 80;
 }
 
 void Enemies::witch(){
-    name = "Witch";
-    health = 70;
-    attack = 13;
-    armor = 10;
-    magicAttack = 30;
-    magicResistence = 15;
+    enemyNum = WITCH_ENEMY;
+    displayName = "Witch";
+    baseHealth = 70;
+    basePhysicalDamage = 13;
+    baseArmor = 10;
+    baseMagicDamage = 30;
+    baseMagicResistance = 15;
     level = 1;
     xpDrop = 80;
 }
 
 void Enemies::mutantGhost(){
-    cout << "BOOO!!";
-    name = "Mutant Ghost";
-    health = 95;
-    attack = 20;
-    armor = 1;
-    magicAttack = 35;
-    magicResistence = 23;
+    enemyNum = MUTANT_GHOST;
+    displayName = "Mutant Ghost";
+    baseHealth = 95;
+    basePhysicalDamage = 20;
+    baseArmor = 1;
+    baseMagicDamage = 35;
+    baseMagicResistance = 23;
     level = 1;
     xpDrop = 100;
 }
 
 void Enemies::wereWolf(){
-    name = "Werewolf";
-    health = 80;
-    attack = 25;
-    armor = 5;
-    magicAttack = 12;
-    magicResistence = 8;
+    enemyNum = WERE_WOLF;
+    displayName = "Werewolf";
+    baseHealth = 80;
+    basePhysicalDamage = 25;
+    baseArmor = 5;
+    baseMagicDamage = 12;
+    baseMagicResistance = 8;
     level = 1;
     xpDrop = 70;
 }

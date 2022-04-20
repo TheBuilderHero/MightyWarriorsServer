@@ -7,4 +7,6 @@ private:
 public:
     Weapons(/* args */);
     ~Weapons();
-};
+
+}
+
