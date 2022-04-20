@@ -4,7 +4,7 @@
 
 class Battle{//This class will have all the functions needed for the algorythms needed to complete a battle from start to finish.
     private:
-    const float DEFENSE_RATIO = 100; //this gives the armor it effect without being op (armor devided by DEFENSE_RATIO)
+    const float DEFENSE_RATIO = .50; //this is the percent of armor that equates to the amount of damage points reduced
     const float BLOCK_REDUCTION_VALUE = .10;
     //bool enemyBlocking = false; //isEnemyBlocking does not use this as of now
     
