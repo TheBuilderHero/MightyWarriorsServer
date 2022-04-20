@@ -25,5 +25,12 @@ public:
     int getFruit(){ return fruit; }
     int getBrains(){ return brains; }
 
+    void addIron(int numberAdded){ iron += numberAdded; }
+    void addWood(int numberAdded){ wood += numberAdded; }
+    void addFeet(int numberAdded){ feet += numberAdded; }
+    void addGems(int numberAdded){ gems += numberAdded; }
+    void addFruit(int numberAdded){ fruit += numberAdded; }
+    void addBrains(int numberAdded){ brains += numberAdded; }
+
 };
 
