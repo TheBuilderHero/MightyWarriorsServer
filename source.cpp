@@ -178,8 +178,20 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
-        case 13:
+        case 13: //sends the players race, kit, level, and XP to client
             returnMessage = code.cipher("5", players.getPlayerRace(code.getUsername()), kit.getPlayerKit(code.getUsername())); //
+            n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+            if (n < 0) error("ERROR writing to socket");
+            break;
+        case 14: //updates the players level and XP
+            int currentLevel;
+            double currentXP, newXPAmount;
+            currentLevel = stoi(code.getItem(3));
+            currentXP = stod(code.getItem(4));
+            newXPAmount = battle.increaseXP(currentLevel, currentXP);
+            code.userDataDeliminationWrite(4, code.getUsername(), players.getPlayerRace(code.getUsername()), kit.getPlayerKit(code.getUsername()), to_string(currentLevel), to_string(newXPAmount));
+            code.userDataDeliminationRead(2, code.getUsername());
+            returnMessage = code.cipher("5", players.getPlayerRace(code.getUsername()), kit.getPlayerKit(code.getUsername()), code.getItem(4), code.getItem(5));
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
