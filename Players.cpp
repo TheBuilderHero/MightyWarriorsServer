@@ -184,3 +184,22 @@ double Players::getXP(string username){
     code.userDataDeliminationRead(2, username); //pulls XP from user's file to return
     return playerCurrentXP = stoi(code.getItem(5));
 }
+void Players::levelUp(string username, int &playerLevel, double newXPAmount){
+    Cipher code;
+    Players player;
+    Kit kit;
+    //since we are re-writing the file we need the following:
+    string playerRace = player.getPlayerRace(username); //get the players kit
+    string playerKit = kit.getPlayerKit(username); //get the players race
+    playerLevel++; //increase player level by one
+    code.userDataDeliminationWrite(4, username, playerRace, playerKit, to_string(playerLevel), to_string(newXPAmount));
+}
+void Players::updateXPAmount(string username, int playerLevel, double newXPAmount){
+    Players player;
+    Kit kit;
+    Cipher code;
+    //since we are re-writing the file we need the following:
+    string playerRace = player.getPlayerRace(username); //get the players kit
+    string playerKit = kit.getPlayerKit(username); //get the players race
+    code.userDataDeliminationWrite(4, username, playerRace, playerKit, to_string(playerLevel), to_string(newXPAmount)); //save the new XP amount along with resaving race, kit, level
+}

@@ -39,4 +39,6 @@ class Players : Characters { //defining the player and all their caracteristics 
 
         int getLevel(std::string username);
         double getXP(std::string username);
+        void levelUp(std::string username, int &playerLevel, double newXP);
+        void updateXPAmount(std::string username, int playerLevel, double newXPAmount);
 };

@@ -27,7 +27,7 @@ class Battle{//This class will have all the functions needed for the algorythms 
     float getBLOCK_REDUCTION_VALUE() { return BLOCK_REDUCTION_VALUE; }
 
     //end battle proccess
-    double increaseXP(std::string username, double playerXPIncrease);//std::string enemyName, int level, int difficulty);
+    void increaseXP(std::string username, double playerXPIncrease);//std::string enemyName, int level, int difficulty);
     void enemyDrops(std::string enemyName, int level, int difficulty);
 
 };

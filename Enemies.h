@@ -19,6 +19,7 @@ class Enemies : Characters {
     public:
         int enemyChoiceGetStat(int enemyChoice, int returnType = 0, int enemyLevel = 1); //returns amount of health/armor/magicResistance/etc...
         std::string getEnemyName(int enemyChoice);
+        double getXPDrop(int enemyChoice, int enemyLevel);
         int getEnemyPickedFromName(std::string enemyName);
         void mutantElf();
         void voidCat();

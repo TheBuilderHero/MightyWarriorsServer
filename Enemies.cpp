@@ -47,6 +47,11 @@ int Enemies::enemyChoiceGetStat(int enemyChoice, int returnType, int enemyLevel)
     }
 }
 
+double Enemies::getXPDrop(int enemyChoice, int enemyLevel){
+    enemyChoiceGetStat(enemyChoice, 0, enemyLevel); //pull the xpDrop stat from the enemy
+    return xpDrop; //return the xpDrop amount
+}
+
 string Enemies::getEnemyName(int enemyChoice){
     switch (enemyChoice){
         case 1:
