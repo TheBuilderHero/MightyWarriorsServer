@@ -172,3 +172,15 @@ string Players::getManaStat(std::string username){//this funciton calculates to 
     int totalManaValue = characters.baseMana + stoi(code.getItem(10));
     return to_string(totalManaValue);
 }
+int Players::getLevel(string username){//pulls level from user's file to return
+    int playerLevel;
+    Cipher code;
+    code.userDataDeliminationRead(2, username); 
+    return playerLevel = stoi(code.getItem(4));
+}
+double Players::getXP(string username){
+    double playerCurrentXP;
+    Cipher code;
+    code.userDataDeliminationRead(2, username); //pulls XP from user's file to return
+    return playerCurrentXP = stoi(code.getItem(5));
+}

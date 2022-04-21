@@ -188,7 +188,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             double currentXP, newXPAmount;
             currentLevel = stoi(code.getItem(3));
             currentXP = stod(code.getItem(4));
-            newXPAmount = battle.increaseXP(currentLevel, currentXP);
+            newXPAmount = battle.increaseXP(code.getUsername(), 10);
             code.userDataDeliminationWrite(4, code.getUsername(), players.getPlayerRace(code.getUsername()), kit.getPlayerKit(code.getUsername()), to_string(currentLevel), to_string(newXPAmount));
             code.userDataDeliminationRead(2, code.getUsername());
             returnMessage = code.cipher("5", players.getPlayerRace(code.getUsername()), kit.getPlayerKit(code.getUsername()), code.getItem(4), code.getItem(5));
@@ -294,6 +294,10 @@ void dostuff(int sock) {
 //main function of the source.cpp file
 int main(int argc, char* argv[]){
     cout << "Server Successfully Running..." << endl << "Press \"ctrl + c\" to stop the running program\nServer Version: " << to_string(ServerVersion) << "." << to_string(ServerMajorBuild) << "." << to_string(ServerMinorBuild) << "." << to_string(ServerPatch) << endl; //I use this line to make sure the server is running and test the compiles
+    Battle battle;
+    cout << battle.increaseXP("kota8", 511) << endl;
+
+
     communicate(argc, argv); //Start the servers function
     return 0; /* we never get here */
     //Test coder3 account github submit.
