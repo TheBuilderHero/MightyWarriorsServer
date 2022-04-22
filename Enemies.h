@@ -17,9 +17,11 @@ class Enemies : Characters {
         Kit kitInit;
         const std::string DAMAGETYPE_MAGIC = kitInit.getDAMAGETYPE_MAGIC(), DAMAGETYPE_PHYSICAL = kitInit.getDAMAGETYPE_PHYSICAL(), DAMAGETYPE_TRUE = kitInit.getDAMAGETYPE_TRUE();
     public:
-        int enemyChoiceGetStat(int enemyChoice, int returnType = 0, int enemyLevel = 1); //returns amount of health/armor/magicResistance/etc...
+        int enemyChoiceGetStat(int enemyChoice, int returnType, int enemyLevel); //returns amount of health/armor/magicResistance/etc...
+        int enemyChoiceGetStat(int enemyChoice);
         std::string getEnemyName(int enemyChoice);
-        double getXPDrop(int enemyChoice, int enemyLevel);
+        void enemyLevelStatBuff(int enemyChoice, int enemyLevel);
+        double getXPDrop(int enemyChoice);
         int getEnemyPickedFromName(std::string enemyName);
         void mutantElf();
         void voidCat();

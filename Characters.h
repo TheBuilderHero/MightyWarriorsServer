@@ -9,12 +9,13 @@ class Characters {
         std::string name; // in the case of Enemies we will give them names - for players it will be their username
         std::string race; // is one of the following: human - elf - dino - dryad - ghost
         
-    public:
         //these probably need to be made private:
         int baseHealth, baseArmor, baseMagicResistance, baseMagicDamage, baseAgility, basePhysicalDamage, baseStealth, baseStamina, baseMana; //base stats
         //every time you make a physical or magical attack it effects the stamina or mana (magical is mana). This means that your attacks will be less consistant the lower these stats become.
         
         int level; // What level the Character is currently at, XP will only be declared for the player so that they can level up.  Enemies do not need XP.
+    public:
+        
 
 
         //The following are the race constants:
@@ -30,4 +31,28 @@ class Characters {
         void dino(std::string username);
         void dryad(std::string username);
         void ghost(std::string username);
+
+        //return commands for stat variables:
+        int getBaseHealth() { return baseHealth; }
+        int getBaseArmor() { return baseArmor; }
+        int getBaseMagicResistance() { return baseMagicResistance; }
+        int getBaseMagicDamage() { return baseMagicDamage; }
+        int getBaseAgility() { return baseAgility; }
+        int getBasePhysicalDamage() { return basePhysicalDamage; }
+        int getBaseStealth() { return baseStealth; }
+        int getBaseStamina() { return baseStamina; }
+        int getBaseMana() { return baseMana; }
+        int getLevel() { return level; }
+
+        //set commands for stat variables:
+        void setBaseHealth(int newValue) { baseHealth = newValue; }
+        void setBaseArmor(int newValue) { baseArmor = newValue; }
+        void setBaseMagicResistance(int newValue) { baseMagicResistance = newValue; }
+        void setBaseMagicDamage(int newValue) { baseMagicDamage = newValue; }
+        void setBaseAgility(int newValue) { baseAgility = newValue; }
+        void setBasePhysicalDamage(int newValue) { basePhysicalDamage = newValue; }
+        void setBaseStealth(int newValue) { baseStealth = newValue; }
+        void setBaseStamina(int newValue) { baseStamina = newValue; }
+        void setBaseMana(int newValue) { baseMana = newValue; }
+        void setLevel(int newValue) { level = newValue; }
 };

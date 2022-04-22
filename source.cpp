@@ -146,7 +146,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             int enemyNumPicked, enemyLevel;
             srand (time(NULL)); //initialize random seed
             enemyNumPicked = rand() % 12 + 1;     //in the range 1 to 12 //this is the type of enemy which you will fight
-            enemyLevel = 1; //level of boss
+            enemyLevel = players.getLevel(code.getUsername()); //set the level of the enemy to be the same as the player
             returnMessage = code.cipher("5", enemy.getEnemyName(enemyNumPicked),
             battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "health"), 
             battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "armor"), 
@@ -188,7 +188,8 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             if (n < 0) error("ERROR writing to socket");
             break;
         case 14: //updates the players level and XP
-            battle.increaseXP(code.getUsername(), enemy.getXPDrop(enemy.getEnemyPickedFromName(code.getItem(3)), 1)); //hardset the enemies level to 1 since at this moment there is no level change for enemies
+            //currently using the players level for the enemy's level for XP since they should be the same
+            battle.increaseXP(code.getUsername(), enemy.getXPDrop(enemy.getEnemyPickedFromName(code.getItem(3)))); //hardset the enemies level to 1 since at this moment there is no level change for enemies
             returnMessage = code.cipher("4", to_string(players.getLevel(code.getUsername())));
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");

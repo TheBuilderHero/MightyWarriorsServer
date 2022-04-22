@@ -69,8 +69,9 @@ int Battle::doQOption(string username, string attackMagicOrPhysical, int enemyCh
     double magicDamage = stoi(players.getMagicDamageStat(username));
     
     //pull in the enemy defense stats
-    double armor = enemy.enemyChoiceGetStat(enemyChoice, 2);
-    double magicResistance = enemy.enemyChoiceGetStat(enemyChoice, 3);
+    int enemyLevel = players.getLevel(username);
+    double armor = enemy.enemyChoiceGetStat(enemyChoice, 2, enemyLevel); //based on the players level
+    double magicResistance = enemy.enemyChoiceGetStat(enemyChoice, 3, enemyLevel);
 
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the enemy
     if (attackMagicOrPhysical == kit.getDAMAGETYPE_PHYSICAL()) qDamage = physicalDamage -= (armor * DEFENSE_RATIO);
@@ -94,8 +95,9 @@ int Battle::doWOption(string username, string attackMagicOrPhysical, int enemyCh
     double magicDamage = stoi(players.getMagicDamageStat(username));
     
     //pull in the enemy defense stats
-    double armor = enemy.enemyChoiceGetStat(enemyChoice, 2);
-    double magicResistance = enemy.enemyChoiceGetStat(enemyChoice, 3);
+    int enemyLevel = players.getLevel(username);
+    double armor = enemy.enemyChoiceGetStat(enemyChoice, 2,enemyLevel);
+    double magicResistance = enemy.enemyChoiceGetStat(enemyChoice, 3,enemyLevel);
 
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the enemy
     if (attackMagicOrPhysical == kit.getDAMAGETYPE_PHYSICAL()) wDamage = physicalDamage -= (armor/DEFENSE_RATIO);
@@ -119,8 +121,9 @@ int Battle::doEOption(string username, string attackMagicOrPhysical, int enemyCh
     double magicDamage = stoi(players.getMagicDamageStat(username));
     
     //pull in the enemy defense stats
-    double armor = enemy.enemyChoiceGetStat(enemyChoice, 2);
-    double magicResistance = enemy.enemyChoiceGetStat(enemyChoice, 3);
+    int enemyLevel = players.getLevel(username);
+    double armor = enemy.enemyChoiceGetStat(enemyChoice, 2,enemyLevel);
+    double magicResistance = enemy.enemyChoiceGetStat(enemyChoice, 3, enemyLevel);
 
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the enemy
     if (attackMagicOrPhysical == kit.getDAMAGETYPE_PHYSICAL()) eDamage = physicalDamage -= (armor * DEFENSE_RATIO);
@@ -144,8 +147,9 @@ int Battle::doROption(string username, string attackMagicOrPhysical, int enemyCh
     double magicDamage = stoi(players.getMagicDamageStat(username));
     
     //pull in the enemy defense stats
-    double armor = enemy.enemyChoiceGetStat(enemyChoice, 2);
-    double magicResistance = enemy.enemyChoiceGetStat(enemyChoice, 3);
+    int enemyLevel = players.getLevel(username);
+    double armor = enemy.enemyChoiceGetStat(enemyChoice, 2, enemyLevel);
+    double magicResistance = enemy.enemyChoiceGetStat(enemyChoice, 3, enemyLevel);
 
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the enemy
     if (attackMagicOrPhysical == kit.getDAMAGETYPE_PHYSICAL()) rDamage = physicalDamage -= (armor * DEFENSE_RATIO);
@@ -192,8 +196,9 @@ int Battle::doEnemyOption1(string username, string attackMagicOrPhysical, int en
     Enemies enemy;
     double option1Damage = 0;
     //pull in the enemy attack stats
-    double physicalDamage = enemy.enemyChoiceGetStat(enemyChoice, 4);
-    double magicDamage = enemy.enemyChoiceGetStat(enemyChoice, 5);
+    int enemyLevel = players.getLevel(username);
+    double physicalDamage = enemy.enemyChoiceGetStat(enemyChoice, 4, enemyLevel);
+    double magicDamage = enemy.enemyChoiceGetStat(enemyChoice, 5, enemyLevel);
     
     //pull in the player defense stats
     double armor = stoi(players.getArmorStat(username));
@@ -222,8 +227,9 @@ int Battle::doEnemyOption2(string username, string attackMagicOrPhysical, int en
     Enemies enemy;
     double option2Damage = 0;
     //pull in the enemy attack stats
-    double physicalDamage = enemy.enemyChoiceGetStat(enemyChoice, 4);
-    double magicDamage = enemy.enemyChoiceGetStat(enemyChoice, 5);
+    int enemyLevel = players.getLevel(username);
+    double physicalDamage = enemy.enemyChoiceGetStat(enemyChoice, 4, enemyLevel);
+    double magicDamage = enemy.enemyChoiceGetStat(enemyChoice, 5, enemyLevel);
     
     //pull in the player defense stats
     double armor = stoi(players.getArmorStat(username));
@@ -252,8 +258,9 @@ int Battle::doEnemyOption3(string username, string attackMagicOrPhysical, int en
     Enemies enemy;
     double option3Damage = 0;
     //pull in the enemy attack stats
-    double physicalDamage = enemy.enemyChoiceGetStat(enemyChoice, 4);
-    double magicDamage = enemy.enemyChoiceGetStat(enemyChoice, 5);
+    int enemyLevel = players.getLevel(username);
+    double physicalDamage = enemy.enemyChoiceGetStat(enemyChoice, 4, enemyLevel);
+    double magicDamage = enemy.enemyChoiceGetStat(enemyChoice, 5, enemyLevel);
     
     //pull in the player defense stats
     double armor = stoi(players.getArmorStat(username));
@@ -282,8 +289,9 @@ int Battle::doEnemyOption4(string username, string attackMagicOrPhysical, int en
     Enemies enemy;
     double option4Damage = 0;
     //pull in the enemy attack stats
-    double physicalDamage = enemy.enemyChoiceGetStat(enemyChoice, 4);
-    double magicDamage = enemy.enemyChoiceGetStat(enemyChoice, 5);
+    int enemyLevel = players.getLevel(username);
+    double physicalDamage = enemy.enemyChoiceGetStat(enemyChoice, 4, enemyLevel);
+    double magicDamage = enemy.enemyChoiceGetStat(enemyChoice, 5, enemyLevel);
     
     //pull in the player defense stats
     double armor = stoi(players.getArmorStat(username));
