@@ -88,7 +88,6 @@ void Enemies::enemyLevelStatBuff(int enemyChoice, int enemyLevel){
 
     //set the new stat values for the enemy with the applied level buff.
     setBaseHealth(getBaseHealth() + round(enemyLevel * healthLevelBuff));
-    cout << round(enemyLevel * healthLevelBuff) << endl;
     setBasePhysicalDamage(getBasePhysicalDamage() + round(enemyLevel * physicalDamageLevelBuff));
     setBaseArmor(getBaseArmor()  + round(enemyLevel * armorLevelBuff));
     setBaseMagicDamage(getBaseMagicDamage() + round(enemyLevel * magicDamageLevelBuff));
