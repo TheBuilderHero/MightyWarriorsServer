@@ -16,6 +16,7 @@ int Enemies::enemyChoiceGetStat(int enemyChoice, int returnType, int enemyLevel)
     if(enemyChoice == WITCH_ENEMY) witch();
     if(enemyChoice == MUTANT_GHOST) mutantGhost();
     if(enemyChoice == WERE_WOLF) wereWolf();
+    if(enemyChoice == NORMAL_POTATO) normalPotato();
 
     switch (returnType)
     {
@@ -95,6 +96,10 @@ string Enemies::getEnemyName(int enemyChoice){
             break;
         case 12:
             wereWolf();
+            return displayName;
+            break;
+        case 13:
+            normalPotato();
             return displayName;
             break;
             //Please note, if you add more enemies to this list you will need to update the range of the random number generator switch statement case 7, in the funcion requestActions() in the file source.cpp
@@ -267,4 +272,16 @@ void Enemies::wereWolf(){
     baseMagicResistance = 8;
     level = 1;
     xpDrop = 70;
+}
+
+void Enemies::normalPotato(){
+    enemyNum = NORMAL_POTATO;
+    displayName = "A normal potato";
+    baseHealth = 9999;
+    basePhysicalDamage = 999;
+    baseArmor = 99;
+    baseMagicDamage = 999;
+    baseMagicResistance = 99;
+    level = 1;
+    xpDrop = 9999;
 }

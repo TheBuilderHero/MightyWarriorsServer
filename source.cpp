@@ -145,7 +145,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
         case 7: //read the enemy stats for battle
             int enemyNumPicked, enemyLevel;
             srand (time(NULL)); //initialize random seed
-            enemyNumPicked = rand() % 12 + 1;     //in the range 1 to 12 //this is the type of enemy which you will fight
+            enemyNumPicked = rand() % 13 + 1;     //in the range 1 to 12 //this is the type of enemy which you will fight
             enemyLevel = 1; //level of boss
             returnMessage = code.cipher("5", enemy.getEnemyName(enemyNumPicked) ,battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "health"), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "armor"), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "magicResistance"), 
             battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "physicalDamage"), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "magicDamage")); //get all the values for the enemy to be sent to the client (Change 1 later so that it depends on input from client)
