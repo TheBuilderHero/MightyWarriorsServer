@@ -8,6 +8,19 @@
 
 using namespace std;
 
+string Cipher::getStatPath(string username){
+    string output = "./userdata/" + username + "/" + username + ".stat";
+    return output;
+}
+string Cipher::getDatPath(std::string username){
+    string output = "./userdata/" + username + "/" + username + ".dat";
+    return output;
+}
+string Cipher::getActPath(std::string username){
+    string output = "./userdata/" + username + "/" + username + ".act";
+    return output;
+}
+
 string Cipher::getItem(int itemNumberToReturn){ //the purpose of this function is to return data that has been deciphered.
     switch (itemNumberToReturn)
     {
@@ -174,7 +187,7 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             data5 = "0";
             
             //some user data is stored in "[username].dat"
-            userfile.open("./userdata/" + username + "/" + username + ".dat");
+            userfile.open(getDatPath(username));
             userfile << delimiter << username; // these are all adding data to the file with delimiter seperation.
             if (data2.length() > 0) {userfile << delimiter << data2;} else {userfile << delimiter;} //race
             if (data3.length() > 0) {userfile << delimiter << data3;} else {userfile << delimiter;} //kit
@@ -187,21 +200,21 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             userfile << delimiter;
             userfile.close(); // done writting to file and now it is closed
 
-            logonfile.open("./userdata/" + username + "/" + username + ".act"); // this is the file which will store the users accout logon info
+            logonfile.open(getActPath(username)); // this is the file which will store the users accout logon info
             logonfile << delimiter << username;
             logonfile << delimiter << "0000"; // set defualt password for the account
             logonfile << delimiter;
             logonfile.close();
             break;
         case 2: //password update
-            logonfile.open("./userdata/" + username + "/" + username + ".act"); // this is the file which will store the users accout logon info
+            logonfile.open(getActPath(username)); // this is the file which will store the users accout logon info
             logonfile << delimiter << username;
             logonfile << delimiter << data2; //this sets the defualt password to the information input in data2 which was given by the user
             logonfile << delimiter;
             logonfile.close();
             break;
         case 3: //Overwrite the user's stats
-            userfile.open("./userdata/" + username + "/" + username + ".stat");
+            userfile.open(getStatPath(username));
             userfile << delimiter << username; // these are all adding data to the file with delimiter seperation.
             if (data2.length() > 0) {userfile << delimiter << data2;} else {userfile << delimiter;} //health stat
             if (data3.length() > 0) {userfile << delimiter << data3;} else {userfile << delimiter;} //armor stat
@@ -217,7 +230,7 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             break;
         case 4: //update the players's level and XP
             //some user data is stored in "[username].dat"
-            userfile.open("./userdata/" + username + "/" + username + ".dat");
+            userfile.open(getDatPath(username));
             userfile << delimiter << username; // these are all adding data to the file with delimiter seperation.
             if (data2.length() > 0) {userfile << delimiter << data2;} else {userfile << delimiter;} //race
             if (data3.length() > 0) {userfile << delimiter << data3;} else {userfile << delimiter;} //kit
@@ -255,7 +268,7 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             data10 = to_string(tempMana + stoi(data10));
 
             //write new stats to file:
-            userfile.open("./userdata/" + username + "/" + username + ".stat");
+            userfile.open(getStatPath(username));
             userfile << delimiter << username; // these are all adding data to the file with delimiter seperation.
             if (data2.length() > 0) {userfile << delimiter << data2;} else {userfile << delimiter;} //health stat
             if (data3.length() > 0) {userfile << delimiter << data3;} else {userfile << delimiter;} //armor stat
@@ -282,7 +295,7 @@ void Cipher::userDataDeliminationRead(int updateValue, string username){
     size_t pos = 0; // position variable for removing the delimiters to view the message
     switch (updateValue){ //updateValue is for the password, whether it is just getting updated or if this is a new user.
         case 1: //get user additional stats
-            userstats.open("./userdata/" + username + "/" + username + ".stat");
+            userstats.open(getStatPath(username));
             userstats >> s;
             while ((pos = s.find(delimiter)) != std::string::npos) {
                 token = s.substr(0, pos);
@@ -331,7 +344,7 @@ void Cipher::userDataDeliminationRead(int updateValue, string username){
             //return str_file_content; //we are not having this return anything right now, however, we may change this later.
             break;
         case 2: //reads the player's race, kit, level, and XP to items 2, 3, 4, and 5
-            userdata.open("./userdata/" + username + "/" + username + ".dat");
+            userdata.open(getDatPath(username));
             userdata >> s;
             while ((pos = s.find(delimiter)) != std::string::npos) {
                 token = s.substr(0, pos);

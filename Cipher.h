@@ -26,6 +26,11 @@ class Cipher {
     //currently no function but it will read from the user's data file
     void userDataDeliminationRead(int updateValue, string username);
 
+    //File and folder path return functions:
+    std::string getStatPath(std::string username);
+    std::string getDatPath(std::string username);
+    std::string getActPath(std::string username);
+
     //getVariable functions:
     std::string getDelimiter() { return delimiter; }
     std::string getTypeOfRequest() { return typeOfRequest; }
