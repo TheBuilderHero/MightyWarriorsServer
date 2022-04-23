@@ -194,6 +194,11 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
+        case 15: //returns player Level, current XP, and total needed xp for next level
+            returnMessage = code.cipher("5", to_string(players.getLevel(code.getUsername())), to_string(players.getXP(code.getUsername())), to_string(battle.increaseXP(code.getUsername(), 0)));
+            n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+            if (n < 0) error("ERROR writing to socket");
+            break;
         case 0: //check for version compatibility - This is done before using can continue to create account or logon
             int gameVersionClient, gameMajorBuildClient, gameMinorBuildClient, gamePatchClient; //client game versions which we are going to test against the server's version
             gameVersionClient = stoi(code.getItem(3));

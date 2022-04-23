@@ -328,7 +328,7 @@ bool Battle::isEnemyBlocking(){  //Check if the enemy is blocking this next atta
 
 //end battle proccess
 //kyle -->
-void Battle::increaseXP(string username, double playerXPIncrease){//std::string enemyName, int level, int difficulty){ // we need to incorperate the inputs "enemyName", "level", and "difficulty" into the the following code
+double Battle::increaseXP(string username, double playerXPIncrease){//std::string enemyName, int level, int difficulty){ // we need to incorperate the inputs "enemyName", "level", and "difficulty" into the the following code
     //code for the xp en enemy will give
     int levels = 100; //total number of levels
     int firstLevel = 500; //amount of XP needed for progression from level 1 to 2
@@ -340,6 +340,7 @@ void Battle::increaseXP(string username, double playerXPIncrease){//std::string 
     //pull player XP and level from file
     double playerCurrentXP;
     int playerLevel;
+    int totalXPNeededForNextLevel = 0;
     Players player;
     playerCurrentXP = player.getXP(username);
     playerLevel = player.getLevel(username);
@@ -351,7 +352,7 @@ void Battle::increaseXP(string username, double playerXPIncrease){//std::string 
         int oldXP = round(A * exp(B * (i - 1)));
         int newXP = round(A * exp(B * i));
 
-        int totalXPNeededForNextLevel = (newXP - oldXP); //this gives us the amount of XP needed for the current level
+        totalXPNeededForNextLevel = (newXP - oldXP); //this gives us the amount of XP needed for the current level
         totalXPRemainingForNextLevel = totalXPNeededForNextLevel - playerCurrentXP;  //this gives us the XP needed for the next level
         totalXPRemainingForNextLevel -= playerXPIncrease; //subtract the xp gained from the remaining XP needed for the next level giving us the new remaining XP
         //only run this the first time through
@@ -367,13 +368,14 @@ void Battle::increaseXP(string username, double playerXPIncrease){//std::string 
                 levelUp = true;
                 newPlayerCurrentXP -= totalXPNeededForNextLevel; //subtract the XP it took to get to the next level.
                 player.levelUp(username, playerLevel, newPlayerCurrentXP);
-                break;
+                return totalXPNeededForNextLevel; //return the total amount of xp needed for the user to level up from the current level
             } else {//otherwise just store their new xp amount (newPlayerCurrentXP)
                 player.updateXPAmount(username, playerLevel, newPlayerCurrentXP);
-                break;
+                return totalXPNeededForNextLevel; //return the total amount of xp needed for the user to level up from the current level
             }
         }
     }
+    return totalXPNeededForNextLevel; //return the total amount of xp needed for the user to level up from the current level
 }
 void Battle::enemyDrops(std::string enemyName, int level, int difficulty){
     //code for the drops which a enemy gives
