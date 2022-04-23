@@ -17,6 +17,7 @@ int Enemies::enemyChoiceGetStat(int enemyChoice){ //this version is used by the 
     if(enemyChoice == WITCH_ENEMY) witch();
     if(enemyChoice == MUTANT_GHOST) mutantGhost();
     if(enemyChoice == WERE_WOLF) wereWolf();
+    if(enemyChoice == NORMAL_POTATO) normalPotato();
     return 0; //does not return anything useful
 }
 int Enemies::enemyChoiceGetStat(int enemyChoice, int returnType, int enemyLevel){ //This function retrives the requested stat (returnType) of a given apponent (enemyChoice) - more then likely we will have the enemy choice randomly generated.
@@ -33,6 +34,7 @@ int Enemies::enemyChoiceGetStat(int enemyChoice, int returnType, int enemyLevel)
     if(enemyChoice == WITCH_ENEMY) witch();
     if(enemyChoice == MUTANT_GHOST) mutantGhost();
     if(enemyChoice == WERE_WOLF) wereWolf();
+    if(enemyChoice == NORMAL_POTATO) normalPotato();
 
     //modify the values based on level of the player 
     enemyLevelStatBuff(enemyChoice, enemyLevel);
@@ -145,6 +147,10 @@ string Enemies::getEnemyName(int enemyChoice){
             break;
         case 12:
             wereWolf();
+            return displayName;
+            break;
+        case 13:
+            normalPotato();
             return displayName;
             break;
             //Please note, if you add more enemies to this list you will need to update the range of the random number generator switch statement case 7, in the funcion requestActions() in the file source.cpp
@@ -317,4 +323,16 @@ void Enemies::wereWolf(){
     setBaseMagicResistance(8);
     setLevel(1);
     xpDrop = 70;
+}
+
+void Enemies::normalPotato(){
+    enemyNum = NORMAL_POTATO;
+    displayName = "A normal potato";
+    setBaseHealth(9999);
+    setBasePhysicalDamage(999);
+    setBaseArmor(99);
+    setBaseMagicDamage(999);
+    setBaseMagicResistance(99);
+    setLevel(1);
+    xpDrop = 9999;
 }
