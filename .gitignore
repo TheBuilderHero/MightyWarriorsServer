@@ -4,3 +4,4 @@ userdata/*
 .cache*
 .config*
 .wget-hsts
+source.exe
