@@ -10,7 +10,7 @@ class Characters {
         std::string race; // is one of the following: human - elf - dino - dryad - ghost
         
         //these probably need to be made private:
-        int baseHealth, baseArmor, baseMagicResistance, baseMagicDamage, baseAgility, basePhysicalDamage, baseStealth, baseStamina, baseMana; //base stats
+        int baseHealth, baseArmor, baseMagicResistance, baseMagicDamage, baseAgility, basePhysicalDamage, baseStealth, baseStamina, baseMana, baseMind; //base stats
         //every time you make a physical or magical attack it effects the stamina or mana (magical is mana). This means that your attacks will be less consistant the lower these stats become.
         
         int level; // What level the Character is currently at, XP will only be declared for the player so that they can level up.  Enemies do not need XP.
@@ -19,7 +19,8 @@ class Characters {
 
 
         //The following are the race constants:
-        const std::string RACE_HUMAN = "human", RACE_ELF = "elf", RACE_DINO = "dino", RACE_DRYAD = "dryad", RACE_GHOST = "ghost"; //these are the values stored in every uesr file so to know their chosen race
+        const std::string RACE_HUMAN = "human", RACE_ELF = "elf", RACE_DINO = "dino", RACE_DRYAD = "dryad", RACE_GHOST = "ghost"
+        , RACE_MOP = "mop"; //these are the values stored in every uesr file so to know their chosen race
         struct weapon{
             std::string weaponName;
             int weaponDamageMin; // the  lowest value of the weapons damage
@@ -31,6 +32,7 @@ class Characters {
         void dino(std::string username);
         void dryad(std::string username);
         void ghost(std::string username);
+        void mop(std::string username);
 
         //return commands for stat variables:
         int getBaseHealth() { return baseHealth; }
@@ -42,6 +44,7 @@ class Characters {
         int getBaseStealth() { return baseStealth; }
         int getBaseStamina() { return baseStamina; }
         int getBaseMana() { return baseMana; }
+        int getBaseMind() { return baseMind; }
         int getLevel() { return level; }
 
         //set commands for stat variables:
@@ -54,5 +57,6 @@ class Characters {
         void setBaseStealth(int newValue) { baseStealth = newValue; }
         void setBaseStamina(int newValue) { baseStamina = newValue; }
         void setBaseMana(int newValue) { baseMana = newValue; }
+        void setBaseMind(int newValue) { baseMind = newValue; }
         void setLevel(int newValue) { level = newValue; }
 };

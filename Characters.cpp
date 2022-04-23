@@ -11,6 +11,7 @@ void Characters::pullRaceStats(string race, string username){//sets the stats in
     if(race == RACE_DINO) dino(username);
     if(race == RACE_DRYAD) dryad(username);
     if(race == RACE_GHOST) ghost(username);
+    if(race == RACE_MOP) mop(username);
 }
 
 
@@ -26,6 +27,7 @@ void Characters::human(string username) {  //Kyle
     baseStealth = 5;
     baseStamina = 0;
     baseMana = 0;
+    baseMind = 10;
     level = 0;
 }
 
@@ -41,6 +43,7 @@ void Characters::elf(string username) {
     baseStealth = 10;
     baseStamina = 0;
     baseMana = 0;
+    baseMind = 15;
     level = 0;
 }
 
@@ -56,6 +59,7 @@ void Characters::dino(string username) {
     baseStealth = 1;
     baseStamina = 0;
     baseMana = 0;
+    baseMind = 5;
     level = 0;
 }
 
@@ -71,6 +75,7 @@ void Characters::dryad(string username) {
     baseStealth = 10;
     baseStamina = 0;
     baseMana = 0;
+    baseMind = 15;
     level = 0;
 }
 
@@ -86,5 +91,22 @@ void Characters::ghost(string username) {
     baseStealth = 30;
     baseStamina = 0;
     baseMana = 0;
+    baseMind = 10;
+    level = 0;
+}
+
+void Characters::mop(string username) {
+    name = username;
+    race = RACE_MOP;
+    baseHealth = 80;
+    baseArmor = 10;
+    baseMagicResistance = 20;
+    baseMagicDamage = 15;
+    baseAgility = 30;
+    basePhysicalDamage = 20;
+    baseStealth = 25;
+    baseStamina = 0;
+    baseMana = 20;
+    baseMind = 50;
     level = 0;
 }
