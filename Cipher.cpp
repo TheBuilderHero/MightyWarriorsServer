@@ -230,6 +230,45 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             userfile << delimiter;
             userfile.close(); // done writting to file and now it is closed
             break;
+        case 5: //update user stats
+            //pull current stats from file:
+            userDataDeliminationRead(1, username);
+            int tempHealth = stoi(getItem(2));//health stat
+            int tempArmor = stoi(getItem(3));//armor stat
+            int tempMagicResistence = stoi(getItem(4));//magic res stat
+            int tempPhysicalDamage = stoi(getItem(5));//physical damage stat
+            int tempMagicDamage = stoi(getItem(6));//magic damage stat
+            int tempAgility = stoi(getItem(7));//Agility stat
+            int tempStealth = stoi(getItem(8));//stealth stat
+            int tempStamina = stoi(getItem(9));//Stamina stat
+            int tempMana = stoi(getItem(10));//Mana stat
+
+            //add new stats to current stats:
+            data2 = to_string(tempHealth + stoi(data2));
+            data3 = to_string(tempArmor + stoi(data3));
+            data4 = to_string(tempMagicResistence + stoi(data4));
+            data5 = to_string(tempPhysicalDamage + stoi(data5));
+            data6 = to_string(tempMagicDamage + stoi(data6));
+            data7 = to_string(tempAgility + stoi(data7));
+            data8 = to_string(tempStealth + stoi(data8));
+            data9 = to_string(tempStamina + stoi(data9));
+            data10 = to_string(tempMana + stoi(data10));
+
+            //write new stats to file:
+            userfile.open("./userdata/" + username + "/" + username + ".stat");
+            userfile << delimiter << username; // these are all adding data to the file with delimiter seperation.
+            if (data2.length() > 0) {userfile << delimiter << data2;} else {userfile << delimiter;} //health stat
+            if (data3.length() > 0) {userfile << delimiter << data3;} else {userfile << delimiter;} //armor stat
+            if (data4.length() > 0) {userfile << delimiter << data4;} else {userfile << delimiter;} //magic res stat
+            if (data5.length() > 0) {userfile << delimiter << data5;} else {userfile << delimiter;} //physical damage stat
+            if (data6.length() > 0) {userfile << delimiter << data6;} else {userfile << delimiter;} //magic damage stat
+            if (data7.length() > 0) {userfile << delimiter << data7;} else {userfile << delimiter;} //Agility stat
+            if (data8.length() > 0) {userfile << delimiter << data8;} else {userfile << delimiter;} //stealth stat
+            if (data9.length() > 0) {userfile << delimiter << data9;} else {userfile << delimiter;} //Stamina stat
+            if (data10.length() > 0) {userfile << delimiter << data10;} else {userfile << delimiter;} //Mana stat
+            userfile << delimiter;
+            userfile.close(); // done writting to file and now it is closed
+            break;
     }
 }
 

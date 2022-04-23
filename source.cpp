@@ -90,6 +90,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
     string returnMessage = "0"; //this is hard setting the function to always say that the username does not exist if no other value is setup.
     string message = code.decipher(messageFromClient);
     int n;
+    std::string level;//used in case 15
     
     //output the message recieved from the user to the consol.
     printf("V1.1-Here is the message from the User: %s\n", messageFromClient);
@@ -195,7 +196,14 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             if (n < 0) error("ERROR writing to socket");
             break;
         case 15: //returns player Level, current XP, and total needed xp for next level
-            returnMessage = code.cipher("5", to_string(players.getLevel(code.getUsername())), to_string(players.getXP(code.getUsername())), to_string(battle.increaseXP(code.getUsername(), 0)));
+            level = to_string(players.getLevel(code.getUsername())); //this is done to avoid issues with the increaseXP function breaking the update stats function on the client side
+            returnMessage = code.cipher("5", level, to_string(players.getXP(code.getUsername())), to_string(battle.increaseXP(code.getUsername(), 0)));
+            n = write(socket, returnMessage.c_str(), returnMessage.length()+1); //send message back to the client
+            if (n < 0) error("ERROR writing to socket");
+            break;
+        case 16: //update user stats
+            code.userDataDeliminationWrite(5, code.getUsername(), code.getItem(3), code.getItem(4), code.getItem(5), code.getItem(6), code.getItem(7), code.getItem(8), code.getItem(9), code.getItem(10), code.getItem(11));
+            returnMessage = code.cipher("4", "wasAbleToSave");
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
