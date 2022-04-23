@@ -49,7 +49,7 @@ string Players::getHealthStat(std::string username){ //this funciton calculates 
     kit.pullKitStats(username);
     code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
     characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
-    int totalHealthValue = characters.baseHealth + stoi(code.getItem(2)) + kit.getHealth();
+    int totalHealthValue = characters.getBaseHealth() + stoi(code.getItem(2)) + kit.getHealth();
     return to_string(totalHealthValue);
 }
 string Players::getPhysicalDamageStat(std::string username, int basePhysicalDamage, int bonusPhysicalDamage){ //this funciton calculates to total Physical Damage stat of a user and makes it into a string to be sent to the client
@@ -65,7 +65,7 @@ string Players::getPhysicalDamageStat(std::string username){ //this funciton cal
     kit.pullKitStats(username);
     code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
     characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
-    int totalPhysicalDamageValue = characters.basePhysicalDamage + stoi(code.getItem(5)) + kit.getPhysicalDamage();
+    int totalPhysicalDamageValue = characters.getBasePhysicalDamage() + stoi(code.getItem(5)) + kit.getPhysicalDamage();
     return to_string(totalPhysicalDamageValue);
 }
 string Players::getMagicDamageStat(std::string username, int baseMagicDamage, int bonusMagicDamage){ //this funciton calculates to total MagicDamage stat of a user and makes it into a string to be sent to the client
@@ -81,7 +81,7 @@ string Players::getMagicDamageStat(std::string username){ //this funciton calcul
     kit.pullKitStats(username);
     code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
     characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
-    int totalMagicDamageValue = characters.baseMagicDamage + stoi(code.getItem(6)) + kit.getMagicDamage();
+    int totalMagicDamageValue = characters.getBaseMagicDamage() + stoi(code.getItem(6)) + kit.getMagicDamage();
     return to_string(totalMagicDamageValue);
 }
 string Players::getArmorStat(std::string username, int baseArmor, int bonusArmor){//this funciton calculates to total Armor stat of a user and makes it into a string to be sent to the client
@@ -96,7 +96,7 @@ string Players::getArmorStat(std::string username){ //this funciton calculates t
     kit.pullKitStats(username);
     code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
     characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
-    int totalArmorValue = characters.baseArmor + stoi(code.getItem(3)) + kit.getArmor();
+    int totalArmorValue = characters.getBaseArmor() + stoi(code.getItem(3)) + kit.getArmor();
     return to_string(totalArmorValue);
 }
 string Players::getMagicResistanceStat(std::string username, int baseMagicResistance, int bonusMagicResistance){//this funciton calculates to total MagicResistance stat of a user and makes it into a string to be sent to the client
@@ -111,7 +111,7 @@ string Players::getMagicResistanceStat(std::string username){ //this funciton ca
     kit.pullKitStats(username);
     code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
     characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
-    int totalMagicResistanceValue = characters.baseMagicResistance + stoi(code.getItem(4)) + kit.getMagicResistance();
+    int totalMagicResistanceValue = characters.getBaseMagicResistance() + stoi(code.getItem(4)) + kit.getMagicResistance();
     return to_string(totalMagicResistanceValue);
 }
 string Players::getAgilityStat(std::string username, int baseAgility, int bonusAgility){//this funciton calculates to total Agility stat of a user and makes it into a string to be sent to the client
@@ -126,7 +126,7 @@ string Players::getAgilityStat(std::string username){//this funciton calculates 
     kit.pullKitStats(username);
     code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
     characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
-    int totalAgilityValue = characters.baseAgility + stoi(code.getItem(7)) + kit.getAgility();
+    int totalAgilityValue = characters.getBaseAgility() + stoi(code.getItem(7)) + kit.getAgility();
     return to_string(totalAgilityValue);
 }
 string Players::getStealthStat(std::string username, int baseStealth, int bonusStealth){//this funciton calculates to total Stealth stat of a user and makes it into a string to be sent to the client
@@ -141,7 +141,7 @@ string Players::getStealthStat(std::string username){//this funciton calculates 
     kit.pullKitStats(username);
     code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
     characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
-    int totalStealthValue = characters.baseStealth + stoi(code.getItem(8)) + kit.getStealth();
+    int totalStealthValue = characters.getBaseStealth() + stoi(code.getItem(8)) + kit.getStealth();
     return to_string(totalStealthValue);
 }
 string Players::getStaminaStat(std::string username, int baseStamina, int bonusStamina){//this funciton calculates to total Stamina stat of a user and makes it into a string to be sent to the client
@@ -156,7 +156,7 @@ string Players::getStaminaStat(std::string username){//this funciton calculates 
     kit.pullKitStats(username);
     code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
     characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
-    int totalStaminaValue = characters.baseStamina + stoi(code.getItem(9));
+    int totalStaminaValue = characters.getBaseStamina() + stoi(code.getItem(9));
     return to_string(totalStaminaValue);
 }
 string Players::getManaStat(std::string username, int baseMana, int bonusMana){//this funciton calculates to total Mana stat of a user and makes it into a string to be sent to the client
@@ -169,6 +169,37 @@ string Players::getManaStat(std::string username){//this funciton calculates to 
     Players players;
     code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
     characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
-    int totalManaValue = characters.baseMana + stoi(code.getItem(10));
+    int totalManaValue = characters.getBaseMana() + stoi(code.getItem(10));
     return to_string(totalManaValue);
+}
+int Players::getLevel(string username){//pulls level from user's file to return
+    int playerLevel;
+    Cipher code;
+    code.userDataDeliminationRead(2, username); 
+    return playerLevel = stoi(code.getItem(4));
+}
+double Players::getXP(string username){
+    double playerCurrentXP;
+    Cipher code;
+    code.userDataDeliminationRead(2, username); //pulls XP from user's file to return
+    return playerCurrentXP = stoi(code.getItem(5));
+}
+void Players::levelUp(string username, int &playerLevel, double newXPAmount){
+    Cipher code;
+    Players player;
+    Kit kit;
+    //since we are re-writing the file we need the following:
+    string playerRace = player.getPlayerRace(username); //get the players kit
+    string playerKit = kit.getPlayerKit(username); //get the players race
+    playerLevel++; //increase player level by one
+    code.userDataDeliminationWrite(4, username, playerRace, playerKit, to_string(playerLevel), to_string(newXPAmount));
+}
+void Players::updateXPAmount(string username, int playerLevel, double newXPAmount){
+    Players player;
+    Kit kit;
+    Cipher code;
+    //since we are re-writing the file we need the following:
+    string playerRace = player.getPlayerRace(username); //get the players kit
+    string playerKit = kit.getPlayerKit(username); //get the players race
+    code.userDataDeliminationWrite(4, username, playerRace, playerKit, to_string(playerLevel), to_string(newXPAmount)); //save the new XP amount along with resaving race, kit, level
 }

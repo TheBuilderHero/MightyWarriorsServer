@@ -166,16 +166,20 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
     ofstream userfile;
     ofstream logonfile;
     switch (updateValue){ //updateValue is for the password, whether it is just getting updated or if this is a new user.
-        case 1: //sets the player's username, race, and kit on account setup.
+        case 1: //sets the player's username, race, kit, level, and xp on account setup.
             mkdir(("./userdata/" + username).c_str(), 0774);
+
+            //inital starting level and XP stats:
+            data4 = "1";
+            data5 = "0";
             
             //some user data is stored in "[username].dat"
             userfile.open("./userdata/" + username + "/" + username + ".dat");
             userfile << delimiter << username; // these are all adding data to the file with delimiter seperation.
-            if (data2.length() > 0) {userfile << delimiter << data2;} else {userfile << delimiter;}
-            if (data3.length() > 0) {userfile << delimiter << data3;} else {userfile << delimiter;}
-            if (data4.length() > 0) {userfile << delimiter << data4;} else {userfile << delimiter;}
-            if (data5.length() > 0) {userfile << delimiter << data5;} else {userfile << delimiter;}
+            if (data2.length() > 0) {userfile << delimiter << data2;} else {userfile << delimiter;} //race
+            if (data3.length() > 0) {userfile << delimiter << data3;} else {userfile << delimiter;} //kit
+            if (data4.length() > 0) {userfile << delimiter << data4;} else {userfile << delimiter;} //level
+            if (data5.length() > 0) {userfile << delimiter << data5;} else {userfile << delimiter;} //xp
             if (data6.length() > 0) {userfile << delimiter << data6;} else {userfile << delimiter;}
             if (data7.length() > 0) {userfile << delimiter << data7;} else {userfile << delimiter;}
             if (data8.length() > 0) {userfile << delimiter << data8;} else {userfile << delimiter;}
@@ -212,22 +216,13 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             userfile.close(); // done writting to file and now it is closed
             break;
         case 4: //update the players's level and XP
-        /*
-            userDataDeliminationRead(2, username);
-            string race = item2;
-            string kit = item3;
-            string level = item4;
-            string xp = item5;
-            data2 = race;
-            data3 = kit;
-        */
             //some user data is stored in "[username].dat"
             userfile.open("./userdata/" + username + "/" + username + ".dat");
             userfile << delimiter << username; // these are all adding data to the file with delimiter seperation.
-            if (data2.length() > 0) {userfile << delimiter << data2;} else {userfile << delimiter;}
-            if (data3.length() > 0) {userfile << delimiter << data3;} else {userfile << delimiter;}
-            if (data4.length() > 0) {userfile << delimiter << data4;} else {userfile << delimiter;}
-            if (data5.length() > 0) {userfile << delimiter << data5;} else {userfile << delimiter;}
+            if (data2.length() > 0) {userfile << delimiter << data2;} else {userfile << delimiter;} //race
+            if (data3.length() > 0) {userfile << delimiter << data3;} else {userfile << delimiter;} //kit
+            if (data4.length() > 0) {userfile << delimiter << data4;} else {userfile << delimiter;} //level
+            if (data5.length() > 0) {userfile << delimiter << data5;} else {userfile << delimiter;} //XP
             if (data6.length() > 0) {userfile << delimiter << data6;} else {userfile << delimiter;}
             if (data7.length() > 0) {userfile << delimiter << data7;} else {userfile << delimiter;}
             if (data8.length() > 0) {userfile << delimiter << data8;} else {userfile << delimiter;}

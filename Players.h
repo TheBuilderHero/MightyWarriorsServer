@@ -36,4 +36,9 @@ class Players : Characters { //defining the player and all their caracteristics 
 
         std::string getManaStat(std::string username, int baseMana, int bonusMana);//this funciton calculates to total Mana stat of a user and makes it into a string to be sent to the client
         std::string getManaStat(std::string username);
+
+        int getLevel(std::string username);
+        double getXP(std::string username);
+        void levelUp(std::string username, int &playerLevel, double newXP);
+        void updateXPAmount(std::string username, int playerLevel, double newXPAmount);
 };

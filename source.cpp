@@ -184,14 +184,14 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             if (n < 0) error("ERROR writing to socket");
             break;
         case 14: //updates the players level and XP
-            int currentLevel;
-            double currentXP, newXPAmount;
-            currentLevel = stoi(code.getItem(3));
-            currentXP = stod(code.getItem(4));
-            newXPAmount = battle.increaseXP(currentLevel, currentXP);
-            code.userDataDeliminationWrite(4, code.getUsername(), players.getPlayerRace(code.getUsername()), kit.getPlayerKit(code.getUsername()), to_string(currentLevel), to_string(newXPAmount));
-            code.userDataDeliminationRead(2, code.getUsername());
-            returnMessage = code.cipher("5", players.getPlayerRace(code.getUsername()), kit.getPlayerKit(code.getUsername()), code.getItem(4), code.getItem(5));
+            //currently using the players level for the enemy's level for XP since they should be the same
+            battle.increaseXP(code.getUsername(), enemy.getXPDrop(enemy.getEnemyPickedFromName(code.getItem(3)))); //hardset the enemies level to 1 since at this moment there is no level change for enemies
+            returnMessage = code.cipher("4", to_string(players.getLevel(code.getUsername())));
+            n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+            if (n < 0) error("ERROR writing to socket");
+            break;
+        case 15: //returns player Level, current XP, and total needed xp for next level
+            returnMessage = code.cipher("5", to_string(players.getLevel(code.getUsername())), to_string(players.getXP(code.getUsername())), to_string(battle.increaseXP(code.getUsername(), 0)));
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
@@ -294,6 +294,9 @@ void dostuff(int sock) {
 //main function of the source.cpp file
 int main(int argc, char* argv[]){
     cout << "Server Successfully Running..." << endl << "Press \"ctrl + c\" to stop the running program\nServer Version: " << to_string(ServerVersion) << "." << to_string(ServerMajorBuild) << "." << to_string(ServerMinorBuild) << "." << to_string(ServerPatch) << endl; //I use this line to make sure the server is running and test the compiles
+    //Richard enter your test code below:
+
+
     communicate(argc, argv); //Start the servers function
     return 0; /* we never get here */
     //Test coder3 account github submit.

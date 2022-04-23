@@ -69,8 +69,9 @@ int Battle::doQOption(string username, string attackMagicOrPhysical, int enemyCh
     double magicDamage = stoi(players.getMagicDamageStat(username));
     
     //pull in the enemy defense stats
-    double armor = enemy.enemyChoiceGetStat(enemyChoice, 2);
-    double magicResistance = enemy.enemyChoiceGetStat(enemyChoice, 3);
+    int enemyLevel = players.getLevel(username);
+    double armor = enemy.enemyChoiceGetStat(enemyChoice, 2, enemyLevel); //based on the players level
+    double magicResistance = enemy.enemyChoiceGetStat(enemyChoice, 3, enemyLevel);
 
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the enemy
     if (attackMagicOrPhysical == kit.getDAMAGETYPE_PHYSICAL()) qDamage = physicalDamage -= (armor * DEFENSE_RATIO);
@@ -94,8 +95,9 @@ int Battle::doWOption(string username, string attackMagicOrPhysical, int enemyCh
     double magicDamage = stoi(players.getMagicDamageStat(username));
     
     //pull in the enemy defense stats
-    double armor = enemy.enemyChoiceGetStat(enemyChoice, 2);
-    double magicResistance = enemy.enemyChoiceGetStat(enemyChoice, 3);
+    int enemyLevel = players.getLevel(username);
+    double armor = enemy.enemyChoiceGetStat(enemyChoice, 2,enemyLevel);
+    double magicResistance = enemy.enemyChoiceGetStat(enemyChoice, 3,enemyLevel);
 
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the enemy
     if (attackMagicOrPhysical == kit.getDAMAGETYPE_PHYSICAL()) wDamage = physicalDamage -= (armor/DEFENSE_RATIO);
@@ -119,8 +121,9 @@ int Battle::doEOption(string username, string attackMagicOrPhysical, int enemyCh
     double magicDamage = stoi(players.getMagicDamageStat(username));
     
     //pull in the enemy defense stats
-    double armor = enemy.enemyChoiceGetStat(enemyChoice, 2);
-    double magicResistance = enemy.enemyChoiceGetStat(enemyChoice, 3);
+    int enemyLevel = players.getLevel(username);
+    double armor = enemy.enemyChoiceGetStat(enemyChoice, 2,enemyLevel);
+    double magicResistance = enemy.enemyChoiceGetStat(enemyChoice, 3, enemyLevel);
 
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the enemy
     if (attackMagicOrPhysical == kit.getDAMAGETYPE_PHYSICAL()) eDamage = physicalDamage -= (armor * DEFENSE_RATIO);
@@ -144,8 +147,9 @@ int Battle::doROption(string username, string attackMagicOrPhysical, int enemyCh
     double magicDamage = stoi(players.getMagicDamageStat(username));
     
     //pull in the enemy defense stats
-    double armor = enemy.enemyChoiceGetStat(enemyChoice, 2);
-    double magicResistance = enemy.enemyChoiceGetStat(enemyChoice, 3);
+    int enemyLevel = players.getLevel(username);
+    double armor = enemy.enemyChoiceGetStat(enemyChoice, 2, enemyLevel);
+    double magicResistance = enemy.enemyChoiceGetStat(enemyChoice, 3, enemyLevel);
 
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the enemy
     if (attackMagicOrPhysical == kit.getDAMAGETYPE_PHYSICAL()) rDamage = physicalDamage -= (armor * DEFENSE_RATIO);
@@ -192,8 +196,9 @@ int Battle::doEnemyOption1(string username, string attackMagicOrPhysical, int en
     Enemies enemy;
     double option1Damage = 0;
     //pull in the enemy attack stats
-    double physicalDamage = enemy.enemyChoiceGetStat(enemyChoice, 4);
-    double magicDamage = enemy.enemyChoiceGetStat(enemyChoice, 5);
+    int enemyLevel = players.getLevel(username);
+    double physicalDamage = enemy.enemyChoiceGetStat(enemyChoice, 4, enemyLevel);
+    double magicDamage = enemy.enemyChoiceGetStat(enemyChoice, 5, enemyLevel);
     
     //pull in the player defense stats
     double armor = stoi(players.getArmorStat(username));
@@ -222,8 +227,9 @@ int Battle::doEnemyOption2(string username, string attackMagicOrPhysical, int en
     Enemies enemy;
     double option2Damage = 0;
     //pull in the enemy attack stats
-    double physicalDamage = enemy.enemyChoiceGetStat(enemyChoice, 4);
-    double magicDamage = enemy.enemyChoiceGetStat(enemyChoice, 5);
+    int enemyLevel = players.getLevel(username);
+    double physicalDamage = enemy.enemyChoiceGetStat(enemyChoice, 4, enemyLevel);
+    double magicDamage = enemy.enemyChoiceGetStat(enemyChoice, 5, enemyLevel);
     
     //pull in the player defense stats
     double armor = stoi(players.getArmorStat(username));
@@ -252,8 +258,9 @@ int Battle::doEnemyOption3(string username, string attackMagicOrPhysical, int en
     Enemies enemy;
     double option3Damage = 0;
     //pull in the enemy attack stats
-    double physicalDamage = enemy.enemyChoiceGetStat(enemyChoice, 4);
-    double magicDamage = enemy.enemyChoiceGetStat(enemyChoice, 5);
+    int enemyLevel = players.getLevel(username);
+    double physicalDamage = enemy.enemyChoiceGetStat(enemyChoice, 4, enemyLevel);
+    double magicDamage = enemy.enemyChoiceGetStat(enemyChoice, 5, enemyLevel);
     
     //pull in the player defense stats
     double armor = stoi(players.getArmorStat(username));
@@ -282,8 +289,9 @@ int Battle::doEnemyOption4(string username, string attackMagicOrPhysical, int en
     Enemies enemy;
     double option4Damage = 0;
     //pull in the enemy attack stats
-    double physicalDamage = enemy.enemyChoiceGetStat(enemyChoice, 4);
-    double magicDamage = enemy.enemyChoiceGetStat(enemyChoice, 5);
+    int enemyLevel = players.getLevel(username);
+    double physicalDamage = enemy.enemyChoiceGetStat(enemyChoice, 4, enemyLevel);
+    double magicDamage = enemy.enemyChoiceGetStat(enemyChoice, 5, enemyLevel);
     
     //pull in the player defense stats
     double armor = stoi(players.getArmorStat(username));
@@ -320,13 +328,22 @@ bool Battle::isEnemyBlocking(){  //Check if the enemy is blocking this next atta
 
 //end battle proccess
 //kyle -->
-double Battle::increaseXP(int playerLevel, double playerCurrentXP){//std::string enemyName, int level, int difficulty){ // we need to incorperate the inputs "enemyName", "level", and "difficulty" into the the following code
+double Battle::increaseXP(string username, double playerXPIncrease){//std::string enemyName, int level, int difficulty){ // we need to incorperate the inputs "enemyName", "level", and "difficulty" into the the following code
     //code for the xp en enemy will give
     int levels = 100; //total number of levels
     int firstLevel = 500; //amount of XP needed for progression from level 1 to 2
     int lastLevel = 1000000;  //amount of xp needed to make it from level 99 to the max level 100
     int totalXPRemainingForNextLevel = 0; //set this in the for loop
     int newPlayerCurrentXP = 0; //this will set the new XP amount witch the user has obtained
+    bool levelUp = false;
+
+    //pull player XP and level from file
+    double playerCurrentXP;
+    int playerLevel;
+    int totalXPNeededForNextLevel = 0;
+    Players player;
+    playerCurrentXP = player.getXP(username);
+    playerLevel = player.getLevel(username);
 
     double B = log((double)lastLevel / firstLevel) / (levels - 1);
     double A = (double)firstLevel / (exp(B) - 1.0);
@@ -334,20 +351,31 @@ double Battle::increaseXP(int playerLevel, double playerCurrentXP){//std::string
     for (int i = 1; i <= levels; i++){ //run through all the levels and calculate the amount of xp needed to get to the next level.
         int oldXP = round(A * exp(B * (i - 1)));
         int newXP = round(A * exp(B * i));
-        int totalXPNeededForNextLevel = (newXP - oldXP); //this gives us the amount of XP needed for the current level
+
+        totalXPNeededForNextLevel = (newXP - oldXP); //this gives us the amount of XP needed for the current level
         totalXPRemainingForNextLevel = totalXPNeededForNextLevel - playerCurrentXP;  //this gives us the XP needed for the next level
-        newPlayerCurrentXP = totalXPNeededForNextLevel - totalXPRemainingForNextLevel; //this will give the amount of XP which the user now has
-        std::cout << i << " " << (newXP - oldXP) << std::endl;
+        totalXPRemainingForNextLevel -= playerXPIncrease; //subtract the xp gained from the remaining XP needed for the next level giving us the new remaining XP
+        //only run this the first time through
+        if(!levelUp) newPlayerCurrentXP = totalXPNeededForNextLevel - totalXPRemainingForNextLevel; //this will give the amount of XP which the user now has
+
+        //uncomment the following two for troubleshooting player level and xp.//
+        //std::cout << i << " " << totalXPNeededForNextLevel << std::endl; 
+        //cout << newPlayerCurrentXP << endl;
         if (i == playerLevel) { // if the user's level is the same as the current loops level then we check the user's XP amounts against it
             if (newPlayerCurrentXP >= totalXPNeededForNextLevel) { // if the user's XP is greater than or equal to the XP needed for the next level then we run the code for leveling the Player up.
+                //newPlayerCurrentXP >= totalXPNeededForNextLevel
                 //code for leveling Player up
-            } else {
-                return newPlayerCurrentXP; //return the remaining amount of xp needed for the user to level up from the current level
+                levelUp = true;
+                newPlayerCurrentXP -= totalXPNeededForNextLevel; //subtract the XP it took to get to the next level.
+                player.levelUp(username, playerLevel, newPlayerCurrentXP);
+                return totalXPNeededForNextLevel; //return the total amount of xp needed for the user to level up from the current level
+            } else {//otherwise just store their new xp amount (newPlayerCurrentXP)
+                player.updateXPAmount(username, playerLevel, newPlayerCurrentXP);
+                return totalXPNeededForNextLevel; //return the total amount of xp needed for the user to level up from the current level
             }
         }
     }
-
-    return newPlayerCurrentXP;
+    return totalXPNeededForNextLevel; //return the total amount of xp needed for the user to level up from the current level
 }
 void Battle::enemyDrops(std::string enemyName, int level, int difficulty){
     //code for the drops which a enemy gives

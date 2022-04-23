@@ -1,9 +1,27 @@
 #include <iostream>
+#include <cmath>
 #include "Enemies.h"
 
 using namespace std;
 
+int Enemies::enemyChoiceGetStat(int enemyChoice){ //this version is used by the getXPDrop function because the otherone causes an infinite loop.
+    if(enemyChoice == MUTANT_ELF) mutantElf();
+    if(enemyChoice == VOID_CAT) voidCat();
+    if(enemyChoice == HIGHWAY_ROBBER) highwayRobber();
+    if(enemyChoice == ORC_ENEMY) orc();
+    if(enemyChoice == SASQUATCH_ENEMY) sasquatch();
+    if(enemyChoice == SKUNK_ENEMY) skunk();
+    if(enemyChoice == MUTANT_SKUNK) mutantSkunk();
+    if(enemyChoice == GIANT_RACCOON) giantRaccoon();
+    if(enemyChoice == EVIL_WIZARD) evilWizard();
+    if(enemyChoice == WITCH_ENEMY) witch();
+    if(enemyChoice == MUTANT_GHOST) mutantGhost();
+    if(enemyChoice == WERE_WOLF) wereWolf();
+    if(enemyChoice == NORMAL_POTATO) normalPotato();
+    return 0; //does not return anything useful
+}
 int Enemies::enemyChoiceGetStat(int enemyChoice, int returnType, int enemyLevel){ //This function retrives the requested stat (returnType) of a given apponent (enemyChoice) - more then likely we will have the enemy choice randomly generated.
+    //based on the enemy choice set the enemy stat values:
     if(enemyChoice == MUTANT_ELF) mutantElf();
     if(enemyChoice == VOID_CAT) voidCat();
     if(enemyChoice == HIGHWAY_ROBBER) highwayRobber();
@@ -18,34 +36,67 @@ int Enemies::enemyChoiceGetStat(int enemyChoice, int returnType, int enemyLevel)
     if(enemyChoice == WERE_WOLF) wereWolf();
     if(enemyChoice == NORMAL_POTATO) normalPotato();
 
+    //modify the values based on level of the player 
+    enemyLevelStatBuff(enemyChoice, enemyLevel);
+
     switch (returnType)
     {
     case 1: //health
-        return baseHealth;
+        return getBaseHealth();
         break;
     case 2: //armor
-        return baseArmor;
+        return getBaseArmor();
         break;
     case 3: //magicResistance
-        return baseMagicResistance;
+        return getBaseMagicResistance();
         break;
     case 4: //physicalDamage
-        return basePhysicalDamage;
+        return getBasePhysicalDamage();
         break;
     case 5: //magicDamage
-        return baseMagicDamage;
+        return getBaseMagicDamage();
         break;
     case 6: //Agility
-        return baseAgility;
+        return getBaseAgility();
         break;
     case 7: //Stealth
-        return baseStealth;
+        return getBaseStealth();
         break;
     
     default:
         return 0;
         break;
     }
+}
+
+double Enemies::getXPDrop(int enemyChoice){
+    //calls the override function to prevent looping
+    enemyChoiceGetStat(enemyChoice); //pull the xpDrop stat from the enemy
+    return xpDrop; //return the xpDrop amount
+}
+
+void Enemies::enemyLevelStatBuff(int enemyChoice, int enemyLevel){
+    double currentDropXP = getXPDrop(enemyChoice); //running at the beguining so that it does not overrite the modifiers below
+
+    //per level stat addition multiplier:
+    double healthLevelBuff = 2.5;
+    double physicalDamageLevelBuff = 2.5;
+    double armorLevelBuff = 2.5;
+    double magicDamageLevelBuff = 2.5;
+    double magicResistanceLevelBuff = 2.5;
+    double agilityLevelBuff = 2.5;
+    double stealthLevelBuff = 2.5;
+    double xpLevelBuff = 2.5;
+
+    //set the new stat values for the enemy with the applied level buff.
+    setBaseHealth(getBaseHealth() + round(enemyLevel * healthLevelBuff));
+    setBasePhysicalDamage(getBasePhysicalDamage() + round(enemyLevel * physicalDamageLevelBuff));
+    setBaseArmor(getBaseArmor()  + round(enemyLevel * armorLevelBuff));
+    setBaseMagicDamage(getBaseMagicDamage() + round(enemyLevel * magicDamageLevelBuff));
+    setBaseMagicResistance(getBaseMagicResistance() + round(enemyLevel * magicResistanceLevelBuff));
+    setBaseAgility(getBaseAgility() + round(enemyLevel * agilityLevelBuff));
+    setBaseStealth(getBaseStealth() + round(enemyLevel * stealthLevelBuff));
+    xpDrop = currentDropXP + round(enemyLevel * stealthLevelBuff);
 }
 
 string Enemies::getEnemyName(int enemyChoice){
@@ -121,28 +172,28 @@ int Enemies::getEnemyPickedFromName(string enemyName){ //This function is intend
 void Enemies::mutantElf() {
     enemyNum = MUTANT_ELF; //this is the number associated with this enemy declared in the Enemies.h file
     displayName = "Mutant Elf";
-    baseHealth = 40;
-    basePhysicalDamage = 10;
-    baseArmor = 2;
-    baseMagicDamage = 5;
-    baseMagicResistance = 5;
-    baseAgility = 0; //does not have any
-    baseStealth = 0; //does not have any
-    level = 1;
+    setBaseHealth(40);
+    setBasePhysicalDamage(10);
+    setBaseArmor(2);
+    setBaseMagicDamage(5);
+    setBaseMagicResistance(5);
+    setBaseAgility(0); //does not have any
+    setBaseStealth(0); //does not have any
+    setLevel(1);
     xpDrop = 20;
 }
 
 void Enemies::voidCat() {
     enemyNum = VOID_CAT; //this is the number associated with this enemy declared in the Enemies.h file
     displayName = "Void Cat";
-    baseHealth = 1000;
-    basePhysicalDamage = 10;
-    baseArmor = 2;
-    baseMagicDamage = 5;
-    baseMagicResistance = 5;
-    baseAgility = 0; //does not have any
-    baseStealth = 0; //does not have any
-    level = 1;
+    setBaseHealth(1000);
+    setBasePhysicalDamage(10);
+    setBaseArmor(2);
+    setBaseMagicDamage(5);
+    setBaseMagicResistance(5);
+    setBaseAgility(0); //does not have any
+    setBaseStealth(0); //does not have any
+    setLevel(1);
     xpDrop = 20;
     //Radiation damage that mutants can inflict?
 }
@@ -150,51 +201,51 @@ void Enemies::voidCat() {
 void Enemies::highwayRobber(){
     enemyNum = HIGHWAY_ROBBER;
     displayName = "Highway Robber";
-    baseHealth = 60;
-    basePhysicalDamage = 15;
-    baseArmor = 10;
-    baseMagicDamage = 2;
-    baseMagicResistance = 2;
-    baseAgility = 0; //does not have any
-    baseStealth = 0; //does not have any
-    level = 1;
+    setBaseHealth(60);
+    setBasePhysicalDamage(15);
+    setBaseArmor(10);
+    setBaseMagicDamage(2);
+    setBaseMagicResistance(2);
+    setBaseAgility(0); //does not have any
+    setBaseStealth(0); //does not have any
+    setLevel(1);
     xpDrop = 10;
 }
 
 void Enemies::orc(){
     enemyNum = ORC_ENEMY;
     displayName = "Orc";
-    baseHealth = 70;
-    basePhysicalDamage = 20;
-    baseArmor = 15;
-    baseMagicDamage = 10;
-    baseMagicResistance = 7;
-    level = 1;
+    setBaseHealth(70);
+    setBasePhysicalDamage(20);
+    setBaseArmor(15);
+    setBaseMagicDamage(10);
+    setBaseMagicResistance(7);
+    setLevel(1);
     xpDrop = 10;
 }
 
 void Enemies::sasquatch(){
     enemyNum = SASQUATCH_ENEMY;
     displayName = "Sasquatch";
-    baseHealth = 120;
-    basePhysicalDamage = 35;
-    baseArmor = 20;
-    baseMagicDamage = 15;
-    baseMagicResistance = 3;
-    level = 1;
+    setBaseHealth(120);
+    setBasePhysicalDamage(35);
+    setBaseArmor(20);
+    setBaseMagicDamage(15);
+    setBaseMagicResistance(3);
+    setLevel(1);
     xpDrop = 80;
 }
 
 void Enemies::skunk(){
     enemyNum = SKUNK_ENEMY;
     displayName = "Skunk";
-    baseHealth = 25;
-    basePhysicalDamage = 10;
-    baseArmor = 1;
-    baseMagicDamage = 2;
-    baseMagicResistance = 2;
+    setBaseHealth(25);
+    setBasePhysicalDamage(10);
+    setBaseArmor(1);
+    setBaseMagicDamage(2);
+    setBaseMagicResistance(2);
     //toxicAttack = 17; //need to declare in headerfile
-    level = 1;
+    setLevel(1);
     xpDrop = 7;
     //Skunk has very low armor and magic stats to compensate for toxic damage.
 }
@@ -202,26 +253,26 @@ void Enemies::skunk(){
 void Enemies::mutantSkunk(){
     enemyNum = MUTANT_SKUNK;
     displayName = "Mutant Skunk";
-    baseHealth = 25;
-    basePhysicalDamage = 10;
-    baseArmor = 1;
-    baseMagicDamage = 0;
-    baseMagicResistance = 0;
+    setBaseHealth(25);
+    setBasePhysicalDamage(10);
+    setBaseArmor(1);
+    setBaseMagicDamage(0);
+    setBaseMagicResistance(0);
     //toxicAttack = 17; //need to declare in headerfile
     //radiation = 10; //need to declare in headerfile
-    level = 1;
+    setLevel(1);
     xpDrop = 12;
 }
 
 void Enemies::giantRaccoon(){
     enemyNum = GIANT_RACCOON;
     displayName = "Giant Raccoon";
-    baseHealth = 350;
-    basePhysicalDamage = 65;
-    baseArmor = 80;
-    baseMagicDamage = 25;
-    baseMagicResistance = 15;
-    level = 1;
+    setBaseHealth(350);
+    setBasePhysicalDamage(65);
+    setBaseArmor(80);
+    setBaseMagicDamage(25);
+    setBaseMagicResistance(15);
+    setLevel(1);
     xpDrop = 500;
     //GIANT RACCOON!!! Mini-boss.
 }
@@ -229,59 +280,59 @@ void Enemies::giantRaccoon(){
 void Enemies::evilWizard(){
     enemyNum = EVIL_WIZARD;
     displayName = "Evil Wizard";
-    baseHealth = 80;
-    basePhysicalDamage = 20;
-    baseArmor = 8;
-    baseMagicDamage = 20;
-    baseMagicResistance = 12;
-    level = 1;
+    setBaseHealth(80);
+    setBasePhysicalDamage(20);
+    setBaseArmor(8);
+    setBaseMagicDamage(20);
+    setBaseMagicResistance(12);
+    setLevel(1);
     xpDrop = 80;
 }
 
 void Enemies::witch(){
     enemyNum = WITCH_ENEMY;
     displayName = "Witch";
-    baseHealth = 70;
-    basePhysicalDamage = 13;
-    baseArmor = 10;
-    baseMagicDamage = 30;
-    baseMagicResistance = 15;
-    level = 1;
+    setBaseHealth(70);
+    setBasePhysicalDamage(13);
+    setBaseArmor(10);
+    setBaseMagicDamage(30);
+    setBaseMagicResistance(15);
+    setLevel(1);
     xpDrop = 80;
 }
 
 void Enemies::mutantGhost(){
     enemyNum = MUTANT_GHOST;
     displayName = "Mutant Ghost";
-    baseHealth = 95;
-    basePhysicalDamage = 20;
-    baseArmor = 1;
-    baseMagicDamage = 35;
-    baseMagicResistance = 23;
-    level = 1;
+    setBaseHealth(95);
+    setBasePhysicalDamage(20);
+    setBaseArmor(1);
+    setBaseMagicDamage(35);
+    setBaseMagicResistance(23);
+    setLevel(1);
     xpDrop = 100;
 }
 
 void Enemies::wereWolf(){
     enemyNum = WERE_WOLF;
     displayName = "Werewolf";
-    baseHealth = 80;
-    basePhysicalDamage = 25;
-    baseArmor = 5;
-    baseMagicDamage = 12;
-    baseMagicResistance = 8;
-    level = 1;
+    setBaseHealth(80);
+    setBasePhysicalDamage(25);
+    setBaseArmor(5);
+    setBaseMagicDamage(12);
+    setBaseMagicResistance(8);
+    setLevel(1);
     xpDrop = 70;
 }
 
 void Enemies::normalPotato(){
     enemyNum = NORMAL_POTATO;
     displayName = "A normal potato";
-    baseHealth = 9999;
-    basePhysicalDamage = 999;
-    baseArmor = 99;
-    baseMagicDamage = 999;
-    baseMagicResistance = 99;
-    level = 1;
+    setBaseHealth(9999);
+    setBasePhysicalDamage(999);
+    setBaseArmor(99);
+    setBaseMagicDamage(999);
+    setBaseMagicResistance(99);
+    setLevel(1);
     xpDrop = 9999;
 }
