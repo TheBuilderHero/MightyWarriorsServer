@@ -7,7 +7,7 @@ Stats, Names, Weapon info, and other item and enemy related information. - Domin
 		Medium:
 			1 - Mutant Elf
 		Hot:
-		Hard:
+		super spicy:
 		Death:
 			1 - The Builder
 			2 - The Phantom
