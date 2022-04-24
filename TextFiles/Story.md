@@ -5,7 +5,7 @@ Story that this game is set within.//note: N. = Narator
 		Opening game - please enter username and password.
 		upon entering - please select a race
 		upon selection - please select a class
-		upon selection - Welcome to Vitrum Somnium. the world is in ruins; every man, elf, ghost, dryad, and Dino for himself. \n you must destroy all enemies in your path and cure the world of radiation. \n ready to get started? prompt "Start" and "Main Menu"
+		upon selection - Welcome to Vitrum Somnium. the world is in ruins. \n you must destroy all enemies in your path and cure the world of radiation. \n ready to get started? prompt "Start" and "Main Menu"
 	*player presses start* 
 	
 		human
