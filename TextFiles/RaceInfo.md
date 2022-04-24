@@ -57,7 +57,7 @@ Each will have a passive strength and later we will add active ability (because 
         	Ghost
 		Description:
 			- Stats:
-				Health - 100
+				Health - 75
 				Armor - 2
 				Magic Resistance - 20
 				Magic Damage - 20
@@ -65,4 +65,17 @@ Each will have a passive strength and later we will add active ability (because 
 				Physical Damage - 5
 				Stealth - 30
 			- Passive: 7% chance to ignore 3* attacks. occurs once* per batttle
+			- Attacks
+			        	
+			Mop
+		Description:
+			- Stats:
+				Health - 89
+				Armor - 10
+				Magic Resistance - 20
+				Magic Damage - 15
+				Agility - 
+				Physical Damage - 
+				Stealth - 
+			- Passive: 
 			- Attacks
