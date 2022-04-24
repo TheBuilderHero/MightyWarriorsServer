@@ -1,10 +1,13 @@
+
+
 Story that this game is set within.//note: N. = Narator
-basic storyline:
-	Opening game - please enter username and password.
-	upon entering - please select a race
-	upon selection - please select a class
-	upon selection - Welcome to Vitrum Somnium. the world is in ruins; every man, elf, ghost, dryad, and Dino for himself. \n you must destroy all enemies in your path and cure the world of radiation. \n ready to get started? ~prompt "Start" and "Main Menu"~
+	basic storyline:
+		Opening game - please enter username and password.
+		upon entering - please select a race
+		upon selection - please select a class
+		upon selection - Welcome to Vitrum Somnium. the world is in ruins; every man, elf, ghost, dryad, and Dino for himself. \n you must destroy all enemies in your path and cure the world of radiation. \n ready to get started? ~prompt "Start" and "Main Menu"~
 	*player presses start* 
+	
 		human
 			1 in the year 3001, forces of mutants began appearing all over the world. the human race was faced with sudden stife and death. beginning in the city of hooligans, void cat, and his most trusted generals, The Gamer, The Builder, Quak, and Jonny, made their way through the land and destroyed whoever opposed their rule. after they successfully conquered the largest city, humanity had little hope left. they knew that in order to rid the land of this menice, they would have to reach out to the other four races for help. but humanity was prideful. would the other races help?..... your task is to recruit the other four races in the battle against the mutants and to rid the land of radiation.
 			2
