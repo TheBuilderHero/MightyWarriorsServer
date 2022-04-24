@@ -1,1 +1,7 @@
 
+
+  feather
+    damage: .001
+    damage is doubled every upgrade. caps at 20 upgrades
+  magic stick
+    
