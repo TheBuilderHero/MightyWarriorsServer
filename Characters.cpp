@@ -50,10 +50,10 @@ void Characters::elf(string username) {
 void Characters::dino(string username) {
     name = username;
     race = RACE_DINO;
-    baseHealth = 100;
+    baseHealth = 200;
     baseArmor = 15;
     baseMagicResistance = 5;
-    baseMagicDamage = 20;
+    baseMagicDamage = 10;
     baseAgility = 8;
     basePhysicalDamage = 15;
     baseStealth = 1;
