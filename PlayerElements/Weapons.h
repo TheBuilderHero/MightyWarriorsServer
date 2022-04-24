@@ -32,5 +32,6 @@ public:
     void addFruit(int numberAdded){ fruit += numberAdded; }
     void addBrains(int numberAdded){ brains += numberAdded; }
 
+    int getPlayerWeapon(std::string username);
 };
 
