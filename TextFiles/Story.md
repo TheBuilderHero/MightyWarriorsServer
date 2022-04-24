@@ -28,4 +28,7 @@ Story that this game is set within.//note: N. = Narator
 			1 N. "what year is it? 3001? trees have long slow lives so it can be hard to remember the year... until void cat started to take over the world. one by one, the forests of the dryads were burnt with radiation. in their place the mutants placed a radioactive army. on and on they marched. as the number of dryads dwindled, they did the one thing they vowed they wouldnt... they reached out to the other races. they are sending you. your task is to recruit the other four races in the battle against the mutants and to rid the land of radiation."
 			2
 			3
-		
+		Mop
+			1
+			2
+			3
