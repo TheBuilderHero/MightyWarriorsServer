@@ -15,3 +15,9 @@ Stats, Names, Weapon info, and other item and enemy related information. - Domin
 			4 - Jonny
 			Ultimate: 
 				1 - Void cat
+					health: 1,000,000
+					Damage: 
+						base: 1000
+						Abilities:
+							
+					
