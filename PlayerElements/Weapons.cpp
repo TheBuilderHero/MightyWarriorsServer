@@ -62,6 +62,19 @@ Weapons::Weapons(int weaponChoice)
     }
 }
 
+int Weapons::getPhysicalDamage(){
+    srand(time(NULL));
+    return rand() % physicalDamage + (iron * 2); 
+}
+int Weapons::getMagicDamage(){
+    srand(time(NULL));
+    return rand() % magicDamage + (gems * 2); 
+}
+int Weapons::getPsychicDamage(){
+    srand(time(NULL));
+    return rand() % psychicDamage + brains; 
+}
+
 int Weapons::getPlayerWeapon(std::string username){
    /* Cipher code;
     code.userDataDeliminationRead(2, username); //Dakota please help me write weapon data to the user file
