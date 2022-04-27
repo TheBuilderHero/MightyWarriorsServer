@@ -63,16 +63,16 @@ Weapons::Weapons(int weaponChoice)
 }
 
 int Weapons::getPhysicalDamage(){
-    srand(time(NULL));
-    return rand() % physicalDamage + (iron * 2); 
+    srand (time(NULL));
+    return (rand() % physicalDamage); 
 }
 int Weapons::getMagicDamage(){
     srand(time(NULL));
-    return rand() % magicDamage + (gems * 2); 
+    return (rand() % magicDamage); 
 }
 int Weapons::getPsychicDamage(){
     srand(time(NULL));
-    return rand() % psychicDamage + brains; 
+    return ((rand() % psychicDamage) + brains); 
 }
 
 int Weapons::getPlayerWeapon(std::string username){
