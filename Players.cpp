@@ -5,6 +5,7 @@
 #include "Players.h"
 #include "Cipher.h"
 #include "PlayerElements/Kit.h"
+#include "PlayerElements/Weapons.h"
 
 using namespace std;
 
@@ -63,9 +64,10 @@ string Players::getPhysicalDamageStat(std::string username){ //this funciton cal
     Players players;
     Kit kit;
     kit.pullKitStats(username);
+    Weapons weapon(getPlayerWeapon(username, 1));
     code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
     characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
-    int totalPhysicalDamageValue = characters.getBasePhysicalDamage() + stoi(code.getItem(5)) + kit.getPhysicalDamage();
+    int totalPhysicalDamageValue = characters.getBasePhysicalDamage() + stoi(code.getItem(5)) + kit.getPhysicalDamage() + weapon.getPhysicalDamage();
     return to_string(totalPhysicalDamageValue);
 }
 string Players::getMagicDamageStat(std::string username, int baseMagicDamage, int bonusMagicDamage){ //this funciton calculates to total MagicDamage stat of a user and makes it into a string to be sent to the client
@@ -79,9 +81,10 @@ string Players::getMagicDamageStat(std::string username){ //this funciton calcul
     Players players;
     Kit kit;
     kit.pullKitStats(username);
+    Weapons weapon(getPlayerWeapon(username, 4));
     code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
     characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
-    int totalMagicDamageValue = characters.getBaseMagicDamage() + stoi(code.getItem(6)) + kit.getMagicDamage();
+    int totalMagicDamageValue = characters.getBaseMagicDamage() + stoi(code.getItem(6)) + kit.getMagicDamage() + weapon.getMagicDamage();
     return to_string(totalMagicDamageValue);
 }
 string Players::getArmorStat(std::string username, int baseArmor, int bonusArmor){//this funciton calculates to total Armor stat of a user and makes it into a string to be sent to the client
@@ -202,4 +205,10 @@ void Players::updateXPAmount(string username, int playerLevel, double newXPAmoun
     string playerRace = player.getPlayerRace(username); //get the players kit
     string playerKit = kit.getPlayerKit(username); //get the players race
     code.userDataDeliminationWrite(4, username, playerRace, playerKit, to_string(playerLevel), to_string(newXPAmount)); //save the new XP amount along with resaving race, kit, level
+}
+
+int Players::getPlayerWeapon(string username, int tempWeaponChoice){ //tempWeaponChoice needs to be deleted when the code to pull the user data is added
+    //Dakota please help me save weapons to player file as an int
+    //and then load that int here
+    return tempWeaponChoice;
 }

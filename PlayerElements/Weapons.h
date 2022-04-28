@@ -8,14 +8,14 @@ class Weapons
 private:
     string weaponType;
     int physicalDamage, magicDamage, psychicDamage, accuracy;
-    int iron, wood, gems, feet, fruit, brains;
+    int iron, wood, gems, feet, fruit, brains; //feet means Rabbit feet
 public:
     Weapons(int weaponChoice);
     ~Weapons();
 
-    int getPhysicalDamage(){ return physicalDamage + (iron * 2); }
-    int getMagicDamage(){ return magicDamage + (gems * 2); }
-    int getPsychicDamage(){ return psychicDamage + brains; }
+    int getPhysicalDamage();
+    int getMagicDamage();
+    int getPsychicDamage();
     int getAccuracy(){ return accuracy; }
 
     int getIron(){ return iron; }
@@ -32,5 +32,6 @@ public:
     void addFruit(int numberAdded){ fruit += numberAdded; }
     void addBrains(int numberAdded){ brains += numberAdded; }
 
+    int getPlayerWeapon(std::string username);
 };
 
