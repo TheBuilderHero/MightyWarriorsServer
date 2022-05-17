@@ -1,9 +1,9 @@
 #include <iostream>
 #include <string>
 #include <cmath>
-#include <iomanip>
+//#include <iomanip>
 #include <ctime>
-#include <cstdlib>
+//#include <cstdlib>
 using namespace std;
 
 int wpnDmg(string wpnNm, int str)
@@ -61,16 +61,16 @@ int main()
 		 << "level.\n(enter any Key to continue)";
 	getline(cin, input);
 	cout << "You have three main Attributes: (enter any Key to continue)\n";
-	getline(cin,input);
+	getline(cin, input);
 	cout << "Your Strength.\n";
-	getline(cin,input);
+	getline(cin, input);
 	cout << "Your Health.\n";
-	getline(cin,input);
+	getline(cin, input);
 	cout << "And your Weapon.\n";
-	getline(cin,input);
+	getline(cin, input);
 	cout << "You must use these things to defeat your Foes and claim Victory.\n"
 		 << "Enter any key to begin.";
-	getline(cin,input);
+	getline(cin, input);
 
 
 	while ((drgnHlth > 0) && (plrHlth > 0))
@@ -121,29 +121,32 @@ int main()
 
 			if ((gblnHlth <= 0) && (plrHlth > 0))
 			{
-				cout << "Congratulations! You have Defeated the Goblin!\n"
-						<< "You gain 1 Strength and 5 Health!\n";
+				getline(cin, input);
+				cout << "\nCongratulations! You have Defeated the Goblin!\n";
+				getline(cin, input);
+				cout << "You gain 1 Strength and 5 Health!\n";
 				str ++;
 				plrHlthMax += 5;
+				getline(cin, input);
 				cout << "Your Strength is now " << str << " and your Health is "
 						<< plrHlthMax << ".\n";
-				cout << "You have also taken the Goblin's Bronze Sword!\n(enter any Key to continue)\n\n";
+				cout << "You have also taken the Goblin's Bronze Sword!\n\n";
 				wpnNm = "Bronze Sword";
-				getline(cin,input);
+				getline(cin, input);
 			}
 
 			if (plrHlth <= 0)
 				cout << "Oh no, you have DIED!\nxx\n__";
 			}
 
-
+			
 
 			if (orcHlth > 0)
 				orcHlth = 20;
 
 			while ((gblnHlth <= 0) && (plrHlth > 0) && (orcHlth > 0) && (run == false))
 			{
-				cout << "The Orc:\n";
+				cout << "\nThe Orc:\n";
 				cout << "You have " << plrHlth << " Health.\nYour foe has "
 					 << orcHlth << " Health.\n";
 				cout << "Do you fight or run?\n0: Fight\n1: Run\n";
@@ -166,13 +169,16 @@ int main()
 
 			if ((orcHlth <= 0) && (plrHlth > 0))
 			{
-				cout << "Congratulations! You have defeated the Orc!\n"
-					 << "You gain 2 Strength and 10 Health!\n";
+				getline(cin, input);
+				cout << "\nCongratulations! You have defeated the Orc!\n";
+				getline(cin, input);
+				cout << "You gain 2 Strength and 10 Health!\n";
 				str += 2;
 				plrHlthMax += 10;
+				getline(cin, input);
 				cout << "Your Strength is now " << str << " and your Maximum Health is "
-					 << plrHlthMax << ".\n(enter any Key to continue)\n\nh";
-				getline(cin,input);
+					 << plrHlthMax << ".\n\n";
+				getline(cin, input);
 			}
 
 			if (plrHlth <= 0)
@@ -209,14 +215,17 @@ int main()
 
 			if ((kntHlth <= 0) && (plrHlth > 0))
 			{
-				cout << "Congratulations! You have defeated the Black Night!\n"
-					 << "You gain 1 Strength and 10 Health!\n";
+				getline(cin, input);
+				cout << "\nCongratulations! You have defeated the Black Night!\n";
+				getline(cin, input);
+				cout << "You gain 1 Strength and 10 Health!\n";
 				str ++;
 				plrHlthMax += 10;
+				getline(cin, input);
 				cout << "Your Strength is now " << str << " and your Maximum Health is "
 					 << plrHlthMax << ".\n";
-				cout << "You have also taken the Black Night's Iron Sword!\n(enter any Key to continue)\n\n";
-				getline(cin,input);
+				cout << "You have also taken the Black Night's Iron Sword!\n\n";
+				getline(cin, input);
 				wpnNm = "Iron Sword";
 
 			}
@@ -255,13 +264,16 @@ int main()
 
 			if ((wzrdHlth <= 0) && (plrHlth > 0))
 			{
-				cout << "Congratulations! You have defeated the Blue Wizard!\n"
-					 << "You gain 2 Strength and 15 Health!\n";
+				getline(cin, input);
+				cout << "\nCongratulations! You have defeated the Blue Wizard!\n";
+				getline(cin, input);
+				cout << "You gain 2 Strength and 15 Health!\n";
 				str += 2;
 				plrHlthMax += 15;
+				getline(cin, input);
 				cout << "Your Strength is now " << str << " and your Maximum Health is "
-					 << plrHlthMax << ".\n(enter any Key to continue)\n\n";
-				getline(cin,input);
+					 << plrHlthMax << ".\n\n";
+				getline(cin, input);
 			}
 
 			if (plrHlth <= 0)
@@ -298,13 +310,16 @@ int main()
 
 			if ((bhmthHlth <= 0) && (plrHlth > 0))
 			{
-				cout << "Congratulations! You have defeated the Monstrous Behemoth!\n"
-					 << "You gain 3 Strength and 10 Health!\n";
+				getline(cin, input);
+				cout << "\nCongratulations! You have defeated the Monstrous Behemoth!\n";
+				getline(cin, input);
+				cout << "You gain 3 Strength and 10 Health!\n";
 				str += 3;
 				plrHlthMax += 10;
+				getline(cin, input);
 				cout << "Your Strength is now " << str << " and your Maximum Health is "
-					 << plrHlthMax << ".\n(enter any Key to continue)\n\n";
-				getline(cin,input);
+					 << plrHlthMax << ".\n\n";
+				getline(cin, input);
 			}
 
 			if (plrHlth <= 0)
@@ -341,15 +356,18 @@ int main()
 
 			if ((ncrHlth <=0) && (plrHlth > 0))
 			{
-				cout << "Congratulations! You have defeated the Awful Necromancer!\n"
-					 << "You gain 2 Strength and 10 Health!\n";
+				getline(cin, input);
+				cout << "\nCongratulations! You have defeated the Awful Necromancer!\n";
+				getline(cin, input);
+				cout << "You gain 2 Strength and 10 Health!\n";
 				str += 2;
 				plrHlthMax += 10;
+				getline(cin, input);
 				cout << "Your Strength is now " << str << " and your Maximum Health is "
 					 << plrHlthMax << ".\n";
-				cout << "You have also taken the Necromancer's Magic Sword!\n(enter any Key to continue)\n\n";
+				cout << "You have also taken the Necromancer's Magic Sword!\n\n";
 				wpnNm = "Magic Sword";
-				getline(cin,input);
+				getline(cin, input);
 			}
 
 			if (plrHlth <= 0)
