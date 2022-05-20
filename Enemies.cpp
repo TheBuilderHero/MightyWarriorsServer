@@ -99,7 +99,7 @@ void Enemies::enemyLevelStatBuff(int enemyChoice, int enemyLevel){
     xpDrop = currentDropXP + round(enemyLevel * stealthLevelBuff);
 }
 
-string Enemies::getEnemyName(int enemyChoice){
+string Enemies::getEnemyName(int enemyChoice){ //returns names based on input int 1 - 13
     switch (enemyChoice){
         case 1:
             mutantElf();

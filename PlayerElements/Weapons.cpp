@@ -70,6 +70,7 @@ void Weapons::loadWeaponData(string username){    //save the weapon bonus' to fi
 void Weapons::saveWeaponData(string username){    //save the weapon bonus' to file:
     Cipher cipher;
     cipher.userDataDeliminationWrite(6, username, to_string(iron), to_string(wood), to_string(gems), to_string(feet), to_string(fruit), to_string(brains));
+}
 int Weapons::getPhysicalDamage(){
     srand (time(NULL));
     return (rand() % physicalDamage); 
