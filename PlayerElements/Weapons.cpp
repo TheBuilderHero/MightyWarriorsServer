@@ -62,7 +62,6 @@ Weapons::Weapons(int weaponChoice)
     }
 }
 
-<<<<<<< HEAD
 void Weapons::loadWeaponData(string username){    //save the weapon bonus' to file:
     Cipher cipher;
     cipher.userDataDeliminationRead(3, username);
@@ -71,7 +70,6 @@ void Weapons::loadWeaponData(string username){    //save the weapon bonus' to fi
 void Weapons::saveWeaponData(string username){    //save the weapon bonus' to file:
     Cipher cipher;
     cipher.userDataDeliminationWrite(6, username, to_string(iron), to_string(wood), to_string(gems), to_string(feet), to_string(fruit), to_string(brains));
-=======
 int Weapons::getPhysicalDamage(){
     srand (time(NULL));
     return (rand() % physicalDamage); 
@@ -90,7 +88,6 @@ int Weapons::getPlayerWeapon(std::string username){
     code.userDataDeliminationRead(2, username); //Dakota please help me write weapon data to the user file
     return code.getItem(3); */
     return 1;
->>>>>>> 92a442f06f40989cdefb55b9431b7e1d2b2b9742
 }
 
 Weapons::~Weapons() //Weapon class destructor
