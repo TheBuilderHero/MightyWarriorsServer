@@ -30,6 +30,7 @@ class Cipher {
     std::string getStatPath(std::string username);
     std::string getDatPath(std::string username);
     std::string getActPath(std::string username);
+    std::string getWeaponPath(std::string username);
 
     //getVariable functions:
     std::string getDelimiter() { return delimiter; }

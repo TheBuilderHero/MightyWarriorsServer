@@ -32,5 +32,7 @@ public:
     void addFruit(int numberAdded){ fruit += numberAdded; }
     void addBrains(int numberAdded){ brains += numberAdded; }
 
+    void loadWeaponData(string username);
+    void saveWeaponData(string username);
 };
 
