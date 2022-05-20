@@ -161,6 +161,25 @@ int Battle::doROption(string username, string attackMagicOrPhysical, int enemyCh
     //return the damage done by Q rounded to a whole number
     return round(rDamage * 5);
 }
+int Battle::enemyGroups(){
+    Enemies enemy;
+    enemy.getEnemyName(); //Accessing all avaliable enemy types
+    srand (time(NULL)); 
+    int numberOfEnemies = rand() % 7 + 1; // Random number of enemies between 1 and 7
+    EnemyGroup enemyEncounter = new EnemyGroup(getEnemyName());
+    
+    if (numberOfEnemies > 4){
+        enemy.getEnemyName("normalPotato");
+        break;
+    }
+    // If there are more than 4 enemies in a group, a normal potato will spawn
+    if (numberOfEnemies < 4){
+        enemy.getNameName("giantRaccoon");
+        break;
+    }
+    // If there are less than 4 enemies in a group, a giant raccoon will spawn
+    return enemyEncounter;
+}
 //Enemy attack functions:
 int Battle::determineEnemyAttackOption(string username, int enemyChoice, string playerBlocking){
     Enemies enemy;
