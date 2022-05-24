@@ -14,7 +14,7 @@ private:
     int maxPhysicalDamage, maxMagicDamage, maxPsychicDamage;
     int iron, wood, gems, feet, fruit, brains; //feet means Rabbit feet
 public:
-    Weapons(std::string username);
+    Weapons(std::string username, bool initialSetup = false);
     ~Weapons();
 
     int getPhysicalDamage();
@@ -45,6 +45,7 @@ public:
     void loadWeaponData(string username);
     void saveWeaponData(string username);
     void setPlayerWeapon(int weaponChoice);
-    int getPlayerWeapon(std::string username);
+    int getPlayerWeapon(); //reutrns weapon ID
+    std::string getWeaponName(); //returns name of weapon
 };
 

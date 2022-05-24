@@ -289,24 +289,29 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             break;}
         case 6: {//update user Weapons
             //copied from case 5
-            //pull current stats from file:
-            userDataDeliminationRead(3, username);
-            int tempID = stoi(getItem(2));//weapon ID
-            int tempIron = stoi(getItem(3));//iron
-            int tempWood = stoi(getItem(4));//wood
-            int tempGems = stoi(getItem(5));//gems
-            int tempFeet = stoi(getItem(6));//feet
-            int tempFruit = stoi(getItem(7));//fruit
-            int tempBrains = stoi(getItem(8));//brains
+            //pull current stats from file if it exists:
+            ifstream weaponFolderTest;
+            weaponFolderTest.open(getWeaponPath(username)); //for testing purposes
+            if(weaponFolderTest){ //if the file exists
+                weaponFolderTest.close();
+                userDataDeliminationRead(3, username);
+                int tempID = stoi(getItem(2));//weapon ID
+                int tempIron = stoi(getItem(3));//iron
+                int tempWood = stoi(getItem(4));//wood
+                int tempGems = stoi(getItem(5));//gems
+                int tempFeet = stoi(getItem(6));//feet
+                int tempFruit = stoi(getItem(7));//fruit
+                int tempBrains = stoi(getItem(8));//brains
 
-            //add new amounts to current stats except ID:
-            data2 = to_string(tempID);
-            data3 = to_string(tempIron + stoi(data3));
-            data4 = to_string(tempWood + stoi(data4));
-            data5 = to_string(tempGems + stoi(data5));
-            data6 = to_string(tempFeet + stoi(data6));
-            data7 = to_string(tempFruit + stoi(data7));
-            data8 = to_string(tempBrains + stoi(data8));
+                //add new amounts to current stats except ID:
+                data2 = to_string(tempID);
+                data3 = to_string(tempIron + stoi(data3));
+                data4 = to_string(tempWood + stoi(data4));
+                data5 = to_string(tempGems + stoi(data5));
+                data6 = to_string(tempFeet + stoi(data6));
+                data7 = to_string(tempFruit + stoi(data7));
+                data8 = to_string(tempBrains + stoi(data8));
+            }
 
             //write new stats to file:
             weaponStats.open(getWeaponPath(username));

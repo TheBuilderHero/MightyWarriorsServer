@@ -5,10 +5,19 @@
 
 using namespace std;
 
-Weapons::Weapons(string username){
+Weapons::Weapons(string username, bool initialSetup){
     usernameForWeapons = username; //set the class variable to store the username of the person
-    loadWeaponData(usernameForWeapons);
-    setPlayerWeapon(weaponID); //weaponID is pulled from file in loadWeaponData funciton
+    if(!initialSetup){
+        loadWeaponData(usernameForWeapons);
+        setPlayerWeapon(weaponID); //weaponID is pulled from file in loadWeaponData funciton
+    } else {
+        iron = 0;
+        wood = 0;
+        gems = 0;
+        feet = 0;
+        fruit = 0;
+        brains = 0;
+    }
 }
 
 void Weapons::loadWeaponData(string username){    //save the weapon bonus' to file:
@@ -139,8 +148,11 @@ void Weapons::setPlayerWeapon(int weaponChoice)
         break;
     }
 }
-int Weapons::getPlayerWeapon(std::string username){
+int Weapons::getPlayerWeapon(){
     return weaponID;
+}
+string Weapons::getWeaponName(){
+    return weaponType;
 }
 
 Weapons::~Weapons() //Weapon class destructor
