@@ -291,30 +291,33 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             //copied from case 5
             //pull current stats from file:
             userDataDeliminationRead(3, username);
-            int tempIron = stoi(getItem(2));//iron
-            int tempWood = stoi(getItem(3));//wood
-            int tempGems = stoi(getItem(4));//gems
-            int tempFeet = stoi(getItem(5));//feet
-            int tempFruit = stoi(getItem(6));//fruit
-            int tempBrains = stoi(getItem(7));//brains
+            int tempID = stoi(getItem(2));//weapon ID
+            int tempIron = stoi(getItem(3));//iron
+            int tempWood = stoi(getItem(4));//wood
+            int tempGems = stoi(getItem(5));//gems
+            int tempFeet = stoi(getItem(6));//feet
+            int tempFruit = stoi(getItem(7));//fruit
+            int tempBrains = stoi(getItem(8));//brains
 
-            //add new amounts to current stats:
-            data2 = to_string(tempIron + stoi(data2));
-            data3 = to_string(tempWood + stoi(data3));
-            data4 = to_string(tempGems + stoi(data4));
-            data5 = to_string(tempFeet + stoi(data5));
-            data6 = to_string(tempFruit + stoi(data6));
-            data7 = to_string(tempBrains + stoi(data7));
+            //add new amounts to current stats except ID:
+            data2 = to_string(tempID);
+            data3 = to_string(tempIron + stoi(data3));
+            data4 = to_string(tempWood + stoi(data4));
+            data5 = to_string(tempGems + stoi(data5));
+            data6 = to_string(tempFeet + stoi(data6));
+            data7 = to_string(tempFruit + stoi(data7));
+            data8 = to_string(tempBrains + stoi(data8));
 
             //write new stats to file:
-            weaponStats.open(getStatPath(username));
+            weaponStats.open(getWeaponPath(username));
             weaponStats << delimiter << username; // these are all adding data to the file with delimiter seperation.
-            if (data2.length() > 0) {weaponStats << delimiter << data2;} else {weaponStats << delimiter;} //iron
-            if (data3.length() > 0) {weaponStats << delimiter << data3;} else {weaponStats << delimiter;} //wood
-            if (data4.length() > 0) {weaponStats << delimiter << data4;} else {weaponStats << delimiter;} //gems
-            if (data5.length() > 0) {weaponStats << delimiter << data5;} else {weaponStats << delimiter;} //feet
-            if (data6.length() > 0) {weaponStats << delimiter << data6;} else {weaponStats << delimiter;} //fruits
-            if (data7.length() > 0) {weaponStats << delimiter << data7;} else {weaponStats << delimiter;} //brains
+            if (data2.length() > 0) {weaponStats << delimiter << data2;} else {weaponStats << delimiter;} //Weapon ID
+            if (data3.length() > 0) {weaponStats << delimiter << data3;} else {weaponStats << delimiter;} //iron
+            if (data4.length() > 0) {weaponStats << delimiter << data4;} else {weaponStats << delimiter;} //wood
+            if (data5.length() > 0) {weaponStats << delimiter << data5;} else {weaponStats << delimiter;} //gems
+            if (data6.length() > 0) {weaponStats << delimiter << data6;} else {weaponStats << delimiter;} //feet
+            if (data7.length() > 0) {weaponStats << delimiter << data7;} else {weaponStats << delimiter;} //fruits
+            if (data8.length() > 0) {weaponStats << delimiter << data8;} else {weaponStats << delimiter;} //brains
             weaponStats << delimiter;
             weaponStats.close(); // done writting to file and now it is closed
             break;}
@@ -423,23 +426,26 @@ void Cipher::userDataDeliminationRead(int updateValue, string username){
                     case 1: //first item after delimiter
                     if (output.length() > 0) username = output;
                     break;
-                    case 2://second item after delimiter
+                    case 2://second item after delimiter      //weaponID
                     if (output.length() > 0) item2 = output; // we many need to change the variable to an int with stoi(output) later but right now we just want a string version
                     break;
-                    case 3://third item after delimiter
+                    case 3://third item after delimiter       //iron
                     if (output.length() > 0) item3 = output;
                     break;
-                    case 4://forth item after delimiter
+                    case 4://forth item after delimiter       //wood
                     if (output.length() > 0) item4 = output;
                     break;
-                    case 5://fith item after delimiter
+                    case 5://fith item after delimiter        //gems
                     if (output.length() > 0) item5 = output;
                     break;
-                    case 6://sixth item after delimiter
+                    case 6://sixth item after delimiter       //feet
                     if (output.length() > 0) item6 = output;
                     break;
-                    case 7://seventh item after delimiter
+                    case 7://seventh item after delimiter     //fruit
                     if (output.length() > 0) item7 = output;
+                    break;
+                    case 8://seventh item after delimiter     //brains
+                    if (output.length() > 0) item8 = output;
                     break;
                 }
                 loopPass++;

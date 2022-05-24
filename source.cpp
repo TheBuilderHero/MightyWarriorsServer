@@ -137,12 +137,12 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             code.userDataDeliminationRead(1, code.getUsername()); //sets the items3 - 6 to the current stat values
             characters.pullRaceStats(players.getPlayerRace(code.getUsername()), code.getUsername());//set the stats of the Player for the race in their file
             //set the proper stat values for the input of the base stats (This is used in the following long statment)
-            returnMessage = code.cipher("5", players.getHealthStat(code.getUsername()), players.getArmorStat(code.getUsername()), players.getMagicResistanceStat(code.getUsername()), 
-            players.getPhysicalDamageStat(code.getUsername()), players.getMagicDamageStat(code.getUsername()), players.getAgilityStat(code.getUsername()), players.getStealthStat(code.getUsername()), 
+            returnMessage = code.cipher("5", players.getHealthStat(code.getUsername()), players.getArmorStat(code.getUsername()), players.getMagicResistanceStat(code.getUsername()), players.getPhysicalDamageStat(code.getUsername(), true), players.getMagicDamageStat(code.getUsername(), true), players.getAgilityStat(code.getUsername()), players.getStealthStat(code.getUsername()), 
             players.getStaminaStat(code.getUsername()), players.getManaStat(code.getUsername())); // This very long input put into simple terms calculates stats by adding base to bonus then spitting it out as a string for Health, armor, magicResistance, physicalDamage, MagicDamage, Agility
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
+            
         case 7: //read the enemy stats for battle
             int enemyNumPicked, enemyLevel;
             srand (time(NULL)); //initialize random seed
@@ -303,7 +303,6 @@ void dostuff(int sock) {
 int main(int argc, char* argv[]){
     cout << "Server Successfully Running..." << endl << "Press \"ctrl + c\" to stop the running program\nServer Version: " << to_string(ServerVersion) << "." << to_string(ServerMajorBuild) << "." << to_string(ServerMinorBuild) << "." << to_string(ServerPatch) << endl; //I use this line to make sure the server is running and test the compiles
     //Richard enter your test code below:
-
 
     communicate(argc, argv); //Start the servers function
     return 0; /* we never get here */

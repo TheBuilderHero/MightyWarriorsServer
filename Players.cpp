@@ -50,42 +50,61 @@ string Players::getHealthStat(std::string username){ //this funciton calculates 
     kit.pullKitStats(username);
     code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
     characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
-    int totalHealthValue = characters.getBaseHealth() + stoi(code.getItem(2)) + kit.getHealth();
+    int totalHealthValue = characters.getBaseHealth() /*+ stoi(code.getItem(2))*/ + kit.getHealth();
     return to_string(totalHealthValue);
 }
-string Players::getPhysicalDamageStat(std::string username, int basePhysicalDamage, int bonusPhysicalDamage){ //this funciton calculates to total Physical Damage stat of a user and makes it into a string to be sent to the client
-    //need to replace this function with the overload of this below. Request action uses this one when it should use the other.
-    int totalPhysicalDamageValue = basePhysicalDamage + bonusPhysicalDamage;
-    return to_string(totalPhysicalDamageValue);
+string Players::getPhysicalDamageStat(std::string username, bool outputMinAndMaxString){ //this funciton calculates to total Physical Damage stat of a user and makes it into a string to be sent to the client
+    if (outputMinAndMaxString){ //outputs a string showing the min to max damage a player can hit for 
+        Characters characters;
+        Cipher code;
+        Players players;
+        Kit kit;
+        kit.pullKitStats(username);
+        Weapons weapon(username);
+        code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
+        characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
+        int totalPhysicalDamageValue = characters.getBasePhysicalDamage() + stoi(code.getItem(5)) + kit.getPhysicalDamage();
+        return (to_string(totalPhysicalDamageValue + weapon.getPhysicalDamageMin()) + " - " + to_string(totalPhysicalDamageValue + weapon.getPhysicalDamageMax()));
+    } else { 
+        Characters characters;
+        Cipher code;
+        Players players;
+        Kit kit;
+        kit.pullKitStats(username);
+        Weapons weapon(username);
+        code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
+        characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
+        int totalPhysicalDamageValue = characters.getBasePhysicalDamage() + stoi(code.getItem(5)) + kit.getPhysicalDamage() + weapon.getPhysicalDamage();
+        return to_string(totalPhysicalDamageValue);
+    }
+    
 }
-string Players::getPhysicalDamageStat(std::string username){ //this funciton calculates to total Physical Damage stat of a user and makes it into a string to be sent to the client
-    Characters characters;
-    Cipher code;
-    Players players;
-    Kit kit;
-    kit.pullKitStats(username);
-    Weapons weapon(getPlayerWeapon(username, 1));
-    code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
-    characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
-    int totalPhysicalDamageValue = characters.getBasePhysicalDamage() + stoi(code.getItem(5)) + kit.getPhysicalDamage() + weapon.getPhysicalDamage();
-    return to_string(totalPhysicalDamageValue);
-}
-string Players::getMagicDamageStat(std::string username, int baseMagicDamage, int bonusMagicDamage){ //this funciton calculates to total MagicDamage stat of a user and makes it into a string to be sent to the client
-    //need to replace this function with the overload of this below. Request action uses this one when it should use the other.
-    int totalMagicDamageValue = baseMagicDamage + bonusMagicDamage;
-    return to_string(totalMagicDamageValue);
-}
-string Players::getMagicDamageStat(std::string username){ //this funciton calculates to total Magic Damage stat of a user and makes it into a string to be sent to the client
-    Characters characters;
-    Cipher code;
-    Players players;
-    Kit kit;
-    kit.pullKitStats(username);
-    Weapons weapon(getPlayerWeapon(username, 4));
-    code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
-    characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
-    int totalMagicDamageValue = characters.getBaseMagicDamage() + stoi(code.getItem(6)) + kit.getMagicDamage() + weapon.getMagicDamage();
-    return to_string(totalMagicDamageValue);
+string Players::getMagicDamageStat(std::string username, bool outputMinAndMaxString){ //this funciton calculates to total Magic Damage stat of a user and makes it into a string to be sent to the client
+    if (outputMinAndMaxString){ //outputs a string showing the min to max damage a player can hit for 
+        Characters characters;
+        Cipher code;
+        Players players;
+        Kit kit;
+        kit.pullKitStats(username);
+        Weapons weapon(username);
+        code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
+        int statMagicDamage = stoi(code.getItem(6));
+        characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
+        int totalMagicDamageValue = characters.getBaseMagicDamage() + statMagicDamage + kit.getMagicDamage();
+        return (to_string(totalMagicDamageValue + weapon.getMagicDamageMin()) + " - " + to_string(totalMagicDamageValue + weapon.getMagicDamageMax()));
+    } else {
+        Characters characters;
+        Cipher code;
+        Players players;
+        Kit kit;
+        kit.pullKitStats(username);
+        Weapons weapon(username);
+        code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
+        int statMagicDamage = stoi(code.getItem(6));
+        characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
+        int totalMagicDamageValue = characters.getBaseMagicDamage() + statMagicDamage + kit.getMagicDamage() + weapon.getMagicDamage();
+        return to_string(totalMagicDamageValue);
+    }
 }
 string Players::getArmorStat(std::string username, int baseArmor, int bonusArmor){//this funciton calculates to total Armor stat of a user and makes it into a string to be sent to the client
     int totalArmorValue = baseArmor + bonusArmor;
@@ -205,10 +224,4 @@ void Players::updateXPAmount(string username, int playerLevel, double newXPAmoun
     string playerRace = player.getPlayerRace(username); //get the players kit
     string playerKit = kit.getPlayerKit(username); //get the players race
     code.userDataDeliminationWrite(4, username, playerRace, playerKit, to_string(playerLevel), to_string(newXPAmount)); //save the new XP amount along with resaving race, kit, level
-}
-
-int Players::getPlayerWeapon(string username, int tempWeaponChoice){ //tempWeaponChoice needs to be deleted when the code to pull the user data is added
-    //Dakota please help me save weapons to player file as an int
-    //and then load that int here
-    return tempWeaponChoice;
 }

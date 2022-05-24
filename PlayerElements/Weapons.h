@@ -7,15 +7,25 @@ class Weapons
 {
 private:
     string weaponType;
-    int physicalDamage, magicDamage, psychicDamage, accuracy;
+    int weaponID;
+    string usernameForWeapons;
+    int accuracy;
+    int minPhysicalDamage = 0, minMagicDamage = 0, minPsychicDamage = 0;
+    int maxPhysicalDamage, maxMagicDamage, maxPsychicDamage;
     int iron, wood, gems, feet, fruit, brains; //feet means Rabbit feet
 public:
-    Weapons(int weaponChoice);
+    Weapons(std::string username);
     ~Weapons();
 
     int getPhysicalDamage();
+    int getPhysicalDamageMin();
+    int getPhysicalDamageMax();
     int getMagicDamage();
+    int getMagicDamageMin();
+    int getMagicDamageMax();
     int getPsychicDamage();
+    int getPsychicDamageMin();
+    int getPsychicDamageMax();
     int getAccuracy(){ return accuracy; }
 
     int getIron(){ return iron; }
@@ -34,6 +44,7 @@ public:
 
     void loadWeaponData(string username);
     void saveWeaponData(string username);
+    void setPlayerWeapon(int weaponChoice);
     int getPlayerWeapon(std::string username);
 };
 

@@ -5,92 +5,145 @@
 
 using namespace std;
 
-Weapons::Weapons(int weaponChoice) 
+Weapons::Weapons(string username){
+    usernameForWeapons = username; //set the class variable to store the username of the person
+    loadWeaponData(usernameForWeapons);
+    setPlayerWeapon(weaponID); //weaponID is pulled from file in loadWeaponData funciton
+}
+
+void Weapons::loadWeaponData(string username){    //save the weapon bonus' to file:
+    Cipher cipher;
+    //retrive from file:
+    cipher.userDataDeliminationRead(3, username);
+    //zero all values:
+    iron = 0;
+    wood = 0;
+    gems = 0;
+    feet = 0;
+    fruit = 0;
+    brains = 0;
+    //set all values based on file:
+    weaponID = stoi(cipher.getItem(2));
+    iron += stoi(cipher.getItem(3));
+    wood += stoi(cipher.getItem(4));
+    gems += stoi(cipher.getItem(5));
+    feet += stoi(cipher.getItem(6));
+    fruit += stoi(cipher.getItem(7));
+    brains += stoi(cipher.getItem(8));
+}
+void Weapons::saveWeaponData(string username){    //save the weapon bonus' to file:
+    Cipher cipher;
+    cipher.userDataDeliminationWrite(6, username, to_string(weaponID) ,to_string(iron), to_string(wood), to_string(gems), to_string(feet), to_string(fruit), to_string(brains));
+}
+
+int Weapons::getPhysicalDamage(){ //this is used for battle to get a value between the min and max values
+    srand (time(NULL));
+    if(maxPhysicalDamage == 0){ //resolve devide by zero issue
+        maxPhysicalDamage++;
+    }
+    return (rand() % maxPhysicalDamage + minPhysicalDamage);  //random number between min and max
+}
+int Weapons::getPhysicalDamageMax(){
+    return maxPhysicalDamage; 
+}
+int Weapons::getPhysicalDamageMin(){
+    return minPhysicalDamage; 
+}
+int Weapons::getMagicDamage(){ //this is used for battle to get a value between the min and max values
+    srand(time(NULL));
+    if(maxMagicDamage == 0){//resolve devide by zero issue
+        maxMagicDamage++;
+    }
+    return (rand() % maxMagicDamage + minMagicDamage); //random number between min and max
+}
+int Weapons::getMagicDamageMin(){
+    return minMagicDamage;
+}
+int Weapons::getMagicDamageMax(){
+    return maxMagicDamage; 
+}
+int Weapons::getPsychicDamage(){ //this is used for battle to get a value between the min and max values
+    srand(time(NULL));
+    if(maxPsychicDamage == 0){//resolve devide by zero issue
+        maxPsychicDamage++;
+    }
+    return (rand() % maxPsychicDamage + minPsychicDamage); //random number between min and max
+}
+int Weapons::getPsychicDamageMin(){
+    return minPsychicDamage; 
+}
+int Weapons::getPsychicDamageMax(){
+    return maxPsychicDamage; 
+}
+
+void Weapons::setPlayerWeapon(int weaponChoice) 
 {
     switch(weaponChoice){
         case 1: 
             weaponType = "Sword";
-            physicalDamage = 20;
-            magicDamage = 0;
-            psychicDamage = 0;
+            weaponID = 1;
+            maxPhysicalDamage = 20;
+            maxMagicDamage = 0;
+            maxPsychicDamage = 0;
             accuracy = 5; //maybe out of 10
             break;
         case 2: 
             weaponType = "Bow";
-            physicalDamage = 12;
-            magicDamage = 0;
-            psychicDamage = 0;
+            weaponID = 2;
+            maxPhysicalDamage = 12;
+            maxMagicDamage = 0;
+            maxPsychicDamage = 0;
             accuracy = 4; 
             break;
         case 3: 
             weaponType = "Dagger";
-            physicalDamage = 12;
-            magicDamage = 0;
-            psychicDamage = 0;
+            weaponID = 3;
+            maxPhysicalDamage = 12;
+            maxMagicDamage = 0;
+            maxPsychicDamage = 0;
             accuracy = 6; 
             break;
          case 4: 
             weaponType = "Fire Rune";
-            physicalDamage = 3;
-            magicDamage = 18;
-            psychicDamage = 0;
+            weaponID = 4;
+            maxPhysicalDamage = 3;
+            maxMagicDamage = 18;
+            maxPsychicDamage = 0;
             accuracy = 8;
             break;
         case 5: 
             weaponType = "Wind Rune";
-            physicalDamage = 6;
-            magicDamage = 14;
-            psychicDamage = 0;
+            weaponID = 5;
+            maxPhysicalDamage = 6;
+            maxMagicDamage = 14;
+            maxPsychicDamage = 0;
             accuracy = 9;
             break;
         case 6: 
             weaponType = "Ice Spike";
-            physicalDamage = 16;
-            magicDamage = 36;
-            psychicDamage = 0;
+            weaponID = 6;
+            maxPhysicalDamage = 16;
+            maxMagicDamage = 36;
+            maxPsychicDamage = 0;
             accuracy = 2;
             break;
         case 7: 
             weaponType = "Black Book";
-            physicalDamage = 8;
-            magicDamage = 8;
-            psychicDamage = 5;
+            weaponID = 7;
+            maxPhysicalDamage = 8;
+            maxMagicDamage = 8;
+            maxPsychicDamage = 5;
             accuracy = 10;
             break;
         default:
         break;
     }
 }
-
-void Weapons::loadWeaponData(string username){    //save the weapon bonus' to file:
-    Cipher cipher;
-    cipher.userDataDeliminationRead(3, username);
-}
-
-void Weapons::saveWeaponData(string username){    //save the weapon bonus' to file:
-    Cipher cipher;
-    cipher.userDataDeliminationWrite(6, username, to_string(iron), to_string(wood), to_string(gems), to_string(feet), to_string(fruit), to_string(brains));
-}
-int Weapons::getPhysicalDamage(){
-    srand (time(NULL));
-    return (rand() % physicalDamage); 
-}
-int Weapons::getMagicDamage(){
-    srand(time(NULL));
-    return (rand() % magicDamage); 
-}
-int Weapons::getPsychicDamage(){
-    srand(time(NULL));
-    return ((rand() % psychicDamage) + brains); 
-}
-
 int Weapons::getPlayerWeapon(std::string username){
-   /* Cipher code;
-    code.userDataDeliminationRead(2, username); //Dakota please help me write weapon data to the user file
-    return code.getItem(3); */
-    return 1;
+    return weaponID;
 }
 
 Weapons::~Weapons() //Weapon class destructor
 {
+    saveWeaponData(usernameForWeapons);
 }
