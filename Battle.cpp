@@ -161,6 +161,36 @@ int Battle::doROption(string username, string attackMagicOrPhysical, int enemyCh
     //return the damage done by Q rounded to a whole number
     return round(rDamage * 5);
 }
+void Battle::enemyGroups(){
+    Enemies enemy;
+    string bossEnemy; // stores the boss character of the group
+    srand (time(NULL)); 
+    string randomEnemyName = enemy.getEnemyName(rand() % 12 + 1); //Accessing all avaliable enemy types
+    int numberOfEnemies = rand() % 7 + 1; // Random number of enemies between 1 and 7
+    // Not sure what this is:
+    //EnemyGroup enemyEncounter = new EnemyGroup(randomEnemyName);
+    //maybe this will work instead:
+    //listOfEnemies[numberOfEnemies + 1]; // add 1 for the boss
+    
+    if (numberOfEnemies > 4){ // If there are more than 4 enemies in a group, a normal potato will spawn
+        bossEnemy = enemy.getEnemyName(13);
+    }
+    
+    if (numberOfEnemies < 4){ // If there are less than 4 enemies in a group, a giant raccoon will spawn
+        bossEnemy = enemy.getEnemyName(8);
+    }
+    
+    //place all enemies in the array:
+    int count = 0;
+    while(count != (numberOfEnemies)){
+        listOfEnemies[count] = randomEnemyName;
+        count++;
+    }
+    listOfEnemies[numberOfEnemies + 1] = bossEnemy; // add 1 for the boss
+
+    //maybe modify this later to use struct and typedef
+    //return listOfEnemies;
+}
 //Enemy attack functions:
 int Battle::determineEnemyAttackOption(string username, int enemyChoice, string playerBlocking){
     Enemies enemy;

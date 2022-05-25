@@ -11,6 +11,7 @@
 #include "Cipher.h"
 #include "Battle.h"
 #include "PlayerElements/Kit.h"
+#include "PlayerElements/Weapons.h"
 
 //Make sure that game sersion is changed along with client or go to the version check function and allow for older versions of the client. (We must make sure to be acceptable in functionality)
 //********************************************
@@ -137,12 +138,12 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             code.userDataDeliminationRead(1, code.getUsername()); //sets the items3 - 6 to the current stat values
             characters.pullRaceStats(players.getPlayerRace(code.getUsername()), code.getUsername());//set the stats of the Player for the race in their file
             //set the proper stat values for the input of the base stats (This is used in the following long statment)
-            returnMessage = code.cipher("5", players.getHealthStat(code.getUsername()), players.getArmorStat(code.getUsername()), players.getMagicResistanceStat(code.getUsername()), 
-            players.getPhysicalDamageStat(code.getUsername()), players.getMagicDamageStat(code.getUsername()), players.getAgilityStat(code.getUsername()), players.getStealthStat(code.getUsername()), 
+            returnMessage = code.cipher("5", players.getHealthStat(code.getUsername()), players.getArmorStat(code.getUsername()), players.getMagicResistanceStat(code.getUsername()), players.getPhysicalDamageStat(code.getUsername(), true), players.getMagicDamageStat(code.getUsername(), true), players.getAgilityStat(code.getUsername()), players.getStealthStat(code.getUsername()), 
             players.getStaminaStat(code.getUsername()), players.getManaStat(code.getUsername())); // This very long input put into simple terms calculates stats by adding base to bonus then spitting it out as a string for Health, armor, magicResistance, physicalDamage, MagicDamage, Agility
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
+            
         case 7: //read the enemy stats for battle
             int enemyNumPicked, enemyLevel;
             srand (time(NULL)); //initialize random seed
@@ -153,11 +154,18 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
-        case 8: //user race selection and write to file
+        case 8:{ //user race, kit, and weapon selection and write to file
             // using code.getItem(3) from the client (which is raceChoice) and code.getItem(4) (which is kitChoice) we will determine the race which the user selected which is the reutrn of getPlayerRace
-            code.userDataDeliminationWrite(1, code.getUsername(), players.getPlayerRace(code.getUsername(), stoi(code.getItem(3))), kit.getPlayerKit(code.getUsername(), stoi(code.getItem(4)))); //write that race to file
+            int tempWeaponChoice = stoi(code.getItem(5));
+            int tempRaceChoice = stoi(code.getItem(3));
+            int tempKitChoice = stoi(code.getItem(4));
+            Weapons weapons(code.getUsername(), true);
+            weapons.setPlayerWeapon(tempWeaponChoice);
+            weapons.~Weapons(); //call destructor to save weapon data
+            code.userDataDeliminationWrite(1, code.getUsername(), players.getPlayerRace(code.getUsername(), tempRaceChoice), kit.getPlayerKit(code.getUsername(), tempKitChoice)); //write that race to file
             //instead of kit.kit we need to take code.getItem(4) and determine what kit they chose and input that.
             break;
+            }
         case 9: //this takes the input of battle attacks to then reply with the damage amount.
             returnMessage = code.cipher("4", to_string(battle.determineOption(code.getUsername(), stoi(code.getItem(4)), enemy.getEnemyPickedFromName(code.getItem(3))))); //get the damage for one of the abilites and cipher return message.
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
@@ -179,11 +187,13 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
-        case 13: //sends the players race, kit, level, and XP to client
-            returnMessage = code.cipher("5", players.getPlayerRace(code.getUsername()), kit.getPlayerKit(code.getUsername())); //
+        case 13:{ //sends the players race, kit, level, and weapon
+            Weapons weapons(code.getUsername());
+            returnMessage = code.cipher("5", players.getPlayerRace(code.getUsername()), kit.getPlayerKit(code.getUsername()), weapons.getWeaponName()); //
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
+            }
         case 14: //updates the players level and XP
             //currently using the players level for the enemy's level for XP since they should be the same
             battle.increaseXP(code.getUsername(), enemy.getXPDrop(enemy.getEnemyPickedFromName(code.getItem(3)))); //hardset the enemies level to 1 since at this moment there is no level change for enemies
@@ -303,7 +313,6 @@ void dostuff(int sock) {
 int main(int argc, char* argv[]){
     cout << "Server Successfully Running..." << endl << "Press \"ctrl + c\" to stop the running program\nServer Version: " << to_string(ServerVersion) << "." << to_string(ServerMajorBuild) << "." << to_string(ServerMinorBuild) << "." << to_string(ServerPatch) << endl; //I use this line to make sure the server is running and test the compiles
     //Richard enter your test code below:
-
 
     communicate(argc, argv); //Start the servers function
     return 0; /* we never get here */

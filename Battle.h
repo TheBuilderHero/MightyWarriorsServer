@@ -4,9 +4,12 @@
 
 class Battle{//This class will have all the functions needed for the algorythms needed to complete a battle from start to finish.
     private:
+    int MAX_GROUP_SIZE = 10;
     const float DEFENSE_RATIO = .50; //this is the percent of armor that equates to the amount of damage points reduced
     const float BLOCK_REDUCTION_VALUE = .10;
     //bool enemyBlocking = false; //isEnemyBlocking does not use this as of now
+    //need to modify so that we can return values instead of this:
+    std::string listOfEnemies[10]; //this is used for the enemies within a group - lists all their names
     
     public:
     std::string getEnemyBattleStats(int enemyRandomChoice, int level, std::string statChoice); //set the enemy battle stats //return a value of type int but converted to a string
@@ -17,6 +20,7 @@ class Battle{//This class will have all the functions needed for the algorythms 
     int doWOption(std::string username, std::string attackMagicOrPhysical, int enemyChoice); //this will be the main utility ability - output is dmage amount in type int
     int doEOption(std::string username, std::string attackMagicOrPhysical, int enemyChoice); //this will be the main dodge or block ability - output is damage amount in type int
     int doROption(std::string username, std::string attackMagicOrPhysical, int enemyChoice); //this will be the ultimate ability - output is damage amount in type int
+    void enemyGroups();
     //enemy attacks:
     int determineEnemyAttackOption(std::string username, int enemyChoice, std::string playerBlocking);
     int doEnemyOption1(std::string username, std::string attackMagicOrPhysical, int enemyChoice, std::string playerBlocking);

@@ -20,6 +20,10 @@ string Cipher::getActPath(std::string username){
     string output = "./userdata/" + username + "/" + username + ".act";
     return output;
 }
+string Cipher::getWeaponPath(std::string username){
+    string output = "./userdata/" + username + "/" + username + ".weapons";
+    return output;
+}
 
 string Cipher::getItem(int itemNumberToReturn){ //the purpose of this function is to return data that has been deciphered.
     switch (itemNumberToReturn)
@@ -178,8 +182,9 @@ string Cipher::cipher(string responseType, string item2, string item3, string it
 void Cipher::userDataDeliminationWrite(int updateValue, string username, string data2, string data3, string data4, string data5, string data6, string data7, string data8, string data9, string data10){
     ofstream userfile;
     ofstream logonfile;
+    ofstream weaponStats;
     switch (updateValue){ //updateValue is for the password, whether it is just getting updated or if this is a new user.
-        case 1: //sets the player's username, race, kit, level, and xp on account setup.
+        case 1:{ //sets the player's username, race, kit, level, and xp on account setup.
             mkdir(("./userdata/" + username).c_str(), 0774);
 
             //inital starting level and XP stats:
@@ -205,15 +210,15 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             logonfile << delimiter << "0000"; // set defualt password for the account
             logonfile << delimiter;
             logonfile.close();
-            break;
-        case 2: //password update
+            break;}
+        case 2:{ //password update
             logonfile.open(getActPath(username)); // this is the file which will store the users accout logon info
             logonfile << delimiter << username;
             logonfile << delimiter << data2; //this sets the defualt password to the information input in data2 which was given by the user
             logonfile << delimiter;
             logonfile.close();
-            break;
-        case 3: //Overwrite the user's stats
+            break;}
+        case 3:{ //Overwrite the user's stats
             userfile.open(getStatPath(username));
             userfile << delimiter << username; // these are all adding data to the file with delimiter seperation.
             if (data2.length() > 0) {userfile << delimiter << data2;} else {userfile << delimiter;} //health stat
@@ -227,8 +232,8 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             if (data10.length() > 0) {userfile << delimiter << data10;} else {userfile << delimiter;} //Mana stat
             userfile << delimiter;
             userfile.close(); // done writting to file and now it is closed
-            break;
-        case 4: //update the players's level and XP
+            break;}
+        case 4:{ //update the players's level and XP
             //some user data is stored in "[username].dat"
             userfile.open(getDatPath(username));
             userfile << delimiter << username; // these are all adding data to the file with delimiter seperation.
@@ -242,8 +247,8 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             if (data9.length() > 0) {userfile << delimiter << data9;} else {userfile << delimiter;}
             userfile << delimiter;
             userfile.close(); // done writting to file and now it is closed
-            break;
-        case 5: //update user stats
+            break;}
+        case 5:{ //update user stats
             //pull current stats from file:
             userDataDeliminationRead(1, username);
             int tempHealth = stoi(getItem(2));//health stat
@@ -281,13 +286,53 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             if (data10.length() > 0) {userfile << delimiter << data10;} else {userfile << delimiter;} //Mana stat
             userfile << delimiter;
             userfile.close(); // done writting to file and now it is closed
-            break;
+            break;}
+        case 6: {//update user Weapons
+            //copied from case 5
+            //pull current stats from file if it exists:
+            ifstream weaponFolderTest;
+            weaponFolderTest.open(getWeaponPath(username)); //for testing purposes
+            if(weaponFolderTest){ //if the file exists
+                weaponFolderTest.close();
+                userDataDeliminationRead(3, username);
+                int tempID = stoi(getItem(2));//weapon ID
+                int tempIron = stoi(getItem(3));//iron
+                int tempWood = stoi(getItem(4));//wood
+                int tempGems = stoi(getItem(5));//gems
+                int tempFeet = stoi(getItem(6));//feet
+                int tempFruit = stoi(getItem(7));//fruit
+                int tempBrains = stoi(getItem(8));//brains
+
+                //add new amounts to current stats except ID:
+                data2 = to_string(tempID);
+                data3 = to_string(tempIron + stoi(data3));
+                data4 = to_string(tempWood + stoi(data4));
+                data5 = to_string(tempGems + stoi(data5));
+                data6 = to_string(tempFeet + stoi(data6));
+                data7 = to_string(tempFruit + stoi(data7));
+                data8 = to_string(tempBrains + stoi(data8));
+            }
+
+            //write new stats to file:
+            weaponStats.open(getWeaponPath(username));
+            weaponStats << delimiter << username; // these are all adding data to the file with delimiter seperation.
+            if (data2.length() > 0) {weaponStats << delimiter << data2;} else {weaponStats << delimiter;} //Weapon ID
+            if (data3.length() > 0) {weaponStats << delimiter << data3;} else {weaponStats << delimiter;} //iron
+            if (data4.length() > 0) {weaponStats << delimiter << data4;} else {weaponStats << delimiter;} //wood
+            if (data5.length() > 0) {weaponStats << delimiter << data5;} else {weaponStats << delimiter;} //gems
+            if (data6.length() > 0) {weaponStats << delimiter << data6;} else {weaponStats << delimiter;} //feet
+            if (data7.length() > 0) {weaponStats << delimiter << data7;} else {weaponStats << delimiter;} //fruits
+            if (data8.length() > 0) {weaponStats << delimiter << data8;} else {weaponStats << delimiter;} //brains
+            weaponStats << delimiter;
+            weaponStats.close(); // done writting to file and now it is closed
+            break;}
     }
 }
 
 void Cipher::userDataDeliminationRead(int updateValue, string username){
     ifstream userstats;
     ifstream userdata;
+    ifstream weaponStats;
     string s;
     string str_file_content;
     string token, output;
@@ -372,6 +417,45 @@ void Cipher::userDataDeliminationRead(int updateValue, string username){
                 loopPass++;
             }
             userdata.close();
+            break;
+        case 3://get the weapon stat amounts
+            weaponStats.open(getWeaponPath(username));
+            weaponStats >> s;
+            while ((pos = s.find(delimiter)) != std::string::npos) {
+                token = s.substr(0, pos);
+                output = token;
+                str_file_content += std::string(token);
+                s.erase(0, pos + delimiter.length());
+                
+                switch (loopPass){
+                    case 1: //first item after delimiter
+                    if (output.length() > 0) username = output;
+                    break;
+                    case 2://second item after delimiter      //weaponID
+                    if (output.length() > 0) item2 = output; // we many need to change the variable to an int with stoi(output) later but right now we just want a string version
+                    break;
+                    case 3://third item after delimiter       //iron
+                    if (output.length() > 0) item3 = output;
+                    break;
+                    case 4://forth item after delimiter       //wood
+                    if (output.length() > 0) item4 = output;
+                    break;
+                    case 5://fith item after delimiter        //gems
+                    if (output.length() > 0) item5 = output;
+                    break;
+                    case 6://sixth item after delimiter       //feet
+                    if (output.length() > 0) item6 = output;
+                    break;
+                    case 7://seventh item after delimiter     //fruit
+                    if (output.length() > 0) item7 = output;
+                    break;
+                    case 8://seventh item after delimiter     //brains
+                    if (output.length() > 0) item8 = output;
+                    break;
+                }
+                loopPass++;
+            }
+            weaponStats.close();
             break;
     }
 }
