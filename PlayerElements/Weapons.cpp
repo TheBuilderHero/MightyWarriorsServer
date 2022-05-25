@@ -7,6 +7,7 @@ using namespace std;
 
 Weapons::Weapons(string username, bool initialSetup){
     usernameForWeapons = username; //set the class variable to store the username of the person
+    minPhysicalDamage = minMagicDamage = minPsychicDamage = 0;
     if(!initialSetup){
         loadWeaponData(usernameForWeapons);
         setPlayerWeapon(weaponID); //weaponID is pulled from file in loadWeaponData funciton
