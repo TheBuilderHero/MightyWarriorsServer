@@ -74,7 +74,6 @@ double Enemies::getXPDrop(int enemyChoice){
     enemyChoiceGetStat(enemyChoice); //pull the xpDrop stat from the enemy
     return xpDrop; //return the xpDrop amount
 }
-
 void Enemies::enemyLevelStatBuff(int enemyChoice, int enemyLevel){
     double currentDropXP = getXPDrop(enemyChoice); //running at the beguining so that it does not overrite the modifiers below
 
@@ -98,7 +97,6 @@ void Enemies::enemyLevelStatBuff(int enemyChoice, int enemyLevel){
     setBaseStealth(getBaseStealth() + round(enemyLevel * stealthLevelBuff));
     xpDrop = currentDropXP + round(enemyLevel * stealthLevelBuff);
 }
-
 string Enemies::getEnemyName(int enemyChoice){ //returns names based on input int 1 - 13
     switch (enemyChoice){
         case 1:
@@ -160,7 +158,6 @@ string Enemies::getEnemyName(int enemyChoice){ //returns names based on input in
             break;
     }
 }
-
 int Enemies::getEnemyPickedFromName(string enemyName){ //This function is intended to go through and test which enemy the client is fighting currently and output that asociated number value
     mutantElf();
     if (enemyName == displayName) return enemyNum;
@@ -169,6 +166,7 @@ int Enemies::getEnemyPickedFromName(string enemyName){ //This function is intend
     return enemyNum; //if it gets to this point it will just return the value stored in enemyNum.
 }
 
+//Enemies:
 void Enemies::mutantElf() {
     enemyNum = MUTANT_ELF; //this is the number associated with this enemy declared in the Enemies.h file
     displayName = "Mutant Elf";
@@ -182,7 +180,6 @@ void Enemies::mutantElf() {
     setLevel(1);
     xpDrop = 20;
 }
-
 void Enemies::voidCat() {
     enemyNum = VOID_CAT; //this is the number associated with this enemy declared in the Enemies.h file
     displayName = "Void Cat";
@@ -197,7 +194,6 @@ void Enemies::voidCat() {
     xpDrop = 20;
     //Radiation damage that mutants can inflict?
 }
-
 void Enemies::highwayRobber(){
     enemyNum = HIGHWAY_ROBBER;
     displayName = "Highway Robber";
@@ -211,7 +207,6 @@ void Enemies::highwayRobber(){
     setLevel(1);
     xpDrop = 10;
 }
-
 void Enemies::orc(){
     enemyNum = ORC_ENEMY;
     displayName = "Orc";
@@ -223,7 +218,6 @@ void Enemies::orc(){
     setLevel(1);
     xpDrop = 10;
 }
-
 void Enemies::sasquatch(){
     enemyNum = SASQUATCH_ENEMY;
     displayName = "Sasquatch";
@@ -235,7 +229,6 @@ void Enemies::sasquatch(){
     setLevel(1);
     xpDrop = 80;
 }
-
 void Enemies::skunk(){
     enemyNum = SKUNK_ENEMY;
     displayName = "Skunk";
@@ -249,7 +242,6 @@ void Enemies::skunk(){
     xpDrop = 7;
     //Skunk has very low armor and magic stats to compensate for toxic damage.
 }
-
 void Enemies::mutantSkunk(){
     enemyNum = MUTANT_SKUNK;
     displayName = "Mutant Skunk";
@@ -263,7 +255,6 @@ void Enemies::mutantSkunk(){
     setLevel(1);
     xpDrop = 12;
 }
-
 void Enemies::giantRaccoon(){
     enemyNum = GIANT_RACCOON;
     displayName = "Giant Raccoon";
@@ -276,7 +267,6 @@ void Enemies::giantRaccoon(){
     xpDrop = 500;
     //GIANT RACCOON!!! Mini-boss.
 }
-
 void Enemies::evilWizard(){
     enemyNum = EVIL_WIZARD;
     displayName = "Evil Wizard";
@@ -288,7 +278,6 @@ void Enemies::evilWizard(){
     setLevel(1);
     xpDrop = 80;
 }
-
 void Enemies::witch(){
     enemyNum = WITCH_ENEMY;
     displayName = "Witch";
@@ -300,7 +289,6 @@ void Enemies::witch(){
     setLevel(1);
     xpDrop = 80;
 }
-
 void Enemies::mutantGhost(){
     enemyNum = MUTANT_GHOST;
     displayName = "Mutant Ghost";
@@ -312,7 +300,6 @@ void Enemies::mutantGhost(){
     setLevel(1);
     xpDrop = 100;
 }
-
 void Enemies::wereWolf(){
     enemyNum = WERE_WOLF;
     displayName = "Werewolf";
@@ -324,7 +311,6 @@ void Enemies::wereWolf(){
     setLevel(1);
     xpDrop = 70;
 }
-
 void Enemies::normalPotato(){
     enemyNum = NORMAL_POTATO;
     displayName = "A normal potato";
