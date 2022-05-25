@@ -23,7 +23,7 @@ void Characters::human(string username) {  //Kyle
     baseMagicResistance = 5;
     baseMagicDamage = 1;
     baseAgility = 10;
-    basePhysicalDamage = 500;
+    basePhysicalDamage = 50;
     baseStealth = 5;
     baseStamina = 0;
     baseMana = 0;

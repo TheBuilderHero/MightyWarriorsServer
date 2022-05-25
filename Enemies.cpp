@@ -79,14 +79,14 @@ void Enemies::enemyLevelStatBuff(int enemyChoice, int enemyLevel){
     double currentDropXP = getXPDrop(enemyChoice); //running at the beguining so that it does not overrite the modifiers below
 
     //per level stat addition multiplier:
-    double healthLevelBuff = 2.5;
-    double physicalDamageLevelBuff = 2.5;
-    double armorLevelBuff = 2.5;
-    double magicDamageLevelBuff = 2.5;
-    double magicResistanceLevelBuff = 2.5;
-    double agilityLevelBuff = 2.5;
-    double stealthLevelBuff = 2.5;
-    double xpLevelBuff = 2.5;
+    double healthLevelBuff = .2;
+    double physicalDamageLevelBuff = .2;
+    double armorLevelBuff = .2;
+    double magicDamageLevelBuff = .2;
+    double magicResistanceLevelBuff = .2;
+    double agilityLevelBuff = .2;
+    double stealthLevelBuff = .2;
+    double xpLevelBuff = .2;
 
     //set the new stat values for the enemy with the applied level buff.
     setBaseHealth(getBaseHealth() + round(enemyLevel * healthLevelBuff));
