@@ -18,6 +18,13 @@ int Enemies::enemyChoiceGetStat(int enemyChoice){ //this version is used by the 
     if(enemyChoice == MUTANT_GHOST) mutantGhost();
     if(enemyChoice == WERE_WOLF) wereWolf();
     if(enemyChoice == NORMAL_POTATO) normalPotato();
+    if(enemyChoice == GOBLIN_MORG) goblinMorg();
+    if(enemyChoice == ORC_KLADE) orcKlade();
+    if(enemyChoice == BLACK_NIGHT) blackNight();
+    if(enemyChoice == BLUE_WIZARD) blueWizard();
+    if(enemyChoice == MONSTROUS_BEHEMOTH) monstrousBehemoth();
+    if(enemyChoice == AWFUL_NECROMANCER) awfulNecromancer();
+    if(enemyChoice == THE_DRAGON) theDragon();
     return 0; //does not return anything useful
 }
 int Enemies::enemyChoiceGetStat(int enemyChoice, int returnType, int enemyLevel){ //This function retrives the requested stat (returnType) of a given apponent (enemyChoice) - more then likely we will have the enemy choice randomly generated.
@@ -151,6 +158,34 @@ string Enemies::getEnemyName(int enemyChoice){ //returns names based on input in
             normalPotato();
             return displayName;
             break;
+        case 91:
+            goblinMorg();
+            return displayName;
+            break;
+        case 92:
+            orcKlade();
+            return displayName;
+            break;
+        case 93:
+            blackNight();
+            return displayName;
+            break;
+        case 94:
+            blueWizard();
+            return displayName;
+            break;
+        case 95:
+            monstrousBehemoth();
+            return displayName;
+            break;
+        case 96:
+            awfulNecromancer();
+            return displayName;
+            break;
+        case 97:
+            theDragon();
+            return displayName;
+            break;
             //Please note, if you add more enemies to this list you will need to update the range of the random number generator switch statement case 7, in the funcion requestActions() in the file source.cpp
         default: //if none of these we will input mutantElf()
             mutantElf();
@@ -183,15 +218,15 @@ void Enemies::mutantElf() {
 void Enemies::voidCat() {
     enemyNum = VOID_CAT; //this is the number associated with this enemy declared in the Enemies.h file
     displayName = "Void Cat";
-    setBaseHealth(1000);
-    setBasePhysicalDamage(10);
-    setBaseArmor(2);
-    setBaseMagicDamage(5);
-    setBaseMagicResistance(5);
+    setBaseHealth(10);
+    setBasePhysicalDamage(1);
+    setBaseArmor(1);
+    setBaseMagicDamage(1);
+    setBaseMagicResistance(1);
     setBaseAgility(0); //does not have any
     setBaseStealth(0); //does not have any
     setLevel(1);
-    xpDrop = 20;
+    xpDrop = 200;
     //Radiation damage that mutants can inflict?
 }
 void Enemies::highwayRobber(){
@@ -321,4 +356,81 @@ void Enemies::normalPotato(){
     setBaseMagicResistance(99);
     setLevel(1);
     xpDrop = 9999;
+}
+void Enemies::goblinMorg(){
+    enemyNum = GOBLIN_MORG;
+    displayName = "Morg the Goblin";
+    setBaseHealth(50);
+    setBasePhysicalDamage(9);
+    setBaseArmor(2);
+    setBaseMagicDamage(0);
+    setBaseMagicResistance(2);
+    setLevel(1);
+    xpDrop = 100;
+}
+void Enemies::orcKlade(){
+    enemyNum = ORC_KLADE;
+    displayName = "Klade the Orc";
+    setBaseHealth(100);
+    setBasePhysicalDamage(15);
+    setBaseArmor(3);
+    setBaseMagicDamage(20);
+    setBaseMagicResistance(4);
+    setLevel(1);
+    xpDrop = 200;
+}
+void Enemies::blackNight(){
+    enemyNum = BLACK_NIGHT;
+    displayName = "The Black Night";
+    setBaseHealth(175);
+    setBasePhysicalDamage(25);
+    setBaseArmor(10);
+    setBaseMagicDamage(10);
+    setBaseMagicResistance(50);
+    setLevel(1);
+    xpDrop = 350;
+}
+void Enemies::blueWizard(){
+    enemyNum = BLUE_WIZARD;
+    displayName = "The Blue Wizard";
+    setBaseHealth(200);
+    setBasePhysicalDamage(10);
+    setBaseArmor(20);
+    setBaseMagicDamage(35);
+    setBaseMagicResistance(30);
+    setLevel(1);
+    xpDrop = 500;
+}
+void Enemies::monstrousBehemoth(){
+    enemyNum = MONSTROUS_BEHEMOTH;
+    displayName = "The Monstrous Behemoth";
+    setBaseHealth(400);
+    setBasePhysicalDamage(50);
+    setBaseArmor(20);
+    setBaseMagicDamage(20);
+    setBaseMagicResistance(20);
+    setLevel(1);
+    xpDrop = 750;
+}
+void Enemies::awfulNecromancer(){
+    enemyNum = AWFUL_NECROMANCER;
+    displayName = "The Awful Necromancer";
+    setBaseHealth(400);
+    setBasePhysicalDamage(30);
+    setBaseArmor(30);
+    setBaseMagicDamage(70);
+    setBaseMagicResistance(50);
+    setLevel(1);
+    xpDrop = 1000;
+}
+void Enemies::theDragon(){
+    enemyNum = THE_DRAGON;
+    displayName = "The Dragon!!!";
+    setBaseHealth(750);
+    setBasePhysicalDamage(100);
+    setBaseArmor(75);
+    setBaseMagicDamage(70);
+    setBaseMagicResistance(75);
+    setLevel(1);
+    xpDrop = 2000;
 }
