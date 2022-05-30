@@ -29,6 +29,7 @@ class Cipher {
     //currently no function but it will read from the user's data file
     void userDataDeliminationRead(int updateValue, string username);
 
+    //Other Data management:
     void copyFile(std::string username, std::string pathOfCopyDestination);
     void copyFileAddingData(std::string username, string pathOfCopyTarget, std::string dataHeader, std::string newData, bool headerIsAtStart = false);
     void deleteFile(std::string fileName);
@@ -36,6 +37,10 @@ class Cipher {
     void updateData(string username, string pathOfFileToChangeData, string dataHeaderToUpdate, string newData); //the above functions are used in this function
     
     bool find(std::string username, std::string searchHeader);
+
+    void readData(string username, string pathOfFile);
+
+    //end of other data management
 
     //File and folder path return functions:
     std::string getStatPath(std::string username);

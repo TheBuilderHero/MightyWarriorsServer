@@ -147,9 +147,13 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
         case 7: //read the enemy stats for battle
             int enemyNumPicked, enemyLevel;
             srand (time(NULL)); //initialize random seed
+            cout << "running : " << code.getItem(3) << endl;
+            cout << "running : " << code.getItem(4) << endl;
             if(stoi(code.getItem(3)) == 1){
+                cout << "running : " << code.getItem(3) << endl;
                 if(stoi(code.getItem(4)) == 0){
-                    enemyNumPicked = 0;
+                    cout << "running : " << code.getItem(4) << endl;
+                    enemyNumPicked = 2;
                 }else{
                     enemyNumPicked = stoi(code.getItem(4)) + 90;
                 }

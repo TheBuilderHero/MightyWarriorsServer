@@ -468,6 +468,7 @@ void Cipher::userDataDeliminationRead(int updateValue, string username){
     }
 }
 
+//Other data input output:
 void Cipher::copyFile(string username, string pathOfCopyDestination){ //simply copies the temp file back to the destination file
     ofstream in;
     ifstream temp;
@@ -530,6 +531,7 @@ void Cipher::updateData(string username, string pathOfFileToChangeData, string d
 
     deleteFile(getTempPath(username)); //erase the temp file once the update is complete
 }
+
 bool Cipher::find(string username, string searchHeader){ //this was a test for finding string within a file
     ifstream in;
     ofstream out, temp;
@@ -559,7 +561,6 @@ void Cipher::eraseFile(string fullFilePath){ //erase contents of a file without 
     }
     temp.close();
 }
-
 void Cipher::deleteFile(string fullFilePath){ //this deletes a input file (Note, it is not a good way to delete a file since it takes time but it kinda works)
     //this will erase the data from the temp file before deleting it to garentee that commands that take place right after are not using the bad data:
     ofstream temp;
@@ -578,44 +579,8 @@ void Cipher::deleteFile(string fullFilePath){ //this deletes a input file (Note,
         cout << charFilename[i];
     }
     system(charFilename);
+}
+
+void Cipher::readData(string username, string pathOfFile){
     
-    //the following was trying to use remove() to delete a file
-    /*
-    //pull the filename out of the path
-    std::string str (fullFilePath);
-    std::string key ("\\");
-    string fileName;
-
-    std::size_t found = str.rfind(key);
-    if (found!=std::string::npos)
-    //str.replace (found,key.length(),"seventh");
-    fileName = str.substr(found+1, std::string::npos);
-
-    cout << str << endl;
-    cout << fileName << endl;
-
-    //change working directory:
-    auto originalPath = fs::current_path(); //getting path
-    fs::current_path(fileName); //setting path
-
-    // assigning value to string s
-    string s(fileName);
-    // declaring character array : p
-    char filename[s.length()];
-    int i;
-    for (i = 0; i < sizeof(filename); i++) {
-        filename[i] = s[i];
-        cout << filename[i];
-    }
-    int status = remove(filename);
-    if(status==0){
-        cout<<"\nFile Deleted Successfully!";
-    } else {
-        cout<<"\nError Occurred!";
-    }
-    cout<<endl;
-
-    //change working directory back:
-    fs::current_path(originalPath); //setting path
-    */
 }
