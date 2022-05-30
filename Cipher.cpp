@@ -581,6 +581,20 @@ void Cipher::deleteFile(string fullFilePath){ //this deletes a input file (Note,
     system(charFilename);
 }
 
-void Cipher::readData(string username, string pathOfFile){
-    
+string Cipher::readData(string username, string pathOfFile, string dataHeader){ //return the read data's informaiton
+    string data;
+    ifstream in;
+    ofstream temp;
+    temp.open(getTempPath(username), ios::app);
+    in.open(pathOfCopyTarget);
+    if(in.is_open()){
+        //write all the same data to the temp file up until the dataHeader we are searching
+        while(getline(in,line)){
+            int found = line.find(dataHeader);
+            if (found == 0){ //if dataheader is found to be at the beginning of the line
+                //return that data:
+                return line;
+            }
+        }
+    return "failed";
 }
