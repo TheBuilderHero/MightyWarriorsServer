@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 
 #include "Characters.h"
@@ -9,6 +10,8 @@ using namespace std;
 
 class Cipher {
     private:
+        string line;
+        string search;
         string delimiter = "~";
         string typeOfRequest;
         string username, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12; // declare the variables that are being used to store the message from the client // in some cases item2 is used.
@@ -26,11 +29,21 @@ class Cipher {
     //currently no function but it will read from the user's data file
     void userDataDeliminationRead(int updateValue, string username);
 
+    void copyFile(std::string username, std::string pathOfCopyDestination);
+    void copyFileAddingData(std::string username, string pathOfCopyTarget, std::string dataHeader, std::string newData, bool headerIsAtStart = false);
+    void deleteFile(std::string fileName);
+    void eraseFile(std::string fileName);
+    void updateData(string username, string pathOfFileToChangeData, string dataHeaderToUpdate, string newData); //the above functions are used in this function
+    
+    bool find(std::string username, std::string searchHeader);
+
     //File and folder path return functions:
     std::string getStatPath(std::string username);
     std::string getDatPath(std::string username);
     std::string getActPath(std::string username);
     std::string getWeaponPath(std::string username);
+    std::string getTestPath(std::string username);
+    std::string getTempPath(std::string username);
 
     //getVariable functions:
     std::string getDelimiter() { return delimiter; }

@@ -24,6 +24,14 @@ string Cipher::getWeaponPath(std::string username){
     string output = "./userdata/" + username + "/" + username + ".weapons";
     return output;
 }
+string Cipher::getTestPath(std::string username){
+    string output = "./userdata/" + username + "/" + username + ".test";
+    return output;
+}
+string Cipher::getTempPath(std::string username){
+    string output = "./userdata/" + username + "/" + username + ".temp";
+    return output;
+}
 
 string Cipher::getItem(int itemNumberToReturn){ //the purpose of this function is to return data that has been deciphered.
     switch (itemNumberToReturn)
@@ -458,4 +466,156 @@ void Cipher::userDataDeliminationRead(int updateValue, string username){
             weaponStats.close();
             break;
     }
+}
+
+void Cipher::copyFile(string username, string pathOfCopyDestination){ //simply copies the temp file back to the destination file
+    ofstream in;
+    ifstream temp;
+    temp.open(getTempPath(username));
+    in.open(pathOfCopyDestination, ios::app); //append mode
+    if(temp.is_open()){
+        //write all the same data to the temp file up until we reach the end
+        while(getline(temp,line)){
+            in << line << endl;
+        }
+    }
+    in.close();
+    temp.close();
+
+}
+void Cipher::copyFileAddingData(string username, string pathOfCopyTarget, string dataHeader, string newData, bool headerIsAtStart){ // this recreates a temp file with the added data which we can then use to write back to the original (note, headerIsAtStart is ment to make it so that it only searches for headers at the start of a line)
+    ifstream in;
+    ofstream temp;
+    temp.open(getTempPath(username), ios::app);
+    in.open(pathOfCopyTarget);
+    if(in.is_open()){
+        //write all the same data to the temp file up until the dataHeader we are searching
+        while(getline(in,line)){
+            int found = line.find(dataHeader);
+            if (headerIsAtStart){
+                if (found != std::string::npos && found == 0){ //if dataheader is found to be within the line
+                    //add the new data to the file in place of the old:
+                    temp << dataHeader << delimiter << newData << endl;
+                } else{
+                    //write same data for all headers which do not match dataHeader
+                    temp << line << endl;
+                }
+            } else {
+                if (found != std::string::npos){ //if dataheader is found to be within the line
+                    //add the new data to the file in place of the old:
+                    temp << dataHeader << delimiter << newData << endl;
+                } else{
+                    //write same data for all headers which do not match dataHeader
+                    temp << line << endl;
+                }
+            }
+        }
+        
+        //then finish writing the rest of the file:
+        /*while(getline(in,line)){
+            temp << line << endl;
+        }*/
+    }
+    in.close();
+    temp.close();
+}
+void Cipher::updateData(string username, string pathOfFileToChangeData, string dataHeaderToUpdate, string newData){ //given a file path, this function will update the data at the header listed
+    //verify we are working with a fresh temp file by erasing it:
+    deleteFile(getTempPath(username));
+
+    //update the data:
+    copyFileAddingData(username, pathOfFileToChangeData, dataHeaderToUpdate, newData, true);
+    eraseFile(pathOfFileToChangeData); //delete the old file and replace it with the new file
+    copyFile(username, pathOfFileToChangeData);
+
+    deleteFile(getTempPath(username)); //erase the temp file once the update is complete
+}
+bool Cipher::find(string username, string searchHeader){ //this was a test for finding string within a file
+    ifstream in;
+    ofstream out, temp;
+    string header;
+    search = searchHeader;
+    in.open(getTestPath(username));
+    temp.open(getTempPath(username));
+
+    while(in>>header){
+        if(search.compare(header) == 0){ //finds the item which it was searching for
+            in.close();
+            temp.close();
+            return true;
+        }
+    }
+    in.close();
+    temp.close();
+    return false;
+}
+
+void Cipher::eraseFile(string fullFilePath){ //erase contents of a file without deleting it.
+    //this will erase the data from the temp file before deleting it to garentee that commands that take place right after are not using the bad data:
+    ofstream temp;
+    temp.open(fullFilePath);
+    if(temp.is_open()){
+        temp << "";
+    }
+    temp.close();
+}
+
+void Cipher::deleteFile(string fullFilePath){ //this deletes a input file (Note, it is not a good way to delete a file since it takes time but it kinda works)
+    //this will erase the data from the temp file before deleting it to garentee that commands that take place right after are not using the bad data:
+    ofstream temp;
+    temp.open(fullFilePath);
+    if(temp.is_open()){
+        temp << "";
+    }
+    temp.close();
+    // assigning value to string s
+    string s("rm -f " + fullFilePath);
+    // declaring character array : p
+    char charFilename[s.length()];
+    int i;
+    for (i = 0; i < sizeof(charFilename); i++) {
+        charFilename[i] = s[i];
+        cout << charFilename[i];
+    }
+    system(charFilename);
+    
+    //the following was trying to use remove() to delete a file
+    /*
+    //pull the filename out of the path
+    std::string str (fullFilePath);
+    std::string key ("\\");
+    string fileName;
+
+    std::size_t found = str.rfind(key);
+    if (found!=std::string::npos)
+    //str.replace (found,key.length(),"seventh");
+    fileName = str.substr(found+1, std::string::npos);
+
+    cout << str << endl;
+    cout << fileName << endl;
+
+    //change working directory:
+    auto originalPath = fs::current_path(); //getting path
+    fs::current_path(fileName); //setting path
+
+    // assigning value to string s
+    string s(fileName);
+    // declaring character array : p
+    char filename[s.length()];
+    int i;
+    for (i = 0; i < sizeof(filename); i++) {
+        filename[i] = s[i];
+        cout << filename[i];
+    }
+    int status = remove(filename);
+    if(status==0){
+        cout<<"\nFile Deleted Successfully!";
+    } else {
+        cout<<"\nError Occurred!";
+    }
+    cout<<endl;
+
+    //change working directory back:
+    fs::current_path(originalPath); //setting path
+    */
 }
