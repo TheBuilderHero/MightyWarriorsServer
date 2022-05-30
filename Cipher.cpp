@@ -586,7 +586,7 @@ string Cipher::readData(string username, string pathOfFile, string dataHeader){ 
     ifstream in;
     ofstream temp;
     temp.open(getTempPath(username), ios::app);
-    in.open(pathOfCopyTarget);
+    in.open(pathOfFile);
     if(in.is_open()){
         //write all the same data to the temp file up until the dataHeader we are searching
         while(getline(in,line)){
@@ -596,5 +596,6 @@ string Cipher::readData(string username, string pathOfFile, string dataHeader){ 
                 return line;
             }
         }
+    }
     return "failed";
 }

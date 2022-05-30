@@ -38,7 +38,7 @@ class Cipher {
     
     bool find(std::string username, std::string searchHeader);
 
-    void readData(string username, string pathOfFile, string dataHeader);
+    string readData(string username, string pathOfFile, string dataHeader);
 
     //end of other data management
 
