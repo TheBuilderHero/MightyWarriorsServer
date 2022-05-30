@@ -51,7 +51,8 @@ int Weapons::getPhysicalDamage(){ //this is used for battle to get a value betwe
     if(maxPhysicalDamage == 0){ //resolve devide by zero issue
         maxPhysicalDamage++;
     }
-    return (rand() % maxPhysicalDamage + minPhysicalDamage);  //random number between min and max
+    int damageRange = maxPhysicalDamage - minPhysicalDamage;
+    return (rand() % damageRange + minPhysicalDamage);  //random number between min and max
 }
 int Weapons::getPhysicalDamageMax(){
     return maxPhysicalDamage; 
@@ -64,7 +65,8 @@ int Weapons::getMagicDamage(){ //this is used for battle to get a value between 
     if(maxMagicDamage == 0){//resolve devide by zero issue
         maxMagicDamage++;
     }
-    return (rand() % maxMagicDamage + minMagicDamage); //random number between min and max
+    int damageRange = maxMagicDamage - minMagicDamage;
+    return (rand() % damageRange + minMagicDamage); //random number between min and max
 }
 int Weapons::getMagicDamageMin(){
     return minMagicDamage;
@@ -77,7 +79,8 @@ int Weapons::getPsychicDamage(){ //this is used for battle to get a value betwee
     if(maxPsychicDamage == 0){//resolve devide by zero issue
         maxPsychicDamage++;
     }
-    return (rand() % maxPsychicDamage + minPsychicDamage); //random number between min and max
+    int damageRange = maxPsychicDamage - minPsychicDamage;
+    return (rand() % damageRange + minPsychicDamage); //random number between min and max
 }
 int Weapons::getPsychicDamageMin(){
     return minPsychicDamage; 

@@ -6,3 +6,23 @@ Dominic - Story
 Richard - Weapons
 
 Kyle - Monster Groups
+
+****UPDATES FROM RICHARD****
+Here's a list of stuff that I have done over the last couple days:
+-created basic Quest class and added one sample Quest
+-created a world map class with six locations and travel function
+-created Quest specific enemies
+-created Quest specific battle function
+-created travel menu
+-connected Quest to battle function and to server to pull specific enemies
+-connected world map to main game menu through travel menu 
+That's all I can remember right now
+
+We(Dakota) still need to:
+-add location data to players' saved info
+-add quest data to players' saved info
+-add questing functionality, possibly through separate quest menu
+-connect location data to travel menu
+-connect location and quest saves to questing functionality
+-TEST EVERYTHING (I have tested nothing so far)
+Thanx m9s. Void Cat Weak Peace Oot!

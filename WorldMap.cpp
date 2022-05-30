@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-#include "Map.h"
+#include "WorldMap.h"
 using namespace std;
 //The map and movement are laid out thus:
 // 1 - 2 -_3_
