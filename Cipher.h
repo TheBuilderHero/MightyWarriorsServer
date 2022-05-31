@@ -23,10 +23,8 @@ class Cipher {
     //this functions purpose it to add the delimiters to given items 
     string cipher(string responseType, string item2= "", string item3= "", string item4= "", string item5= "", string item6= "", string item7= "", string item8= "", string item9= "", string item10= "", string item11= "", string item12= "");
 
-    //This function writes inputs given from a user to file using the sperating delimiter
-    void userDataDeliminationWrite(int updateValue, string username, string data2 = "", string data3 = "", string data4 = "", string data5 = "", string data6 = "", string data7 = "", string data8 = "", string data9 = "", string data10 = "");
-
-    //void Cipher::writeToFile(); //test
+    //This function writes inputs given from a user to file using the sperating delimiter //updateValue: 1 = inital setup race, kit, level, XP 2 = password 3 = user's stats overwrite 4 = level and XP update 5 = user stats update 6 = update weapons 7 = update location 8 = update the player quests progress
+    void userDataDeliminationWrite(int updateValue, string username, string data2 = "", string data3 = "", string data4 = "", string data5 = "", string data6 = "", string data7 = "", string data8 = "", string data9 = "", string data10 = ""); 
     
     //currently no function but it will read from the user's data file
     void userDataDeliminationRead(int updateValue, string username);
@@ -58,6 +56,7 @@ class Cipher {
     std::string getDelimiter() { return delimiter; }
     std::string getTypeOfRequest() { return typeOfRequest; }
     std::string getUsername() { return username; }
-    std::string getItem(int itemNumberToReturn); //the purpose of this function is to return data that has been deciphered. //note there is no item1 because that place is being used by response type.
+    //the purpose of this function is to return data that has been deciphered. //note there is no item1 because that place is being used by response type. //First Item is number 2 because username is 1
+    std::string getItem(int itemNumberToReturn); 
 
 };

@@ -98,7 +98,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
 
     //testing to see what action the user is requesting by switching between cases of typeOfRequest
     switch (stoi(code.getTypeOfRequest())) {
-        case 1://check new users entered username against list of usernames to make sure it is unique
+        case 1:{//check new users entered username against list of usernames to make sure it is unique
             message = code.decipher(messageFromClient); //unpack the message from the user
             testUsername.open("./userdata/" + code.getUsername() + "/" + code.getUsername() + ".dat"); //opens file to check if it exists
             if (testUsername) { // test user is true if it does exist and false if is does not // this means that when it exists you can not user that username
@@ -114,27 +114,32 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
                 if (n < 0) error("ERROR writing to socket");
             }
             break;
-        case 2://this is the user creation type
+        }
+        case 2:{//this is the user creation type
             code.userDataDeliminationWrite(1, code.getUsername(), code.getItem(3));
 
             break;
-        case 3://check logon info to confirm user identity - user logon
+        }
+        case 3:{//check logon info to confirm user identity - user logon
             int ableToLogon;
             ableToLogon = userLogon(code.getUsername(), code.getItem(3));
             returnMessage = code.cipher("3", to_string(ableToLogon));
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
-        case 4: //change password
+        }
+        case 4:{//change password
             code.userDataDeliminationWrite(2, code.getUsername(), code.getItem(3));
             break;
-        case 5: //write the user stats to file
+        }
+        case 5:{//write the user stats to file
             code.userDataDeliminationWrite(3, code.getUsername(), code.getItem(3), code.getItem(4), code.getItem(5), code.getItem(6), code.getItem(7), code.getItem(8), code.getItem(9), code.getItem(10), code.getItem(11));
             returnMessage = code.cipher("4", "wasAbleToSave");
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
-        case 6: //Making this read all user info form file  ---------------------------//try to read to user's stats from file - need to get this fully setup.
+        }
+        case 6:{//Making this read all user info form file  ---------------------------//try to read to user's stats from file - need to get this fully setup.
             code.userDataDeliminationRead(1, code.getUsername()); //sets the items3 - 6 to the current stat values
             characters.pullRaceStats(players.getPlayerRace(code.getUsername()), code.getUsername());//set the stats of the Player for the race in their file
             //set the proper stat values for the input of the base stats (This is used in the following long statment)
@@ -143,8 +148,8 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
-            
-        case 7: //read the enemy stats for battle
+        }
+        case 7:{//read the enemy stats for battle
             int enemyNumPicked, enemyLevel;
             srand (time(NULL)); //initialize random seed
             if(stoi(code.getItem(3)) == 1){
@@ -162,6 +167,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
+        }
         case 8:{ //user race, kit, and weapon selection and write to file
             // using code.getItem(3) from the client (which is raceChoice) and code.getItem(4) (which is kitChoice) we will determine the race which the user selected which is the reutrn of getPlayerRace
             int tempWeaponChoice = stoi(code.getItem(5));
@@ -174,27 +180,31 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             //instead of kit.kit we need to take code.getItem(4) and determine what kit they chose and input that.
             break;
             }
-        case 9: //this takes the input of battle attacks to then reply with the damage amount.
+        case 9:{//this takes the input of battle attacks to then reply with the damage amount.
             returnMessage = code.cipher("4", to_string(battle.determineOption(code.getUsername(), stoi(code.getItem(4)), enemy.getEnemyPickedFromName(code.getItem(3))))); //get the damage for one of the abilites and cipher return message.
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
-        case 10: //enemy attacks
+        }
+        case 10:{//enemy attacks
             returnMessage = code.cipher("4", to_string(battle.determineEnemyAttackOption(code.getUsername(), enemy.getEnemyPickedFromName(code.getItem(3)), code.getItem(4)))); //get the damage for the enemy and cipher return message.
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
-        case 11: //check if enemy is blocking next attack
+        }
+        case 11:{//check if enemy is blocking next attack
             returnMessage = code.cipher("5", to_string(battle.isEnemyBlocking()), to_string(battle.getBLOCK_REDUCTION_VALUE())); //get the damage for one of the abilites and cipher return message.
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
-        case 12: //send the user the abilities which correspond to thier damage types (e.g. their Q does magic, their E does phycial)
+        }
+        case 12:{//send the user the abilities which correspond to thier damage types (e.g. their Q does magic, their E does phycial)
             returnMessage = code.cipher("5", kit.getRaceDamageTypeForAbility(code.getUsername(), 'q'), kit.getRaceDamageTypeForAbility(code.getUsername(), 'w'), 
             kit.getRaceDamageTypeForAbility(code.getUsername(), 'e'), kit.getRaceDamageTypeForAbility(code.getUsername(), 'r')); //send back the damage type per ability with the order q, w, e, r
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
+        }
         case 13:{ //sends the players race, kit, level, and weapon
             Weapons weapons(code.getUsername());
             returnMessage = code.cipher("5", players.getPlayerRace(code.getUsername()), kit.getPlayerKit(code.getUsername()), weapons.getWeaponName()); //
@@ -202,26 +212,43 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             if (n < 0) error("ERROR writing to socket");
             break;
             }
-        case 14: //updates the players level and XP
+        case 14:{//updates the players level and XP
             //currently using the players level for the enemy's level for XP since they should be the same
             battle.increaseXP(code.getUsername(), enemy.getXPDrop(enemy.getEnemyPickedFromName(code.getItem(3)))); //hardset the enemies level to 1 since at this moment there is no level change for enemies
             returnMessage = code.cipher("4", to_string(players.getLevel(code.getUsername())));
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
-        case 15: //returns player Level, current XP, and total needed xp for next level
+        }
+        case 15:{//returns player Level, current XP, and total needed xp for next level
             level = to_string(players.getLevel(code.getUsername())); //this is done to avoid issues with the increaseXP function breaking the update stats function on the client side
             returnMessage = code.cipher("5", level, to_string(players.getXP(code.getUsername())), to_string(battle.increaseXP(code.getUsername(), 0)));
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1); //send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
-        case 16: //update user stats
+        }
+        case 16:{//update user stats
             code.userDataDeliminationWrite(5, code.getUsername(), code.getItem(3), code.getItem(4), code.getItem(5), code.getItem(6), code.getItem(7), code.getItem(8), code.getItem(9), code.getItem(10), code.getItem(11));
             returnMessage = code.cipher("4", "wasAbleToSave");
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
-        case 0: //check for version compatibility - This is done before using can continue to create account or logon
+        }
+        case 17:{//update location data
+            code.userDataDeliminationWrite(7, code.getUsername(), code.getItem(2));
+            returnMessage = code.cipher("4", "wasAbleToSave");
+            n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+            if (n < 0) error("ERROR writing to socket");
+            break;
+        }
+        case 18:{//update quest info
+            code.userDataDeliminationWrite(8, code.getUsername(), code.getItem(2), code.getItem(3)); //first number is the quest number, then second one is the progess number
+            returnMessage = code.cipher("4", "wasAbleToSave");
+            n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+            if (n < 0) error("ERROR writing to socket");
+            break;
+        }
+        case 0:{//check for version compatibility - This is done before using can continue to create account or logon
             int gameVersionClient, gameMajorBuildClient, gameMinorBuildClient, gamePatchClient; //client game versions which we are going to test against the server's version
             gameVersionClient = stoi(code.getItem(3));
             gameMajorBuildClient = stoi(code.getItem(4));
@@ -255,6 +282,8 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
                 n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
                 if (n < 0) error("ERROR writing to socket");
             }
+            break;
+        }
     }
     cout << "Return Message from Server: " << returnMessage << endl;
 }

@@ -195,7 +195,7 @@ string Cipher::cipher(string responseType, string item2, string item3, string it
     return str_file_content;
 }
 
-void Cipher::userDataDeliminationWrite(int updateValue, string username, string data2, string data3, string data4, string data5, string data6, string data7, string data8, string data9, string data10){
+void Cipher::userDataDeliminationWrite(int updateValue, string username, string data2, string data3, string data4, string data5, string data6, string data7, string data8, string data9, string data10){ // updateValue: 1 = inital setup race, kit, level, XP 2 = password 3 = user's stats overwrite 4 = level and XP update 5 = user stats update 6 = update weapons 7 = update location 8 = update the player quests progress
     ofstream userfile;
     ofstream logonfile;
     ofstream weaponStats;
@@ -353,7 +353,7 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             locationFile.close(); // done writting to file and now it is closed
             break;
         }
-        case 8:{ //update the players quest info in file
+        case 8:{ //update the players quest info in file (Need to update this properly)
             //pull current quest info from file if it exists:
             ifstream questFileTest;
             questFileTest.open(getQuestPath(username)); //for testing purposes
@@ -401,11 +401,6 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
         }
     }
 }
-/*
-void Cipher::writeToFile(){
-    
-}
-*/
 
 void Cipher::userDataDeliminationRead(int updateValue, string username){
     ifstream userstats;
