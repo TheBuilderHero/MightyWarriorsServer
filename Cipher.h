@@ -26,7 +26,7 @@ class Cipher {
     //This function writes inputs given from a user to file using the sperating delimiter
     void userDataDeliminationWrite(int updateValue, string username, string data2 = "", string data3 = "", string data4 = "", string data5 = "", string data6 = "", string data7 = "", string data8 = "", string data9 = "", string data10 = "");
 
-    void Cipher::writeToFile(); //test
+    //void Cipher::writeToFile(); //test
     
     //currently no function but it will read from the user's data file
     void userDataDeliminationRead(int updateValue, string username);
