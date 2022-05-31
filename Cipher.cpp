@@ -402,6 +402,10 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
     }
 }
 
+void Cipher::writeToFile(){
+    
+}
+
 void Cipher::userDataDeliminationRead(int updateValue, string username){
     ifstream userstats;
     ifstream userdata;
