@@ -25,6 +25,8 @@ class Cipher {
 
     //This function writes inputs given from a user to file using the sperating delimiter
     void userDataDeliminationWrite(int updateValue, string username, string data2 = "", string data3 = "", string data4 = "", string data5 = "", string data6 = "", string data7 = "", string data8 = "", string data9 = "", string data10 = "");
+
+    struct writeToFile;// test
     
     //currently no function but it will read from the user's data file
     void userDataDeliminationRead(int updateValue, string username);
@@ -49,6 +51,8 @@ class Cipher {
     std::string getWeaponPath(std::string username);
     std::string getTestPath(std::string username);
     std::string getTempPath(std::string username);
+    std::string getLocationPath(std::string username);
+    std::string getQuestPath(std::string username);
 
     //getVariable functions:
     std::string getDelimiter() { return delimiter; }
