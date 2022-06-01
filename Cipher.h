@@ -10,6 +10,7 @@ using namespace std;
 
 class Cipher {
     private:
+        const int MAX_NUMBER_OF_QUESTS = 20 + 1; //+1 because we start at 1
         string line;
         string search;
         string delimiter = "~";

@@ -353,49 +353,42 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             locationFile.close(); // done writting to file and now it is closed
             break;
         }
-        case 8:{ //update the players quest info in file (Need to update this properly)
+        case 8:{ //update the players quest info in file
             //pull current quest info from file if it exists:
+            string quest[MAX_NUMBER_OF_QUESTS]; //we start at 1
             ifstream questFileTest;
             questFileTest.open(getQuestPath(username)); //for testing purposes
-            if(questFileTest){ //if the file exists
+            if(questFileTest){ //if the file exists then we need to load the info into temp variables to be written back into the file
                 questFileTest.close();
-                userDataDeliminationRead(3, username);
-                int quest1 = stoi(getItem(2));//quest 1
-                int quest2 = stoi(getItem(3));//quest 2
-                int quest3 = stoi(getItem(4));//quest 3
-                int quest4 = stoi(getItem(5));//quest 4
-                int quest5 = stoi(getItem(6));//quest 5
-                int quest6 = stoi(getItem(7));//quest 6
-                int quest7 = stoi(getItem(8));//quest 7
-                int quest8 = stoi(getItem(9));//quest 8
-                int quest9 = stoi(getItem(10));//quest 9
-
-                //set default values to values pulled from file:
-                data2 = to_string(quest1);
-                data3 = to_string(quest2);
-                data4 = to_string(quest3);
-                data5 = to_string(quest4);
-                data6 = to_string(quest5);
-                data7 = to_string(quest6);
-                data8 = to_string(quest7);
-                data9 = to_string(quest8);
-                data10 = to_string(quest9);
+                userDataDeliminationRead(5, username);
+                if(getItem(2).length() > 0) quest[1] = getItem(2);//quest 1
+                if(getItem(3).length() > 0) quest[2] = getItem(3);//quest 2
+                if(getItem(4).length() > 0) quest[3] = getItem(4);//quest 3
+                if(getItem(5).length() > 0) quest[4] = getItem(5);//quest 4
+                if(getItem(6).length() > 0) quest[5] = getItem(6);//quest 5
+                if(getItem(7).length() > 0) quest[6] = getItem(7);//quest 6
+                if(getItem(8).length() > 0) quest[7] = getItem(8);//quest 7
+                if(getItem(9).length() > 0) quest[8] = getItem(9);//quest 8
+                if(getItem(10).length() > 0) quest[9] = getItem(10);//quest 9
             }
 
             //write new stats to file:
             ofstream questFile;
+            string line;
+            int lineNumber = 0;
             questFile.open(getQuestPath(username));
-            questFile << delimiter << username; // these are all adding data to the file with delimiter seperation.
-            if (data2.length() > 0) {questFile << delimiter << data2;} else {questFile << delimiter;} //quest 1
-            if (data3.length() > 0) {questFile << delimiter << data3;} else {questFile << delimiter;} //quest 2
-            if (data4.length() > 0) {questFile << delimiter << data4;} else {questFile << delimiter;} //quest 3
-            if (data5.length() > 0) {questFile << delimiter << data5;} else {questFile << delimiter;} //quest 4
-            if (data6.length() > 0) {questFile << delimiter << data6;} else {questFile << delimiter;} //quest 5
-            if (data7.length() > 0) {questFile << delimiter << data7;} else {questFile << delimiter;} //quest 6
-            if (data8.length() > 0) {questFile << delimiter << data8;} else {questFile << delimiter;} //quest 7
-            if (data9.length() > 0) {questFile << delimiter << data9;} else {questFile << delimiter;} //quest 8
-            if (data10.length() > 0) {questFile << delimiter << data10;} else {questFile << delimiter;} //quest 9
-            questFile << delimiter;
+            while(lineNumber != MAX_NUMBER_OF_QUESTS){ //write all the quests back into the file
+                if (lineNumber == stoi(data2)){ //update the line with info about the quest
+                    questFile << delimiter << data3 << delimiter << endl;
+                } else if (quest[lineNumber].length() > 0) {
+                    questFile << quest[lineNumber] << endl; //write back the data
+                } else if(lineNumber == 0) {
+                    questFile <<delimiter<< username <<delimiter<< endl;
+                } else {
+                    questFile << endl;
+                }
+                lineNumber++;
+            }
             questFile.close(); // done writting to file and now it is closed
             break;
         }
@@ -558,44 +551,39 @@ void Cipher::userDataDeliminationRead(int updateValue, string username){
             }
         case 5:{ //quest info
             ifstream questFile;
+            string currentLine;
             questFile.open(getQuestPath(username));
-            questFile >> s;
-            while ((pos = s.find(delimiter)) != std::string::npos) {
-                token = s.substr(0, pos);
-                output = token;
-                str_file_content += std::string(token);
-                s.erase(0, pos + delimiter.length());
-                
+            while(getline(questFile, currentLine)){
                 switch (loopPass){
-                    case 1: //first item after delimiter
-                    if (output.length() > 0) username = output;
+                    case 0: //zero item line
+                    if (currentLine.length() > 0) username = currentLine;
                     break;
-                    case 2://second item after delimiter      //quest 1
-                    if (output.length() > 0) item2 = output;
+                    case 1: //first item line      //quest 1
+                    if (currentLine.length() > 0) item2 = currentLine;
                     break;
-                    case 3://third item after delimiter       //quest 2
-                    if (output.length() > 0) item3 = output;
+                    case 2://second item line      //quest 2
+                    if (currentLine.length() > 0) item3 = currentLine;
                     break;
-                    case 4://forth item after delimiter       //quest 3
-                    if (output.length() > 0) item4 = output;
+                    case 3://third item line       //quest 3
+                    if (currentLine.length() > 0) item4 = currentLine;
                     break;
-                    case 5://fith item after delimiter        //quest 4
-                    if (output.length() > 0) item5 = output;
+                    case 4://forth item line       //quest 4
+                    if (currentLine.length() > 0) item5 = currentLine;
                     break;
-                    case 6://sixth item after delimiter       //quest 5
-                    if (output.length() > 0) item6 = output;
+                    case 5://fith item line        //quest 5
+                    if (currentLine.length() > 0) item6 = currentLine;
                     break;
-                    case 7://seventh item after delimiter     //quest 6
-                    if (output.length() > 0) item7 = output;
+                    case 6://sixth item line       //quest 6
+                    if (currentLine.length() > 0) item7 = currentLine;
                     break;
-                    case 8://seventh item after delimiter     //quest 7
-                    if (output.length() > 0) item8 = output;
+                    case 7://seventh item line     //quest 7
+                    if (currentLine.length() > 0) item8 = currentLine;
                     break;
-                    case 9://seventh item after delimiter     //quest 8
-                    if (output.length() > 0) item9 = output;
+                    case 8://eighth item line     //quest 8
+                    if (currentLine.length() > 0) item9 = currentLine;
                     break;
-                    case 10://seventh item after delimiter     //quest 9
-                    if (output.length() > 0) item10 = output;
+                    case 9://ninth item line     //quest 9
+                    if (currentLine.length() > 0) item10 = currentLine;
                     break;
                 }
                 loopPass++;
@@ -649,11 +637,6 @@ void Cipher::copyFileAddingData(string username, string pathOfCopyTarget, string
                 }
             }
         }
-        
-        //then finish writing the rest of the file:
-        /*while(getline(in,line)){
-            temp << line << endl;
-        }*/
     }
     in.close();
     temp.close();

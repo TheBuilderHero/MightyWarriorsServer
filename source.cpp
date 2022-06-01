@@ -241,9 +241,23 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             if (n < 0) error("ERROR writing to socket");
             break;
         }
-        case 18:{//update quest info
+        case 18:{//get user's location
+            code.userDataDeliminationRead(4, code.getUsername());
+            returnMessage = code.cipher("4", code.getItem(2));
+            n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+            if (n < 0) error("ERROR writing to socket");
+            break;
+        }
+        case 19:{//update quest info
             code.userDataDeliminationWrite(8, code.getUsername(), code.getItem(2), code.getItem(3)); //first number is the quest number, then second one is the progess number
             returnMessage = code.cipher("4", "wasAbleToSave");
+            n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+            if (n < 0) error("ERROR writing to socket");
+            break;
+        }
+        case 20:{//get quest progress info
+            code.userDataDeliminationRead(5, code.getUsername()); //first number is the quest number, then second one is the progess number
+            returnMessage = code.cipher("5", code.getItem(2), code.getItem(3), code.getItem(4), code.getItem(5), code.getItem(6), code.getItem(7), code.getItem(8), code.getItem(9), code.getItem(10));
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
@@ -350,6 +364,12 @@ void dostuff(int sock) {
 int main(int argc, char* argv[]){
     cout << "Server Successfully Running..." << endl << "Press \"ctrl + c\" to stop the running program\nServer Version: " << to_string(ServerVersion) << "." << to_string(ServerMajorBuild) << "." << to_string(ServerMinorBuild) << "." << to_string(ServerPatch) << endl; //I use this line to make sure the server is running and test the compiles
     //Richard enter your test code below:
+
+    Cipher cipher;
+
+    cipher.userDataDeliminationWrite(7, "kota", "1");
+    cipher.userDataDeliminationRead(4, "kota");
+    cout << endl<< cipher.getItem(2) << endl << endl << endl;
 
     communicate(argc, argv); //Start the servers function
     return 0; /* we never get here */
