@@ -27,6 +27,9 @@ std::string Players::getPlayerRace(std::string username, int raceChoice){ //retu
     case 5: //Dryad selected
         return RACE_DRYAD;
         break;
+    case 100: //mop slelected
+        return RACE_MOP;
+        break;
     default:
         return RACE_HUMAN;
         break;
