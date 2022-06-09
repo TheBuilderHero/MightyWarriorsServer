@@ -1,5 +1,3 @@
-Dakota -Making Intro to Game better- 
-Dakota -Add the secret race to the menu choice
 Dakota -Adding passives to the game
         Pre message
         During message
@@ -11,6 +9,20 @@ Richard - Weapons
 
 Kyle - Monster Groups
 
+
+We (Dakota) still need to:
+-add location data to players' saved info
+-add quest data to players' saved info
+-add questing functionality, possibly through separate quest menu
+-connect location data to travel menu
+-connect location and quest saves to questing functionality
+-TEST EVERYTHING (I have tested nothing so far)
+Thanx m9s. Void Cat Weak Peace Oot!
+
+
+***Complete Items***
+VVVVVVVVVVVVVVVVVVVV
+
 ****UPDATES FROM RICHARD****
 Here's a list of stuff that I have done over the last couple days:
 -created basic Quest class and added one sample Quest
@@ -19,14 +31,6 @@ Here's a list of stuff that I have done over the last couple days:
 -created Quest specific battle function
 -created travel menu
 -connected Quest to battle function and to server to pull specific enemies
--connected world map to main game menu through travel menu 
-That's all I can remember right now
-
-We(Dakota) still need to:
--add location data to players' saved info
--add quest data to players' saved info
--add questing functionality, possibly through separate quest menu
--connect location data to travel menu
--connect location and quest saves to questing functionality
--TEST EVERYTHING (I have tested nothing so far)
-Thanx m9s. Void Cat Weak Peace Oot!
+-connected world map to main game menu through travel menu
+Dakota -Made Intro to Game better
+Dakota -Added the secret race to the menu choice "have to type 'april' to get it."
