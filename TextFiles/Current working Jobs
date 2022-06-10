@@ -3,11 +3,15 @@ Dakota -Adding passives to the game
         During message
         Post message
 
-Dominic - Story
-
-Richard - Weapons
+Richard - Adding Psychic damage and health
+          Continuing to implement TempEntity
+          Add new quests?
 
 Kyle - Monster Groups
+       get VSCode to work again
+       
+Dominic - Story
+          Add graphics class (lol)
 
 
 We (Dakota) still need to:
@@ -16,7 +20,7 @@ We (Dakota) still need to:
 -add questing functionality, possibly through separate quest menu
 -connect location data to travel menu
 -connect location and quest saves to questing functionality
--TEST EVERYTHING (I have tested nothing so far)
+-Keep Testing Stuff
 Thanx m9s. Void Cat Weak Peace Oot!
 
 
@@ -32,5 +36,9 @@ Here's a list of stuff that I have done over the last couple days:
 -created travel menu
 -connected Quest to battle function and to server to pull specific enemies
 -connected world map to main game menu through travel menu
+
 Dakota -Made Intro to Game better
 Dakota -Added the secret race to the menu choice "have to type 'april' to get it."
+Richard - Added new Stats menu to pull all data from local Player TempEntity
+Richard - Added data and code in TempEntity to store more player info (kit, race, ability types, etc.)
+Richard - TESTED all new changes! Everything is working on my end right now!
