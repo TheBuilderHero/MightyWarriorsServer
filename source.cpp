@@ -142,9 +142,22 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
         case 6:{//Making this read all user info form file  ---------------------------//try to read to user's stats from file - need to get this fully setup.
             code.userDataDeliminationRead(1, code.getUsername()); //sets the items3 - 6 to the current stat values
             characters.pullRaceStats(players.getPlayerRace(code.getUsername()), code.getUsername());//set the stats of the Player for the race in their file
+            //trying some junk
+            string health = players.getHealthStat(code.getUsername());
+            string armor = players.getArmorStat(code.getUsername());
+            string magicResist = players.getMagicResistanceStat(code.getUsername());
+            string physicalDam = players.getPhysicalDamageStat(code.getUsername(), true);
+            cout << "Physical Damage read successful\n";
+            string magicDam = players.getMagicDamageStat(code.getUsername(), true);
+            cout << "Magic Damage read successful\n";
+            string agility = players.getAgilityStat(code.getUsername());
+            string stealth = players.getStealthStat(code.getUsername());
+            string stamina = players.getStaminaStat(code.getUsername());
+            string mana = players.getManaStat(code.getUsername());
+
             //set the proper stat values for the input of the base stats (This is used in the following long statment)
-            returnMessage = code.cipher("5", players.getHealthStat(code.getUsername()), players.getArmorStat(code.getUsername()), players.getMagicResistanceStat(code.getUsername()), players.getPhysicalDamageStat(code.getUsername(), true), players.getMagicDamageStat(code.getUsername(), true), players.getAgilityStat(code.getUsername()), players.getStealthStat(code.getUsername()), 
-            players.getStaminaStat(code.getUsername()), players.getManaStat(code.getUsername())); // This very long input put into simple terms calculates stats by adding base to bonus then spitting it out as a string for Health, armor, magicResistance, physicalDamage, MagicDamage, Agility
+            returnMessage = code.cipher("5", health, armor, magicResist, physicalDam, magicDam, agility, stealth, stamina, mana); // This very long input put into simple terms calculates stats by adding base to bonus then spitting it out as a string for Health, armor, magicResistance, physicalDamage, MagicDamage, Agility
+            //cout << "Return message write successful\n";
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;

@@ -22,6 +22,7 @@ Weapons::Weapons(string username, bool initialSetup){
 }
 
 void Weapons::loadWeaponData(string username){    //save the weapon bonus' to file:
+    //cout << "Weapon read started\n";
     Cipher cipher;
     //retrive from file:
     cipher.userDataDeliminationRead(3, username);
@@ -32,6 +33,7 @@ void Weapons::loadWeaponData(string username){    //save the weapon bonus' to fi
     feet = 0;
     fruit = 0;
     brains = 0;
+    //cout << cipher.getItem(1) + "~" + cipher.getItem(2) + "~" + cipher.getItem(3) + "~" + cipher.getItem(4) + "~" + cipher.getItem(5) + "~" + cipher.getItem(6) + "~" + cipher.getItem(7) + "~" + cipher.getItem(8) + "~\n"; 
     //set all values based on file:
     weaponID = stoi(cipher.getItem(2));
     iron += stoi(cipher.getItem(3));
@@ -40,6 +42,7 @@ void Weapons::loadWeaponData(string username){    //save the weapon bonus' to fi
     feet += stoi(cipher.getItem(6));
     fruit += stoi(cipher.getItem(7));
     brains += stoi(cipher.getItem(8));
+    cout << "Weapon read successful\n";
 }
 void Weapons::saveWeaponData(string username){    //save the weapon bonus' to file:
     Cipher cipher;
