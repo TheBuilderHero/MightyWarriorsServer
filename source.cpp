@@ -147,9 +147,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             string armor = players.getArmorStat(code.getUsername());
             string magicResist = players.getMagicResistanceStat(code.getUsername());
             string physicalDam = players.getPhysicalDamageStat(code.getUsername(), true);
-            cout << "Physical Damage read successful\n";
             string magicDam = players.getMagicDamageStat(code.getUsername(), true);
-            cout << "Magic Damage read successful\n";
             string agility = players.getAgilityStat(code.getUsername());
             string stealth = players.getStealthStat(code.getUsername());
             string stamina = players.getStaminaStat(code.getUsername());
@@ -224,7 +222,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
-            }
+        }
         case 14:{//updates the players level and XP
             //currently using the players level for the enemy's level for XP since they should be the same
             battle.increaseXP(code.getUsername(), enemy.getXPDrop(enemy.getEnemyPickedFromName(code.getItem(3)))); //hardset the enemies level to 1 since at this moment there is no level change for enemies
@@ -271,6 +269,18 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
         case 20:{//get quest progress info
             code.userDataDeliminationRead(5, code.getUsername()); //first number is the quest number, then second one is the progess number
             returnMessage = code.cipher("5", code.getItem(2), code.getItem(3), code.getItem(4), code.getItem(5), code.getItem(6), code.getItem(7), code.getItem(8), code.getItem(9), code.getItem(10));
+            n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+            if (n < 0) error("ERROR writing to socket");
+            break;
+        }
+        case 21:{ //sends the player's race, kit, level, weapon, and ability types
+            Weapons weapons(code.getUsername());
+            level = to_string(players.getLevel(code.getUsername()));
+            //One insanely long statement to get a return message
+            returnMessage = code.cipher("5", players.getPlayerRace(code.getUsername()), kit.getPlayerKit(code.getUsername()), weapons.getWeaponName(), 
+            level, to_string(players.getXP(code.getUsername())), to_string(battle.increaseXP(code.getUsername(), 0)), 
+            kit.getRaceDamageTypeForAbility(code.getUsername(), 'q'), kit.getRaceDamageTypeForAbility(code.getUsername(), 'w'), 
+            kit.getRaceDamageTypeForAbility(code.getUsername(), 'e'), kit.getRaceDamageTypeForAbility(code.getUsername(), 'r'));
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
