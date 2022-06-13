@@ -41,7 +41,14 @@ int Enemies::enemyChoiceGetStat(int enemyChoice, int returnType, int enemyLevel)
     if(enemyChoice == WITCH_ENEMY) witch();
     if(enemyChoice == MUTANT_GHOST) mutantGhost();
     if(enemyChoice == WERE_WOLF) wereWolf();
-    if(enemyChoice == NORMAL_POTATO) normalPotato();
+    if(enemyChoice == NORMAL_POTATO) normalPotato();    
+    if(enemyChoice == GOBLIN_MORG) goblinMorg();
+    if(enemyChoice == ORC_KLADE) orcKlade();
+    if(enemyChoice == BLACK_NIGHT) blackNight();
+    if(enemyChoice == BLUE_WIZARD) blueWizard();
+    if(enemyChoice == MONSTROUS_BEHEMOTH) monstrousBehemoth();
+    if(enemyChoice == AWFUL_NECROMANCER) awfulNecromancer();
+    if(enemyChoice == THE_DRAGON) theDragon();
 
     //modify the values based on level of the player 
     enemyLevelStatBuff(enemyChoice, enemyLevel);
@@ -193,6 +200,8 @@ string Enemies::getEnemyName(int enemyChoice){ //returns names based on input in
             break;
     }
 }
+
+//Found the XP Drop problem LOL - Richard
 int Enemies::getEnemyPickedFromName(string enemyName){ //This function is intended to go through and test which enemy the client is fighting currently and output that asociated number value
     mutantElf();
     if (enemyName == displayName) return enemyNum;
