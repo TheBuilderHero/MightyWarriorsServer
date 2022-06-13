@@ -1,8 +1,6 @@
-Dakota -Adding passives to the game
-        Pre message
-        During message
-        Post message
-        Also - please look at Cipher.GetItemS() code; could you extend it a bit further or should I(Richard) make more server calls?
+Dakota - Standard battle function with consideration of questing. (Load the xp reward when the moster is selected before hand)
+         Adding passives to the game
+         Also - please look at Cipher.GetItemS() code; could you extend it a bit further or should I(Richard) make more server calls?
 
 Richard - Adding Psychic damage and health
           Continuing to implement TempEntity
