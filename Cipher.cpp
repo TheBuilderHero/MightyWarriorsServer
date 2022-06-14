@@ -140,11 +140,119 @@ string Cipher::decipher(char messageFromClient[]){ //requestActions takes all th
     }
     return str_file_content;
 }
+string Cipher::subDecipher(char messageFromClient[]){ //requestActions takes all the different typeOfRequest
+    string s = messageFromClient;// change the message into a string
+    string str_file_content;
+    string token, output;
+    int loopPass = 0;
+    size_t pos = 0; // position variable for removing the delimiters to view the message
+    while ((pos = s.find(subDelimiter)) != std::string::npos) {
+        token = s.substr(0, pos);
+        output = token;
+        str_file_content += std::string(token); // we do not need to add spaces between the information for now so I removed: + std::string(" ")
+        s.erase(0, pos + subDelimiter.length());
+        
+        switch (loopPass){
+            case 1: //first item after delimiter
+            if (output.length() > 0) typeOfRequest = output; // request numbers give different outputs 1 is username usage, 2 is create user account, 3 is logon
+            break;
+            case 2://second item after delimiter
+            if (output.length() > 0) username = output; // we many need to change the variable to an int with stoi(output) later but right now we just want a string version
+            break;
+            case 3://third item after delimiter
+            if (output.length() > 0) item3 = output;
+            break;
+            case 4://forth item after delimiter
+            if (output.length() > 0) item4 = output;
+            break;
+            case 5://fith item after delimiter
+            if (output.length() > 0) item5 = output;
+            break;
+            case 6://sixth item after delimiter
+            if (output.length() > 0) item6 = output;
+            break;
+            case 7://seventh item after delimiter
+            if (output.length() > 0) item7 = output;
+            break; 
+            case 8://the eighth item enclosed in delimiters
+            if (output.length() > 0) item8 = output; 
+            break;
+            case 9://the ninth item enclosed in delimiters
+            if (output.length() > 0) item9 = output; 
+            break;
+            case 10://the tenth item enclosed in delimiters
+            if (output.length() > 0) item10 = output; 
+            break;
+            case 11://the tenth item enclosed in delimiters
+            if (output.length() > 0) item11 = output; 
+            break;
+            case 12://the tenth item enclosed in delimiters
+            if (output.length() > 0) item12 = output; 
+            break;
+        }
+        loopPass++;
+    }
+    return str_file_content;
+}
 
 //this functions purpose it to add the delimiters to given items 
-string Cipher::cipher(string responseType, string item2, string item3, string item4, string item5, string item6, string item7, string item8, string item9, string item10, string item11, string item12){ // the default values have been set to "" in case no input is given
+string Cipher::cipher(string responseType, string item2, string item3, string item4, string item5, string item6, string item7, string item8, string item9, string item10, string item11, string item12, string item13, string item14, string item15, string item16, string item17, string item18, string item19, string item20, string item21, string item22){ // the default values have been set to "" in case no input is given
     int numberOfItems = 12; //max number of items that we can cipher
     string delimiter = "~"; //a character that marks the beginning or end of a unit of data
+
+    string str_file_content;
+    int loopPass = 1; // start at loop instance 1 to not add extra delimiters to the front of the message.
+    while (loopPass <= numberOfItems) {
+        str_file_content += delimiter; // this will add the seperating delimiter before the a given item
+        switch (loopPass)
+        {
+            case 1://first item after delimiter
+            if (responseType.length() > 0) str_file_content += responseType;
+            break;
+            case 2://second item after delimiter
+            if (item2.length() > 0) str_file_content += item2;
+            break;
+            case 3://third item after delimiter
+            if (item3.length() > 0) str_file_content += item3;
+            break;
+            case 4://forth item after delimiter
+            if (item4.length() > 0) str_file_content += item4;
+            break;
+            case 5://fith item after delimiter
+            if (item5.length() > 0) str_file_content += item5;
+            break;
+            case 6://sixth item after delimiter
+            if (item6.length() > 0) str_file_content += item6;
+            break;
+            case 7://seventh item after delimiter
+            if (item7.length() > 0) str_file_content += item7;
+            break;
+            case 8://eighth item after delimiter
+            if (item8.length() > 0) str_file_content += item8;
+            break;
+            case 9://ninth item after delimiter
+            if (item9.length() > 0) str_file_content += item9;
+            break;
+            case 10://tenth item after delimiter
+            if (item10.length() > 0) str_file_content += item10;
+            break;
+            case 11://eleventh item after delimiter
+            if (item11.length() > 0) str_file_content += item11;
+            break;
+            case 12://twelth item after delimiter
+            if (item12.length() > 0) str_file_content += item12;
+            break;
+        }
+        loopPass++;
+    }
+    str_file_content += delimiter; // this will add the final delimiter after all the data to mark the end
+    return str_file_content;
+}
+
+//this functions purpose it to add the delimiters to given sub items 
+string Cipher::subCipher(string responseType, string item2, string item3, string item4, string item5, string item6, string item7, string item8, string item9, string item10, string item11, string item12, string item13, string item14, string item15, string item16, string item17, string item18, string item19, string item20, string item21, string item22){ // the default values have been set to "" in case no input is given
+    int numberOfItems = 12; //max number of items that we can cipher
+    string subDelimiter = "="; //a character that marks the beginning or end of a unit of data
 
     string str_file_content;
     int loopPass = 1; // start at loop instance 1 to not add extra delimiters to the front of the message.

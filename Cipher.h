@@ -14,15 +14,19 @@ class Cipher {
         string line;
         string search;
         string delimiter = "~";
+        string subDelimiter = "=";
         string typeOfRequest;
         string username, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12; // declare the variables that are being used to store the message from the client // in some cases item2 is used.
         // the above variables may later be replaced with a more wide veriety of variables however, for testing we are using all strings
     public:
     //this function is intended to pull out the users request and the data associated with each request
     string decipher(char messageFromClient[]);
+    string subDecipher(char messageFromClient[]);
 
     //this functions purpose it to add the delimiters to given items 
-    string cipher(string responseType, string item2= "", string item3= "", string item4= "", string item5= "", string item6= "", string item7= "", string item8= "", string item9= "", string item10= "", string item11= "", string item12= "");
+    string cipher(string responseType, string item2= "", string item3= "", string item4= "", string item5= "", string item6= "", string item7= "", string item8= "", string item9= "", string item10= "", string item11= "", string item12= "", string item13= "", string item14= "", string item15= "", string item16= "", string item17= "", string item18= "", string item19= "", string item20= "", string item21= "", string item22= "");
+    //this functions purpose it to add the delimiters to given sub items 
+    string subCipher(string responseType, string item2= "", string item3= "", string item4= "", string item5= "", string item6= "", string item7= "", string item8= "", string item9= "", string item10= "", string item11= "", string item12= "", string item13= "", string item14= "", string item15= "", string item16= "", string item17= "", string item18= "", string item19= "", string item20= "", string item21= "", string item22= "");
 
     //This function writes inputs given from a user to file using the sperating delimiter //updateValue: 1 = inital setup race, kit, level, XP 2 = password 3 = user's stats overwrite 4 = level and XP update 5 = user stats update 6 = update weapons 7 = update location 8 = update the player quests progress
     void userDataDeliminationWrite(int updateValue, string username, string data2 = "", string data3 = "", string data4 = "", string data5 = "", string data6 = "", string data7 = "", string data8 = "", string data9 = "", string data10 = ""); 
