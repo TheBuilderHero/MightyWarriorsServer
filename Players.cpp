@@ -224,6 +224,19 @@ string Players::getManaStat(std::string username){//this funciton calculates to 
     int totalManaValue = characters.getBaseMana() + stoi(code.getItem(10));
     return to_string(totalManaValue);
 }
+string Players::getMindStat(std::string username, int baseMind, int bonusMind){//this funciton calculates to total Mana stat of a user and makes it into a string to be sent to the client
+    int totalMindValue = baseMind + bonusMind;
+    return to_string(totalMindValue);
+}
+string Players::getMindStat(std::string username){//this funciton calculates to total Mana stat of a user and makes it into a string to be sent to the client
+    Characters characters;
+    Cipher code;
+    Players players;
+    code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
+    characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
+    int totalMindValue = characters.getBaseMind() + stoi(code.getItem(11));
+    return to_string(totalMindValue);
+}
 int Players::getLevel(string username){//pulls level from user's file to return
     int playerLevel;
     Cipher code;

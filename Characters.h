@@ -59,6 +59,6 @@ class Characters {
         void setBaseStamina(int newValue) { baseStamina = newValue; }
         void setBaseMana(int newValue) { baseMana = newValue; }
         void setBaseMind(int newValue) { baseMind = newValue; }
-        void setBasePyschicDamage(int newValue) { basePsychicDamage = newValue; }
+        void setBasePsychicDamage(int newValue) { basePsychicDamage = newValue; }
         void setLevel(int newValue) { level = newValue; }
 };

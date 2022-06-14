@@ -133,7 +133,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             break;
         }
         case 5:{//write the user stats to file
-            code.userDataDeliminationWrite(3, code.getUsername(), code.getItem(3), code.getItem(4), code.getItem(5), code.getItem(6), code.getItem(7), code.getItem(8), code.getItem(9), code.getItem(10), code.getItem(11));
+            code.userDataDeliminationWrite(3, code.getUsername(), code.getItem(3), code.getItem(4), code.getItem(5), code.getItem(6), code.getItem(7), code.getItem(8), code.getItem(9), code.getItem(10), code.getItem(11), code.getItem(12), code.getItem(13));
             returnMessage = code.cipher("4", "wasAbleToSave");
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
@@ -152,9 +152,11 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             string stealth = players.getStealthStat(code.getUsername());
             string stamina = players.getStaminaStat(code.getUsername());
             string mana = players.getManaStat(code.getUsername());
+            string mind = players.getMindStat(code.getUsername());
+            string psychicDam = players.getPyschicDamageStat(code.getUsername());
 
             //set the proper stat values for the input of the base stats (This is used in the following long statment)
-            returnMessage = code.cipher("5", health, armor, magicResist, physicalDam, magicDam, agility, stealth, stamina, mana); // This very long input put into simple terms calculates stats by adding base to bonus then spitting it out as a string for Health, armor, magicResistance, physicalDamage, MagicDamage, Agility
+            returnMessage = code.cipher("5", health, armor, magicResist, physicalDam, magicDam, agility, stealth, stamina, mana, mind, psychicDam); // This very long input put into simple terms calculates stats by adding base to bonus then spitting it out as a string for Health, armor, magicResistance, physicalDamage, MagicDamage, Agility
             //cout << "Return message write successful\n";
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");

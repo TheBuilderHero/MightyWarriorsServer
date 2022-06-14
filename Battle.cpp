@@ -71,7 +71,7 @@ int Battle::doQOption(string username, string attackMagicOrPhysical, int enemyCh
     //pull in the player attack stats
     double physicalDamage = stoi(players.getPhysicalDamageStat(username));
     double magicDamage = stoi(players.getMagicDamageStat(username));
-    double pyschicDamage = stoi(players.getPyschicDamageStat(username));
+    double psychicDamage = stoi(players.getPyschicDamageStat(username));
     
     //pull in the enemy defense stats
     int enemyLevel = players.getLevel(username);
@@ -81,6 +81,7 @@ int Battle::doQOption(string username, string attackMagicOrPhysical, int enemyCh
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the enemy
     if (attackMagicOrPhysical == kit.getDAMAGETYPE_PHYSICAL()) qDamage = physicalDamage -= (armor * DEFENSE_RATIO);
     if (attackMagicOrPhysical == kit.getDAMAGETYPE_MAGIC()) qDamage = magicDamage -= (magicResistance * DEFENSE_RATIO);
+    if (attackMagicOrPhysical == kit.getDAMAGETYPE_PSYCHIC()) qDamage = psychicDamage;
 
     if(qDamage < 0) qDamage = 0; //this prevents attacks with negative values
 
@@ -98,6 +99,7 @@ int Battle::doWOption(string username, string attackMagicOrPhysical, int enemyCh
     //pull in the player attack stats
     double physicalDamage = stoi(players.getPhysicalDamageStat(username));
     double magicDamage = stoi(players.getMagicDamageStat(username));
+    double psychicDamage = stoi(players.getPyschicDamageStat(username));
     
     //pull in the enemy defense stats
     int enemyLevel = players.getLevel(username);
@@ -107,6 +109,7 @@ int Battle::doWOption(string username, string attackMagicOrPhysical, int enemyCh
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the enemy
     if (attackMagicOrPhysical == kit.getDAMAGETYPE_PHYSICAL()) wDamage = physicalDamage -= (armor/DEFENSE_RATIO);
     if (attackMagicOrPhysical == kit.getDAMAGETYPE_MAGIC()) wDamage = magicDamage -= (magicResistance/DEFENSE_RATIO);
+    if (attackMagicOrPhysical == kit.getDAMAGETYPE_PSYCHIC()) wDamage = psychicDamage;
 
     if(wDamage < 0) wDamage = 0; //this prevents attacks with negative values
 
@@ -124,6 +127,7 @@ int Battle::doEOption(string username, string attackMagicOrPhysical, int enemyCh
     //pull in the player attack stats
     double physicalDamage = stoi(players.getPhysicalDamageStat(username));
     double magicDamage = stoi(players.getMagicDamageStat(username));
+    double psychicDamage = stoi(players.getPyschicDamageStat(username));
     
     //pull in the enemy defense stats
     int enemyLevel = players.getLevel(username);
@@ -133,6 +137,7 @@ int Battle::doEOption(string username, string attackMagicOrPhysical, int enemyCh
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the enemy
     if (attackMagicOrPhysical == kit.getDAMAGETYPE_PHYSICAL()) eDamage = physicalDamage -= (armor * DEFENSE_RATIO);
     if (attackMagicOrPhysical == kit.getDAMAGETYPE_MAGIC()) eDamage = magicDamage -= (magicResistance * DEFENSE_RATIO);
+    if (attackMagicOrPhysical == kit.getDAMAGETYPE_PSYCHIC()) eDamage = psychicDamage;
 
     if(eDamage < 0) eDamage = 0; //this prevents attacks with negative values
 
@@ -150,6 +155,7 @@ int Battle::doROption(string username, string attackMagicOrPhysical, int enemyCh
     //pull in the player attack stats
     double physicalDamage = stoi(players.getPhysicalDamageStat(username));
     double magicDamage = stoi(players.getMagicDamageStat(username));
+    double psychicDamage = stoi(players.getPyschicDamageStat(username));
     
     //pull in the enemy defense stats
     int enemyLevel = players.getLevel(username);
@@ -159,6 +165,7 @@ int Battle::doROption(string username, string attackMagicOrPhysical, int enemyCh
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the enemy
     if (attackMagicOrPhysical == kit.getDAMAGETYPE_PHYSICAL()) rDamage = physicalDamage -= (armor * DEFENSE_RATIO);
     if (attackMagicOrPhysical == kit.getDAMAGETYPE_MAGIC()) rDamage = magicDamage -= (magicResistance * DEFENSE_RATIO);
+    if (attackMagicOrPhysical == kit.getDAMAGETYPE_PSYCHIC()) rDamage = psychicDamage;
 
     if(rDamage < 0) rDamage = 0; //this prevents attacks with negative values
 
@@ -206,7 +213,7 @@ int Battle::determineEnemyAttackOption(string username, int enemyChoice, string 
 
     //right now all the below do the same thing with a different damage type.  We will need to update them to each have a unigue function.
     case 1: //magical attack
-        return doEnemyOption1(username, enemy.getDAMAGETYPE_MAGIC(), enemyChoice, playerBlocking);
+        return doEnemyOption1(username, enemy.getDAMAGETYPE_PSYCHIC(), enemyChoice, playerBlocking);
         break;
     case 2: //physical attack
         return doEnemyOption2(username, enemy.getDAMAGETYPE_PHYSICAL(), enemyChoice, playerBlocking);
@@ -234,6 +241,7 @@ int Battle::doEnemyOption1(string username, string attackMagicOrPhysical, int en
     int enemyLevel = players.getLevel(username);
     double physicalDamage = enemy.enemyChoiceGetStat(enemyChoice, 4, enemyLevel);
     double magicDamage = enemy.enemyChoiceGetStat(enemyChoice, 5, enemyLevel);
+    double psychicDamage = enemy.enemyChoiceGetStat(enemyChoice, 9, enemyLevel);
     
     //pull in the player defense stats
     double armor = stoi(players.getArmorStat(username));
@@ -242,10 +250,15 @@ int Battle::doEnemyOption1(string username, string attackMagicOrPhysical, int en
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the player's stats
     if (attackMagicOrPhysical == enemy.getDAMAGETYPE_PHYSICAL()) option1Damage = physicalDamage -= (armor * DEFENSE_RATIO);
     if (attackMagicOrPhysical == enemy.getDAMAGETYPE_MAGIC()) option1Damage = magicDamage -= (magicResistance * DEFENSE_RATIO);
+    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_MAGIC()) option1Damage = psychicDamage;
 
     //add random amount of damage from 10 - 30:
     srand (time(NULL)); //seed random number based on time
-    option1Damage += rand() % (30 + 1) + 10; //add random value
+    if(attackMagicOrPhysical == enemy.getDAMAGETYPE_PSYCHIC()){
+        option1Damage += rand() % 5; 
+    }else{
+        option1Damage += rand() % (30 + 1) + 10; //add random value
+    }
 
     //check if player was blocking - If yes, we do 75% damage //1 being true
     if (playerBlocking == "1") option1Damage *= BLOCK_REDUCTION_VALUE; 
@@ -265,6 +278,7 @@ int Battle::doEnemyOption2(string username, string attackMagicOrPhysical, int en
     int enemyLevel = players.getLevel(username);
     double physicalDamage = enemy.enemyChoiceGetStat(enemyChoice, 4, enemyLevel);
     double magicDamage = enemy.enemyChoiceGetStat(enemyChoice, 5, enemyLevel);
+    double psychicDamage = enemy.enemyChoiceGetStat(enemyChoice, 9, enemyLevel);
     
     //pull in the player defense stats
     double armor = stoi(players.getArmorStat(username));
@@ -273,10 +287,15 @@ int Battle::doEnemyOption2(string username, string attackMagicOrPhysical, int en
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the player's stats
     if (attackMagicOrPhysical == enemy.getDAMAGETYPE_PHYSICAL()) option2Damage = physicalDamage -= (armor * DEFENSE_RATIO);
     if (attackMagicOrPhysical == enemy.getDAMAGETYPE_MAGIC()) option2Damage = magicDamage -= (magicResistance * DEFENSE_RATIO);
+    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_MAGIC()) option2Damage = psychicDamage;
 
     //add random amount of damage from 10 - 30:
     srand (time(NULL)); //seed random number based on time
-    option2Damage += rand() % (30 + 1) + 10; //add random value
+    if(attackMagicOrPhysical == enemy.getDAMAGETYPE_PSYCHIC()){
+        option2Damage += rand() % 5; 
+    }else{
+        option2Damage += rand() % (30 + 1) + 10; //add random value
+    }
 
     //check if player was blocking - If yes, we do 75% damage //1 being true
     if (playerBlocking == "1") option2Damage *= BLOCK_REDUCTION_VALUE; 
@@ -296,6 +315,7 @@ int Battle::doEnemyOption3(string username, string attackMagicOrPhysical, int en
     int enemyLevel = players.getLevel(username);
     double physicalDamage = enemy.enemyChoiceGetStat(enemyChoice, 4, enemyLevel);
     double magicDamage = enemy.enemyChoiceGetStat(enemyChoice, 5, enemyLevel);
+    double psychicDamage = enemy.enemyChoiceGetStat(enemyChoice, 9, enemyLevel);
     
     //pull in the player defense stats
     double armor = stoi(players.getArmorStat(username));
@@ -304,10 +324,15 @@ int Battle::doEnemyOption3(string username, string attackMagicOrPhysical, int en
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the player's stats
     if (attackMagicOrPhysical == enemy.getDAMAGETYPE_PHYSICAL()) option3Damage = physicalDamage -= (armor * DEFENSE_RATIO);
     if (attackMagicOrPhysical == enemy.getDAMAGETYPE_MAGIC()) option3Damage = magicDamage -= (magicResistance * DEFENSE_RATIO);
+    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_MAGIC()) option3Damage = psychicDamage;
 
     //add random amount of damage from 10 - 30:
     srand (time(NULL)); //seed random number based on time
-    option3Damage += rand() % (30 + 1) + 10; //add random value
+    if(attackMagicOrPhysical == enemy.getDAMAGETYPE_PSYCHIC()){
+        option3Damage += rand() % 5; 
+    }else{
+        option3Damage += rand() % (30 + 1) + 10; //add random value
+    }
 
     //check if player was blocking - If yes, we do 75% damage //1 being true
     if (playerBlocking == "1") option3Damage *= BLOCK_REDUCTION_VALUE; 
@@ -327,6 +352,7 @@ int Battle::doEnemyOption4(string username, string attackMagicOrPhysical, int en
     int enemyLevel = players.getLevel(username);
     double physicalDamage = enemy.enemyChoiceGetStat(enemyChoice, 4, enemyLevel);
     double magicDamage = enemy.enemyChoiceGetStat(enemyChoice, 5, enemyLevel);
+    double psychicDamage = enemy.enemyChoiceGetStat(enemyChoice, 9, enemyLevel);
     
     //pull in the player defense stats
     double armor = stoi(players.getArmorStat(username));
@@ -335,10 +361,15 @@ int Battle::doEnemyOption4(string username, string attackMagicOrPhysical, int en
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the player's stats
     if (attackMagicOrPhysical == enemy.getDAMAGETYPE_PHYSICAL()) option4Damage = physicalDamage -= (armor * DEFENSE_RATIO);
     if (attackMagicOrPhysical == enemy.getDAMAGETYPE_MAGIC()) option4Damage = magicDamage -= (magicResistance * DEFENSE_RATIO);
+    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_MAGIC()) option4Damage = psychicDamage;
 
     //add random amount of damage from 10 - 30:
     srand (time(NULL)); //seed random number based on time
-    option4Damage += rand() % (30 + 1) + 10; //add random value
+    if(attackMagicOrPhysical == enemy.getDAMAGETYPE_PSYCHIC()){
+        option4Damage += rand() % 5; 
+    }else{
+        option4Damage += rand() % (30 + 1) + 10; //add random value
+    }
 
     //check if player was blocking - If yes, we do 75% damage //1 being true
     if (playerBlocking == "1") option4Damage *= BLOCK_REDUCTION_VALUE; 
