@@ -30,6 +30,10 @@ string Battle::getEnemyBattleStats(int enemyRandomChoice, int level, string stat
         return to_string(enemy.enemyChoiceGetStat(enemyRandomChoice, 6, level));
     } else if (statChoice == "stealth") {
         return to_string(enemy.enemyChoiceGetStat(enemyRandomChoice, 7, level));
+    } else if (statChoice == "mind") {
+        return to_string(enemy.enemyChoiceGetStat(enemyRandomChoice, 8, level));
+    } else if (statChoice == "pyschicDamage") {
+        return to_string(enemy.enemyChoiceGetStat(enemyRandomChoice, 9, level));
     } else {
         return "0";
     }
@@ -67,6 +71,7 @@ int Battle::doQOption(string username, string attackMagicOrPhysical, int enemyCh
     //pull in the player attack stats
     double physicalDamage = stoi(players.getPhysicalDamageStat(username));
     double magicDamage = stoi(players.getMagicDamageStat(username));
+    double pyschicDamage = stoi(players.getPyschicDamageStat(username));
     
     //pull in the enemy defense stats
     int enemyLevel = players.getLevel(username);

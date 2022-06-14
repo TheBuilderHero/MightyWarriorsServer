@@ -28,6 +28,7 @@ void Characters::human(string username) {  //Kyle
     baseStamina = 0;
     baseMana = 0;
     baseMind = 10;
+    basePsychicDamage = 0;
     level = 0;
 }
 
@@ -44,6 +45,7 @@ void Characters::elf(string username) {
     baseStamina = 0;
     baseMana = 0;
     baseMind = 15;
+    basePsychicDamage = 0;
     level = 0;
 }
 
@@ -60,6 +62,7 @@ void Characters::dino(string username) {
     baseStamina = 0;
     baseMana = 0;
     baseMind = 5;
+    basePsychicDamage = 0;
     level = 0;
 }
 
@@ -76,6 +79,7 @@ void Characters::dryad(string username) {
     baseStamina = 0;
     baseMana = 0;
     baseMind = 15;
+    basePsychicDamage = 0;
     level = 0;
 }
 
@@ -92,6 +96,7 @@ void Characters::ghost(string username) {
     baseStamina = 0;
     baseMana = 0;
     baseMind = 10;
+    basePsychicDamage = 2;
     level = 0;
 }
 
@@ -108,5 +113,6 @@ void Characters::mop(string username) {
     baseStamina = 0;
     baseMana = 20;
     baseMind = 50;
+    basePsychicDamage = 5;
     level = 0;
 }

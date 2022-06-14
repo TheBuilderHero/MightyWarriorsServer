@@ -10,7 +10,7 @@ private:
     int weaponID;
     string usernameForWeapons;
     int accuracy;
-    int minPhysicalDamage, minMagicDamage, minPsychicDamage;
+    int minPhysicalDamage = 0, minMagicDamage = 0, minPsychicDamage = 0;
     int maxPhysicalDamage, maxMagicDamage, maxPsychicDamage;
     int iron, wood, gems, feet, fruit, brains; //feet means Rabbit feet
 public:

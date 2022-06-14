@@ -15,6 +15,7 @@ class Players : Characters { //defining the player and all their caracteristics 
 
         std::string getPhysicalDamageStat(std::string username, bool outputMinAndMaxString = false);
         std::string getMagicDamageStat(std::string username, bool outputMinAndMaxString = false);
+        std::string getPyschicDamageStat(std::string username, bool outputMinAndMaxString = false);
 
         std::string getArmorStat(std::string username, int baseArmor, int bonusArmor);//returns total Armor stat for player with input of base and bonus Armor.
         std::string getArmorStat(std::string username);//returns total Armor stat for player with input of base and bonus Armor.
@@ -33,6 +34,9 @@ class Players : Characters { //defining the player and all their caracteristics 
 
         std::string getManaStat(std::string username, int baseMana, int bonusMana);//this funciton calculates to total Mana stat of a user and makes it into a string to be sent to the client
         std::string getManaStat(std::string username);
+
+        std::string getMindStat(std::string username, int baseMana, int bonusMana);//this funciton calculates to total Mana stat of a user and makes it into a string to be sent to the client
+        std::string getMindStat(std::string username);
 
         int getPlayerWeapon(std::string username, int tempWeaponChoice);
 
