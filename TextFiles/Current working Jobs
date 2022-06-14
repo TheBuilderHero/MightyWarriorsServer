@@ -1,10 +1,14 @@
 Dakota - Standard battle function with consideration of questing. (Load the xp reward when the moster is selected before hand)
          Adding passives to the game
-         Also - please look at Cipher.GetItemS() code; could you extend it a bit further or should I(Richard) make more server calls?
+         Need to add Items to server side
 
-Richard - Adding Psychic damage and health
-          Continuing to implement TempEntity
-          Add new quests?
+Richard - Add Psychic damage and health
+          Continue to implement TempEntity
+          Add system to handle multiple quests
+          Add monster group functionality
+          Add travel battles/events
+          Check experience gains after battles
+          
 
 Kyle - Monster Groups
        get VSCode to work again
@@ -41,3 +45,4 @@ Dakota -Added the secret race to the menu choice "have to type 'april' to get it
 Richard - Added new Stats menu to pull all data from local Player TempEntity
 Richard - Added data and code in TempEntity to store more player info (kit, race, ability types, etc.)
 Richard - TESTED all new changes! Everything is working on my end right now!
+Dakota -Added Items to ItemS Code
