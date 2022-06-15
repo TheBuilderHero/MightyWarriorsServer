@@ -159,7 +159,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             string stamina = players.getStaminaStat(code.getUsername());
             string mana = players.getManaStat(code.getUsername());
             string mind = players.getMindStat(code.getUsername());
-            string psychicDam = players.getPyschicDamageStat(code.getUsername());
+            string psychicDam = players.getPyschicDamageStat(code.getUsername(), true);
 
             //set the proper stat values for the input of the base stats (This is used in the following long statment)
             returnMessage = code.cipher("5", health, armor, magicResist, physicalDam, magicDam, agility, stealth, stamina, mana, mind, psychicDam); // This very long input put into simple terms calculates stats by adding base to bonus then spitting it out as a string for Health, armor, magicResistance, physicalDamage, MagicDamage, Agility
