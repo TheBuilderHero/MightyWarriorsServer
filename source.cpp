@@ -200,7 +200,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             break;
         }
         case 10:{//enemy attacks
-            returnMessage = code.cipher("4", to_string(battle.determineEnemyAttackOption(code.getUsername(), enemy.getEnemyPickedFromName(code.getItem(3)), code.getItem(4)))); //get the damage for the enemy and cipher return message.
+            returnMessage = code.cipher("4", to_string(battle.determineEnemyAttackOption(code.getUsername(), enemy.getEnemyPickedFromName(code.getItem(3)), code.getItem(4))), battle.getAttackType()); //get the damage for the enemy and cipher return message.
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
@@ -227,8 +227,6 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
         }
         case 14:{//updates the players level and XP
             //currently using the players level for the enemy's level for XP since they should be the same
-            cout << code.getItem(3) << "\n";
-            cout << enemy.getXPDrop(stoi(code.getItem(3))) << "\n";
             battle.increaseXP(code.getUsername(), enemy.getXPDrop(stoi(code.getItem(3)))); //hardset the enemies level to 1 since at this moment there is no level change for enemies
             returnMessage = code.cipher("4", to_string(players.getLevel(code.getUsername())));
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
@@ -243,7 +241,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             break;
         }
         case 16:{//update user stats
-            code.userDataDeliminationWrite(5, code.getUsername(), code.getItem(3), code.getItem(4), code.getItem(5), code.getItem(6), code.getItem(7), code.getItem(8), code.getItem(9), code.getItem(10), code.getItem(11));
+            code.userDataDeliminationWrite(5, code.getUsername(), code.getItem(3), code.getItem(4), code.getItem(5), code.getItem(6), code.getItem(7), code.getItem(8), code.getItem(9), code.getItem(10), code.getItem(11), code.getItem(12), code.getItem(13));
             returnMessage = code.cipher("4", "wasAbleToSave");
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");

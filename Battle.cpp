@@ -209,27 +209,33 @@ int Battle::determineEnemyAttackOption(string username, int enemyChoice, string 
     //get random number 1 - 4 for the different attack options
     srand (time(NULL)); //seed random number based on time
     int option = rand() % 4 + 1; //random number
-    switch (option){ //the random number is used to pick the type of attack which will be done
+    int damage;
 
+    switch (option){ //the random number is used to pick the type of attack which will be done
     //right now all the below do the same thing with a different damage type.  We will need to update them to each have a unigue function.
     case 1: //magical attack
-        return doEnemyOption1(username, enemy.getDAMAGETYPE_PSYCHIC(), enemyChoice, playerBlocking);
+        damage = doEnemyOption1(username, enemy.getDAMAGETYPE_PSYCHIC(), enemyChoice, playerBlocking);
+        attackType = enemy.getDAMAGETYPE_PSYCHIC();
         break;
     case 2: //physical attack
-        return doEnemyOption2(username, enemy.getDAMAGETYPE_PHYSICAL(), enemyChoice, playerBlocking);
+        damage = doEnemyOption2(username, enemy.getDAMAGETYPE_PHYSICAL(), enemyChoice, playerBlocking);
+        attackType = enemy.getDAMAGETYPE_PHYSICAL();
         break;
     case 3://magical attack
-        return doEnemyOption3(username, enemy.getDAMAGETYPE_MAGIC(), enemyChoice, playerBlocking);
+        damage = doEnemyOption3(username, enemy.getDAMAGETYPE_MAGIC(), enemyChoice, playerBlocking);
+        attackType = enemy.getDAMAGETYPE_MAGIC();
         break;
     case 4: //physical attack
-        return doEnemyOption4(username, enemy.getDAMAGETYPE_PHYSICAL(), enemyChoice, playerBlocking);
+        damage = doEnemyOption4(username, enemy.getDAMAGETYPE_PHYSICAL(), enemyChoice, playerBlocking);
+        attackType = enemy.getDAMAGETYPE_PHYSICAL();
         break;
     
     default:
         return 0; //this should never happen
         break;
     }
-
+    cout << "Attack Type: " << attackType << endl;
+    return damage;
 }
 int Battle::doEnemyOption1(string username, string attackMagicOrPhysical, int enemyChoice, string playerBlocking){ //one of the enemies options for attacking the player
     //this should take into account wether it is magic or physical

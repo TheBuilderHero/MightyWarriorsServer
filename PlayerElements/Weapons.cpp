@@ -42,7 +42,7 @@ void Weapons::loadWeaponData(string username){    //save the weapon bonus' to fi
     feet += stoi(cipher.getItem(6));
     fruit += stoi(cipher.getItem(7));
     brains += stoi(cipher.getItem(8));
-    cout << "Weapon read successful\n";
+    //cout << "Weapon read successful\n";
 }
 void Weapons::saveWeaponData(string username){    //save the weapon bonus' to file:
     Cipher cipher;

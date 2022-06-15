@@ -10,6 +10,7 @@ class Battle{//This class will have all the functions needed for the algorythms 
     //bool enemyBlocking = false; //isEnemyBlocking does not use this as of now
     //need to modify so that we can return values instead of this:
     std::string listOfEnemies[10]; //this is used for the enemies within a group - lists all their names
+    std::string attackType; //this will be sent to the client to properly deal psychic, magic, or physical damage
     
     public:
     std::string getEnemyBattleStats(int enemyRandomChoice, int level, std::string statChoice); //set the enemy battle stats //return a value of type int but converted to a string
@@ -34,4 +35,5 @@ class Battle{//This class will have all the functions needed for the algorythms 
     double increaseXP(std::string username, double playerXPIncrease);// this can return the total amount of xp needed for the next level
     void enemyDrops(std::string enemyName, int level, int difficulty);
 
+    std::string getAttackType(){ return attackType; }
 };
