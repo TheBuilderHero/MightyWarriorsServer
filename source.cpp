@@ -97,7 +97,13 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
     printf("V1.1-Here is the message from the User: %s\n", messageFromClient);
 
     //testing to see what action the user is requesting by switching between cases of typeOfRequest
-    switch (stoi(code.getTypeOfRequest())) {
+    int request;
+    try{
+        request = stoi(code.getTypeOfRequest());
+    } catch(std::invalid_argument){
+        cout << "failed main: \"switch (request)\" in requestActions()" << endl;
+    }
+    switch (request) {
         case 1:{//check new users entered username against list of usernames to make sure it is unique
             message = code.decipher(messageFromClient); //unpack the message from the user
             testUsername.open("./userdata/" + code.getUsername() + "/" + code.getUsername() + ".dat"); //opens file to check if it exists
@@ -165,11 +171,19 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
         case 7:{//read the enemy stats for battle
             int enemyNumPicked, enemyLevel;
             srand (time(NULL)); //initialize random seed
-            if(stoi(code.getItem(3)) == 1){
-                if(stoi(code.getItem(4)) == 0){
+            int test1,enemyNum;
+            try{
+                test1 = stoi(code.getItem(3));
+                enemyNum = stoi(code.getItem(4));
+            } catch(std::invalid_argument){
+                cout << "failed \"case 7:{//read the enemy stats for battle\"" << endl;
+            }
+            
+            if(test1 == 1){
+                if(enemyNum == 0){
                     enemyNumPicked = 2;
                 }else{
-                    enemyNumPicked = stoi(code.getItem(4)) + 90;
+                    enemyNumPicked = enemyNum + 90;
                 }
             }else{
                 enemyNumPicked = rand() % 13 + 1;     //in the range 1 to 12 //this is the type of enemy which you will fight
@@ -183,9 +197,16 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
         }
         case 8:{ //user race, kit, and weapon selection and write to file
             // using code.getItem(3) from the client (which is raceChoice) and code.getItem(4) (which is kitChoice) we will determine the race which the user selected which is the reutrn of getPlayerRace
-            int tempWeaponChoice = stoi(code.getItem(5));
-            int tempRaceChoice = stoi(code.getItem(3));
-            int tempKitChoice = stoi(code.getItem(4));
+            int tempWeaponChoice;
+            int tempRaceChoice;
+            int tempKitChoice;
+            try{
+                tempWeaponChoice = stoi(code.getItem(5));
+                tempRaceChoice = stoi(code.getItem(3));
+                tempKitChoice = stoi(code.getItem(4));
+            } catch(std::invalid_argument){
+                cout << "failed \"case 8:{ //user race, kit, and weapon selection and write to file\"" << endl;
+            }
             Weapons weapons(code.getUsername(), true);
             weapons.setPlayerWeapon(tempWeaponChoice);
             weapons.~Weapons(); //call destructor to save weapon data
@@ -194,7 +215,13 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             break;
             }
         case 9:{//this takes the input of battle attacks to then reply with the damage amount.
-            returnMessage = code.cipher("4", to_string(battle.determineOption(code.getUsername(), stoi(code.getItem(4)), enemy.getEnemyPickedFromName(code.getItem(3))))); //get the damage for one of the abilites and cipher return message.
+            int selectedOption;
+            try{
+                selectedOption = stoi(code.getItem(4));
+            } catch(std::invalid_argument){
+                cout << "failed \"case 9:{//this takes the input of battle attacks to then reply with the damage amount.\"" << endl;
+            }
+            returnMessage = code.cipher("4", to_string(battle.determineOption(code.getUsername(), selectedOption, enemy.getEnemyPickedFromName(code.getItem(3))))); //get the damage for one of the abilites and cipher return message.
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
@@ -228,8 +255,14 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
         case 14:{//updates the players level and XP
             //currently using the players level for the enemy's level for XP since they should be the same
             cout << code.getItem(3) << "\n";
-            cout << enemy.getXPDrop(stoi(code.getItem(3))) << "\n";
-            battle.increaseXP(code.getUsername(), enemy.getXPDrop(stoi(code.getItem(3)))); //hardset the enemies level to 1 since at this moment there is no level change for enemies
+            int enemyChoice;
+            try{
+                enemyChoice = stoi(code.getItem(3));
+            } catch(std::invalid_argument){
+                cout << "failed \"case 14:{//updates the players level and XP\"" << endl;
+            }
+            cout << enemy.getXPDrop(enemyChoice) << "\n";
+            battle.increaseXP(code.getUsername(), enemy.getXPDrop(enemyChoice)); //hardset the enemies level to 1 since at this moment there is no level change for enemies
             returnMessage = code.cipher("4", to_string(players.getLevel(code.getUsername())));
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
@@ -291,10 +324,15 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
         }
         case 0:{//check for version compatibility - This is done before using can continue to create account or logon
             int gameVersionClient, gameMajorBuildClient, gameMinorBuildClient, gamePatchClient; //client game versions which we are going to test against the server's version
-            gameVersionClient = stoi(code.getItem(3));
-            gameMajorBuildClient = stoi(code.getItem(4));
-            gameMinorBuildClient = stoi(code.getItem(5));
-            gamePatchClient = stoi(code.getItem(6));
+            try{
+                gameVersionClient = stoi(code.getItem(3));
+                gameMajorBuildClient = stoi(code.getItem(4));
+                gameMinorBuildClient = stoi(code.getItem(5));
+                gamePatchClient = stoi(code.getItem(6));
+            } catch (std::invalid_argument){
+                cout << "failed \"case 7:{//read the enemy stats for battle\"" << endl;
+            }
+            
             if (gameVersion == gameVersionClient){ //these nested if statements check to makte sure that the client version the user is using is the same as the valid client version on the server.
                 if(gameMajorBuild == gameMajorBuildClient){
                     if (gameMinorBuild == gameMinorBuildClient){
