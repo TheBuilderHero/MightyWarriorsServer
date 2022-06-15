@@ -1,6 +1,9 @@
 Dakota - Standard battle function with consideration of questing. (Load the xp reward when the moster is selected before hand)
+         Added MapOutline function to client need to complete the whole map
+         Add location data to players' saved info on server
+         Add quest data to players' saved info on server
          Adding passives to the game
-         Need to add Items to server side
+         
 
 Richard - Add Psychic damage and health
           Continue to implement TempEntity
@@ -13,18 +16,16 @@ Richard - Add Psychic damage and health
 Kyle - Monster Groups
        get VSCode to work again
        
-Dominic - Story
-          Add graphics class (lol)
+Dominic -Story
+         Test all functionality and give imput and feedback.
+         Add graphics class (lol)    <--- Wow! just wow, Richard
 
 
-We (Dakota) still need to:
--add location data to players' saved info
--add quest data to players' saved info
+We still need to:
 -add questing functionality, possibly through separate quest menu
 -connect location data to travel menu
 -connect location and quest saves to questing functionality
 -Keep Testing Stuff
-Thanx m9s. Void Cat Weak Peace Oot!
 
 
 ***Complete Items***
@@ -46,3 +47,4 @@ Richard - Added new Stats menu to pull all data from local Player TempEntity
 Richard - Added data and code in TempEntity to store more player info (kit, race, ability types, etc.)
 Richard - TESTED all new changes! Everything is working on my end right now!
 Dakota -Added Items to ItemS Code
+Dakota -Added subItems Cipher and decipher to both server and client side. We now have 440 avalible slots of datat instead of 22. (not tested but implimented)
