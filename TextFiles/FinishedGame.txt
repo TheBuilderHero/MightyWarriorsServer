@@ -1,3 +1,6 @@
 Final Product Check List:
-
- - Final boss (needs to follow the story line)
+ - 
+ - Easter egg from each developer
+ - Weapon creation, modification, and deletion.
+ - At least 10 different cities each with its own diffeculty of different monsters and boss battle
+ - Final boss (which follows from the story line)
