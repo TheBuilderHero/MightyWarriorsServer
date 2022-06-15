@@ -109,6 +109,33 @@ string Players::getMagicDamageStat(std::string username, bool outputMinAndMaxStr
         return to_string(totalMagicDamageValue);
     }
 }
+string Players::getPyschicDamageStat(std::string username, bool outputMinAndMaxString){ //this funciton calculates to total Magic Damage stat of a user and makes it into a string to be sent to the client
+    if (outputMinAndMaxString){ //outputs a string showing the min to max damage a player can hit for 
+        Characters characters;
+        Cipher code;
+        Players players;
+        Kit kit;
+        kit.pullKitStats(username);
+        Weapons weapon(username);
+        code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
+        int statPsychicDamage = stoi(code.getItem(6));
+        characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
+        int totalPsychicDamageValue = characters.getBasePsychicDamage() + statPsychicDamage + kit.getPsychicDamage();
+        return (to_string(totalPsychicDamageValue + weapon.getPsychicDamageMin()) + " - " + to_string(totalPsychicDamageValue + weapon.getPsychicDamageMax()));
+    } else {
+        Characters characters;
+        Cipher code;
+        Players players;
+        Kit kit;
+        kit.pullKitStats(username);
+        Weapons weapon(username);
+        code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
+        int statPsychicDamage = stoi(code.getItem(6));
+        characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
+        int totalPsychicDamageValue = characters.getBasePsychicDamage() + statPsychicDamage + kit.getPsychicDamage() + weapon.getPsychicDamage();
+        return to_string(totalPsychicDamageValue);
+    }
+}
 string Players::getArmorStat(std::string username, int baseArmor, int bonusArmor){//this funciton calculates to total Armor stat of a user and makes it into a string to be sent to the client
     int totalArmorValue = baseArmor + bonusArmor;
     return to_string(totalArmorValue);
@@ -196,6 +223,19 @@ string Players::getManaStat(std::string username){//this funciton calculates to 
     characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
     int totalManaValue = characters.getBaseMana() + stoi(code.getItem(10));
     return to_string(totalManaValue);
+}
+string Players::getMindStat(std::string username, int baseMind, int bonusMind){//this funciton calculates to total Mana stat of a user and makes it into a string to be sent to the client
+    int totalMindValue = baseMind + bonusMind;
+    return to_string(totalMindValue);
+}
+string Players::getMindStat(std::string username){//this funciton calculates to total Mana stat of a user and makes it into a string to be sent to the client
+    Characters characters;
+    Cipher code;
+    Players players;
+    code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
+    characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
+    int totalMindValue = characters.getBaseMind() + stoi(code.getItem(11));
+    return to_string(totalMindValue);
 }
 int Players::getLevel(string username){//pulls level from user's file to return
     int playerLevel;

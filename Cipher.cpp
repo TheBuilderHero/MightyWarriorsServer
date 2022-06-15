@@ -41,9 +41,83 @@ string Cipher::getQuestPath(std::string username){
     return output;
 }
 
+<<<<<<< HEAD
 string Cipher::getItem(int itemNumberToReturn, int subItemNumber){ //the purpose of this function is to return data that has been deciphered.
     if (subItemNumber > 0) return subItem[itemNumberToReturn][subItemNumber];
     return item[itemNumberToReturn];
+=======
+string Cipher::getItem(int itemNumberToReturn){ //the purpose of this function is to return data that has been deciphered.
+    switch (itemNumberToReturn)
+    {
+    case 2:
+        return item2;
+        break;
+    case 3:
+        return item3;
+        break;
+    case 4:
+        return item4;
+        break;
+    case 5:
+        return item5;
+        break;
+    case 6:
+        return item6;
+        break;
+    case 7:
+        return item7;
+        break;
+    case 8:
+        return item8;
+        break;
+    case 9:
+        return item9;
+        break;
+    case 10:
+        return item10;
+        break;
+    case 11:
+        return item11;
+        break;
+    case 12:
+        return item12;
+        break;
+    case 13:
+        return item13;
+        break;
+    case 14:
+        return item14;
+        break;
+    case 15:
+        return item15;
+        break;
+    case 16:
+        return item16;
+        break;
+    case 17:
+        return item17;
+        break;
+    case 18:
+        return item18;
+        break;
+    case 19:
+        return item19;
+        break;
+    case 20:
+        return item20;
+        break;
+    case 21:
+        return item21;
+        break;
+    case 22:
+        return item22;
+        break;
+
+    default:
+        return "Default Output Given";
+        break;
+    }
+>>>>>>> 0d5207daccc3386bd1afbc9361a9bf6adc5bd127
 }
 
 //char messageFromClient[]
@@ -324,6 +398,7 @@ string Cipher::cipher(string responseType, string item2, string item3, string it
             case 12://twelth item after delimiter
             if (item12.length() > 0) str_file_content += item12;
             break;
+<<<<<<< HEAD
             case 13:
             if (item13.length() > 0) str_file_content += item13;
             break;
@@ -353,6 +428,37 @@ string Cipher::cipher(string responseType, string item2, string item3, string it
             break;
             case 22:
             if (item22.length() > 0) str_file_content += item22;
+=======
+            case 13://third item after delimiter
+            if (item3.length() > 0) str_file_content += item13;
+            break;
+            case 14://forth item after delimiter
+            if (item4.length() > 0) str_file_content += item14;
+            break;
+            case 15://fith item after delimiter
+            if (item5.length() > 0) str_file_content += item15;
+            break;
+            case 16://sixth item after delimiter
+            if (item6.length() > 0) str_file_content += item16;
+            break;
+            case 17://seventh item after delimiter
+            if (item7.length() > 0) str_file_content += item17;
+            break;
+            case 18://eighth item after delimiter
+            if (item8.length() > 0) str_file_content += item18;
+            break;
+            case 19://ninth item after delimiter
+            if (item9.length() > 0) str_file_content += item19;
+            break;
+            case 20://tenth item after delimiter
+            if (item10.length() > 0) str_file_content += item20;
+            break;
+            case 21://eleventh item after delimiter
+            if (item11.length() > 0) str_file_content += item21;
+            break;
+            case 22://twelth item after delimiter
+            if (item12.length() > 0) str_file_content += item22;
+>>>>>>> 0d5207daccc3386bd1afbc9361a9bf6adc5bd127
             break;
         }
         loopPass++;
@@ -444,7 +550,7 @@ string Cipher::subCipher(string item1, string item2, string item3, string item4,
     return str_file_content;
 }
 
-void Cipher::userDataDeliminationWrite(int updateValue, string username, string data2, string data3, string data4, string data5, string data6, string data7, string data8, string data9, string data10){ // updateValue: 1 = inital setup race, kit, level, XP 2 = password 3 = user's stats overwrite 4 = level and XP update 5 = user stats update 6 = update weapons 7 = update location 8 = update the player quests progress
+void Cipher::userDataDeliminationWrite(int updateValue, string username, string data2, string data3, string data4, string data5, string data6, string data7, string data8, string data9, string data10, string data11, string data12){ // updateValue: 1 = inital setup race, kit, level, XP 2 = password 3 = user's stats overwrite 4 = level and XP update 5 = user stats update 6 = update weapons 7 = update location 8 = update the player quests progress
     ofstream userfile;
     ofstream logonfile;
     ofstream weaponStats;
@@ -495,6 +601,8 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             if (data8.length() > 0) {userfile << delimiter << data8;} else {userfile << delimiter;} //stealth stat
             if (data9.length() > 0) {userfile << delimiter << data9;} else {userfile << delimiter;} //Stamina stat
             if (data10.length() > 0) {userfile << delimiter << data10;} else {userfile << delimiter;} //Mana stat
+            if (data11.length() > 0) {userfile << delimiter << data11;} else {userfile << delimiter;} //Mind stat
+            if (data12.length() > 0) {userfile << delimiter << data12;} else {userfile << delimiter;} //psychic damage stat
             userfile << delimiter;
             userfile.close(); // done writting to file and now it is closed
             break;}
@@ -525,6 +633,8 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             int tempStealth = stoi(getItem(8));//stealth stat
             int tempStamina = stoi(getItem(9));//Stamina stat
             int tempMana = stoi(getItem(10));//Mana stat
+            int tempMind = stoi(getItem(11));//Mind stat
+            int tempPsychicDamage = stoi(getItem(12));//psychic damage stat
 
             //add new stats to current stats:
             data2 = to_string(tempHealth + stoi(data2));
@@ -536,6 +646,8 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             data8 = to_string(tempStealth + stoi(data8));
             data9 = to_string(tempStamina + stoi(data9));
             data10 = to_string(tempMana + stoi(data10));
+            data11 = to_string(tempMind + stoi(data11));
+            data12 = to_string(tempPsychicDamage + stoi(data12));
 
             //write new stats to file:
             userfile.open(getStatPath(username));
@@ -549,6 +661,8 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             if (data8.length() > 0) {userfile << delimiter << data8;} else {userfile << delimiter;} //stealth stat
             if (data9.length() > 0) {userfile << delimiter << data9;} else {userfile << delimiter;} //Stamina stat
             if (data10.length() > 0) {userfile << delimiter << data10;} else {userfile << delimiter;} //Mana stat
+            if (data11.length() > 0) {userfile << delimiter << data11;} else {userfile << delimiter;} //Mana stat
+            if (data12.length() > 0) {userfile << delimiter << data12;} else {userfile << delimiter;} //Mana stat
             userfile << delimiter;
             userfile.close(); // done writting to file and now it is closed
             break;}
@@ -696,6 +810,39 @@ void Cipher::userDataDeliminationRead(int updateValue, string username){
                     break;
                     case 11://tenth item after delimiter
                     if (output.length() > 0) item[11] = output;
+                    break;
+                    case 12://tenth item after delimiter
+                    if (output.length() > 0) item12 = output;
+                    break;
+                    case 13://tenth item after delimiter
+                    if (output.length() > 0) item13 = output;
+                    break;
+                    case 14://tenth item after delimiter
+                    if (output.length() > 0) item14 = output;
+                    break;
+                    case 15://tenth item after delimiter
+                    if (output.length() > 0) item15 = output;
+                    break;
+                    case 16://tenth item after delimiter
+                    if (output.length() > 0) item16 = output;
+                    break;
+                    case 17://tenth item after delimiter
+                    if (output.length() > 0) item17 = output;
+                    break;
+                    case 18://tenth item after delimiter
+                    if (output.length() > 0) item18 = output;
+                    break;
+                    case 19://tenth item after delimiter
+                    if (output.length() > 0) item19 = output;
+                    break;
+                    case 20://tenth item after delimiter
+                    if (output.length() > 0) item20 = output;
+                    break;
+                    case 21://tenth item after delimiter
+                    if (output.length() > 0) item21 = output;
+                    break;
+                    case 22://tenth item after delimiter
+                    if (output.length() > 0) item22 = output;
                     break;
                 }
                 loopPass++;

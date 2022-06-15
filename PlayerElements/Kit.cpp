@@ -71,6 +71,8 @@ void Kit::tank(){
     kitMagicResistance = 50;
     kitAgility = -10;
     kitStealth = -10;
+    kitMind = -5;
+    kitPsychicDamage = 0;
 }
 void Kit::assasin(){
     kit = KIT_ASSASIN;
@@ -85,6 +87,8 @@ void Kit::assasin(){
     kitMagicResistance = 5;
     kitAgility = 10;
     kitStealth = 10;
+    kitMind = 5;
+    kitPsychicDamage = 0;
 }
 void Kit::archer(){
     kit = KIT_ARCHER;
@@ -99,6 +103,8 @@ void Kit::archer(){
     kitMagicResistance = 5;
     kitAgility = 7;
     kitStealth = 8;
+    kitMind = 0;
+    kitPsychicDamage = 0;
 }
 void Kit::mage(){
     kit = KIT_MAGE;
@@ -113,6 +119,8 @@ void Kit::mage(){
     kitMagicResistance = 15;
     kitAgility = 3;
     kitStealth = 2;
+    kitMind = 10;
+    kitPsychicDamage = 0;
 }
 void Kit::ninja(){
     kit = KIT_NINJA;
@@ -127,4 +135,6 @@ void Kit::ninja(){
     kitMagicResistance = 5;
     kitAgility = 15;
     kitStealth = 15;
+    kitMind = 5;
+    kitPsychicDamage = 0;
 }

@@ -76,6 +76,12 @@ int Enemies::enemyChoiceGetStat(int enemyChoice, int returnType, int enemyLevel)
     case 7: //Stealth
         return getBaseStealth();
         break;
+    case 8: //Mind
+        return getBaseMind();
+        break;
+    case 9: //psychicDamage
+        return getBasePsychicDamage();
+        break;
     
     default:
         return 0;
@@ -221,6 +227,8 @@ void Enemies::mutantElf() {
     setBaseMagicResistance(5);
     setBaseAgility(0); //does not have any
     setBaseStealth(0); //does not have any
+    setBaseMind(10);
+    setBasePsychicDamage(0);
     setLevel(1);
     xpDrop = 20;
 }
@@ -234,6 +242,8 @@ void Enemies::voidCat() {
     setBaseMagicResistance(1);
     setBaseAgility(0); //does not have any
     setBaseStealth(0); //does not have any
+    setBaseMind(10);
+    setBasePsychicDamage(2);
     setLevel(1);
     xpDrop = 200;
     //Radiation damage that mutants can inflict?
@@ -248,6 +258,8 @@ void Enemies::highwayRobber(){
     setBaseMagicResistance(2);
     setBaseAgility(0); //does not have any
     setBaseStealth(0); //does not have any
+    setBaseMind(7);
+    setBasePsychicDamage(0);
     setLevel(1);
     xpDrop = 10;
 }
@@ -259,6 +271,8 @@ void Enemies::orc(){
     setBaseArmor(15);
     setBaseMagicDamage(10);
     setBaseMagicResistance(7);
+    setBaseMind(6);
+    setBasePsychicDamage(0);
     setLevel(1);
     xpDrop = 10;
 }
@@ -270,6 +284,8 @@ void Enemies::sasquatch(){
     setBaseArmor(20);
     setBaseMagicDamage(15);
     setBaseMagicResistance(3);
+    setBaseMind(15);
+    setBasePsychicDamage(0);
     setLevel(1);
     xpDrop = 80;
 }
@@ -282,6 +298,8 @@ void Enemies::skunk(){
     setBaseMagicDamage(2);
     setBaseMagicResistance(2);
     //toxicAttack = 17; //need to declare in headerfile
+    setBaseMind(5);
+    setBasePsychicDamage(0);
     setLevel(1);
     xpDrop = 7;
     //Skunk has very low armor and magic stats to compensate for toxic damage.
@@ -296,6 +314,8 @@ void Enemies::mutantSkunk(){
     setBaseMagicResistance(0);
     //toxicAttack = 17; //need to declare in headerfile
     //radiation = 10; //need to declare in headerfile
+    setBaseMind(20);
+    setBasePsychicDamage(2);
     setLevel(1);
     xpDrop = 12;
 }
@@ -307,6 +327,8 @@ void Enemies::giantRaccoon(){
     setBaseArmor(80);
     setBaseMagicDamage(25);
     setBaseMagicResistance(15);
+    setBaseMind(30);
+    setBasePsychicDamage(0);
     setLevel(1);
     xpDrop = 500;
     //GIANT RACCOON!!! Mini-boss.
@@ -319,6 +341,8 @@ void Enemies::evilWizard(){
     setBaseArmor(8);
     setBaseMagicDamage(20);
     setBaseMagicResistance(12);
+    setBaseMind(25);
+    setBasePsychicDamage(5);
     setLevel(1);
     xpDrop = 80;
 }
@@ -330,6 +354,8 @@ void Enemies::witch(){
     setBaseArmor(10);
     setBaseMagicDamage(30);
     setBaseMagicResistance(15);
+    setBaseMind(20);
+    setBasePsychicDamage(6);
     setLevel(1);
     xpDrop = 80;
 }
@@ -341,6 +367,8 @@ void Enemies::mutantGhost(){
     setBaseArmor(1);
     setBaseMagicDamage(35);
     setBaseMagicResistance(23);
+    setBaseMind(15);
+    setBasePsychicDamage(5);
     setLevel(1);
     xpDrop = 100;
 }
@@ -352,17 +380,21 @@ void Enemies::wereWolf(){
     setBaseArmor(5);
     setBaseMagicDamage(12);
     setBaseMagicResistance(8);
+    setBaseMind(10);
+    setBasePsychicDamage(0);
     setLevel(1);
     xpDrop = 70;
 }
 void Enemies::normalPotato(){
     enemyNum = NORMAL_POTATO;
     displayName = "A normal potato";
-    setBaseHealth(9999);
-    setBasePhysicalDamage(999);
-    setBaseArmor(99);
-    setBaseMagicDamage(999);
-    setBaseMagicResistance(99);
+    setBaseHealth(99999);
+    setBasePhysicalDamage(9999);
+    setBaseArmor(999);
+    setBaseMagicDamage(9999);
+    setBaseMagicResistance(999);
+    setBaseMind(9999);
+    setBasePsychicDamage(999);
     setLevel(1);
     xpDrop = 9999;
 }
@@ -374,6 +406,8 @@ void Enemies::goblinMorg(){
     setBaseArmor(2);
     setBaseMagicDamage(0);
     setBaseMagicResistance(2);
+    setBaseMind(10);
+    setBasePsychicDamage(0);
     setLevel(1);
     xpDrop = 100;
 }
@@ -385,6 +419,8 @@ void Enemies::orcKlade(){
     setBaseArmor(3);
     setBaseMagicDamage(20);
     setBaseMagicResistance(4);
+    setBaseMind(15);
+    setBasePsychicDamage(0);
     setLevel(1);
     xpDrop = 200;
 }
@@ -396,6 +432,8 @@ void Enemies::blackNight(){
     setBaseArmor(10);
     setBaseMagicDamage(10);
     setBaseMagicResistance(50);
+    setBaseMind(20);
+    setBasePsychicDamage(0);
     setLevel(1);
     xpDrop = 350;
 }
@@ -407,6 +445,8 @@ void Enemies::blueWizard(){
     setBaseArmor(20);
     setBaseMagicDamage(35);
     setBaseMagicResistance(30);
+    setBaseMind(30);
+    setBasePsychicDamage(8);
     setLevel(1);
     xpDrop = 500;
 }
@@ -418,6 +458,8 @@ void Enemies::monstrousBehemoth(){
     setBaseArmor(20);
     setBaseMagicDamage(20);
     setBaseMagicResistance(20);
+    setBaseMind(40);
+    setBasePsychicDamage(0);
     setLevel(1);
     xpDrop = 750;
 }
@@ -429,6 +471,8 @@ void Enemies::awfulNecromancer(){
     setBaseArmor(30);
     setBaseMagicDamage(70);
     setBaseMagicResistance(50);
+    setBaseMind(60);
+    setBasePsychicDamage(10);
     setLevel(1);
     xpDrop = 1000;
 }
@@ -440,6 +484,8 @@ void Enemies::theDragon(){
     setBaseArmor(75);
     setBaseMagicDamage(70);
     setBaseMagicResistance(75);
+    setBaseMind(100);
+    setBasePsychicDamage(5);
     setLevel(1);
     xpDrop = 2000;
 }

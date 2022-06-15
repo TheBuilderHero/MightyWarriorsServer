@@ -16,7 +16,7 @@ class Enemies : Characters {
 
         //these constants take after the ones we use in the Kit class:
         Kit kitInit;
-        const std::string DAMAGETYPE_MAGIC = kitInit.getDAMAGETYPE_MAGIC(), DAMAGETYPE_PHYSICAL = kitInit.getDAMAGETYPE_PHYSICAL(), DAMAGETYPE_TRUE = kitInit.getDAMAGETYPE_TRUE();
+        const std::string DAMAGETYPE_MAGIC = kitInit.getDAMAGETYPE_MAGIC(), DAMAGETYPE_PHYSICAL = kitInit.getDAMAGETYPE_PHYSICAL(), DAMAGETYPE_PSYCHIC = kitInit.getDAMAGETYPE_PSYCHIC(), DAMAGETYPE_TRUE = kitInit.getDAMAGETYPE_TRUE();
     public:
         int enemyChoiceGetStat(int enemyChoice, int returnType, int enemyLevel); //returns amount of health/armor/magicResistance/etc...
         int enemyChoiceGetStat(int enemyChoice);
@@ -49,5 +49,6 @@ class Enemies : Characters {
         //get the type of damage constant:
         std::string getDAMAGETYPE_MAGIC() { return DAMAGETYPE_MAGIC; }
         std::string getDAMAGETYPE_PHYSICAL() { return DAMAGETYPE_PHYSICAL; }
+        std::string getDAMAGETYPE_PSYCHIC() { return DAMAGETYPE_PSYCHIC; }
         std::string getDAMAGETYPE_TRUE() { return DAMAGETYPE_TRUE; }
 };
