@@ -324,7 +324,6 @@ string Cipher::cipher(string responseType, string item2, string item3, string it
             case 12://twelth item after delimiter
             if (item12.length() > 0) str_file_content += item12;
             break;
-<<<<<<< HEAD
             case 13:
             if (item13.length() > 0) str_file_content += item13;
             break;
@@ -354,37 +353,6 @@ string Cipher::cipher(string responseType, string item2, string item3, string it
             break;
             case 22:
             if (item22.length() > 0) str_file_content += item22;
-=======
-            case 13://third item after delimiter
-            if (item3.length() > 0) str_file_content += item13;
-            break;
-            case 14://forth item after delimiter
-            if (item4.length() > 0) str_file_content += item14;
-            break;
-            case 15://fith item after delimiter
-            if (item5.length() > 0) str_file_content += item15;
-            break;
-            case 16://sixth item after delimiter
-            if (item6.length() > 0) str_file_content += item16;
-            break;
-            case 17://seventh item after delimiter
-            if (item7.length() > 0) str_file_content += item17;
-            break;
-            case 18://eighth item after delimiter
-            if (item8.length() > 0) str_file_content += item18;
-            break;
-            case 19://ninth item after delimiter
-            if (item9.length() > 0) str_file_content += item19;
-            break;
-            case 20://tenth item after delimiter
-            if (item10.length() > 0) str_file_content += item20;
-            break;
-            case 21://eleventh item after delimiter
-            if (item11.length() > 0) str_file_content += item21;
-            break;
-            case 22://twelth item after delimiter
-            if (item12.length() > 0) str_file_content += item22;
->>>>>>> 0d5207daccc3386bd1afbc9361a9bf6adc5bd127
             break;
         }
         loopPass++;
@@ -738,37 +706,37 @@ void Cipher::userDataDeliminationRead(int updateValue, string username){
                     if (output.length() > 0) item[11] = output;
                     break;
                     case 12://tenth item after delimiter
-                    if (output.length() > 0) item12 = output;
+                    if (output.length() > 0) item[12] = output;
                     break;
                     case 13://tenth item after delimiter
-                    if (output.length() > 0) item13 = output;
+                    if (output.length() > 0) item[13] = output;
                     break;
                     case 14://tenth item after delimiter
-                    if (output.length() > 0) item14 = output;
+                    if (output.length() > 0) item[14] = output;
                     break;
                     case 15://tenth item after delimiter
-                    if (output.length() > 0) item15 = output;
+                    if (output.length() > 0) item[15] = output;
                     break;
                     case 16://tenth item after delimiter
-                    if (output.length() > 0) item16 = output;
+                    if (output.length() > 0) item[16] = output;
                     break;
                     case 17://tenth item after delimiter
-                    if (output.length() > 0) item17 = output;
+                    if (output.length() > 0) item[17] = output;
                     break;
                     case 18://tenth item after delimiter
-                    if (output.length() > 0) item18 = output;
+                    if (output.length() > 0) item[18] = output;
                     break;
                     case 19://tenth item after delimiter
-                    if (output.length() > 0) item19 = output;
+                    if (output.length() > 0) item[19] = output;
                     break;
                     case 20://tenth item after delimiter
-                    if (output.length() > 0) item20 = output;
+                    if (output.length() > 0) item[20] = output;
                     break;
                     case 21://tenth item after delimiter
-                    if (output.length() > 0) item21 = output;
+                    if (output.length() > 0) item[21] = output;
                     break;
                     case 22://tenth item after delimiter
-                    if (output.length() > 0) item22 = output;
+                    if (output.length() > 0) item[22] = output;
                     break;
                 }
                 loopPass++;
