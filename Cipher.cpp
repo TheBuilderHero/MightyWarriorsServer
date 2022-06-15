@@ -41,83 +41,9 @@ string Cipher::getQuestPath(std::string username){
     return output;
 }
 
-<<<<<<< HEAD
 string Cipher::getItem(int itemNumberToReturn, int subItemNumber){ //the purpose of this function is to return data that has been deciphered.
     if (subItemNumber > 0) return subItem[itemNumberToReturn][subItemNumber];
     return item[itemNumberToReturn];
-=======
-string Cipher::getItem(int itemNumberToReturn){ //the purpose of this function is to return data that has been deciphered.
-    switch (itemNumberToReturn)
-    {
-    case 2:
-        return item2;
-        break;
-    case 3:
-        return item3;
-        break;
-    case 4:
-        return item4;
-        break;
-    case 5:
-        return item5;
-        break;
-    case 6:
-        return item6;
-        break;
-    case 7:
-        return item7;
-        break;
-    case 8:
-        return item8;
-        break;
-    case 9:
-        return item9;
-        break;
-    case 10:
-        return item10;
-        break;
-    case 11:
-        return item11;
-        break;
-    case 12:
-        return item12;
-        break;
-    case 13:
-        return item13;
-        break;
-    case 14:
-        return item14;
-        break;
-    case 15:
-        return item15;
-        break;
-    case 16:
-        return item16;
-        break;
-    case 17:
-        return item17;
-        break;
-    case 18:
-        return item18;
-        break;
-    case 19:
-        return item19;
-        break;
-    case 20:
-        return item20;
-        break;
-    case 21:
-        return item21;
-        break;
-    case 22:
-        return item22;
-        break;
-
-    default:
-        return "Default Output Given";
-        break;
-    }
->>>>>>> 0d5207daccc3386bd1afbc9361a9bf6adc5bd127
 }
 
 //char messageFromClient[]

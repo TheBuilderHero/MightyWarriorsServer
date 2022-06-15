@@ -16,13 +16,9 @@ class Cipher {
         string delimiter = "~";
         string subDelimiter = "=";
         string typeOfRequest;
-<<<<<<< HEAD
         string username;
         string item[22];
         string subItem[22][22];//, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12; // declare the variables that are being used to store the message from the client // in some cases item2 is used.
-=======
-        string username, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12, item13, item14, item15, item16, item17, item18, item19, item20, item21, item22; // declare the variables that are being used to store the message from the client // in some cases item2 is used.
->>>>>>> 0d5207daccc3386bd1afbc9361a9bf6adc5bd127
         // the above variables may later be replaced with a more wide veriety of variables however, for testing we are using all strings
     public:
     //this function is intended to pull out the users request and the data associated with each request
