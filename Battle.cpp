@@ -234,7 +234,7 @@ int Battle::determineEnemyAttackOption(string username, int enemyChoice, string 
         return 0; //this should never happen
         break;
     }
-    cout << "Attack Type: " << attackType << endl;
+    
     return damage;
 }
 int Battle::doEnemyOption1(string username, string attackMagicOrPhysical, int enemyChoice, string playerBlocking){ //one of the enemies options for attacking the player

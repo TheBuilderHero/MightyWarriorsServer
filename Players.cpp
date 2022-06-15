@@ -118,7 +118,7 @@ string Players::getPyschicDamageStat(std::string username, bool outputMinAndMaxS
         kit.pullKitStats(username);
         Weapons weapon(username);
         code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
-        int statPsychicDamage = stoi(code.getItem(6));
+        int statPsychicDamage = stoi(code.getItem(12));
         characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
         int totalPsychicDamageValue = characters.getBasePsychicDamage() + statPsychicDamage + kit.getPsychicDamage();
         return (to_string(totalPsychicDamageValue + weapon.getPsychicDamageMin()) + " - " + to_string(totalPsychicDamageValue + weapon.getPsychicDamageMax()));
@@ -130,7 +130,7 @@ string Players::getPyschicDamageStat(std::string username, bool outputMinAndMaxS
         kit.pullKitStats(username);
         Weapons weapon(username);
         code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
-        int statPsychicDamage = stoi(code.getItem(6));
+        int statPsychicDamage = stoi(code.getItem(12));
         characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
         int totalPsychicDamageValue = characters.getBasePsychicDamage() + statPsychicDamage + kit.getPsychicDamage() + weapon.getPsychicDamage();
         return to_string(totalPsychicDamageValue);

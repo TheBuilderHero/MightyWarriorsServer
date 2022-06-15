@@ -200,7 +200,8 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             break;
         }
         case 10:{//enemy attacks
-            returnMessage = code.cipher("4", to_string(battle.determineEnemyAttackOption(code.getUsername(), enemy.getEnemyPickedFromName(code.getItem(3)), code.getItem(4))), battle.getAttackType()); //get the damage for the enemy and cipher return message.
+            int enemyDamage = battle.determineEnemyAttackOption(code.getUsername(), enemy.getEnemyPickedFromName(code.getItem(3)), code.getItem(4));//moved outside of message else attackType won't be initialized
+            returnMessage = code.cipher("4", to_string(enemyDamage), battle.getAttackType()); //get the damage for the enemy and cipher return message.
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
