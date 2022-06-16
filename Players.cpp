@@ -151,6 +151,7 @@ string Players::getPyschicDamageStat(std::string username, bool outputMinAndMaxS
             statPsychicDamage = stoi(code.getItem(12));
         } catch(std::invalid_argument){
             cout << "failed stoi \"string Players::getPyschicDamageStat()\"" << endl;
+            statPsychicDamage = 0;
         }
         characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
         int totalPsychicDamageValue = characters.getBasePsychicDamage() + statPsychicDamage + kit.getPsychicDamage();
@@ -168,6 +169,7 @@ string Players::getPyschicDamageStat(std::string username, bool outputMinAndMaxS
             statPsychicDamage = stoi(code.getItem(12));
         } catch(std::invalid_argument){
             cout << "failed stoi \"string Players::getPyschicDamageStat()\"" << endl;
+            statPsychicDamage = 0;
         }
         characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
         int totalPsychicDamageValue = characters.getBasePsychicDamage() + statPsychicDamage + kit.getPsychicDamage() + weapon.getPsychicDamage();
@@ -313,6 +315,7 @@ string Players::getMindStat(std::string username){//this funciton calculates to 
         statMindFile = stoi(code.getItem(11));
     } catch(std::invalid_argument){
         cout << "failed stoi \"string Players::getMindStat()\"" << endl;
+        statMindFile = 0;
     }
     int totalMindValue = characters.getBaseMind() + statMindFile;
     return to_string(totalMindValue);
