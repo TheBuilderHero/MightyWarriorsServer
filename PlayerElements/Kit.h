@@ -4,7 +4,7 @@
 
 class Kit{
     private:
-    const std::string KIT_TANK = "tank", KIT_ASSASIN = "assasin", KIT_ARCHER = "archer", KIT_MAGE = "mage", KIT_NINJA = "ninja";
+    const std::string KIT_TANK = "tank", KIT_ASSASIN = "assasin", KIT_ARCHER = "archer", KIT_MAGE = "mage", KIT_NINJA = "ninja", KIT_MENTALIST = "mentalist";
     std::string kit = KIT_TANK;
     int kitHealth = 40, kitPhysicalDamage = 10, kitArmor = 2, kitMagicDamage = 5, kitMagicResistance = 5, kitAgility = 0, kitStealth = 0, kitMind = 0, kitPsychicDamage = 0; //does not have any
     const std::string DAMAGETYPE_MAGIC = "Magic", DAMAGETYPE_PHYSICAL = "Physical", DAMAGETYPE_PSYCHIC = "Psychic", DAMAGETYPE_TRUE = "True";
@@ -33,6 +33,7 @@ class Kit{
     void archer();
     void mage();
     void ninja();
+    void mentalist();
 
     std::string getDAMAGETYPE_MAGIC(){ return DAMAGETYPE_MAGIC; }
     std::string getDAMAGETYPE_PHYSICAL(){ return DAMAGETYPE_PHYSICAL; }

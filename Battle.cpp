@@ -71,7 +71,7 @@ int Battle::doQOption(string username, string attackMagicOrPhysical, int enemyCh
     //pull in the player attack stats
     double physicalDamage = stoi(players.getPhysicalDamageStat(username));
     double magicDamage = stoi(players.getMagicDamageStat(username));
-    double psychicDamage = stoi(players.getPyschicDamageStat(username));
+    double psychicDamage = stoi(players.getPsychicDamageStat(username));
     
     //pull in the enemy defense stats
     int enemyLevel = players.getLevel(username);
@@ -99,7 +99,7 @@ int Battle::doWOption(string username, string attackMagicOrPhysical, int enemyCh
     //pull in the player attack stats
     double physicalDamage = stoi(players.getPhysicalDamageStat(username));
     double magicDamage = stoi(players.getMagicDamageStat(username));
-    double psychicDamage = stoi(players.getPyschicDamageStat(username));
+    double psychicDamage = stoi(players.getPsychicDamageStat(username));
     
     //pull in the enemy defense stats
     int enemyLevel = players.getLevel(username);
@@ -127,7 +127,7 @@ int Battle::doEOption(string username, string attackMagicOrPhysical, int enemyCh
     //pull in the player attack stats
     double physicalDamage = stoi(players.getPhysicalDamageStat(username));
     double magicDamage = stoi(players.getMagicDamageStat(username));
-    double psychicDamage = stoi(players.getPyschicDamageStat(username));
+    double psychicDamage = stoi(players.getPsychicDamageStat(username));
     
     //pull in the enemy defense stats
     int enemyLevel = players.getLevel(username);
@@ -155,7 +155,7 @@ int Battle::doROption(string username, string attackMagicOrPhysical, int enemyCh
     //pull in the player attack stats
     double physicalDamage = stoi(players.getPhysicalDamageStat(username));
     double magicDamage = stoi(players.getMagicDamageStat(username));
-    double psychicDamage = stoi(players.getPyschicDamageStat(username));
+    double psychicDamage = stoi(players.getPsychicDamageStat(username));
     
     //pull in the enemy defense stats
     int enemyLevel = players.getLevel(username);

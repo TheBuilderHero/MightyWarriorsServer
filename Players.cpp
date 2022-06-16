@@ -137,7 +137,7 @@ string Players::getMagicDamageStat(std::string username, bool outputMinAndMaxStr
         return to_string(totalMagicDamageValue);
     }
 }
-string Players::getPyschicDamageStat(std::string username, bool outputMinAndMaxString){ //this funciton calculates to total Magic Damage stat of a user and makes it into a string to be sent to the client
+string Players::getPsychicDamageStat(std::string username, bool outputMinAndMaxString){ //this funciton calculates to total Magic Damage stat of a user and makes it into a string to be sent to the client
     if (outputMinAndMaxString){ //outputs a string showing the min to max damage a player can hit for 
         Characters characters;
         Cipher code;
