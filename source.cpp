@@ -190,7 +190,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             }
             enemyLevel = 1; //level of boss
             returnMessage = code.cipher("5", enemy.getEnemyName(enemyNumPicked), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "health"), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "armor"), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "magicResistance"), 
-            battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "physicalDamage"), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "magicDamage"), to_string(enemyNumPicked)); //get all the values for the enemy to be sent to the client (Change 1 later so that it depends on input from client)
+            battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "physicalDamage"), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "magicDamage"), to_string(enemyNumPicked), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "mind")); //get all the values for the enemy to be sent to the client (Change 1 later so that it depends on input from client)
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
@@ -228,7 +228,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
         }
         case 10:{//enemy attacks
             int enemyDamage = battle.determineEnemyAttackOption(code.getUsername(), enemy.getEnemyPickedFromName(code.getItem(3)), code.getItem(4));//moved outside of message else attackType won't be initialized
-            returnMessage = code.cipher("4", to_string(enemyDamage), battle.getAttackType()); //get the damage for the enemy and cipher return message.
+            returnMessage = code.cipher("5", to_string(enemyDamage), battle.getAttackType()); //get the damage for the enemy and cipher return message.
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             if (n < 0) error("ERROR writing to socket");
             break;
@@ -255,14 +255,14 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
         }
         case 14:{//updates the players level and XP
             //currently using the players level for the enemy's level for XP since they should be the same
-            cout << code.getItem(3) << "\n";
+            //cout << code.getItem(3) << "\n";
             int enemyChoice;
             try{
                 enemyChoice = stoi(code.getItem(3));
             } catch(std::invalid_argument){
                 cout << "failed \"case 14:{//updates the players level and XP\"" << endl;
             }
-            cout << enemy.getXPDrop(enemyChoice) << "\n";
+            //cout << enemy.getXPDrop(enemyChoice) << "\n";
             battle.increaseXP(code.getUsername(), enemy.getXPDrop(enemyChoice)); //hardset the enemies level to 1 since at this moment there is no level change for enemies
             returnMessage = code.cipher("4", to_string(players.getLevel(code.getUsername())));
             n = write(socket, returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
