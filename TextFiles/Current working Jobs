@@ -1,8 +1,11 @@
 Dakota - Standard battle function with consideration of questing. (Load the xp reward when the moster is selected before hand)
-         Added MapOutline function to client need to complete the whole map
          Add location data to players' saved info on server
          Add quest data to players' saved info on server
-         Adding passives to the game
+         Adding passives to the game (Started)
+         Add a working map. (Started) Added MapOutline function to client
+         Finish setting up a standard battle function. (Started)
+         Set up the saving of both the location data and quest data.
+         Impliment a server case to make use of the subCipher functions.
          
 
 Richard - Add Psychic damage and health
