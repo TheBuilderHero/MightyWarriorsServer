@@ -325,7 +325,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             
             break;
         }
-        case 22:{
+        case 22:{//test sending all the subCiphers
             //There seems to be some issues with SubDeciphering:
             //code.decipher(messageFromClient, true); //gives us all the values (including subCipher)
 
@@ -336,6 +336,58 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
 
             sendToClient(socket, returnMessage);// returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             
+            break;
+        }
+        case 23:{ //Load all player data
+            //Load Player Stats:*******************************************************************************************************
+            code.userDataDeliminationRead(1, code.getUsername()); //sets the items3 - 6 to the current stat values
+            characters.pullRaceStats(players.getPlayerRace(code.getUsername()), code.getUsername());//set the stats of the Player for the race in their file
+            //trying some junk
+            string health = players.getHealthStat(code.getUsername());
+            string armor = players.getArmorStat(code.getUsername());
+            string magicResist = players.getMagicResistanceStat(code.getUsername());
+            string physicalDam = players.getPhysicalDamageStat(code.getUsername(), true);
+            string magicDam = players.getMagicDamageStat(code.getUsername(), true);
+            string agility = players.getAgilityStat(code.getUsername());
+            string stealth = players.getStealthStat(code.getUsername());
+            string stamina = players.getStaminaStat(code.getUsername());
+            string mana = players.getManaStat(code.getUsername());
+            string mind = players.getMindStat(code.getUsername());
+            string psychicDam = players.getPsychicDamageStat(code.getUsername(), true);
+
+            //get player location data************************************************************************************************
+            code.userDataDeliminationRead(4, code.getUsername());
+            string playerLocation = code.getItem(2);
+
+            //sends the player's race, kit, level, weapon, and ability types***********************************************************
+            Weapons weapons(code.getUsername());
+            level = to_string(players.getLevel(code.getUsername()));
+            //One insanely long statement to get a return message
+            string race = players.getPlayerRace(code.getUsername());
+            string playersKit = kit.getPlayerKit(code.getUsername());
+            string weapon = weapons.getWeaponName();
+            // level is needed before XP but after weapons 
+            string PlayerXP = to_string(players.getXP(code.getUsername()));
+            string NeededXP = to_string(battle.increaseXP(code.getUsername(), 0));
+            string damageTypeQ = kit.getRaceDamageTypeForAbility(code.getUsername(), 'q');
+            string damageTypeW = kit.getRaceDamageTypeForAbility(code.getUsername(), 'w');
+            string damageTypeE = kit.getRaceDamageTypeForAbility(code.getUsername(), 'e');
+            string damageTypeR = kit.getRaceDamageTypeForAbility(code.getUsername(), 'r');
+
+            //current Quest Progress****************************************************************************************************
+            code.userDataDeliminationRead(5, code.getUsername());//first number is the quest number, then second one is the progess number
+            //need to add a function which determines the current quest that the user is working to complete and has not complete.
+            /*
+            
+            please add here... then set that value to the variables below
+
+            */
+            string Questnumber = code.getItem(2);
+            string QuestProgress = code.getItem(3);
+
+            returnMessage = code.cipher("5", code.subCipher(health, armor, magicResist, physicalDam, magicDam, agility, stealth, stamina, mana, mind, psychicDam, playerLocation, race, playersKit, weapon, level, PlayerXP, NeededXP, damageTypeQ, damageTypeW, damageTypeE, damageTypeR), code.subCipher(Questnumber, QuestProgress)); // This very long input put into simple terms calculates stats by adding base to bonus then spitting it out as a string for Health, armor, magicResistance, physicalDamage, MagicDamage, Agility
+            
+            sendToClient(socket, returnMessage);//send message back to the client
             break;
         }
         case 0:{//check for version compatibility - This is done before using can continue to create account or logon

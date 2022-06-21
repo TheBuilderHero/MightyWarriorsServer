@@ -636,11 +636,11 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             questFile.open(getQuestPath(username));
             while(lineNumber != MAX_NUMBER_OF_QUESTS){ //write all the quests back into the file
                 if (lineNumber == stoi(data2)){ //update the line with info about the quest
-                    questFile << delimiter << data3 << delimiter << endl;
+                    questFile << data3 << endl; // delimiter << data3 << delimiter << endl; //removed this delimiter addition
                 } else if (quest[lineNumber].length() > 0) {
                     questFile << quest[lineNumber] << endl; //write back the data
                 } else if(lineNumber == 0) {
-                    questFile <<delimiter<< username <<delimiter<< endl;
+                    questFile <<delimiter<< username <<delimiter<< endl; //kept delimiter addition for username only (probably add current mission to the same line)
                 } else {
                     questFile << endl;
                 }
