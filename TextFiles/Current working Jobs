@@ -5,7 +5,8 @@ Dakota - Standard battle function with consideration of questing. (Load the xp r
          Add a working map. (Started) Added MapOutline function to client
          Finish setting up a standard battle function. (Started)
          Set up the saving of both the location data and quest data.
-         Impliment a server case to make use of the subCipher functions.
+         Add a class for data protection, so that when the console is closed the player's data will be saved.
+         Impliment a server case save user data to the server making use of the subCipher functions.
          
 
 Richard - Add Psychic damage and health
@@ -51,3 +52,4 @@ Richard - Added data and code in TempEntity to store more player info (kit, race
 Richard - TESTED all new changes! Everything is working on my end right now!
 Dakota -Added Items to ItemS Code
 Dakota -Added subItems Cipher and decipher to both server and client side. We now have 440 avalible slots of datat instead of 22. (not tested but implimented)
+Dakota -Implimented a server case to make use of the subCipher functions.
