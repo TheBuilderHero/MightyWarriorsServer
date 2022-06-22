@@ -1,12 +1,12 @@
 Dakota - Standard battle function with consideration of questing. (Load the xp reward when the moster is selected before hand)
          Add location data to players' saved info on server
          Add quest data to players' saved info on server
-         Adding passives to the game (Started)
-         Add a working map. (Started) Added MapOutline function to client
-         Finish setting up a standard battle function. (Started)
-         Set up the saving of both the location data and quest data.
+         (Started) Adding passives to the game 
+         (Started) Add a working map. Added MapOutline function to client
+         (Started) Add a standard battle function that can be used for most if not all battle events. 
+         (Started) Set up the saving of both the location data and quest data.
          Add a class for data protection, so that when the console is closed the player's data will be saved.
-         Impliment a server case save user data to the server making use of the subCipher functions.
+         (Started) Impliment a server case save user data to the server making use of the subCipher functions.
          
 
 Richard - Add Psychic damage and health
