@@ -5,7 +5,7 @@ Dakota - Standard battle function with consideration of questing. (Load the xp r
          (Started) Add a working map. Added MapOutline function to client
          (Started) Add a standard battle function that can be used for most if not all battle events. 
          (Started) Set up the saving of both the location data and quest data.
-         Add a class for data protection, so that when the console is closed the player's data will be saved.
+         (Started) Add a class for data protection, so that when the console is closed the player's data will be saved.
          (Started) Impliment a server case save user data to the server making use of the subCipher functions. This needs to only send back the additional stats which are added to the player's Character. We need to start recarding that information in TempEntity.
          
 
