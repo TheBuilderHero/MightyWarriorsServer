@@ -9,12 +9,11 @@ Dakota - Standard battle function with consideration of questing. (Load the xp r
          (Started) Impliment a server case save user data to the server making use of the subCipher functions. This needs to only send back the additional stats which are added to the player's Character. We need to start recarding that information in TempEntity.
          
 
-Richard - Add Psychic damage and health
+Richard - Maintain/update Psychic damage and health system
           Continue to implement TempEntity
           Add system to handle multiple quests
           Add monster group functionality
           Add travel battles/events
-          Check experience gains after battles
           
 
 Kyle - Monster Groups
@@ -49,7 +48,8 @@ Dakota -Made Intro to Game better
 Dakota -Added the secret race to the menu choice "have to type 'april' to get it."
 Richard - Added new Stats menu to pull all data from local Player TempEntity
 Richard - Added data and code in TempEntity to store more player info (kit, race, ability types, etc.)
-Richard - TESTED all new changes! Everything is working on my end right now!
 Dakota -Added Items to ItemS Code
 Dakota -Added subItems Cipher and decipher to both server and client side. We now have 440 avalible slots of datat instead of 22. (not tested but implimented)
 Dakota -Implimented a server case to make use of the subCipher functions.
+Richard - Check experience gains after battles
+Richard - Added psychic system
