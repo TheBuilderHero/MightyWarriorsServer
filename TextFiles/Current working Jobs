@@ -53,3 +53,4 @@ Dakota -Added subItems Cipher and decipher to both server and client side. We no
 Dakota -Implimented a server case to make use of the subCipher functions.
 Richard - Check experience gains after battles
 Richard - Added psychic system
+Dakota - Created game installer (https://www.dropbox.com/s/g637ckvk9ha0ns1/MightyWarriorsInstaller.exe?dl=1)
