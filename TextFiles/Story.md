@@ -29,6 +29,6 @@ Story that this game is set within.//note: N. = Narator
 			2
 			3
 		Mop
-			1
+			1 you are a mop. win the game.
 			2
 			3
