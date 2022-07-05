@@ -187,6 +187,8 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
                 }else{
                     enemyNumPicked = enemyNum + 90;
                 }
+            }else if(test1 == 2){
+                enemyNumPicked = 13;
             }else{
                 enemyNumPicked = rand() % 13 + 1;     //in the range 1 to 12 //this is the type of enemy which you will fight
             }

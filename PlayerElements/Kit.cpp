@@ -125,7 +125,7 @@ void Kit::mage(){
     kitAgility = 3;
     kitStealth = 2;
     kitMind = 10;
-    kitPsychicDamage = 0;
+    kitPsychicDamage = 3;
 }
 void Kit::ninja(){
     kit = KIT_NINJA;
