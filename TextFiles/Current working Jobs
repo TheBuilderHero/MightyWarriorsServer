@@ -10,14 +10,17 @@ Dakota - Standard battle function with consideration of questing. (Load the xp r
          
 
 Richard - Maintain/update Psychic damage and health system
-          Continue to implement TempEntity
-          Add system to handle multiple quests
+          Maintain/update system to handle multiple quests
           Add monster group functionality
           Add travel battles/events
           
+                  **I have this idea that Psychic damage always starts at 0, and you just buff your Max Psychic Damage Stat
+                  **Not implementing this yet because I'd like to hear other people's thoughts first
+                  
 
 Kyle - Monster Groups
        get VSCode to work again
+       buy us all a pizza
        
 Dominic -Story
          Test all functionality and give imput and feedback.
@@ -54,3 +57,4 @@ Dakota -Implimented a server case to make use of the subCipher functions.
 Richard - Check experience gains after battles
 Richard - Added psychic system
 Dakota - Created game installer (https://www.dropbox.com/s/g637ckvk9ha0ns1/MightyWarriorsInstaller.exe?dl=1)
+Richard - Added multiple quest system
