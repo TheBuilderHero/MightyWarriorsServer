@@ -190,7 +190,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             }else if(test1 == 2){
                 enemyNumPicked = 13;
             }else{
-                enemyNumPicked = rand() % 13 + 1;     //in the range 1 to 12 //this is the type of enemy which you will fight
+                enemyNumPicked = rand() % 12 + 1;     //in the range 1 to 12 //this is the type of enemy which you will fight
             }
             enemyLevel = 1; //level of boss
             returnMessage = code.cipher("5", enemy.getEnemyName(enemyNumPicked), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "health"), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "armor"), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "magicResistance"), 
