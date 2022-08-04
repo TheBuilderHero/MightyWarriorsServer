@@ -1,24 +1,154 @@
-Meeting Points for 8/03/2022
+
+
+
+Meeting Notes 8/3/2022:	
+
 - Discuss ideas for combat, move towards strategic actions/choices
+	- main quest (needed to complete the game)
+		- 
+		- idea: main character has to go to every races main city to gather peices of a weapon used to isolate the avoidends origin. at the final boss fight the weapon fails and the main character is forced to fight void cat one on one.
+			- Not satisfying if the weapon gets broken. (Dom is fine with the weapon becoming broken. As long as you have another option to defeat void cat with special bonus.)
+			- What you are collecting is something to get to void cat instead of kill void cat.
+			- Item you are collecting gives you the bonus for the final battle. This is like a super power up.
+			- Two modes
+				- Using the weapon
+				- Not using the weapon
+			- Alternative:
+				- Scrap collacting pieces and change it to something else.
+					- Reason to visit each city
+						- Allies to help you fight the void cat (This is the picked idea)
+						- inital reasoning for going to each city was needing to fight off all evil
+						- Each nation gives a resistance combine to help you defeat the void cat.
+
+	- branch quests (Not needed to complete the game. However, they contribute directly to the main story)
+	- side quests (Completely seperate stories)
+
 - Possible Psychic effect ideas
-- Changing game design
-	- Change mana to Natural energy
-- World lore.
-	- Classes? 
-	- Religion?
-		- Deity?
-	- Military?
-	- Race relations?
-		- Types and races
-		- family relations and size (maybe other)
-- quest ideas
-	- main quest
-		idea: main character has to go to every races main city to gather peices of a weapon used to isolate the avoidends origin. at the final boss fight the weapon fails and the main character is forced to fight void cat one on one.
-	- branch quests
-	- side quests
-- world geography
-	- current landmarks/cities
-	- race location and borders
+	- Chance option so that it is a chance to give them an effect (20 mental strength and 21 mental attack you have a 1 in 21 to cause an affect on them)
+		- speed and damage goes up while mental and intelect goes down.
+		- This would be good for mages because they will likely build 
+	- If you have a successful role
+		- you do another role for which effect you can apply
+			- different effect levels
+			- how far over their mental strength is not needed right now
+			- psychic is mainly based on chance
+			- strengths are 50/50 since the strengths are roughly the same.
+			- 
+- Races
+	- ghosts
+		- Are they a spirit or are they really something else?
+			- What does it mean ghost race.
+				- No idea.
+				- They are physical because of the tech of the day
+				- They are concious AI
+				- Leave ghosts unexplained
+			- Not ideal to make them completely immune to physical damage
+				- This would then make it possible to be a single individual instead of a party.
+			- The ghosts passive sometimes dodges attacks both physical and magic
+				- Can only occur once per battle
+				- You get the choice to activate going etherial
+					- Needs to be charged up somehow
+
+- Discuss ideas for combat, move towards strategic actions/choices
+	- Combat needs to be more strategic
+		- each move needs to have a profound impact on the outcome of the battle
+		- Limited amount of power you can use for each attacks
+			- Natural energy and stamina
+				- each round gives you 5
+				- blocking gives you 10
+			- Does not like the fact that it forces you to wait
+		- have different types of physical attacks
+			- slash
+			- stab
+			- pummels
+			- some enemies are more resistant to the certain types of attacks
+			- Do we want to add more buttons?
+				- add more buttons and have them set buttons before battle
+				- you could leave Q W E R then those buttons open another menu (slower more thought out option)
+					- sub menus for each:
+						- Q physical attacks
+							- sub menu
+						- W magical attacks
+							- sub menu
+						- E blocking types
+							- sub menu
+						- R special moves
+							- sub menu
+					- Maybe these are based on your weapon or gear:
+						- Q physical attacks
+						- W magical attacks
+						- E blocking types
+						- R special moves
+					- Equipment is attacked to Q W E R
+						- Equip weapon in main hand Q
+						- Equip secondary weapon in off hand W
+						- Abilities are associated with the equipment you are wearing
+						- Different abilities could be associated with different key bindings
+						- different weapons could be associated with different abilities
+						- the combinations could then be associated with different ultimate abilities
+							- The ultimate could change or gain new ultimates as you level up
+							- 3 choices in their life time throughout leveling
+								- first just requires you to use a certain weapon
+								- second weapon and armor
+								- third certain item
+						- Chose paths to determine ultimate designation
+						- Class was chosen and gives you ultimate options based on that 
+				- Richard will look into what we will do with weapons and abilities
+						
+				- make it two handed game by making hotkeys perform your different attacks instead of sub menu
+					- maybe user can set them up
+						- they have limited slots for battle optoins so not able to change during combat
+							- this adds a pre-meditated aspect to the game.
+						- or have it able to change within combat via key
+- Brush over missing discussions
+	- World lore
+		- Deity
+			- Each race has its own god.
+				- beliefs stem from that
+				- Does this god give you different strengths/buffs.
+			- player starts out with no religion and can choose a religion
+				- this will give you the buffs from the religion
+				- They can swap religions to get different buffs thus it does not matter to choose early and then change later
+
+		- Race relations
+			- Opinion
+				- good and bad
+					- What are these
+			- family relations
+			- landmarks and cities
+			- race location and boarders
+			- Important is religion and world geography
+			- input for all of the above is appriciated
+				- send picture to the group and get input from where the races live
+			- Religion is classed as practice and devosion 
+				- Each year practiced gives you stronger abilities
+				
+
+		- Terrain effects the strength of their abilities or attacks and resistances
+			- some of this matches up but maybe not all of them
+		- Story line is not completely explained at the begiuining
+			- you gain more as you go
+			- you are given some at the beguining like a overall goal
+		
+		- Mops are not gender less (no none binary mops)
+		- Is normal potato going to be an easter egg?
+			- Yes, however not hard to face. This is unlike the mop
+				- Hint at how to get the mop throughout the game
+				- You should come across a normal potato on mabye even a normal quest in a normal place to come across a normal potato
+				- Normal potato is not associated with anything or anyone
+					- it is a legendary creature
+					- shows up a void cat fight and kills voidcat when on last hit
+				- (just testing) Normal potato quest is east from the starting area
+		- Run all changes to the story by dominic so that he knows
+			- Make document for completed tasks (already have it) but make it seperate
+			- Two documents for completed items
+				- gameplay/story related changes
+				- other code related changes
+			- Theory testing of the game
+				- Richard will take charge of the more theoretical aspects of the game
+- "I will enjoy my cheese with a normal potato" - Richard
+
+
 
 
 Meeting Notes of 4/23/2022
