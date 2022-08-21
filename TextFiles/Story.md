@@ -32,3 +32,39 @@ Story that this game is set within.//note: N. = Narator
 			1 you are a mop. win the game.
 			2
 			3
+quest 0 flowers
+	you wake up staring at a dusty ceiling, blinking the sleep from your eyes. 
+
+	“Hey you, you’re finally awake.” 
+	
+	you were caught in an ambush of avoid-end forces.
+
+	Do you remember fighting them all off? You passed out right after the last one!
+
+	Are you military?
+	
+	[input yes or no]
+
+	ah I see. My name is Ggino, I am part of the village Arva Umbra.
+	
+	what is your name?
+
+	[input gamer tag]
+
+	~player name~, good to meet you. Listen I know you just got up
+
+	but I need an urgent favor from you. Take these flowers to my daughter and son-in-law.
+
+	They are in the village Pugna helping the Dinos. 
+
+	The way is dangerous, but I’m confident you seeing your skill. Are you up to the mission?
+
+	[Accept/decline]
+
+	decline
+
+	I understand. Let me know when you’re up for it.
+
+	Accept
+
+	Great! That's a huge help. Here's some ______ for your travels, please hurry!
