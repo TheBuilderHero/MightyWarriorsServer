@@ -7,7 +7,6 @@ Dakota - Standard battle function with consideration of questing. (Load the xp r
                   1600 x 900 High Definition Plus (HD+)
                   1920 x 1080 Full High Definition (FHD)
          (Paused) Adding passives to the game 
-         (In Progress) Add a working map. Added MapOutline function to client
          (Paused) Add a standard battle function that can be used for most if not all battle events. 
          (In Progress) Set up the saving of both the location data and quest data.
          (In Progress) Add a class for data protection, so that when the console is closed the player's data will be saved.
@@ -65,4 +64,5 @@ Dakota -Implimented a server case to make use of the subCipher functions.
 Richard - Check experience gains after battles
 Richard - Added psychic system
 Dakota - Created game installer (https://www.dropbox.com/s/g637ckvk9ha0ns1/MightyWarriorsInstaller.exe?dl=1)
-Richard - Added multiple quest system
+Richard - Added multiple quest system.
+Dakota - Added a working map. Added MapOutline function to client. Working movement and functionality.
