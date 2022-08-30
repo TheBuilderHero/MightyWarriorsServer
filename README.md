@@ -23,7 +23,7 @@
         	Make it so that we can make weapons able to created
 			-We should also be able to destroy weapons that are owned for a chance to get meterials out of them.
 				-this should not be a garenteed chance.
-        	weapons given different meterials will give then different stats (e.g. iron = damage, wood = defense, mana gem purity = ability, rabbit foot = agility, Pomagranite (Pom Fruit) = health)
+        	weapons given different meterials will give then different stats (e.g. iron = damage, wood = defense, naturalEnergy gem purity = ability, rabbit foot = agility, Pomagranite (Pom Fruit) = health)
 			-I think wood should be for both magic resistance and armor.
 
     	XP Level 

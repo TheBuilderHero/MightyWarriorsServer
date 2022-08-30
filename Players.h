@@ -32,10 +32,10 @@ class Players : Characters { //defining the player and all their caracteristics 
         std::string getStaminaStat(std::string username, int baseStamina, int bonusStamina);//this funciton calculates to total Stamina stat of a user and makes it into a string to be sent to the client
         std::string getStaminaStat(std::string username);
 
-        std::string getManaStat(std::string username, int baseMana, int bonusMana);//this funciton calculates to total Mana stat of a user and makes it into a string to be sent to the client
+        std::string getManaStat(std::string username, int baseMana, int bonusMana);//this funciton calculates to total NaturalEnergy stat of a user and makes it into a string to be sent to the client
         std::string getManaStat(std::string username);
 
-        std::string getMindStat(std::string username, int baseMana, int bonusMana);//this funciton calculates to total Mana stat of a user and makes it into a string to be sent to the client
+        std::string getMindStat(std::string username, int baseMana, int bonusMana);//this funciton calculates to total NaturalEnergy stat of a user and makes it into a string to be sent to the client
         std::string getMindStat(std::string username);
 
         int getPlayerWeapon(std::string username, int tempWeaponChoice);

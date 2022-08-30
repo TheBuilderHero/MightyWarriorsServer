@@ -11,7 +11,7 @@ class Characters {
         
         //these probably need to be made private:
         int baseHealth, baseArmor, baseMagicResistance, baseMagicDamage, baseAgility, basePhysicalDamage, baseStealth, baseStamina, baseMana, baseMind, basePsychicDamage; //base stats
-        //every time you make a physical or magical attack it effects the stamina or mana (magical is mana). This means that your attacks will be less consistant the lower these stats become.
+        //every time you make a physical or magical attack it effects the stamina or naturalEnergy (magical is naturalEnergy). This means that your attacks will be less consistant the lower these stats become.
         
         int level; // What level the Character is currently at, XP will only be declared for the player so that they can level up.  Enemies do not need XP.
     public:

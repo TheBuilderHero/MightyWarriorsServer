@@ -281,11 +281,11 @@ string Players::getStaminaStat(std::string username){//this funciton calculates 
     int totalStaminaValue = characters.getBaseStamina() + statStaminaFile;
     return to_string(totalStaminaValue);
 }
-string Players::getManaStat(std::string username, int baseMana, int bonusMana){//this funciton calculates to total Mana stat of a user and makes it into a string to be sent to the client
+string Players::getManaStat(std::string username, int baseMana, int bonusMana){//this funciton calculates to total NaturalEnergy stat of a user and makes it into a string to be sent to the client
     int totalManaValue = baseMana + bonusMana;
     return to_string(totalManaValue);
 }
-string Players::getManaStat(std::string username){//this funciton calculates to total Mana stat of a user and makes it into a string to be sent to the client
+string Players::getManaStat(std::string username){//this funciton calculates to total NaturalEnergy stat of a user and makes it into a string to be sent to the client
     Characters characters;
     Cipher code;
     Players players;
@@ -300,11 +300,11 @@ string Players::getManaStat(std::string username){//this funciton calculates to 
     int totalManaValue = characters.getBaseMana() + statManaFile;
     return to_string(totalManaValue);
 }
-string Players::getMindStat(std::string username, int baseMind, int bonusMind){//this funciton calculates to total Mana stat of a user and makes it into a string to be sent to the client
+string Players::getMindStat(std::string username, int baseMind, int bonusMind){//this funciton calculates to total NaturalEnergy stat of a user and makes it into a string to be sent to the client
     int totalMindValue = baseMind + bonusMind;
     return to_string(totalMindValue);
 }
-string Players::getMindStat(std::string username){//this funciton calculates to total Mana stat of a user and makes it into a string to be sent to the client
+string Players::getMindStat(std::string username){//this funciton calculates to total NaturalEnergy stat of a user and makes it into a string to be sent to the client
     Characters characters;
     Cipher code;
     Players players;

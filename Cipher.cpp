@@ -494,7 +494,7 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             if (data7.length() > 0) {userfile << delimiter << data7;} else {userfile << delimiter;} //Agility stat
             if (data8.length() > 0) {userfile << delimiter << data8;} else {userfile << delimiter;} //stealth stat
             if (data9.length() > 0) {userfile << delimiter << data9;} else {userfile << delimiter;} //Stamina stat
-            if (data10.length() > 0) {userfile << delimiter << data10;} else {userfile << delimiter;} //Mana stat
+            if (data10.length() > 0) {userfile << delimiter << data10;} else {userfile << delimiter;} //NaturalEnergy stat
             if (data11.length() > 0) {userfile << delimiter << data11;} else {userfile << delimiter;} //Mind stat
             if (data12.length() > 0) {userfile << delimiter << data12;} else {userfile << delimiter;} //psychic damage stat
             userfile << delimiter;
@@ -526,7 +526,7 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             int tempAgility = stoi(getItem(7));//Agility stat
             int tempStealth = stoi(getItem(8));//stealth stat
             int tempStamina = stoi(getItem(9));//Stamina stat
-            int tempMana = stoi(getItem(10));//Mana stat
+            int tempMana = stoi(getItem(10));//NaturalEnergy stat
             int tempMind = stoi(getItem(11));//Mind stat
             int tempPsychicDamage = stoi(getItem(12));//psychic damage stat
 
@@ -554,9 +554,9 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             if (data7.length() > 0) {userfile << delimiter << data7;} else {userfile << delimiter;} //Agility stat
             if (data8.length() > 0) {userfile << delimiter << data8;} else {userfile << delimiter;} //stealth stat
             if (data9.length() > 0) {userfile << delimiter << data9;} else {userfile << delimiter;} //Stamina stat
-            if (data10.length() > 0) {userfile << delimiter << data10;} else {userfile << delimiter;} //Mana stat
-            if (data11.length() > 0) {userfile << delimiter << data11;} else {userfile << delimiter;} //Mana stat
-            if (data12.length() > 0) {userfile << delimiter << data12;} else {userfile << delimiter;} //Mana stat
+            if (data10.length() > 0) {userfile << delimiter << data10;} else {userfile << delimiter;} //NaturalEnergy stat
+            if (data11.length() > 0) {userfile << delimiter << data11;} else {userfile << delimiter;} //Mind stat
+            if (data12.length() > 0) {userfile << delimiter << data12;} else {userfile << delimiter;} //psychic damage stat
             userfile << delimiter;
             userfile.close(); // done writting to file and now it is closed
             break;}
