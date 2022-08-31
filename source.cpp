@@ -394,11 +394,25 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
         }
         case 24:{ //save all player data
             //update user stats******************************************************************************
-            code.userDataDeliminationWrite(5, code.getUsername(), code.getItem(3), code.getItem(4), code.getItem(5), code.getItem(6), code.getItem(7), code.getItem(8), code.getItem(9), code.getItem(10), code.getItem(11), code.getItem(12), code.getItem(13));
+            code.subDecipher(code.getItem(3), 3); //all stats converted to sub cipher saves
+            code.userDataDeliminationWrite(5, code.getUsername(), code.getItem(3,1), code.getItem(3,2), code.getItem(3,3), code.getItem(3,4), code.getItem(3,5), code.getItem(3,6), code.getItem(3,7), code.getItem(3,8), code.getItem(3,9), code.getItem(3,10), code.getItem(3,11));
+
+            //updates the players level and XP*********************************************************************************
+            code.userDataDeliminationWrite(4, code.getUsername(), "", "", code.getItem(3,12), code.getItem(3,13));
+
+            //update location data*******************************************************************************
+            code.userDataDeliminationWrite(7, code.getUsername(), code.getItem(3,14));
+
+            /* //more needed to be done with this since there is more than one quest on the map. There will be close to possibly 100ish at least
+            //update quest info***********************************************************************************
+            code.userDataDeliminationWrite(8, code.getUsername(), code.getItem(2), code.getItem(3)); //first number is the quest number, then second one is the progess number
+            */
+
+            /* Still working to build the rest of the complete Data save code.
+
             returnMessage = code.cipher("4", "wasAbleToSave");
             sendToClient(socket, returnMessage);//send message back to the client
-            //updates the players level and XP*****************************************************************
-            //currently using the players level for the enemy's level for XP since they should be the same
+
             int enemyChoice;
             try{
                 enemyChoice = stoi(code.getItem(3));
@@ -406,16 +420,8 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
                 cout << "failed \"case 14:{//updates the players level and XP\"" << endl;
             }
             battle.increaseXP(code.getUsername(), enemy.getXPDrop(enemyChoice)); //hardset the enemies level to 1 since at this moment there is no level change for enemies
-            returnMessage = code.cipher("4", to_string(players.getLevel(code.getUsername())));
-            sendToClient(socket, returnMessage);//send message back to the client
-            //update location data*******************************************************************************
-            code.userDataDeliminationWrite(7, code.getUsername(), code.getItem(2));
-            returnMessage = code.cipher("4", "wasAbleToSave");
-            sendToClient(socket, returnMessage);//send message back to the client
-            //update quest info***********************************************************************************
-            code.userDataDeliminationWrite(8, code.getUsername(), code.getItem(2), code.getItem(3)); //first number is the quest number, then second one is the progess number
-            returnMessage = code.cipher("4", "wasAbleToSave");
-            sendToClient(socket, returnMessage);//send message back to the client
+
+            */
             
 
             break;

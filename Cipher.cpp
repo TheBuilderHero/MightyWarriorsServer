@@ -502,12 +502,20 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             break;}
         case 4:{ //update the players's level and XP
             //some user data is stored in "[username].dat"
+            //pull current stats from file:
+            userDataDeliminationRead(2, username);
+            int tempRace = stoi(getItem(2)); //race
+            int tempKit = stoi(getItem(3)); //kit
+            int tempLevel = stoi(getItem(4)); //level
+            int tempXP = stoi(getItem(5)); //XP
+            
+            //write back to file:
             userfile.open(getDatPath(username));
             userfile << delimiter << username; // these are all adding data to the file with delimiter seperation.
-            if (data2.length() > 0) {userfile << delimiter << data2;} else {userfile << delimiter;} //race
-            if (data3.length() > 0) {userfile << delimiter << data3;} else {userfile << delimiter;} //kit
-            if (data4.length() > 0) {userfile << delimiter << data4;} else {userfile << delimiter;} //level
-            if (data5.length() > 0) {userfile << delimiter << data5;} else {userfile << delimiter;} //XP
+            if (data2.length() > 0) {userfile << delimiter << data2;} else {userfile << delimiter << tempRace;} //race
+            if (data3.length() > 0) {userfile << delimiter << data3;} else {userfile << delimiter << tempKit;} //kit
+            if (data4.length() > 0) {userfile << delimiter << data4;} else {userfile << delimiter << tempLevel;} //level
+            if (data5.length() > 0) {userfile << delimiter << data5;} else {userfile << delimiter << tempXP;} //XP
             if (data6.length() > 0) {userfile << delimiter << data6;} else {userfile << delimiter;}
             if (data7.length() > 0) {userfile << delimiter << data7;} else {userfile << delimiter;}
             if (data8.length() > 0) {userfile << delimiter << data8;} else {userfile << delimiter;}
@@ -560,7 +568,7 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             userfile << delimiter;
             userfile.close(); // done writting to file and now it is closed
             break;}
-        case 6:{//update user Weapons
+        case 6:{ //update user Weapons
             //copied from case 5
             //pull current stats from file if it exists:
             ifstream weaponFolderTest;
