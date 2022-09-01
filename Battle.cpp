@@ -69,9 +69,16 @@ int Battle::doQOption(string username, string attackMagicOrPhysical, int enemyCh
     Kit kit;
     double qDamage = 0;
     //pull in the player attack stats
-    double physicalDamage = stoi(players.getPhysicalDamageStat(username));
-    double magicDamage = stoi(players.getMagicDamageStat(username));
-    double psychicDamage = stoi(players.getPsychicDamageStat(username));
+    double physicalDamage;
+    double magicDamage;
+    double psychicDamage;
+    try{
+        physicalDamage = stoi(players.getPhysicalDamageStat(username));
+        magicDamage = stoi(players.getMagicDamageStat(username));
+        psychicDamage = stoi(players.getPsychicDamageStat(username));
+    } catch(std::invalid_argument){
+        cout << "failed: Battle::doQOption" << endl;
+    }
     
     //pull in the enemy defense stats
     int enemyLevel = players.getLevel(username);
@@ -97,9 +104,16 @@ int Battle::doWOption(string username, string attackMagicOrPhysical, int enemyCh
     Kit kit;
     double wDamage = 0;
     //pull in the player attack stats
-    double physicalDamage = stoi(players.getPhysicalDamageStat(username));
-    double magicDamage = stoi(players.getMagicDamageStat(username));
-    double psychicDamage = stoi(players.getPsychicDamageStat(username));
+    double physicalDamage;
+    double magicDamage;
+    double psychicDamage;
+    try{
+        physicalDamage = stoi(players.getPhysicalDamageStat(username));
+        magicDamage = stoi(players.getMagicDamageStat(username));
+        psychicDamage = stoi(players.getPsychicDamageStat(username));
+    } catch (std::invalid_argument){
+        cout << "failed: Battle::doWOption" << endl;
+    }
     
     //pull in the enemy defense stats
     int enemyLevel = players.getLevel(username);
@@ -125,9 +139,16 @@ int Battle::doEOption(string username, string attackMagicOrPhysical, int enemyCh
     Kit kit;
     double eDamage = 0;
     //pull in the player attack stats
-    double physicalDamage = stoi(players.getPhysicalDamageStat(username));
-    double magicDamage = stoi(players.getMagicDamageStat(username));
-    double psychicDamage = stoi(players.getPsychicDamageStat(username));
+    double physicalDamage;
+    double magicDamage;
+    double psychicDamage;
+    try{
+        physicalDamage = stoi(players.getPhysicalDamageStat(username));
+        magicDamage = stoi(players.getMagicDamageStat(username));
+        psychicDamage = stoi(players.getPsychicDamageStat(username));
+    } catch(std::invalid_argument){
+        cout << "failed: Battle::doEOption" << endl;
+    }
     
     //pull in the enemy defense stats
     int enemyLevel = players.getLevel(username);
@@ -153,9 +174,16 @@ int Battle::doROption(string username, string attackMagicOrPhysical, int enemyCh
     Kit kit;
     double rDamage = 0;
     //pull in the player attack stats
-    double physicalDamage = stoi(players.getPhysicalDamageStat(username));
-    double magicDamage = stoi(players.getMagicDamageStat(username));
-    double psychicDamage = stoi(players.getPsychicDamageStat(username));
+    double physicalDamage;
+    double magicDamage;
+    double psychicDamage;
+    try{
+        physicalDamage = stoi(players.getPhysicalDamageStat(username));
+        magicDamage = stoi(players.getMagicDamageStat(username));
+        psychicDamage = stoi(players.getPsychicDamageStat(username));
+    } catch(std::invalid_argument){
+        cout << "failed: Battle::doROption" << endl;
+    }
     
     //pull in the enemy defense stats
     int enemyLevel = players.getLevel(username);
@@ -250,8 +278,15 @@ int Battle::doEnemyOption1(string username, string attackMagicOrPhysical, int en
     double psychicDamage = enemy.enemyChoiceGetStat(enemyChoice, 9, enemyLevel);
     
     //pull in the player defense stats
-    double armor = stoi(players.getArmorStat(username));
-    double magicResistance = stoi(players.getMagicResistanceStat(username));
+    double armor;
+    double magicResistance;
+    try{
+        double armor = stoi(players.getArmorStat(username));
+        double magicResistance = stoi(players.getMagicResistanceStat(username));
+    } catch(std::invalid_argument) {
+        cout << "failed: Battle::doEnemyOption1" << endl;
+    }
+    
 
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the player's stats
     if (attackMagicOrPhysical == enemy.getDAMAGETYPE_PHYSICAL()) option1Damage = physicalDamage -= (armor * DEFENSE_RATIO);
@@ -287,8 +322,14 @@ int Battle::doEnemyOption2(string username, string attackMagicOrPhysical, int en
     double psychicDamage = enemy.enemyChoiceGetStat(enemyChoice, 9, enemyLevel);
     
     //pull in the player defense stats
-    double armor = stoi(players.getArmorStat(username));
-    double magicResistance = stoi(players.getMagicResistanceStat(username));
+    double armor;
+    double magicResistance;
+    try{
+        double armor = stoi(players.getArmorStat(username));
+        double magicResistance = stoi(players.getMagicResistanceStat(username));
+    } catch(std::invalid_argument) {
+        cout << "failed: Battle::doEnemyOption2" << endl;
+    }
 
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the player's stats
     if (attackMagicOrPhysical == enemy.getDAMAGETYPE_PHYSICAL()) option2Damage = physicalDamage -= (armor * DEFENSE_RATIO);
@@ -324,8 +365,14 @@ int Battle::doEnemyOption3(string username, string attackMagicOrPhysical, int en
     double psychicDamage = enemy.enemyChoiceGetStat(enemyChoice, 9, enemyLevel);
     
     //pull in the player defense stats
-    double armor = stoi(players.getArmorStat(username));
-    double magicResistance = stoi(players.getMagicResistanceStat(username));
+    double armor;
+    double magicResistance;
+    try{
+        double armor = stoi(players.getArmorStat(username));
+        double magicResistance = stoi(players.getMagicResistanceStat(username));
+    } catch(std::invalid_argument) {
+        cout << "failed: Battle::doEnemyOption3" << endl;
+    }
 
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the player's stats
     if (attackMagicOrPhysical == enemy.getDAMAGETYPE_PHYSICAL()) option3Damage = physicalDamage -= (armor * DEFENSE_RATIO);
@@ -361,8 +408,14 @@ int Battle::doEnemyOption4(string username, string attackMagicOrPhysical, int en
     double psychicDamage = enemy.enemyChoiceGetStat(enemyChoice, 9, enemyLevel);
     
     //pull in the player defense stats
-    double armor = stoi(players.getArmorStat(username));
-    double magicResistance = stoi(players.getMagicResistanceStat(username));
+    double armor;
+    double magicResistance;
+    try{
+        double armor = stoi(players.getArmorStat(username));
+        double magicResistance = stoi(players.getMagicResistanceStat(username));
+    } catch(std::invalid_argument) {
+        cout << "failed: Battle::doEnemyOption4" << endl;
+    }
 
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the player's stats
     if (attackMagicOrPhysical == enemy.getDAMAGETYPE_PHYSICAL()) option4Damage = physicalDamage -= (armor * DEFENSE_RATIO);

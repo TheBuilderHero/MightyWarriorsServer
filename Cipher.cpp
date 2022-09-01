@@ -504,10 +504,19 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             //some user data is stored in "[username].dat"
             //pull current stats from file:
             userDataDeliminationRead(2, username);
-            int tempRace = stoi(getItem(2)); //race
-            int tempKit = stoi(getItem(3)); //kit
-            int tempLevel = stoi(getItem(4)); //level
-            int tempXP = stoi(getItem(5)); //XP
+            string tempRace; //race
+            string tempKit; //kit
+            int tempLevel; //level
+            double tempXP; //XP
+            try{
+                tempRace = getItem(2); //race
+                tempKit = getItem(3); //kit
+                tempLevel = stoi(getItem(4)); //level
+                tempXP = stod(getItem(5)); //XP
+            } catch(std::invalid_argument){
+                cout << "failed: userDataDeliminationWrite case 4" << endl;
+            }
+            
             
             //write back to file:
             userfile.open(getDatPath(username));
@@ -526,30 +535,50 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
         case 5:{ //update user stats
             //pull current stats from file:
             userDataDeliminationRead(1, username);
-            int tempHealth = stoi(getItem(2));//health stat
-            int tempArmor = stoi(getItem(3));//armor stat
-            int tempMagicResistence = stoi(getItem(4));//magic res stat
-            int tempPhysicalDamage = stoi(getItem(5));//physical damage stat
-            int tempMagicDamage = stoi(getItem(6));//magic damage stat
-            int tempAgility = stoi(getItem(7));//Agility stat
-            int tempStealth = stoi(getItem(8));//stealth stat
-            int tempStamina = stoi(getItem(9));//Stamina stat
-            int tempMana = stoi(getItem(10));//NaturalEnergy stat
-            int tempMind = stoi(getItem(11));//Mind stat
-            int tempPsychicDamage = stoi(getItem(12));//psychic damage stat
+            int tempHealth;//health stat
+            int tempArmor;//armor stat
+            int tempMagicResistence;//magic res stat
+            int tempPhysicalDamage;//physical damage stat
+            int tempMagicDamage;//magic damage stat
+            int tempAgility;//Agility stat
+            int tempStealth;//stealth stat
+            int tempStamina;//Stamina stat
+            int tempMana;//NaturalEnergy stat
+            int tempMind;//Mind stat
+            int tempPsychicDamage;//psychic damage stat
+            try{
+                tempHealth = stoi(getItem(2));//health stat
+                tempArmor = stoi(getItem(3));//armor stat
+                tempMagicResistence = stoi(getItem(4));//magic res stat
+                tempPhysicalDamage = stoi(getItem(5));//physical damage stat
+                tempMagicDamage = stoi(getItem(6));//magic damage stat
+                tempAgility = stoi(getItem(7));//Agility stat
+                tempStealth = stoi(getItem(8));//stealth stat
+                tempStamina = stoi(getItem(9));//Stamina stat
+                tempMana = stoi(getItem(10));//NaturalEnergy stat
+                tempMind = stoi(getItem(11));//Mind stat
+                tempPsychicDamage = stoi(getItem(12));//psychic damage stat
+            } catch(std::invalid_argument){
+                cout << "failed: userDataDeliminationWrite case 5 temp stats part 1" << endl;
+            }
+            
 
             //add new stats to current stats:
-            data2 = to_string(tempHealth + stoi(data2));
-            data3 = to_string(tempArmor + stoi(data3));
-            data4 = to_string(tempMagicResistence + stoi(data4));
-            data5 = to_string(tempPhysicalDamage + stoi(data5));
-            data6 = to_string(tempMagicDamage + stoi(data6));
-            data7 = to_string(tempAgility + stoi(data7));
-            data8 = to_string(tempStealth + stoi(data8));
-            data9 = to_string(tempStamina + stoi(data9));
-            data10 = to_string(tempMana + stoi(data10));
-            data11 = to_string(tempMind + stoi(data11));
-            data12 = to_string(tempPsychicDamage + stoi(data12));
+            try{
+                data2 = to_string(tempHealth + stoi(data2));
+                data3 = to_string(tempArmor + stoi(data3));
+                data4 = to_string(tempMagicResistence + stoi(data4));
+                data5 = to_string(tempPhysicalDamage + stoi(data5));
+                data6 = to_string(tempMagicDamage + stoi(data6));
+                data7 = to_string(tempAgility + stoi(data7));
+                data8 = to_string(tempStealth + stoi(data8));
+                data9 = to_string(tempStamina + stoi(data9));
+                data10 = to_string(tempMana + stoi(data10));
+                data11 = to_string(tempMind + stoi(data11));
+                data12 = to_string(tempPsychicDamage + stoi(data12));
+            } catch(std::invalid_argument){
+                cout << "failed: userDataDeliminationWrite case 5 temp stats part 2" << endl;
+            }
 
             //write new stats to file:
             userfile.open(getStatPath(username));
@@ -576,22 +605,38 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             if(weaponFolderTest){ //if the file exists
                 weaponFolderTest.close();
                 userDataDeliminationRead(3, username);
-                int tempID = stoi(getItem(2));//weapon ID
-                int tempIron = stoi(getItem(3));//iron
-                int tempWood = stoi(getItem(4));//wood
-                int tempGems = stoi(getItem(5));//gems
-                int tempFeet = stoi(getItem(6));//feet
-                int tempFruit = stoi(getItem(7));//fruit
-                int tempBrains = stoi(getItem(8));//brains
+                int tempID;//weapon ID
+                int tempIron;//iron
+                int tempWood;//wood
+                int tempGems;//gems
+                int tempFeet;//feet
+                int tempFruit;//fruit
+                int tempBrains;//brains
+                try{
+                    tempID = stoi(getItem(2));//weapon ID
+                    tempIron = stoi(getItem(3));//iron
+                    tempWood = stoi(getItem(4));//wood
+                    tempGems = stoi(getItem(5));//gems
+                    tempFeet = stoi(getItem(6));//feet
+                    tempFruit = stoi(getItem(7));//fruit
+                    tempBrains = stoi(getItem(8));//brains
+                } catch(std::invalid_argument){
+                    cout << "failed: userDataDeliminationWrite case 6 part 1" << endl;
+                }
 
-                //add new amounts to current stats except ID:
-                data2 = to_string(tempID);
-                data3 = to_string(tempIron + stoi(data3));
-                data4 = to_string(tempWood + stoi(data4));
-                data5 = to_string(tempGems + stoi(data5));
-                data6 = to_string(tempFeet + stoi(data6));
-                data7 = to_string(tempFruit + stoi(data7));
-                data8 = to_string(tempBrains + stoi(data8));
+                    //add new amounts to current stats except ID:
+                try{
+                    data2 = to_string(tempID);
+                    data3 = to_string(tempIron + stoi(data3));
+                    data4 = to_string(tempWood + stoi(data4));
+                    data5 = to_string(tempGems + stoi(data5));
+                    data6 = to_string(tempFeet + stoi(data6));
+                    data7 = to_string(tempFruit + stoi(data7));
+                    data8 = to_string(tempBrains + stoi(data8));
+                } catch(std::invalid_argument){
+                    cout << "failed: userDataDeliminationWrite case 6 part 2" << endl;
+                }
+                
             }
 
             //write new stats to file:
