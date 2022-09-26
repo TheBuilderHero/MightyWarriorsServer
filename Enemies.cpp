@@ -235,17 +235,17 @@ void Enemies::mutantElf() {
 void Enemies::voidCat() {
     enemyNum = VOID_CAT; //this is the number associated with this enemy declared in the Enemies.h file
     displayName = "Void Cat";
-    setBaseHealth(10);
-    setBasePhysicalDamage(1);
-    setBaseArmor(1);
+    setBaseHealth(500);
+    setBasePhysicalDamage(10);
+    setBaseArmor(3);
     setBaseMagicDamage(1);
     setBaseMagicResistance(1);
     setBaseAgility(0); //does not have any
     setBaseStealth(0); //does not have any
-    setBaseMind(10);
-    setBasePsychicDamage(2);
+    setBaseMind(40);
+    setBasePsychicDamage(5);
     setLevel(1);
-    xpDrop = 200;
+    xpDrop = 300;
     //Radiation damage that mutants can inflict?
 }
 void Enemies::highwayRobber(){
