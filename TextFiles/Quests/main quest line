@@ -1,0 +1,65 @@
+quest 0 
+
+	the year is 3101. you have landed your half-broken raft on the shore of the mainland.
+
+	you find yourself in a forest, around you the sun streams between the leaves.
+
+	Infront of you is a more trees. You don’t remember much, but you do know who you are.
+
+	Your name is [insert Gamer tag], and youre a [insert kit choice]
+
+	A rustling catches you attention
+
+	suddenly you’re faced with an enemy 
+
+	Fight your way to the village Arva Umbra
+
+	[all spaces between start and village temporarily need enemy encounter]
+
+	[after final encounter]
+
+	you fought your way forward till you could barely stand.
+
+	You reach the edge of the forest
+
+	a village is sighted before you finally pass out from exhaustion.
+	
+	…………….	
+
+	you wake up staring at a dusty ceiling, blinking the sleep from your eyes. 
+
+	“Hey you, you’re finally awake.” 
+	
+	you were caught in an ambush of avoid-end forces.
+
+	Do you remember fighting them all off? We found you passed out on the ground.
+
+	Are you military?
+	
+	input yes or no
+
+	[regardless of answer]
+
+	ah I see. My name is Ggino, I am part of the village Arva Umbra.
+	
+	what is your name?
+
+	input gamer tag
+
+	[player name], good to meet you. Listen I know you just got up
+
+	but I need an urgent favor from you. Take these flowers to my daughter and son-in-law.
+
+	They are in the village Pugna helping the Dinos. 
+
+	The way is dangerous, but I’m confident you seeing your skill. Are you up to the mission?
+
+	[Accept/decline]
+
+	decline
+
+	I understand. Let me know when you’re up for it.
+
+	Accept
+
+	Great! That's a huge help. Here's some [random loot] for your travels, please hurry!
