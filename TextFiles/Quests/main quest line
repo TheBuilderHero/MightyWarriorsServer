@@ -1,3 +1,9 @@
+[] = coder instructions
+
+** = player instructions
+
+
+
 quest 0 
 
 	the year is 3101. you have landed your half-broken raft on the shore of the mainland.
@@ -20,9 +26,9 @@ quest 0
 
 	you fought your way forward till you could barely stand.
 
-	You reach the edge of the forest
+	You reach the edge of the forest and spot a village.
 
-	a village is sighted before you finally pass out from exhaustion.
+	you finally pass out from exhaustion.
 	
 	…………….	
 
@@ -30,21 +36,33 @@ quest 0
 
 	“Hey you, you’re finally awake.” 
 	
-	you were caught in an ambush of avoid-end forces.
+	i spotted you fighting off avoidend forces.
 
 	Do you remember fighting them all off? We found you passed out on the ground.
-
-	Are you military?
 	
-	input yes or no
+	I have bandaged all your injuies, but you heal very quickly.
+	
+	at this rate you should be up and running in a matter of hours.
+	
+	i saw the way you fight, are you military?
+	
+	*input yes or no*
 
-	[regardless of answer]
+		[no]
+	
+		i have a hard time beliving that. your not lying are you?
+		
+		Nevermind, not my business. 
+	
+		[yes]
 
-	ah I see. My name is Ggino, I am part of the village Arva Umbra.
+		ah I see, i guessed correctly.
+		
+	My name is Ggino, I am part of the village Arva Umbra.
 	
 	what is your name?
 
-	input gamer tag
+	*input gamer tag*
 
 	[player name], good to meet you. Listen I know you just got up
 
@@ -56,10 +74,10 @@ quest 0
 
 	[Accept/decline]
 
-	decline
+		decline
 
-	I understand. Let me know when you’re up for it.
+		I understand. you need some rest. Let me know when you’re up for it.
 
-	Accept
+		Accept
 
-	Great! That's a huge help. Here's some [random loot] for your travels, please hurry!
+		Great! That's a huge help. Here's some [random loot] for your travels, please hurry!
