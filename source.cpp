@@ -194,7 +194,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             }
             enemyLevel = 1; //level of boss
             returnMessage = code.cipher("5", enemy.getEnemyName(enemyNumPicked), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "health"), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "armor"), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "magicResistance"), 
-            battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "physicalDamage"), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "magicDamage"), to_string(enemyNumPicked), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "mind")); //get all the values for the enemy to be sent to the client (Change 1 later so that it depends on input from client)
+            battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "physicalDamage"), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "magicDamage"), to_string(enemyNumPicked), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "mind"), to_string(enemy.getXPDrop(enemyNumPicked))); //get all the values for the enemy to be sent to the client (Change 1 later so that it depends on input from client)
             sendToClient(socket, returnMessage);// returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             
             break;
