@@ -39,6 +39,9 @@ string Cipher::getLocationPath(std::string username){
 string Cipher::getQuestPath(std::string username){
     string output = "./userdata/" + username + "/" + username + ".quest";
     return output;
+}string Cipher::getInventoryPath(std::string username){
+    string output = "./userdata/" + username + "/" + username + ".inv";
+    return output;
 }
 
 string Cipher::getItem(int itemNumberToReturn, int subItemNumber){ //the purpose of this function is to return data that has been deciphered.
@@ -702,6 +705,16 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             questFile.close(); // done writting to file and now it is closed
             break;
         }
+        case 9:{ //update inventory
+            //write new inventory to file:
+            ofstream inventoryFile;
+            inventoryFile.open(getInventoryPath(username));
+            inventoryFile << delimiter << username; // these are all adding data to the file with delimiter seperation.
+            if (data2.length() > 0) {inventoryFile << delimiter << data2;} else {inventoryFile << delimiter;} //Player's inventory
+            inventoryFile << delimiter;
+            inventoryFile.close(); // done writing to file and now it is closed
+            break;
+        }
     }
 }
 
@@ -934,6 +947,29 @@ void Cipher::userDataDeliminationRead(int updateValue, string username){
             questFile.close();
             break;
         }
+        case 6:{//get saved inventory data
+            ifstream inventoryFile;
+            inventoryFile.open(getInventoryPath(username));
+            inventoryFile >> s;
+            while ((pos = s.find(delimiter)) != std::string::npos) {
+                token = s.substr(0, pos);
+                output = token;
+                str_file_content += std::string(token);
+                s.erase(0, pos + delimiter.length());
+                
+                switch (loopPass){
+                    case 1: //first item after delimiter
+                    if (output.length() > 0) username = output;
+                    break;
+                    case 2://second item after delimiter      //Full Inventory
+                    if (output.length() > 0) item[2] = output;
+                    break;
+                }
+                loopPass++;
+            }
+            inventoryFile.close();
+            break;
+            }
     }
 }
 

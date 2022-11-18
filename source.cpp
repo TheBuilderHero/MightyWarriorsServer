@@ -387,7 +387,10 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             string Questnumber = code.getItem(2);
             string QuestProgress = code.getItem(3);
 
-            returnMessage = code.cipher("6", code.subCipher(health, armor, magicResist, physicalDam, magicDam, agility, stealth, stamina, naturalEnergy, mind, psychicDam, playerLocation, race, playersKit, weapon, level, PlayerXP, NeededXP, damageTypeQ, damageTypeW, damageTypeE, damageTypeR), code.subCipher(Questnumber, QuestProgress)); // This very long input put into simple terms calculates stats by adding base to bonus then spitting it out as a string for Health, armor, magicResistance, physicalDamage, MagicDamage, Agility
+            code.userDataDeliminationRead(6, code.getUsername());
+            string inventoryString = code.getItem(2);
+
+            returnMessage = code.cipher("6", code.subCipher(health, armor, magicResist, physicalDam, magicDam, agility, stealth, stamina, naturalEnergy, mind, psychicDam, playerLocation, race, playersKit, weapon, level, PlayerXP, NeededXP, damageTypeQ, damageTypeW, damageTypeE, damageTypeR), code.subCipher(Questnumber, QuestProgress), code.subCipher(inventoryString)); // This very long input put into simple terms calculates stats by adding base to bonus then spitting it out as a string for Health, armor, magicResistance, physicalDamage, MagicDamage, Agility
             
             sendToClient(socket, returnMessage);//send message back to the client
             break;
@@ -402,6 +405,10 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
 
             //update location data*******************************************************************************
             code.userDataDeliminationWrite(7, code.getUsername(), code.getItem(3,14));
+
+            //update inventory
+            code.decipher(messageFromClient);
+            code.userDataDeliminationWrite(9, code.getUsername(), code.getItem(4));
 
             /* //more needed to be done with this since there is more than one quest on the map. There will be close to possibly 100ish at least
             //update quest info***********************************************************************************

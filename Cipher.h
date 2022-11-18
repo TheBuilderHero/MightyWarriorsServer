@@ -59,6 +59,7 @@ class Cipher {
     std::string getTempPath(std::string username);
     std::string getLocationPath(std::string username);
     std::string getQuestPath(std::string username);
+    std::string getInventoryPath(std::string username);
 
     //getVariable functions:
     std::string getDelimiter() { return delimiter; }
