@@ -16,22 +16,27 @@ Dakota - Standard battle function with consideration of questing. (Load the xp r
                   - Same save issue as mentinons above with Data Protection
          
 
-Richard - Maintain/update Psychic damage and health system
-          Maintain/update system to handle multiple quests
+Richard - Update Psychic attacks
+          Update combat system
+          Update weapon/stat reading on server (changing weapons changes stats)
+          Update system to handle multiple quests
           Add monster group functionality
-          Add travel battles/events
+          Reconnect quests to the new map
+          (In Progress) Add inventory handler and some cool items (like a lethal feather)
           
                   **I have this idea that Psychic damage always starts at 0, and you just buff your Max Psychic Damage Stat
                   **Not implementing this yet because I'd like to hear other people's thoughts first
                   
 
 Kyle - Monster Groups
-       get VSCode to work again
+       (In Progress) get VSCode to work again
        buy us all a pizza
        
-Dominic -Story
-         Test all functionality and give imput and feedback.
-         Add graphics class (lol)    <--- Wow! just wow, Richard
+       
+Dominic - Story - Finish adding stories to account creation
+          Test all functionality and give imput and feedback.
+          Add graphics class (lol)    <--- Wow! just wow, Richard
+          buy us all ice cream
 
 
 We still need to:
@@ -66,3 +71,4 @@ Richard - Added psychic system
 Dakota - Created game installer (https://www.dropbox.com/s/g637ckvk9ha0ns1/MightyWarriorsInstaller.exe?dl=1)
 Richard - Added multiple quest system.
 Dakota - Added a working map. Added MapOutline function to client. Working movement and functionality.
+Richard - Added basic inventory system
