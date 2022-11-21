@@ -25,6 +25,8 @@ void Weapons::loadWeaponData(string username){    //save the weapon bonus' to fi
     //cout << "Weapon read started\n";
     Cipher cipher;
     //retrive from file:
+    cipher.userDataDeliminationRead(6, username);
+    cipher.subDecipher("=" + cipher.getItem(2), 0);
     cipher.userDataDeliminationRead(3, username);
     //zero all values:
     iron = 0;
@@ -36,7 +38,7 @@ void Weapons::loadWeaponData(string username){    //save the weapon bonus' to fi
     //cout << cipher.getItem(1) + "~" + cipher.getItem(2) + "~" + cipher.getItem(3) + "~" + cipher.getItem(4) + "~" + cipher.getItem(5) + "~" + cipher.getItem(6) + "~" + cipher.getItem(7) + "~" + cipher.getItem(8) + "~\n"; 
     //set all values based on file:
     try{
-        weaponID = stoi(cipher.getItem(2));
+        weaponID = stoi(cipher.getItem(0, 1));
         iron += stoi(cipher.getItem(3));
         wood += stoi(cipher.getItem(4));
         gems += stoi(cipher.getItem(5));

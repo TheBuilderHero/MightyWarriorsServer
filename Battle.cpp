@@ -43,9 +43,9 @@ void Battle::loadPlayerBattleStats(std::string name, int level, int health, int 
     //code for setting the players battle stats - This will pull the stats from the Players stat file on battle start
     //we will also need to get the weapon the player is using to know about the extra damage
 }
-int Battle::determineOption(string username, int selectedOption, int enemyChoice){ //this function is used to determine the ability/attack option to perform
+int Battle::determineOption(string username, int selectedOption, int enemyChoice, int weapon){ //this function is used to determine the ability/attack option to perform
     Kit kit;
-    switch(selectedOption){ //based on this value they either pressed Q(1), W(1), E(3), or R(4)
+    switch(selectedOption){ //based on this value they either pressed Q(1), W(2), E(3), or R(4)
         case 1:
             return doQOption(username, kit.getRaceDamageTypeForAbility(username, 'q'), enemyChoice);
             break;

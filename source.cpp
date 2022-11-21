@@ -148,6 +148,8 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             break;
         }
         case 6:{//Making this read all user info form file  ---------------------------//try to read to user's stats from file - need to get this fully setup.
+            code.decipher(messageFromClient);
+            code.userDataDeliminationWrite(9, code.getUsername(), code.getItem(3));
             code.userDataDeliminationRead(1, code.getUsername()); //sets the items3 - 6 to the current stat values
             characters.pullRaceStats(players.getPlayerRace(code.getUsername()), code.getUsername());//set the stats of the Player for the race in their file
             //trying some junk
@@ -226,7 +228,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             } catch(std::invalid_argument){
                 cout << "failed \"case 9:{//this takes the input of battle attacks to then reply with the damage amount.\"" << endl;
             }
-            returnMessage = code.cipher("4", to_string(battle.determineOption(code.getUsername(), selectedOption, enemy.getEnemyPickedFromName(code.getItem(3))))); //get the damage for one of the abilites and cipher return message.
+            returnMessage = code.cipher("4", to_string(battle.determineOption(code.getUsername(), selectedOption, enemy.getEnemyPickedFromName(code.getItem(3)), stoi(code.getItem(5))))); //get the damage for one of the abilites and cipher return message.
             sendToClient(socket, returnMessage);// returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             
             break;
