@@ -158,6 +158,14 @@ void Weapons::setPlayerWeapon(int weaponChoice)
             maxPsychicDamage = 5;
             accuracy = 10;
             break;
+        case 8: 
+            weaponType = "Feather";
+            weaponID = 8;
+            maxPhysicalDamage = -20;
+            maxMagicDamage = -20;
+            maxPsychicDamage = -5;
+            accuracy = 20;
+            break;
         default:
         break;
     }
