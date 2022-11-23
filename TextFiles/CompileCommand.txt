@@ -1,4 +1,4 @@
-g++ source.cpp Characters.cpp Players.cpp Enemies.cpp Cipher.cpp Battle.cpp WorldMap.cpp PlayerElements/Kit.cpp PlayerElements/Weapons.cpp -o source
+g++ source.cpp Characters.cpp Players.cpp Enemies.cpp Cipher.cpp Battle.cpp WorldMap.cpp PlayerElements/Kit.cpp PlayerElements/Weapons.cpp NPCData/NPC.cpp -o source
 
 Not updating: Health, Physical Damage
 
