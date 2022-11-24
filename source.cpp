@@ -12,6 +12,9 @@
 #include "Battle.h"
 #include "PlayerElements/Kit.h"
 #include "PlayerElements/Weapons.h"
+#include "NPCData/NPC.h"
+#include "globalVariables.h"
+
 
 //Make sure that game sersion is changed along with client or go to the version check function and allow for older versions of the client. (We must make sure to be acceptable in functionality)
 //********************************************
@@ -36,6 +39,55 @@ string delimiter = Delim.getDelimiter(); //a character that marks the beginning 
 void dostuff(int); /* function prototype */
 void premessageSendLengthVerification(int socket, int MessageLength);
 void sendToClient(int socket, string message);
+void setupNPCData();
+
+void initializeAllElements(){
+    setupNPCData();
+    cout << "Initiallizing NPCs: ";
+    for (int i = 0; i < 7; i ++) cout << to_string(npcs.at(i).getNpcID()) << " ";
+    cout << endl;
+     //Working to add dialogue into memory
+     //This outputs all the npc's dialogue
+    for (int i = 0; i < npcs.size(); i++) {
+        for(int i2 = 0; i2 < npcs.at(i).getDialoguePartCount(); i2++){
+            for(int i3 = 0; i3 < npcs.at(i).getDialogueCount(i2); i3++){
+                cout << npcs.at(i).getDialogue(i2, i3) << endl;
+            }
+        }
+    }
+    cout << "size: " << npcs.at(0).getDialogueCount(0) << endl;
+    cout << "size: " << npcs.at(0).getDialogueCount(1) << endl;
+    for(int i = 0; i < npcs.at(0).getDialogueCount(0); i++){
+        cout << npcs.at(0).getDialogue(0, i) << endl;
+    }
+    for(int i = 0; i < npcs.at(0).getDialogueCount(1); i++){
+        cout << npcs.at(0).getDialogue(1, i) << endl;
+    }
+
+    cout << endl;
+}
+
+void setupNPCData(){ //THIS fuction sets up all the NPC's for the user to interact with
+    //
+    // Declare the NPC's in the game
+    //
+    
+    NPC npc1("Yöl", 1);
+    NPC npc2("Ggino", 2);
+    NPC npc3("Inya", 3);
+    NPC npc4("Nabban", 4);
+    NPC npc5("Zeltrölt", 4);
+    NPC npc6("Huldennii", 5);
+    NPC npc7("Ronni Seaburger", 6);
+
+    npcs.push_back(npc1);
+    npcs.push_back(npc2);
+    npcs.push_back(npc3);
+    npcs.push_back(npc4);
+    npcs.push_back(npc5);
+    npcs.push_back(npc6);
+    npcs.push_back(npc7);
+}
 
 
 void error(const char* msg){//this function is called for an error and used to exit the program
@@ -504,6 +556,9 @@ void communicate(int argc, char* argv[]) { // the job of this function is to ind
         error("ERROR on binding");
     listen(sockfd, 5);
     clilen = sizeof(cli_addr);
+    
+    cout << "Server Successfully Running..." << endl << "Press \"ctrl + c\" to stop the running program\nServer Version: " << to_string(ServerVersion) << "." << to_string(ServerMajorBuild) << "." << to_string(ServerMinorBuild) << "." << to_string(ServerPatch) << endl; //I use this line to make sure the server is running and test the compiles
+
     while (1) {
         newsockfd = accept(sockfd,
             (struct sockaddr*)&cli_addr, &clilen);
@@ -589,10 +644,11 @@ void sendToClient(int socket, string message){ //this function is the standard m
 
 //main function of the source.cpp file
 int main(int argc, char* argv[]){
-    cout << "Server Successfully Running..." << endl << "Press \"ctrl + c\" to stop the running program\nServer Version: " << to_string(ServerVersion) << "." << to_string(ServerMajorBuild) << "." << to_string(ServerMinorBuild) << "." << to_string(ServerPatch) << endl; //I use this line to make sure the server is running and test the compiles
     //Richard enter your test code below:
 
+    initializeAllElements();
     communicate(argc, argv); //Start the servers function
     return 0; /* we never get here */
     //Test coder3 account github submit.
 }
+

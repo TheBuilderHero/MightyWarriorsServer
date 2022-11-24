@@ -1,0 +1,14 @@
+~Yöl~
+0
+Hi my name is Yöl, wlecome to my shop
+Is there something which you are interested in buying?
+No, okay... See you later then.
+~/Yöl~
+
+~Yöl~
+1
+You again...?
+I thought you did not want to buy anything from me...
+Do you want to buy something now?
+Okay, then stop coming to see me!
+~/Yöl~
