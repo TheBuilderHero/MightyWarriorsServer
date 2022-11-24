@@ -1,1 +1,3 @@
-g++ source.cpp Characters.cpp Players.cpp Enemies.cpp Cipher.cpp Battle.cpp WorldMap.cpp PlayerElements/Kit.cpp PlayerElements/Weapons.cpp -o source
+g++ source.cpp Characters.cpp Players.cpp Enemies.cpp Cipher.cpp Battle.cpp WorldMap.cpp PlayerElements/Kit.cpp PlayerElements/Weapons.cpp NPCData/NPC.cpp globalVariables.cpp -o source
+
+Program freezes frequently now (at least on Richard's end)
