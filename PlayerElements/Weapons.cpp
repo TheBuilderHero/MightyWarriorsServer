@@ -28,6 +28,7 @@ void Weapons::loadWeaponData(string username){    //save the weapon bonus' to fi
     cipher.userDataDeliminationRead(6, username);
     cipher.subDecipher("=" + cipher.getItem(2), 0);
     cipher.userDataDeliminationRead(3, username);
+    string weapon = cipher.getItem(2);
     //zero all values:
     iron = 0;
     wood = 0;
@@ -38,15 +39,18 @@ void Weapons::loadWeaponData(string username){    //save the weapon bonus' to fi
     //cout << cipher.getItem(1) + "~" + cipher.getItem(2) + "~" + cipher.getItem(3) + "~" + cipher.getItem(4) + "~" + cipher.getItem(5) + "~" + cipher.getItem(6) + "~" + cipher.getItem(7) + "~" + cipher.getItem(8) + "~\n"; 
     //set all values based on file:
     try{
-        weaponID = stoi(cipher.getItem(0, 1));
         iron += stoi(cipher.getItem(3));
         wood += stoi(cipher.getItem(4));
         gems += stoi(cipher.getItem(5));
         feet += stoi(cipher.getItem(6));
         fruit += stoi(cipher.getItem(7));
         brains += stoi(cipher.getItem(8));
+        weaponID = stoi(cipher.getItem(0, 1));
     } catch(std::invalid_argument){
         cout << "failed: Weapons::loadWeaponData" << endl;
+        cout << "writing new data and reattempting..." << endl;        
+        cipher.userDataDeliminationWrite(9, username, weapon + "=0=0=0=0=0=0=0=0=0=0=0=0=0=");
+        weaponID = stoi(weapon);
     }
     
     //cout << "Weapon read successful\n";

@@ -18,9 +18,9 @@ Richard - Update Psychic attacks
           Add monster group functionality
           Reconnect quests to the new map
           (In Progress) Add inventory handler and some cool items (like a lethal feather)
+              disappearing last items
+              possible lack of 'empty' option with 8 inventory items
           
-                  **I have this idea that Psychic damage always starts at 0, and you just buff your Max Psychic Damage Stat
-                  **Not implementing this yet because I'd like to hear other people's thoughts first
                   
 
 Kyle - Monster Groups

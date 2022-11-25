@@ -269,6 +269,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             weapons.setPlayerWeapon(tempWeaponChoice);
             weapons.~Weapons(); //call destructor to save weapon data
             code.userDataDeliminationWrite(1, code.getUsername(), players.getPlayerRace(code.getUsername(), tempRaceChoice), kit.getPlayerKit(code.getUsername(), tempKitChoice)); //write that race to file
+            //Initialize player inventory
             code.userDataDeliminationWrite(9, code.getUsername(), (to_string(tempWeaponChoice) + "=0=0=0=0=0=0=0=0=0=0=0=0=0="));
             //instead of kit.kit we need to take code.getItem(4) and determine what kit they chose and input that.
             break;
@@ -442,6 +443,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             string Questnumber = code.getItem(2);
             string QuestProgress = code.getItem(3);
 
+            //Get inventory
             code.userDataDeliminationRead(6, code.getUsername());
             string inventoryString = code.getItem(2);
 
