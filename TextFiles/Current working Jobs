@@ -8,6 +8,8 @@ Dakota - (Paused) Adding passives to the game
          Add adaptable dialogue function for interactions with objects and characters.
          Resolve issue with level being set to zero at some random point.
          Resolve issue with non-base stats not being added to players total stats.
+         Group battle screen will put you into a single-unit battle screen when you try using your ultimate ability and are out of uses.
+                  Also, seems to make the destructor for the DataGuard run twice.
          
          
 
