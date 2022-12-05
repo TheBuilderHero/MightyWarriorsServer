@@ -281,7 +281,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             } catch(std::invalid_argument){
                 cout << "failed \"case 9:{//this takes the input of battle attacks to then reply with the damage amount.\"" << endl;
             }
-            returnMessage = code.cipher("4", to_string(battle.determineOption(code.getUsername(), selectedOption, enemy.getEnemyPickedFromName(code.getItem(3)), stoi(code.getItem(5))))); //get the damage for one of the abilites and cipher return message.
+            returnMessage = code.cipher("5", to_string(battle.determineOption(code.getUsername(), selectedOption, enemy.getEnemyPickedFromName(code.getItem(3)), stoi(code.getItem(5)))), to_string(battle.isEnemyBlocking()), to_string(battle.getBLOCK_REDUCTION_VALUE())); //get the damage for one of the abilites and cipher return message.
             sendToClient(socket, returnMessage);// returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             
             break;
@@ -495,7 +495,13 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             int enemyNumPicked, enemyLevel = 1, numberOfEnemies = stoi(code.getItem(5)); 
             vector<string> enemies(20);//most enemies we will have in a fight
             for(int i = 0; i < numberOfEnemies; i++){
-                if(code.getItem(6) == "1"){
+                if(code.getItem(3) == "1"){
+                    if(code.getItem(4) == "0"){
+                        enemyNumPicked = 2;
+                    }else{
+                        enemyNumPicked = stoi(code.getItem(4)) + 90;
+                    }
+                }else if(code.getItem(6) == "1"){
                     enemyNumPicked = 13;
                 }else{
                     enemyNumPicked = rand() % 12 + 1;
@@ -505,6 +511,24 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             returnMessage = code.cipher("6", enemies.at(0), enemies.at(1), enemies.at(2), enemies.at(3), enemies.at(4), enemies.at(5), enemies.at(6), enemies.at(7), enemies.at(8),
             enemies.at(9), enemies.at(10), enemies.at(11), enemies.at(12), enemies.at(13), enemies.at(14), enemies.at(15), enemies.at(16), enemies.at(17), enemies.at(18), enemies.at(19));
             sendToClient(socket, returnMessage);// returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+            break;
+        }
+        case 26:{//Group Enemy Attacks
+            int numberOfEnemies = stoi(code.getItem(5));
+            vector<int> enemyDamage(20);//most enemies we will have in a fight
+            vector<string> enemyAttack(20);//most enemies we will have in a fight
+            code.subDecipher(code.getItem(3), 0);
+            int randomizer = 0;
+            for(int i = 0; i < numberOfEnemies; i++){
+                randomizer += stoi(code.getItem(0, i+1));
+                enemyDamage.at(i) = battle.determineEnemyAttackOption(code.getUsername(), stoi(code.getItem(0, i+1)), code.getItem(4), randomizer);
+                enemyAttack.at(i) = code.subCipher(to_string(enemyDamage.at(i)), battle.getAttackType());
+            }
+            
+            returnMessage = code.cipher("6", enemyAttack.at(0), enemyAttack.at(1), enemyAttack.at(2), enemyAttack.at(3), enemyAttack.at(4), enemyAttack.at(5), enemyAttack.at(6), enemyAttack.at(7), enemyAttack.at(8), enemyAttack.at(9),
+            enemyAttack.at(10), enemyAttack.at(11), enemyAttack.at(12), enemyAttack.at(13), enemyAttack.at(14), enemyAttack.at(15), enemyAttack.at(16), enemyAttack.at(17), enemyAttack.at(18), enemyAttack.at(19)); //get the damage for the enemy and cipher return message.
+            sendToClient(socket, returnMessage);// returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+            
             break;
         }
         case 0:{//check for version compatibility - This is done before using can continue to create account or logon

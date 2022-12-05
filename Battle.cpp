@@ -232,11 +232,12 @@ void Battle::enemyGroups(){
     //return listOfEnemies;
 }
 //Enemy attack functions:
-int Battle::determineEnemyAttackOption(string username, int enemyChoice, string playerBlocking){
+int Battle::determineEnemyAttackOption(string username, int enemyChoice, string playerBlocking, int randomHelper){
     Enemies enemy;
     //get random number 1 - 4 for the different attack options
     srand (time(NULL)); //seed random number based on time
-    int option = rand() % 4 + 1; //random number
+    randomizer = randomHelper;
+    int option = (rand()+randomizer) % 4 + 1; //random number
     int damage;
 
     switch (option){ //the random number is used to pick the type of attack which will be done
@@ -296,9 +297,9 @@ int Battle::doEnemyOption1(string username, string attackMagicOrPhysical, int en
     //add random amount of damage from 10 - 30:
     srand (time(NULL)); //seed random number based on time
     if(attackMagicOrPhysical == enemy.getDAMAGETYPE_PSYCHIC()){
-        option1Damage += rand() % 5; 
+        option1Damage += (rand()+randomizer) % 5; 
     }else{
-        option1Damage += rand() % (30 + 1) + 10; //add random value
+        option1Damage += (rand()+randomizer) % (30 + 1) + 10; //add random value
     }
 
     //check if player was blocking - If yes, we do 75% damage //1 being true
@@ -339,9 +340,9 @@ int Battle::doEnemyOption2(string username, string attackMagicOrPhysical, int en
     //add random amount of damage from 10 - 30:
     srand (time(NULL)); //seed random number based on time
     if(attackMagicOrPhysical == enemy.getDAMAGETYPE_PSYCHIC()){
-        option2Damage += rand() % 5; 
+        option2Damage += (rand()+randomizer) % 5; 
     }else{
-        option2Damage += rand() % (30 + 1) + 10; //add random value
+        option2Damage += (rand()+randomizer) % (30 + 1) + 10; //add random value
     }
 
     //check if player was blocking - If yes, we do 75% damage //1 being true
@@ -382,9 +383,9 @@ int Battle::doEnemyOption3(string username, string attackMagicOrPhysical, int en
     //add random amount of damage from 10 - 30:
     srand (time(NULL)); //seed random number based on time
     if(attackMagicOrPhysical == enemy.getDAMAGETYPE_PSYCHIC()){
-        option3Damage += rand() % 5; 
+        option3Damage += (rand()*randomizer) % 5; 
     }else{
-        option3Damage += rand() % (30 + 1) + 10; //add random value
+        option3Damage += (rand()*randomizer) % (30 + 1) + 10; //add random value
     }
 
     //check if player was blocking - If yes, we do 75% damage //1 being true
@@ -425,9 +426,9 @@ int Battle::doEnemyOption4(string username, string attackMagicOrPhysical, int en
     //add random amount of damage from 10 - 30:
     srand (time(NULL)); //seed random number based on time
     if(attackMagicOrPhysical == enemy.getDAMAGETYPE_PSYCHIC()){
-        option4Damage += rand() % 5; 
+        option4Damage += (rand()*randomizer) % 5; 
     }else{
-        option4Damage += rand() % (30 + 1) + 10; //add random value
+        option4Damage += (rand()*randomizer) % (30 + 1) + 10; //add random value
     }
 
     //check if player was blocking - If yes, we do 75% damage //1 being true
