@@ -520,7 +520,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             code.subDecipher(code.getItem(3), 0);
             int randomizer = 0;
             for(int i = 0; i < numberOfEnemies; i++){
-                randomizer += stoi(code.getItem(0, i+1));
+                randomizer += 127;
                 enemyDamage.at(i) = battle.determineEnemyAttackOption(code.getUsername(), stoi(code.getItem(0, i+1)), code.getItem(4), randomizer);
                 enemyAttack.at(i) = code.subCipher(to_string(enemyDamage.at(i)), battle.getAttackType());
             }
