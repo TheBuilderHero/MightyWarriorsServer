@@ -495,10 +495,14 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             int enemyNumPicked, enemyLevel = 1, numberOfEnemies = stoi(code.getItem(5)); 
             vector<string> enemies(20);//most enemies we will have in a fight
             for(int i = 0; i < numberOfEnemies; i++){
-                enemyNumPicked = rand() % 13 + 1;
+                if(code.getItem(6) == "1"){
+                    enemyNumPicked = 13;
+                }else{
+                    enemyNumPicked = rand() % 12 + 1;
+                }
                 enemies.at(i) = code.subCipher(enemy.getEnemyName(enemyNumPicked), to_string(enemyNumPicked), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "health"), battle.getEnemyBattleStats(enemyNumPicked, enemyLevel, "mind"), to_string(enemy.getXPDrop(enemyNumPicked)));//name, number, health, mind, XP
             }
-            returnMessage = code.cipher("5", enemies.at(0), enemies.at(1), enemies.at(2), enemies.at(3), enemies.at(4), enemies.at(5), enemies.at(6), enemies.at(7), enemies.at(8),
+            returnMessage = code.cipher("6", enemies.at(0), enemies.at(1), enemies.at(2), enemies.at(3), enemies.at(4), enemies.at(5), enemies.at(6), enemies.at(7), enemies.at(8),
             enemies.at(9), enemies.at(10), enemies.at(11), enemies.at(12), enemies.at(13), enemies.at(14), enemies.at(15), enemies.at(16), enemies.at(17), enemies.at(18), enemies.at(19));
             sendToClient(socket, returnMessage);// returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             break;
