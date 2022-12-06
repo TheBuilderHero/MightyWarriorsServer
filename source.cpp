@@ -515,13 +515,18 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
         }
         case 26:{//Group Enemy Attacks
             int numberOfEnemies = stoi(code.getItem(5));
+            vector<int> randomizer(21);
             vector<int> enemyDamage(20);//most enemies we will have in a fight
             vector<string> enemyAttack(20);//most enemies we will have in a fight
             code.subDecipher(code.getItem(3), 0);
-            int randomizer = 0;
+            srand(time(NULL));
+            for(int i = 0; i < numberOfEnemies + 1; i++){
+                randomizer.at(i) = rand()%100;
+
+                cout << "Here's a random number: " << randomizer.at(i) << endl;
+            }
             for(int i = 0; i < numberOfEnemies; i++){
-                randomizer += 127;
-                enemyDamage.at(i) = battle.determineEnemyAttackOption(code.getUsername(), stoi(code.getItem(0, i+1)), code.getItem(4), randomizer);
+                enemyDamage.at(i) = battle.determineEnemyAttackOption(code.getUsername(), stoi(code.getItem(0, i+1)), code.getItem(4), randomizer.at(i+1));
                 enemyAttack.at(i) = code.subCipher(to_string(enemyDamage.at(i)), battle.getAttackType());
             }
             

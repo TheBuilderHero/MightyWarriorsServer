@@ -237,7 +237,7 @@ int Battle::determineEnemyAttackOption(string username, int enemyChoice, string 
     //get random number 1 - 4 for the different attack options
     srand (time(NULL)); //seed random number based on time
     randomizer = randomHelper;
-    int option = (rand()+randomizer) % 4 + 1; //random number
+    int option = (rand()-randomizer) % 4 + 1; //random number
     int damage;
 
     switch (option){ //the random number is used to pick the type of attack which will be done
@@ -282,24 +282,24 @@ int Battle::doEnemyOption1(string username, string attackMagicOrPhysical, int en
     double armor;
     double magicResistance;
     try{
-        double armor = stoi(players.getArmorStat(username));
-        double magicResistance = stoi(players.getMagicResistanceStat(username));
+        armor = stoi(players.getArmorStat(username));
+        magicResistance = stoi(players.getMagicResistanceStat(username));
     } catch(std::invalid_argument) {
         cout << "failed: Battle::doEnemyOption1" << endl;
     }
     
 
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the player's stats
-    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_PHYSICAL()) option1Damage = physicalDamage -= (armor * DEFENSE_RATIO);
-    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_MAGIC()) option1Damage = magicDamage -= (magicResistance * DEFENSE_RATIO);
-    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_MAGIC()) option1Damage = psychicDamage;
+    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_PHYSICAL()) option1Damage = physicalDamage - (armor * DEFENSE_RATIO);
+    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_MAGIC()) option1Damage = magicDamage - (magicResistance * DEFENSE_RATIO);
+    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_PSYCHIC()) option1Damage = psychicDamage;
 
     //add random amount of damage from 10 - 30:
     srand (time(NULL)); //seed random number based on time
     if(attackMagicOrPhysical == enemy.getDAMAGETYPE_PSYCHIC()){
-        option1Damage += (rand()+randomizer) % 5; 
+        option1Damage += (rand()-randomizer) % 5; 
     }else{
-        option1Damage += (rand()+randomizer) % (30 + 1) + 10; //add random value
+        option1Damage += (rand()-randomizer) % (30 + 1) + 10; //add random value
     }
 
     //check if player was blocking - If yes, we do 75% damage //1 being true
@@ -326,23 +326,23 @@ int Battle::doEnemyOption2(string username, string attackMagicOrPhysical, int en
     double armor;
     double magicResistance;
     try{
-        double armor = stoi(players.getArmorStat(username));
-        double magicResistance = stoi(players.getMagicResistanceStat(username));
+        armor = stoi(players.getArmorStat(username));
+        magicResistance = stoi(players.getMagicResistanceStat(username));
     } catch(std::invalid_argument) {
         cout << "failed: Battle::doEnemyOption2" << endl;
     }
 
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the player's stats
-    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_PHYSICAL()) option2Damage = physicalDamage -= (armor * DEFENSE_RATIO);
-    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_MAGIC()) option2Damage = magicDamage -= (magicResistance * DEFENSE_RATIO);
-    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_MAGIC()) option2Damage = psychicDamage;
+    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_PHYSICAL()) option2Damage = physicalDamage - (armor * DEFENSE_RATIO);
+    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_MAGIC()) option2Damage = magicDamage - (magicResistance * DEFENSE_RATIO);
+    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_PSYCHIC()) option2Damage = psychicDamage;
 
     //add random amount of damage from 10 - 30:
     srand (time(NULL)); //seed random number based on time
     if(attackMagicOrPhysical == enemy.getDAMAGETYPE_PSYCHIC()){
-        option2Damage += (rand()+randomizer) % 5; 
+        option2Damage += (rand()-randomizer) % 5; 
     }else{
-        option2Damage += (rand()+randomizer) % (30 + 1) + 10; //add random value
+        option2Damage += (rand()-randomizer) % (30 + 1) + 10; //add random value
     }
 
     //check if player was blocking - If yes, we do 75% damage //1 being true
@@ -369,23 +369,23 @@ int Battle::doEnemyOption3(string username, string attackMagicOrPhysical, int en
     double armor;
     double magicResistance;
     try{
-        double armor = stoi(players.getArmorStat(username));
-        double magicResistance = stoi(players.getMagicResistanceStat(username));
+        armor = stoi(players.getArmorStat(username));
+        magicResistance = stoi(players.getMagicResistanceStat(username));
     } catch(std::invalid_argument) {
         cout << "failed: Battle::doEnemyOption3" << endl;
     }
 
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the player's stats
-    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_PHYSICAL()) option3Damage = physicalDamage -= (armor * DEFENSE_RATIO);
-    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_MAGIC()) option3Damage = magicDamage -= (magicResistance * DEFENSE_RATIO);
-    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_MAGIC()) option3Damage = psychicDamage;
+    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_PHYSICAL()) option3Damage = physicalDamage - (armor * DEFENSE_RATIO);
+    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_MAGIC()) option3Damage = magicDamage - (magicResistance * DEFENSE_RATIO);
+    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_PSYCHIC()) option3Damage = psychicDamage;
 
     //add random amount of damage from 10 - 30:
     srand (time(NULL)); //seed random number based on time
     if(attackMagicOrPhysical == enemy.getDAMAGETYPE_PSYCHIC()){
-        option3Damage += (rand()*randomizer) % 5; 
+        option3Damage += (rand()-randomizer) % 5; 
     }else{
-        option3Damage += (rand()*randomizer) % (30 + 1) + 10; //add random value
+        option3Damage += (rand()-randomizer) % (30 + 1) + 10; //add random value
     }
 
     //check if player was blocking - If yes, we do 75% damage //1 being true
@@ -412,23 +412,23 @@ int Battle::doEnemyOption4(string username, string attackMagicOrPhysical, int en
     double armor;
     double magicResistance;
     try{
-        double armor = stoi(players.getArmorStat(username));
-        double magicResistance = stoi(players.getMagicResistanceStat(username));
+        armor = stoi(players.getArmorStat(username));
+        magicResistance = stoi(players.getMagicResistanceStat(username));
     } catch(std::invalid_argument) {
         cout << "failed: Battle::doEnemyOption4" << endl;
     }
 
     //calculate the amount of damage based on the attack multiplied by the defense percentage of the defense from the player's stats
-    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_PHYSICAL()) option4Damage = physicalDamage -= (armor * DEFENSE_RATIO);
-    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_MAGIC()) option4Damage = magicDamage -= (magicResistance * DEFENSE_RATIO);
-    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_MAGIC()) option4Damage = psychicDamage;
+    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_PHYSICAL()) option4Damage = physicalDamage - (armor * DEFENSE_RATIO);
+    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_MAGIC()) option4Damage = magicDamage - (magicResistance * DEFENSE_RATIO);
+    if (attackMagicOrPhysical == enemy.getDAMAGETYPE_PSYCHIC()) option4Damage = psychicDamage;
 
     //add random amount of damage from 10 - 30:
     srand (time(NULL)); //seed random number based on time
     if(attackMagicOrPhysical == enemy.getDAMAGETYPE_PSYCHIC()){
-        option4Damage += (rand()*randomizer) % 5; 
+        option4Damage += (rand()-randomizer) % 5; 
     }else{
-        option4Damage += (rand()*randomizer) % (30 + 1) + 10; //add random value
+        option4Damage += (rand()-randomizer) % (30 + 1) + 10; //add random value
     }
 
     //check if player was blocking - If yes, we do 75% damage //1 being true
