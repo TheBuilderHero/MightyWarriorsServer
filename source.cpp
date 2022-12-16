@@ -47,7 +47,7 @@ void initializeAllElements(){
     for (int i = 0; i < 7; i ++) cout << to_string(npcs.at(i).getNpcID()) << " ";
     cout << endl;
      //Working to add dialogue into memory
-     //This outputs all the npc's dialogue
+     //This outputs all the npc's dialogue:
     for (int i = 0; i < npcs.size(); i++) {
         for(int i2 = 0; i2 < npcs.at(i).getDialoguePartCount(); i2++){
             for(int i3 = 0; i3 < npcs.at(i).getDialogueCount(i2); i3++){
@@ -55,6 +55,7 @@ void initializeAllElements(){
             }
         }
     }
+    //This specifically outputs the lines a certain NPC for both case 1 and 2 (or index 0 and 1)
     cout << "size: " << npcs.at(0).getDialogueCount(0) << endl;
     cout << "size: " << npcs.at(0).getDialogueCount(1) << endl;
     for(int i = 0; i < npcs.at(0).getDialogueCount(0); i++){
@@ -534,6 +535,35 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             enemyAttack.at(10), enemyAttack.at(11), enemyAttack.at(12), enemyAttack.at(13), enemyAttack.at(14), enemyAttack.at(15), enemyAttack.at(16), enemyAttack.at(17), enemyAttack.at(18), enemyAttack.at(19)); //get the damage for the enemy and cipher return message.
             sendToClient(socket, returnMessage);// returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             
+            break;
+        }
+        case 27:{ //sending all dialogue data
+        /*
+            static vector<string, int> sentPosition(1, code.getUsername(), 0);
+            if (count(sentPosition.begin(), sentPosition.end(), code.getUsername())){
+                //User already exists in the vector
+
+                //determine where they are currently at with sending over all dialogue and pick up where we left off with sending over the rest of the dialogue
+
+                //The proccess will be as follows
+                    //Proccess:
+
+                    //Check if user has requested dialogue before within the past minute or maybe 30 seconds or less
+                        //YES?
+                            //Since we have already sent data to this user we need to start where we left off.
+
+                        //NO?
+                            //start new send session of the character dialogue
+                            //pack dialogue into send function
+                            //send dialogue with leading number to tell it how many items of dialogue is being received.
+                                //This will also include names of characters who are saying the dialogue
+                                //Then we save the current step to the vector sentPosition and attach that to the name of the user
+            } else {
+                //User does not exist in the vector
+                sentPosition.emplace_back(code.getUsername(), 0); //add user to the vector
+
+            }
+        */
             break;
         }
         case 0:{//check for version compatibility - This is done before using can continue to create account or logon

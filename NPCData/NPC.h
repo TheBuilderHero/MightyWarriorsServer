@@ -15,4 +15,5 @@ class NPC{
         std::string getDialogue(int number, int part){ return dialogue[number][part];}
         int getDialoguePartCount() { int i = dialogue.size(); return i; }
         int getDialogueCount(int number) { int i = dialogue[number].size(); return i; }
+        std::string getAllDialogue();
 };
