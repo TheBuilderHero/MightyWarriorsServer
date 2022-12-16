@@ -6,14 +6,11 @@
 using namespace std;
 
 NPC::NPC(std::string name, int assignedLandmark){
-    //cout << "Starting init" << endl;
     string line;
     ifstream dialogueFile;
     dialogueFile.open(getDialoguePath());
-    int working = 1;
     int runningdialogueNumber = -1; //start at (-1) so after adding 1 the index of 0 will get the first test case
     while(getline(dialogueFile, line)){
-        //cout << "loop number " << working++ << endl;
         bool singleExceptionRun = false;
         static bool recordingDialogue = false; 
         static bool getDialogueNumber = false; 
@@ -23,9 +20,7 @@ NPC::NPC(std::string name, int assignedLandmark){
             runningdialogueNumber++;
             try {
                 dialogueNumber = stoi(line);
-                cout << "Compare: " << (dialogueNumber != runningdialogueNumber) << endl;
                 if (dialogueNumber != runningdialogueNumber) { //prevent incrimentations to dialogue greater than 1
-                    cout << "Statement: True" << endl;
                     throw dialogueNumber;
                 }
             } 
@@ -34,24 +29,23 @@ NPC::NPC(std::string name, int assignedLandmark){
                 singleExceptionRun = true;
 
                 //Let user know that something went wrong with dialogue incrementation:
-                cout << "Failed to initallize NPC while(getline(cin, line)) -> if(getDialogueNumber) -> Stoi(line) -> incrimentation to dialogue greater than 1" << endl;
+                cout << "Warning! Initialization NPC while(getline(cin, line)) -> if(getDialogueNumber) -> Stoi(line) -> Missing Dialogue Number" << endl;
             }
             catch(int failed){ //runs since there is a mission number but it is out of order
                 dialogueNumber = runningdialogueNumber;
                 
                 //Let user know that something went wrong with dialogue incrementation:
-                cout << "Failed to initallize NPC while(getline(cin, line)) -> if(getDialogueNumber) -> Stoi(line) -> incrimentation to dialogue greater than 1" << endl;
+                cout << "Warning! Initialization NPC while(getline(cin, line)) -> if(getDialogueNumber) -> Stoi(line) -> incrimentation to dialogue greater or less than 1" << endl;
             }
             catch(...){
                 //Let user know that something went wrong:
-                cout << "Failed to initallize NPC while(getline(cin, line)) -> if(getDialogueNumber) -> Stoi(line)" << endl;
+                cout << "Warning! Initialization NPC while(getline(cin, line)) -> if(getDialogueNumber) -> Stoi(line) -> Defalult Case" << endl;
             }
         }
         if (line == "~"+name+"~"){
             recordingDialogue = true;
             getDialogueNumber = true;
             dialogue.resize(dialogue.size()+1);
-            //cout << "this is other: " << line << endl;
         }
         if (line == "~/"+name+"~"){
             recordingDialogue = false;
@@ -59,9 +53,7 @@ NPC::NPC(std::string name, int assignedLandmark){
             lineNum = 0;
         }
         if((!getDialogueNumber && recordingDialogue) || singleExceptionRun){
-            //cout << "Help" << endl;
             //Working to add dialogue into memory
-            //cout << to_string(dialogue[dialogueNumber].size()) << endl;
             dialogue[dialogueNumber].resize(dialogue[dialogueNumber].size()+1);
             dialogue[dialogueNumber][lineNum]= line;
             lineNum++;
@@ -69,7 +61,6 @@ NPC::NPC(std::string name, int assignedLandmark){
             singleExceptionRun = false;
         } 
         if (dialogueNumber >= 0 && recordingDialogue) {
-            //cout << "Running false change " << endl;
             getDialogueNumber = false;
         }
     }

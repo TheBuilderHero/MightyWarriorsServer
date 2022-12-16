@@ -1,3 +1,6 @@
+Please Note:
+Any Dialogue in this file should be in acending order from 0 to infinity.
+
 ~Yöl~
 0
 Hi my name is Yöl, wlecome to my shop
@@ -28,13 +31,14 @@ Is......nvm
 
 
 ~Zeltrölt~
-2
+3
 No2
 Your Mom...2
 Is......nvm2
 ~/Zeltrölt~
 
 ~Zeltrölt~
+2
 No3
 Your Mom...3
 Is......nvm3

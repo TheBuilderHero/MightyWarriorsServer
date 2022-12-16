@@ -5,6 +5,12 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 
+//for threading:
+#include <future>
+#include <chrono>
+#include <thread>
+#include <iomanip>
+
 #include "Enemies.h"
 #include "Players.h"
 #include "Characters.h"
@@ -36,10 +42,15 @@ const int gamePatch       = 0;
 using namespace std;
 Cipher Delim; //just for the use of the delimiter.
 string delimiter = Delim.getDelimiter(); //a character that marks the beginning or end of a unit of data which is declared in the Cipher Class
+
+
+
+
 void dostuff(int); /* function prototype */
 void premessageSendLengthVerification(int socket, int MessageLength);
 void sendToClient(int socket, string message);
 void setupNPCData();
+void runUsernameRequestResetDelay();
 
 void initializeAllElements(){
     setupNPCData();
@@ -147,6 +158,14 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
     string message = code.decipher(messageFromClient);
     int n;
     std::string level;//used in case 15
+
+    //this is threading code:
+    int some_value = 123;
+    auto const tb = std::chrono::system_clock::now();
+    auto Time = [&]{
+        return std::chrono::duration_cast<std::chrono::duration<double>>(
+            std::chrono::system_clock::now() - tb).count();
+    };
     
     //output the message recieved from the user to the consol.
     printf("V1.1-Here is the message from the User: %s\n", messageFromClient);
@@ -538,9 +557,9 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             break;
         }
         case 27:{ //sending all dialogue data
-        /*
-            static vector<string, int> sentPosition(1, code.getUsername(), 0);
-            if (count(sentPosition.begin(), sentPosition.end(), code.getUsername())){
+            static vector<pair<string, int>> sentPosition(1, make_pair(code.getUsername(), 0));
+            auto it = find_if(sentPosition.begin(), sentPosition.end(), [&code](const std::pair<std::string, int>& element){ return element.first == code.getUsername();} );
+            if (it != sentPosition.end()){ //found the user
                 //User already exists in the vector
 
                 //determine where they are currently at with sending over all dialogue and pick up where we left off with sending over the rest of the dialogue
@@ -562,8 +581,14 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
                 //User does not exist in the vector
                 sentPosition.emplace_back(code.getUsername(), 0); //add user to the vector
 
+                //set delay to remove user from vector if they have not updated data in long enough amount of time.
+                int tempValue = 0;
+                auto res = std::async(std::launch::async, [&]{
+                std::this_thread::sleep_for(std::chrono::seconds(60));
+                if(tempValue == 0) std::cout << "Doing Delayed Task... at "<< Time() << " sec, value " << some_value << std::endl;
+                });
+
             }
-        */
             break;
         }
         case 0:{//check for version compatibility - This is done before using can continue to create account or logon
@@ -726,6 +751,12 @@ int main(int argc, char* argv[]){
     //Richard enter your test code below:
 
     initializeAllElements();
+    //runUsernameRequestResetDelay();
+    
+    
+    
+    
+    
     communicate(argc, argv); //Start the servers function
     return 0; /* we never get here */
     //Test coder3 account github submit.
