@@ -10,7 +10,7 @@ Dakota - (Paused) Adding passives to the game
          Resolve issue with non-base stats not being added to players total stats.
          Group battle screen will put you into a single-unit battle screen when you try using your ultimate ability and are out of uses.
                   Also, seems to make the destructor for the DataGuard run twice.
-         
+         Add fail safe for dialogue number system (so if number is missiong it will auto assign a number.
          
 
 Richard - Update Psychic attacks
