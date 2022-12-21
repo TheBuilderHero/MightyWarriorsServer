@@ -557,6 +557,37 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             break;
         }
         case 27:{ //sending all dialogue data
+
+
+            //output all info for the NPCS to message vector to be sent to client
+                for (int i = 0; i < npcs.size(); i++) {
+                    code.vectorDeliminateBody(npcs.at(i).getName());
+                    code.vectorDeliminateBody();
+                    //all dialogue for NPC i:
+                    for(int i2 = 0; i2 < npcs.at(i).getDialoguePartCount(); i2++){    
+                        code.vectorDeliminateBodySubLayer1();
+                        for(int i3 = 0; i3 < npcs.at(i).getDialogueCount(i2); i3++){
+                            code.vectorDeliminateBodySubLayer2(npcs.at(i).getDialogue(i2, i3));
+                            //code.vectorDeliminateBody(npcs.at(i).getDialogue(i2, i3));
+                        }
+                        code.vectorDeliminateBodySubLayer2End();
+                    }
+                    if (npcs.at(i).getDialoguePartCount() == 0) code.vectorDeliminateBodySubLayer1(); //make sure the sub delimination is always enclosed even when no text
+                    code.vectorDeliminateBodySubLayer1End();
+                }
+                code.vectorDeliminateHead();
+                code.vectorDeliminateEnd();
+
+                //reset returnMessage message = ""
+                returnMessage = "";
+                for(int i = 0; i < code.getMESSAGESize(); i++){
+                    returnMessage += code.getMESSAGE(i);
+                }
+                
+                sendToClient(socket, returnMessage);// returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+
+
+            /*
             static vector<pair<string, int>> sentPosition(1, make_pair(code.getUsername(), 0));
             auto it = find_if(sentPosition.begin(), sentPosition.end(), [&code](const std::pair<std::string, int>& element){ return element.first == code.getUsername();} );
             if (it != sentPosition.end()){ //found the user
@@ -580,15 +611,26 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             } else {
                 //User does not exist in the vector
                 sentPosition.emplace_back(code.getUsername(), 0); //add user to the vector
+                
+                //should not need to do this: //test to make sure the vector is not full
+                //int MAX_SEND_SIZE = 462;
+                //int posx, posy, posz;
+
+                
+                
+
 
                 //set delay to remove user from vector if they have not updated data in long enough amount of time.
+                //Follow up on this for timeout:
+                /*
                 int tempValue = 0;
                 auto res = std::async(std::launch::async, [&]{
                 std::this_thread::sleep_for(std::chrono::seconds(60));
                 if(tempValue == 0) std::cout << "Doing Delayed Task... at "<< Time() << " sec, value " << some_value << std::endl;
                 });
-
-            }
+                
+               
+            }*/
             break;
         }
         case 0:{//check for version compatibility - This is done before using can continue to create account or logon
@@ -753,7 +795,7 @@ int main(int argc, char* argv[]){
     initializeAllElements();
     //runUsernameRequestResetDelay();
     
-    
+    //testingSend();
     
     
     

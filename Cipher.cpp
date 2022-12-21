@@ -1099,3 +1099,27 @@ string Cipher::readData(string username, string pathOfFile, string dataHeader){ 
     }
     return "failed";
 }
+
+//Vector send:
+void Cipher::vectorDeliminateHead(std::string input){ //adds delivery location information to the vector
+    MESSAGE.emplace(MESSAGE.begin(),delimiter+input);
+}
+void Cipher::vectorDeliminateBody(std::string input){ //adds delimiter to the begining only
+    MESSAGE.emplace_back(delimiter+input);
+}
+//sub info stuff:
+void Cipher::vectorDeliminateBodySubLayer1(std::string input){ //breaks the vector up into chunks of information that the client can then distinguish between for different uses
+    MESSAGE.emplace_back(subDelimiter+input);
+}
+void Cipher::vectorDeliminateBodySubLayer1End(){ //adds delimiter to the end of vector
+    MESSAGE.emplace_back(subDelimiter);
+}
+void Cipher::vectorDeliminateBodySubLayer2(std::string input){ //breaks the vector up into chunks of information that the client can then distinguish between for different uses
+    MESSAGE.emplace_back(subSubDelimiter+input);
+}
+void Cipher::vectorDeliminateBodySubLayer2End(){ //adds delimiter to the end of vector
+    MESSAGE.emplace_back(subSubDelimiter);
+}
+void Cipher::vectorDeliminateEnd(){ //adds delimiter to the end of vector
+    MESSAGE.emplace_back(delimiter);
+}

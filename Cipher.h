@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 
 #include "Characters.h"
 
@@ -15,8 +16,10 @@ class Cipher {
         string search;
         string delimiter = "~";
         string subDelimiter = "=";
+        string subSubDelimiter = "#";
         string typeOfRequest;
         string username;
+        vector<string> MESSAGE;
         string item[22];
         string subItem[22][22];//, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12; // declare the variables that are being used to store the message from the client // in some cases item2 is used.
         // the above variables may later be replaced with a more wide veriety of variables however, for testing we are using all strings
@@ -63,9 +66,19 @@ class Cipher {
 
     //getVariable functions:
     std::string getDelimiter() { return delimiter; }
+    std::string getSubDelimiter() { return subDelimiter; }
+    std::string getSubSubDelimiter() { return subSubDelimiter; }
     std::string getTypeOfRequest() { return typeOfRequest; }
     std::string getUsername() { return username; }
+    int getMESSAGESize() { return MESSAGE.size(); }
+    std::string getMESSAGE(int pos) { return MESSAGE.at(pos); }
     //the purpose of this function is to return data that has been deciphered. //note there is no item1 because that place is being used by response type. //First Item is number 2 because username is 1
     std::string getItem(int itemNumberToReturn, int subItem = 0); //you do not need to enter a subItem if you did not make a request to server that gave you a subItem return.
-
+    void vectorDeliminateHead(string input = "7");
+    void vectorDeliminateBody(string input = "");
+    void vectorDeliminateBodySubLayer1(std::string input = "");
+    void vectorDeliminateBodySubLayer1End();
+    void vectorDeliminateBodySubLayer2(std::string input);
+    void vectorDeliminateBodySubLayer2End();
+    void vectorDeliminateEnd();
 };
