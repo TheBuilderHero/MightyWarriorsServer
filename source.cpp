@@ -41,7 +41,7 @@ const int gamePatch       = 0;
 
 using namespace std;
 Cipher Delim; //just for the use of the delimiter.
-string delimiter = Delim.getDelimiter(); //a character that marks the beginning or end of a unit of data which is declared in the Cipher Class
+string delimiter = Delim.getDelimiterLayer1(); //a character that marks the beginning or end of a unit of data which is declared in the Cipher Class
 
 
 
@@ -561,22 +561,22 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
 
             //output all info for the NPCS to message vector to be sent to client
                 for (int i = 0; i < npcs.size(); i++) {
-                    code.vectorDeliminateBody(npcs.at(i).getName());
-                    code.vectorDeliminateBody();
+                    code.vectorDeliminateLayer1OpenNewInput(npcs.at(i).getName());
+                    code.vectorDeliminateLayer1OpenNewInput();
                     //all dialogue for NPC i:
                     for(int i2 = 0; i2 < npcs.at(i).getDialoguePartCount(); i2++){    
-                        code.vectorDeliminateBodySubLayer1();
+                        code.vectorDeliminateLayer2OpenNewInput();
                         for(int i3 = 0; i3 < npcs.at(i).getDialogueCount(i2); i3++){
-                            code.vectorDeliminateBodySubLayer2(npcs.at(i).getDialogue(i2, i3));
+                            code.vectorDeliminateLayer3OpenNewInput(npcs.at(i).getDialogue(i2, i3));
                             //code.vectorDeliminateBody(npcs.at(i).getDialogue(i2, i3));
                         }
-                        code.vectorDeliminateBodySubLayer2End();
+                        code.vectorDeliminateLayer2EndInput();
                     }
-                    if (npcs.at(i).getDialoguePartCount() == 0) code.vectorDeliminateBodySubLayer1(); //make sure the sub delimination is always enclosed even when no text
-                    code.vectorDeliminateBodySubLayer1End();
+                    if (npcs.at(i).getDialoguePartCount() == 0) code.vectorDeliminateLayer2OpenNewInput(); //make sure the sub delimination is always enclosed even when no text
+                    code.vectorDeliminateLayer2EndInput();
                 }
-                code.vectorDeliminateHead();
-                code.vectorDeliminateEnd();
+                code.vectorDeliminateLayer1Head();
+                code.vectorDeliminateLayer1EndInput();
 
                 //reset returnMessage message = ""
                 returnMessage = "";

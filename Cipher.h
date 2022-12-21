@@ -14,9 +14,10 @@ class Cipher {
         const int MAX_NUMBER_OF_QUESTS = 20 + 1; //+1 because we start at 1
         string line;
         string search;
-        string delimiter = "~";
-        string subDelimiter = "=";
-        string subSubDelimiter = "#";
+        string delimiterLayer1 = "~";
+        string delimiterLayer2 = "=";
+        string delimiterLayer3 = "|";
+        string delimiterLayer4 = "+";
         string typeOfRequest;
         string username;
         vector<string> MESSAGE;
@@ -65,20 +66,27 @@ class Cipher {
     std::string getInventoryPath(std::string username);
 
     //getVariable functions:
-    std::string getDelimiter() { return delimiter; }
-    std::string getSubDelimiter() { return subDelimiter; }
-    std::string getSubSubDelimiter() { return subSubDelimiter; }
+    std::string getDelimiterLayer1() { return delimiterLayer1; }
+    std::string getDelimiterLayer2() { return delimiterLayer2; }
+    std::string getDelimiterLayer3() { return delimiterLayer3; }
+    std::string getDelimiterLayer4() { return delimiterLayer4; }
     std::string getTypeOfRequest() { return typeOfRequest; }
     std::string getUsername() { return username; }
     int getMESSAGESize() { return MESSAGE.size(); }
     std::string getMESSAGE(int pos) { return MESSAGE.at(pos); }
     //the purpose of this function is to return data that has been deciphered. //note there is no item1 because that place is being used by response type. //First Item is number 2 because username is 1
     std::string getItem(int itemNumberToReturn, int subItem = 0); //you do not need to enter a subItem if you did not make a request to server that gave you a subItem return.
-    void vectorDeliminateHead(string input = "7");
-    void vectorDeliminateBody(string input = "");
-    void vectorDeliminateBodySubLayer1(std::string input = "");
-    void vectorDeliminateBodySubLayer1End();
-    void vectorDeliminateBodySubLayer2(std::string input);
-    void vectorDeliminateBodySubLayer2End();
-    void vectorDeliminateEnd();
+    //layer 1:
+    void vectorDeliminateLayer1Head(string input = "7");
+    void vectorDeliminateLayer1OpenNewInput(string input = "");
+    void vectorDeliminateLayer1EndInput();
+    //layer 2:
+    void vectorDeliminateLayer2OpenNewInput(std::string input = "");
+    void vectorDeliminateLayer2EndInput();
+    //layer 3:
+    void vectorDeliminateLayer3OpenNewInput(std::string input = "");
+    void vectorDeliminateLayer3EndInput();
+    //layer 3:
+    void vectorDeliminateLayer4OpenNewInput(std::string input);
+    void vectorDeliminateLayer4EndInput();
 };

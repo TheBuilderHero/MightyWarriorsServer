@@ -57,11 +57,11 @@ string Cipher::decipher(char messageFromClient[], bool hasSubItems){ //requestAc
     string token, output;
     int loopPass = 0;
     size_t pos = 0; // position variable for removing the delimiters to view the message
-    while ((pos = s.find(delimiter)) != std::string::npos) {
+    while ((pos = s.find(delimiterLayer1)) != std::string::npos) {
         token = s.substr(0, pos);
         output = token;
         str_file_content += std::string(token); // we do not need to add spaces between the information for now so I removed: + std::string(" ")
-        s.erase(0, pos + delimiter.length());
+        s.erase(0, pos + delimiterLayer1.length());
         
         switch (loopPass){
             case 1: //first item after delimiter
@@ -201,11 +201,11 @@ string Cipher::subDecipher(string subMessageFromClient, int rootItem){ //request
     string token, output;
     int loopPass = 0;
     size_t pos = 0; // position variable for removing the delimiters to view the message
-    while ((pos = s.find(subDelimiter)) != std::string::npos) {
+    while ((pos = s.find(delimiterLayer2)) != std::string::npos) {
         token = s.substr(0, pos);
         output = token;
         str_file_content += std::string(token); // we do not need to add spaces between the information for now so I removed: + std::string(" ")
-        s.erase(0, pos + subDelimiter.length());
+        s.erase(0, pos + delimiterLayer2.length());
         
         switch (loopPass){
             case 1: //first item after delimiter
@@ -288,7 +288,7 @@ string Cipher::cipher(string responseType, string item2, string item3, string it
     string str_file_content;
     int loopPass = 1; // start at loop instance 1 to not add extra delimiters to the front of the message.
     while (loopPass <= numberOfItems) {
-        str_file_content += delimiter; // this will add the seperating delimiter before the a given item
+        str_file_content += delimiterLayer1; // this will add the seperating delimiter before the a given item
         switch (loopPass)
         {
             case 1://first item after delimiter
@@ -360,54 +360,54 @@ string Cipher::cipher(string responseType, string item2, string item3, string it
         }
         loopPass++;
     }
-    str_file_content += delimiter; // this will add the final delimiter after all the data to mark the end
+    str_file_content += delimiterLayer1; // this will add the final delimiterLayer1 after all the data to mark the end
     return str_file_content;
 }
 //this functions purpose it to add the delimiters to given sub items 
 string Cipher::subCipher(string item1, string item2, string item3, string item4, string item5, string item6, string item7, string item8, string item9, string item10, string item11, string item12, string item13, string item14, string item15, string item16, string item17, string item18, string item19, string item20, string item21, string item22){ // the default values have been set to "" in case no input is given
     int numberOfItems = 22; //max number of items that we can cipher
-    string subDelimiter = "="; //a character that marks the beginning or end of a unit of data
+    //string delimiterLayer2 = "="; //a character that marks the beginning or end of a unit of data
 
     string str_file_content;
     int loopPass = 1; // start at loop instance 1 to not add extra subDelimiters to the front of the message.
     while (loopPass <= numberOfItems) {
-        str_file_content += subDelimiter; // this will add the seperating subDelimiter before the a given item
+        str_file_content += delimiterLayer2; // this will add the seperating delimiterLayer2 before the a given item
         switch (loopPass)
         {
-            case 1://first item after subDelimiter
+            case 1://first item after delimiterLayer2
             if (item1.length() > 0) str_file_content += item1;
             break;
-            case 2://second item after subDelimiter
+            case 2://second item after delimiterLayer2
             if (item2.length() > 0) str_file_content += item2;
             break;
-            case 3://third item after subDelimiter
+            case 3://third item after delimiterLayer2
             if (item3.length() > 0) str_file_content += item3;
             break;
-            case 4://forth item after subDelimiter
+            case 4://forth item after delimiterLayer2
             if (item4.length() > 0) str_file_content += item4;
             break;
-            case 5://fith item after subDelimiter
+            case 5://fith item after delimiterLayer2
             if (item5.length() > 0) str_file_content += item5;
             break;
-            case 6://sixth item after subDelimiter
+            case 6://sixth item after delimiterLayer2
             if (item6.length() > 0) str_file_content += item6;
             break;
-            case 7://seventh item after subDelimiter
+            case 7://seventh item after delimiterLayer2
             if (item7.length() > 0) str_file_content += item7;
             break;
-            case 8://eighth item after subDelimiter
+            case 8://eighth item after delimiterLayer2
             if (item8.length() > 0) str_file_content += item8;
             break;
-            case 9://ninth item after subDelimiter
+            case 9://ninth item after delimiterLayer2
             if (item9.length() > 0) str_file_content += item9;
             break;
-            case 10://tenth item after subDelimiter
+            case 10://tenth item after delimiterLayer2
             if (item10.length() > 0) str_file_content += item10;
             break;
-            case 11://eleventh item after subDelimiter
+            case 11://eleventh item after delimiterLayer2
             if (item11.length() > 0) str_file_content += item11;
             break;
-            case 12://twelth item after subDelimiter
+            case 12://twelth item after delimiterLayer2
             if (item12.length() > 0) str_file_content += item12;
             break;
             case 13:
@@ -443,7 +443,7 @@ string Cipher::subCipher(string item1, string item2, string item3, string item4,
         }
         loopPass++;
     }
-    str_file_content += subDelimiter; // this will add the final subDelimiter after all the data to mark the end
+    str_file_content += delimiterLayer2; // this will add the final delimiterLayer2 after all the data to mark the end
     return str_file_content;
 }
 
@@ -461,46 +461,46 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             
             //some user data is stored in "[username].dat"
             userfile.open(getDatPath(username));
-            userfile << delimiter << username; // these are all adding data to the file with delimiter seperation.
-            if (data2.length() > 0) {userfile << delimiter << data2;} else {userfile << delimiter;} //race
-            if (data3.length() > 0) {userfile << delimiter << data3;} else {userfile << delimiter;} //kit
-            if (data4.length() > 0) {userfile << delimiter << data4;} else {userfile << delimiter;} //level
-            if (data5.length() > 0) {userfile << delimiter << data5;} else {userfile << delimiter;} //xp
-            if (data6.length() > 0) {userfile << delimiter << data6;} else {userfile << delimiter;}
-            if (data7.length() > 0) {userfile << delimiter << data7;} else {userfile << delimiter;}
-            if (data8.length() > 0) {userfile << delimiter << data8;} else {userfile << delimiter;}
-            if (data9.length() > 0) {userfile << delimiter << data9;} else {userfile << delimiter;}
-            userfile << delimiter;
+            userfile << delimiterLayer1 << username; // these are all adding data to the file with delimiter seperation.
+            if (data2.length() > 0) {userfile << delimiterLayer1 << data2;} else {userfile << delimiterLayer1;} //race
+            if (data3.length() > 0) {userfile << delimiterLayer1 << data3;} else {userfile << delimiterLayer1;} //kit
+            if (data4.length() > 0) {userfile << delimiterLayer1 << data4;} else {userfile << delimiterLayer1;} //level
+            if (data5.length() > 0) {userfile << delimiterLayer1 << data5;} else {userfile << delimiterLayer1;} //xp
+            if (data6.length() > 0) {userfile << delimiterLayer1 << data6;} else {userfile << delimiterLayer1;}
+            if (data7.length() > 0) {userfile << delimiterLayer1 << data7;} else {userfile << delimiterLayer1;}
+            if (data8.length() > 0) {userfile << delimiterLayer1 << data8;} else {userfile << delimiterLayer1;}
+            if (data9.length() > 0) {userfile << delimiterLayer1 << data9;} else {userfile << delimiterLayer1;}
+            userfile << delimiterLayer1;
             userfile.close(); // done writting to file and now it is closed
 
             logonfile.open(getActPath(username)); // this is the file which will store the users accout logon info
-            logonfile << delimiter << username;
-            logonfile << delimiter << "0000"; // set defualt password for the account
-            logonfile << delimiter;
+            logonfile << delimiterLayer1 << username;
+            logonfile << delimiterLayer1 << "0000"; // set defualt password for the account
+            logonfile << delimiterLayer1;
             logonfile.close();
             break;}
         case 2:{ //password update
             logonfile.open(getActPath(username)); // this is the file which will store the users accout logon info
-            logonfile << delimiter << username;
-            logonfile << delimiter << data2; //this sets the defualt password to the information input in data2 which was given by the user
-            logonfile << delimiter;
+            logonfile << delimiterLayer1 << username;
+            logonfile << delimiterLayer1 << data2; //this sets the defualt password to the information input in data2 which was given by the user
+            logonfile << delimiterLayer1;
             logonfile.close();
             break;}
         case 3:{ //Overwrite the user's stats
             userfile.open(getStatPath(username));
-            userfile << delimiter << username; // these are all adding data to the file with delimiter seperation.
-            if (data2.length() > 0) {userfile << delimiter << data2;} else {userfile << delimiter;} //health stat
-            if (data3.length() > 0) {userfile << delimiter << data3;} else {userfile << delimiter;} //armor stat
-            if (data4.length() > 0) {userfile << delimiter << data4;} else {userfile << delimiter;} //magic res stat
-            if (data5.length() > 0) {userfile << delimiter << data5;} else {userfile << delimiter;} //physical damage stat
-            if (data6.length() > 0) {userfile << delimiter << data6;} else {userfile << delimiter;} //magic damage stat
-            if (data7.length() > 0) {userfile << delimiter << data7;} else {userfile << delimiter;} //Agility stat
-            if (data8.length() > 0) {userfile << delimiter << data8;} else {userfile << delimiter;} //stealth stat
-            if (data9.length() > 0) {userfile << delimiter << data9;} else {userfile << delimiter;} //Stamina stat
-            if (data10.length() > 0) {userfile << delimiter << data10;} else {userfile << delimiter;} //NaturalEnergy stat
-            if (data11.length() > 0) {userfile << delimiter << data11;} else {userfile << delimiter;} //Mind stat
-            if (data12.length() > 0) {userfile << delimiter << data12;} else {userfile << delimiter;} //psychic damage stat
-            userfile << delimiter;
+            userfile << delimiterLayer1 << username; // these are all adding data to the file with delimiterLayer1 seperation.
+            if (data2.length() > 0) {userfile << delimiterLayer1 << data2;} else {userfile << delimiterLayer1;} //health stat
+            if (data3.length() > 0) {userfile << delimiterLayer1 << data3;} else {userfile << delimiterLayer1;} //armor stat
+            if (data4.length() > 0) {userfile << delimiterLayer1 << data4;} else {userfile << delimiterLayer1;} //magic res stat
+            if (data5.length() > 0) {userfile << delimiterLayer1 << data5;} else {userfile << delimiterLayer1;} //physical damage stat
+            if (data6.length() > 0) {userfile << delimiterLayer1 << data6;} else {userfile << delimiterLayer1;} //magic damage stat
+            if (data7.length() > 0) {userfile << delimiterLayer1 << data7;} else {userfile << delimiterLayer1;} //Agility stat
+            if (data8.length() > 0) {userfile << delimiterLayer1 << data8;} else {userfile << delimiterLayer1;} //stealth stat
+            if (data9.length() > 0) {userfile << delimiterLayer1 << data9;} else {userfile << delimiterLayer1;} //Stamina stat
+            if (data10.length() > 0) {userfile << delimiterLayer1 << data10;} else {userfile << delimiterLayer1;} //NaturalEnergy stat
+            if (data11.length() > 0) {userfile << delimiterLayer1 << data11;} else {userfile << delimiterLayer1;} //Mind stat
+            if (data12.length() > 0) {userfile << delimiterLayer1 << data12;} else {userfile << delimiterLayer1;} //psychic damage stat
+            userfile << delimiterLayer1;
             userfile.close(); // done writting to file and now it is closed
             break;}
         case 4:{ //update the players's level and XP
@@ -523,16 +523,16 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             
             //write back to file:
             userfile.open(getDatPath(username));
-            userfile << delimiter << username; // these are all adding data to the file with delimiter seperation.
-            if (data2.length() > 0) {userfile << delimiter << data2;} else {userfile << delimiter << tempRace;} //race
-            if (data3.length() > 0) {userfile << delimiter << data3;} else {userfile << delimiter << tempKit;} //kit
-            if (data4.length() > 0) {userfile << delimiter << data4;} else {userfile << delimiter << tempLevel;} //level
-            if (data5.length() > 0) {userfile << delimiter << data5;} else {userfile << delimiter << tempXP;} //XP
-            if (data6.length() > 0) {userfile << delimiter << data6;} else {userfile << delimiter;}
-            if (data7.length() > 0) {userfile << delimiter << data7;} else {userfile << delimiter;}
-            if (data8.length() > 0) {userfile << delimiter << data8;} else {userfile << delimiter;}
-            if (data9.length() > 0) {userfile << delimiter << data9;} else {userfile << delimiter;}
-            userfile << delimiter;
+            userfile << delimiterLayer1 << username; // these are all adding data to the file with delimiter seperation.
+            if (data2.length() > 0) {userfile << delimiterLayer1 << data2;} else {userfile << delimiterLayer1 << tempRace;} //race
+            if (data3.length() > 0) {userfile << delimiterLayer1 << data3;} else {userfile << delimiterLayer1 << tempKit;} //kit
+            if (data4.length() > 0) {userfile << delimiterLayer1 << data4;} else {userfile << delimiterLayer1 << tempLevel;} //level
+            if (data5.length() > 0) {userfile << delimiterLayer1 << data5;} else {userfile << delimiterLayer1 << tempXP;} //XP
+            if (data6.length() > 0) {userfile << delimiterLayer1 << data6;} else {userfile << delimiterLayer1;}
+            if (data7.length() > 0) {userfile << delimiterLayer1 << data7;} else {userfile << delimiterLayer1;}
+            if (data8.length() > 0) {userfile << delimiterLayer1 << data8;} else {userfile << delimiterLayer1;}
+            if (data9.length() > 0) {userfile << delimiterLayer1 << data9;} else {userfile << delimiterLayer1;}
+            userfile << delimiterLayer1;
             userfile.close(); // done writting to file and now it is closed
             break;}
         case 5:{ //update user stats
@@ -585,19 +585,19 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
 
             //write new stats to file:
             userfile.open(getStatPath(username));
-            userfile << delimiter << username; // these are all adding data to the file with delimiter seperation.
-            if (data2.length() > 0) {userfile << delimiter << data2;} else {userfile << delimiter;} //health stat
-            if (data3.length() > 0) {userfile << delimiter << data3;} else {userfile << delimiter;} //armor stat
-            if (data4.length() > 0) {userfile << delimiter << data4;} else {userfile << delimiter;} //magic res stat
-            if (data5.length() > 0) {userfile << delimiter << data5;} else {userfile << delimiter;} //physical damage stat
-            if (data6.length() > 0) {userfile << delimiter << data6;} else {userfile << delimiter;} //magic damage stat
-            if (data7.length() > 0) {userfile << delimiter << data7;} else {userfile << delimiter;} //Agility stat
-            if (data8.length() > 0) {userfile << delimiter << data8;} else {userfile << delimiter;} //stealth stat
-            if (data9.length() > 0) {userfile << delimiter << data9;} else {userfile << delimiter;} //Stamina stat
-            if (data10.length() > 0) {userfile << delimiter << data10;} else {userfile << delimiter;} //NaturalEnergy stat
-            if (data11.length() > 0) {userfile << delimiter << data11;} else {userfile << delimiter;} //Mind stat
-            if (data12.length() > 0) {userfile << delimiter << data12;} else {userfile << delimiter;} //psychic damage stat
-            userfile << delimiter;
+            userfile << delimiterLayer1 << username; // these are all adding data to the file with delimiterLayer1 seperation.
+            if (data2.length() > 0) {userfile << delimiterLayer1 << data2;} else {userfile << delimiterLayer1;} //health stat
+            if (data3.length() > 0) {userfile << delimiterLayer1 << data3;} else {userfile << delimiterLayer1;} //armor stat
+            if (data4.length() > 0) {userfile << delimiterLayer1 << data4;} else {userfile << delimiterLayer1;} //magic res stat
+            if (data5.length() > 0) {userfile << delimiterLayer1 << data5;} else {userfile << delimiterLayer1;} //physical damage stat
+            if (data6.length() > 0) {userfile << delimiterLayer1 << data6;} else {userfile << delimiterLayer1;} //magic damage stat
+            if (data7.length() > 0) {userfile << delimiterLayer1 << data7;} else {userfile << delimiterLayer1;} //Agility stat
+            if (data8.length() > 0) {userfile << delimiterLayer1 << data8;} else {userfile << delimiterLayer1;} //stealth stat
+            if (data9.length() > 0) {userfile << delimiterLayer1 << data9;} else {userfile << delimiterLayer1;} //Stamina stat
+            if (data10.length() > 0) {userfile << delimiterLayer1 << data10;} else {userfile << delimiterLayer1;} //NaturalEnergy stat
+            if (data11.length() > 0) {userfile << delimiterLayer1 << data11;} else {userfile << delimiterLayer1;} //Mind stat
+            if (data12.length() > 0) {userfile << delimiterLayer1 << data12;} else {userfile << delimiterLayer1;} //psychic damage stat
+            userfile << delimiterLayer1;
             userfile.close(); // done writting to file and now it is closed
             break;}
         case 6:{ //update user Weapons
@@ -644,15 +644,15 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
 
             //write new stats to file:
             weaponStats.open(getWeaponPath(username));
-            weaponStats << delimiter << username; // these are all adding data to the file with delimiter seperation.
-            if (data2.length() > 0) {weaponStats << delimiter << data2;} else {weaponStats << delimiter;} //Weapon ID
-            if (data3.length() > 0) {weaponStats << delimiter << data3;} else {weaponStats << delimiter;} //iron
-            if (data4.length() > 0) {weaponStats << delimiter << data4;} else {weaponStats << delimiter;} //wood
-            if (data5.length() > 0) {weaponStats << delimiter << data5;} else {weaponStats << delimiter;} //gems
-            if (data6.length() > 0) {weaponStats << delimiter << data6;} else {weaponStats << delimiter;} //feet
-            if (data7.length() > 0) {weaponStats << delimiter << data7;} else {weaponStats << delimiter;} //fruits
-            if (data8.length() > 0) {weaponStats << delimiter << data8;} else {weaponStats << delimiter;} //brains
-            weaponStats << delimiter;
+            weaponStats << delimiterLayer1 << username; // these are all adding data to the file with delimiterLayer1 seperation.
+            if (data2.length() > 0) {weaponStats << delimiterLayer1 << data2;} else {weaponStats << delimiterLayer1;} //Weapon ID
+            if (data3.length() > 0) {weaponStats << delimiterLayer1 << data3;} else {weaponStats << delimiterLayer1;} //iron
+            if (data4.length() > 0) {weaponStats << delimiterLayer1 << data4;} else {weaponStats << delimiterLayer1;} //wood
+            if (data5.length() > 0) {weaponStats << delimiterLayer1 << data5;} else {weaponStats << delimiterLayer1;} //gems
+            if (data6.length() > 0) {weaponStats << delimiterLayer1 << data6;} else {weaponStats << delimiterLayer1;} //feet
+            if (data7.length() > 0) {weaponStats << delimiterLayer1 << data7;} else {weaponStats << delimiterLayer1;} //fruits
+            if (data8.length() > 0) {weaponStats << delimiterLayer1 << data8;} else {weaponStats << delimiterLayer1;} //brains
+            weaponStats << delimiterLayer1;
             weaponStats.close(); // done writting to file and now it is closed
             break;
             }
@@ -660,9 +660,9 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             //write new location to file:
             ofstream locationFile;
             locationFile.open(getLocationPath(username));
-            locationFile << delimiter << username; // these are all adding data to the file with delimiter seperation.
-            if (data2.length() > 0) {locationFile << delimiter << data2;} else {locationFile << delimiter;} //Players current location
-            locationFile << delimiter;
+            locationFile << delimiterLayer1 << username; // these are all adding data to the file with delimiterLayer1 seperation.
+            if (data2.length() > 0) {locationFile << delimiterLayer1 << data2;} else {locationFile << delimiterLayer1;} //Players current location
+            locationFile << delimiterLayer1;
             locationFile.close(); // done writting to file and now it is closed
             break;
         }
@@ -692,11 +692,11 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             questFile.open(getQuestPath(username));
             while(lineNumber != MAX_NUMBER_OF_QUESTS){ //write all the quests back into the file
                 if (lineNumber == stoi(data2)){ //update the line with info about the quest
-                    questFile << data3 << endl; // delimiter << data3 << delimiter << endl; //removed this delimiter addition
+                    questFile << data3 << endl; // delimiterLayer1 << data3 << delimiterLayer1 << endl; //removed this delimiterLayer1 addition
                 } else if (quest[lineNumber].length() > 0) {
                     questFile << quest[lineNumber] << endl; //write back the data
                 } else if(lineNumber == 0) {
-                    questFile <<delimiter<< username <<delimiter<< endl; //kept delimiter addition for username only (probably add current mission to the same line)
+                    questFile <<delimiterLayer1<< username <<delimiterLayer1<< endl; //kept delimiterLayer1 addition for username only (probably add current mission to the same line)
                 } else {
                     questFile << endl;
                 }
@@ -709,9 +709,9 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             //write new inventory to file:
             ofstream inventoryFile;
             inventoryFile.open(getInventoryPath(username));
-            inventoryFile << delimiter << username; // these are all adding data to the file with delimiter seperation.
-            if (data2.length() > 0) {inventoryFile << delimiter << data2;} else {inventoryFile << delimiter;} //Player's inventory
-            inventoryFile << delimiter;
+            inventoryFile << delimiterLayer1 << username; // these are all adding data to the file with delimiterLayer1 seperation.
+            if (data2.length() > 0) {inventoryFile << delimiterLayer1 << data2;} else {inventoryFile << delimiterLayer1;} //Player's inventory
+            inventoryFile << delimiterLayer1;
             inventoryFile.close(); // done writing to file and now it is closed
             break;
         }
@@ -731,20 +731,20 @@ void Cipher::userDataDeliminationRead(int updateValue, string username){
         case 1:{ //get user additional stats
             userstats.open(getStatPath(username));
             userstats >> s;
-            while ((pos = s.find(delimiter)) != std::string::npos) {
+            while ((pos = s.find(delimiterLayer1)) != std::string::npos) {
                 token = s.substr(0, pos);
                 output = token;
                 str_file_content += std::string(token); // we do not need to add spaces between the information for now so I removed: + std::string(" ")
-                s.erase(0, pos + delimiter.length());
+                s.erase(0, pos + delimiterLayer1.length());
                 
                 switch (loopPass){
-                    case 1: //first item after delimiter
+                    case 1: //first item after delimiterLayer1
                     if (output.length() > 0) username = output; // request numbers give different outputs 1 is username usage, 2 is create user account, 3 is logon
                     break;
-                    case 2://second item after delimiter
+                    case 2://second item after delimiterLayer1
                     if (output.length() > 0) item[2] = output; // we many need to change the variable to an int with stoi(output) later but right now we just want a string version
                     break;
-                    case 3://third item after delimiter
+                    case 3://third item after delimiterLayer1
                     if (output.length() > 0) item[3] = output;
                     break;
                     case 4://forth item after delimiter
@@ -814,20 +814,20 @@ void Cipher::userDataDeliminationRead(int updateValue, string username){
         case 2:{ //reads the player's race, kit, level, and XP to items 2, 3, 4, and 5
             userdata.open(getDatPath(username));
             userdata >> s;
-            while ((pos = s.find(delimiter)) != std::string::npos) {
+            while ((pos = s.find(delimiterLayer1)) != std::string::npos) {
                 token = s.substr(0, pos);
                 output = token;
                 str_file_content += std::string(token); // we do not need to add spaces between the information for now so I removed: + std::string(" ")
-                s.erase(0, pos + delimiter.length());
+                s.erase(0, pos + delimiterLayer1.length());
                 
                 switch (loopPass){
-                    case 1: //first item after delimiter
+                    case 1: //first item after delimiterLayer1
                     if (output.length() > 0) username = output;
                     break;
-                    case 2://second item after delimiter
+                    case 2://second item after delimiterLayer1
                     if (output.length() > 0) item[2] = output; //this will be where the user's race is stored
                     break;
-                    case 3://third item after delimiter
+                    case 3://third item after delimiterLayer1
                     if (output.length() > 0) item[3] = output; //this will be where the user's kit is stored
                     break;
                     case 4:
@@ -845,17 +845,17 @@ void Cipher::userDataDeliminationRead(int updateValue, string username){
         case 3:{//get the weapon stat amounts
             weaponStats.open(getWeaponPath(username));
             weaponStats >> s;
-            while ((pos = s.find(delimiter)) != std::string::npos) {
+            while ((pos = s.find(delimiterLayer1)) != std::string::npos) {
                 token = s.substr(0, pos);
                 output = token;
                 str_file_content += std::string(token);
-                s.erase(0, pos + delimiter.length());
+                s.erase(0, pos + delimiterLayer1.length());
                 
                 switch (loopPass){
-                    case 1: //first item after delimiter
+                    case 1: //first item after delimiterLayer1
                     if (output.length() > 0) username = output;
                     break;
-                    case 2://second item after delimiter      //weaponID
+                    case 2://second item after delimiterLayer1      //weaponID
                     if (output.length() > 0) item[2] = output; // we many need to change the variable to an int with stoi(output) later but right now we just want a string version
                     break;
                     case 3://third item after delimiter       //iron
@@ -886,17 +886,17 @@ void Cipher::userDataDeliminationRead(int updateValue, string username){
             ifstream locationFile;
             locationFile.open(getLocationPath(username));
             locationFile >> s;
-            while ((pos = s.find(delimiter)) != std::string::npos) {
+            while ((pos = s.find(delimiterLayer1)) != std::string::npos) {
                 token = s.substr(0, pos);
                 output = token;
                 str_file_content += std::string(token);
-                s.erase(0, pos + delimiter.length());
+                s.erase(0, pos + delimiterLayer1.length());
                 
                 switch (loopPass){
-                    case 1: //first item after delimiter
+                    case 1: //first item after delimiterLayer1
                     if (output.length() > 0) username = output;
                     break;
-                    case 2://second item after delimiter      //Location
+                    case 2://second item after delimiterLayer1      //Location
                     if (output.length() > 0) item[2] = output;
                     break;
                 }
@@ -951,17 +951,17 @@ void Cipher::userDataDeliminationRead(int updateValue, string username){
             ifstream inventoryFile;
             inventoryFile.open(getInventoryPath(username));
             inventoryFile >> s;
-            while ((pos = s.find(delimiter)) != std::string::npos) {
+            while ((pos = s.find(delimiterLayer1)) != std::string::npos) {
                 token = s.substr(0, pos);
                 output = token;
                 str_file_content += std::string(token);
-                s.erase(0, pos + delimiter.length());
+                s.erase(0, pos + delimiterLayer1.length());
                 
                 switch (loopPass){
-                    case 1: //first item after delimiter
+                    case 1: //first item after delimiterLayer1
                     if (output.length() > 0) username = output;
                     break;
-                    case 2://second item after delimiter      //Full Inventory
+                    case 2://second item after delimiterLayer1      //Full Inventory
                     if (output.length() > 0) item[2] = output;
                     break;
                 }
@@ -1001,7 +1001,7 @@ void Cipher::copyFileAddingData(string username, string pathOfCopyTarget, string
             if (headerIsAtStart){
                 if (found != std::string::npos && found == 0){ //if dataheader is found to be within the line
                     //add the new data to the file in place of the old:
-                    temp << dataHeader << delimiter << newData << endl;
+                    temp << dataHeader << delimiterLayer1 << newData << endl;
                 } else{
                     //write same data for all headers which do not match dataHeader
                     temp << line << endl;
@@ -1009,7 +1009,7 @@ void Cipher::copyFileAddingData(string username, string pathOfCopyTarget, string
             } else {
                 if (found != std::string::npos){ //if dataheader is found to be within the line
                     //add the new data to the file in place of the old:
-                    temp << dataHeader << delimiter << newData << endl;
+                    temp << dataHeader << delimiterLayer1 << newData << endl;
                 } else{
                     //write same data for all headers which do not match dataHeader
                     temp << line << endl;
@@ -1100,26 +1100,35 @@ string Cipher::readData(string username, string pathOfFile, string dataHeader){ 
     return "failed";
 }
 
-//Vector send:
-void Cipher::vectorDeliminateHead(std::string input){ //adds delivery location information to the vector
-    MESSAGE.emplace(MESSAGE.begin(),delimiter+input);
+//Vector send Layer1:
+void Cipher::vectorDeliminateLayer1Head(std::string input){ //adds delivery location information to the vector
+    MESSAGE.emplace(MESSAGE.begin(),delimiterLayer1+input);
 }
-void Cipher::vectorDeliminateBody(std::string input){ //adds delimiter to the begining only
-    MESSAGE.emplace_back(delimiter+input);
+void Cipher::vectorDeliminateLayer1OpenNewInput(std::string input){ //adds delimiter to the begining only //can be used to place new information (note ends previous information entry field)
+    MESSAGE.emplace_back(delimiterLayer1+input);
 }
-//sub info stuff:
-void Cipher::vectorDeliminateBodySubLayer1(std::string input){ //breaks the vector up into chunks of information that the client can then distinguish between for different uses
-    MESSAGE.emplace_back(subDelimiter+input);
+void Cipher::vectorDeliminateLayer1EndInput(){ //adds delimiter to the end of vector
+    MESSAGE.emplace_back(delimiterLayer1);
 }
-void Cipher::vectorDeliminateBodySubLayer1End(){ //adds delimiter to the end of vector
-    MESSAGE.emplace_back(subDelimiter);
+
+//Layer 2:
+void Cipher::vectorDeliminateLayer2OpenNewInput(std::string input){ //breaks the vector up into chunks of information that the client can then distinguish between for different uses
+    MESSAGE.emplace_back(delimiterLayer2+input);
 }
-void Cipher::vectorDeliminateBodySubLayer2(std::string input){ //breaks the vector up into chunks of information that the client can then distinguish between for different uses
-    MESSAGE.emplace_back(subSubDelimiter+input);
+void Cipher::vectorDeliminateLayer2EndInput(){ //adds delimiter to the end of vector
+    MESSAGE.emplace_back(delimiterLayer2);
 }
-void Cipher::vectorDeliminateBodySubLayer2End(){ //adds delimiter to the end of vector
-    MESSAGE.emplace_back(subSubDelimiter);
+//Layer 3:
+void Cipher::vectorDeliminateLayer3OpenNewInput(std::string input){ //breaks the vector up into chunks of information that the client can then distinguish between for different uses
+    MESSAGE.emplace_back(delimiterLayer3+input);
 }
-void Cipher::vectorDeliminateEnd(){ //adds delimiter to the end of vector
-    MESSAGE.emplace_back(delimiter);
+void Cipher::vectorDeliminateLayer3EndInput(){ //adds delimiter to the end of vector
+    MESSAGE.emplace_back(delimiterLayer3);
+}
+//Layer 4:
+void Cipher::vectorDeliminateLayer4OpenNewInput(std::string input){ //breaks the vector up into chunks of information that the client can then distinguish between for different uses
+    MESSAGE.emplace_back(delimiterLayer4+input);
+}
+void Cipher::vectorDeliminateLayer4EndInput(){ //adds delimiter to the end of vector
+    MESSAGE.emplace_back(delimiterLayer4);
 }
