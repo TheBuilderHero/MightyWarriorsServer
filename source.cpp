@@ -560,31 +560,35 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
 
 
             //output all info for the NPCS to message vector to be sent to client
-                for (int i = 0; i < npcs.size(); i++) {
-                    code.vectorDeliminateLayer1OpenNewInput(npcs.at(i).getName());
-                    code.vectorDeliminateLayer1OpenNewInput();
-                    //all dialogue for NPC i:
-                    for(int i2 = 0; i2 < npcs.at(i).getDialoguePartCount(); i2++){    
-                        code.vectorDeliminateLayer2OpenNewInput();
-                        for(int i3 = 0; i3 < npcs.at(i).getDialogueCount(i2); i3++){
-                            code.vectorDeliminateLayer3OpenNewInput(npcs.at(i).getDialogue(i2, i3));
-                            //code.vectorDeliminateBody(npcs.at(i).getDialogue(i2, i3));
-                        }
-                        code.vectorDeliminateLayer2EndInput();
+            code.vectorDeliminateLayer1OpenNewInput(code.DIALOGUE_INFO); //sned type
+            code.vectorDeliminateLayer1OpenNewInput();
+            for (int i = 0; i < npcs.size(); i++) {
+                code.vectorDeliminateLayer2OpenNewInput(npcs.at(i).getName());
+                code.vectorDeliminateLayer2OpenNewInput(to_string(npcs.at(i).getAssignedLandmark()));
+                code.vectorDeliminateLayer2OpenNewInput();
+                //all dialogue for NPC i:
+                for(int i2 = 0; i2 < npcs.at(i).getDialoguePartCount(); i2++){    
+                    code.vectorDeliminateLayer3OpenNewInput();
+                    for(int i3 = 0; i3 < npcs.at(i).getDialogueCount(i2); i3++){
+                        code.vectorDeliminateLayer4OpenNewInput(npcs.at(i).getDialogue(i2, i3));
+                        //code.vectorDeliminateBody(npcs.at(i).getDialogue(i2, i3));
                     }
-                    if (npcs.at(i).getDialoguePartCount() == 0) code.vectorDeliminateLayer2OpenNewInput(); //make sure the sub delimination is always enclosed even when no text
-                    code.vectorDeliminateLayer2EndInput();
+                    code.vectorDeliminateLayer4EndInput();
                 }
-                code.vectorDeliminateLayer1Head();
-                code.vectorDeliminateLayer1EndInput();
+                if (npcs.at(i).getDialoguePartCount() == 0) code.vectorDeliminateLayer3OpenNewInput(); //make sure the sub delimination is always enclosed even when no text
+                code.vectorDeliminateLayer3EndInput();
+            }
+            code.vectorDeliminateLayer2EndInput();
+            code.vectorDeliminateLayer1Head(code.VECTOR_SEND);
+            code.vectorDeliminateLayer1EndInput();
 
-                //reset returnMessage message = ""
-                returnMessage = "";
-                for(int i = 0; i < code.getMESSAGESize(); i++){
-                    returnMessage += code.getMESSAGE(i);
-                }
-                
-                sendToClient(socket, returnMessage);// returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
+            //reset returnMessage message = ""
+            returnMessage = "";
+            for(int i = 0; i < code.getMESSAGESize(); i++){
+                returnMessage += code.getMESSAGE(i);
+            }
+            
+            sendToClient(socket, returnMessage);// returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
 
 
             /*

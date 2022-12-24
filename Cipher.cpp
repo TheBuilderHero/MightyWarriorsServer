@@ -1101,11 +1101,17 @@ string Cipher::readData(string username, string pathOfFile, string dataHeader){ 
 }
 
 //Vector send Layer1:
-void Cipher::vectorDeliminateLayer1Head(std::string input){ //adds delivery location information to the vector
-    MESSAGE.emplace(MESSAGE.begin(),delimiterLayer1+input);
+void Cipher::vectorDeliminateLayer1Head(const enum SEND_TYPE &input){ //adds delivery location information to the vector
+    string sendID = convertSEND_TYPEToString(input);
+    MESSAGE.emplace(MESSAGE.begin(),delimiterLayer1+sendID);
 }
-void Cipher::vectorDeliminateLayer1OpenNewInput(std::string input){ //adds delimiter to the begining only //can be used to place new information (note ends previous information entry field)
+void Cipher::vectorDeliminateLayer1OpenNewInput(string input){ //adds delimiter to the begining only //can be used to place new information (note ends previous information entry field)
     MESSAGE.emplace_back(delimiterLayer1+input);
+}
+void Cipher::vectorDeliminateLayer1OpenNewInput(const enum DATA_TYPE &input){//breaks the vector up into chunks of information that the client can then distinguish between for different uses
+    string output = convertDATA_TYPEToString(input);
+    MESSAGE.emplace_back(delimiterLayer1+output);
+
 }
 void Cipher::vectorDeliminateLayer1EndInput(){ //adds delimiter to the end of vector
     MESSAGE.emplace_back(delimiterLayer1);
