@@ -1,0 +1,20 @@
+There are many different ASCII characters they are restricted in use for either the reason of them having a different use or in some cases they may not function correctly.
+Please take not of the characters below along with the reason for not being able to use them.
+If you have futher questions reach out to Dakota.
+
+Characters being used for code delimination:
+
+Completetly Restricted:
+The character '~' may not be used unless instructed by the code.
+The character '=' may not be used unless instructed by the code.
+The character '|' may not be used unless instructed by the code.
+The character '+' may not be used unless instructed by the code.
+Limited Restriction:
+There is also limited use of the character '-'. This character is used in some versions of the stats send protocol.
+
+
+Dialogue for characters limitations:
+
+As of right now we are unable to send acsented characters properly to the client from the server without them becoming distored.
+This means do not include them in any character or NPC dialogue being sent to the client from the server (note, this is mainly for dialogue of characters in the game.)
+Note, this may eventually be resolved.
