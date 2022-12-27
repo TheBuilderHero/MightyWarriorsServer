@@ -43,9 +43,6 @@ using namespace std;
 Cipher Delim; //just for the use of the delimiter.
 string delimiter = Delim.getDelimiterLayer1(); //a character that marks the beginning or end of a unit of data which is declared in the Cipher Class
 
-
-
-
 void dostuff(int); /* function prototype */
 void premessageSendLengthVerification(int socket, int MessageLength);
 void sendToClient(int socket, string message);
@@ -92,14 +89,14 @@ void setupNPCData(){ //THIS fuction sets up all the NPC's for the user to intera
     // Declare the NPC's in the game
     //
     
-    NPC npc1("Yöl", 1);
-    NPC npc2("Ggino", 2);
-    NPC npc3("Inya", 3);
-    NPC npc4("Nabban", 4);
-    NPC npc5("Zeltrölt", 4);
-    NPC npc6("Huldennii", 5);
-    NPC npc7("Ronni Seaburger", 6);
-    NPC npc8("Your Mom", 7);
+    NPC npc1("Yöl", 127);
+    NPC npc2("Ggino", 217);
+    NPC npc3("Inya", 285);
+    NPC npc4("Nabban", 310);
+    NPC npc5("Zeltrölt", 310);
+    NPC npc6("Huldennii", 506);
+    NPC npc7("Ronni Seaburger", 637);
+    NPC npc8("Your Mom", 506);
 
     npcs.push_back(npc1);
     npcs.push_back(npc2);
