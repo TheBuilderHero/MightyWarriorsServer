@@ -52,13 +52,18 @@ void sendToClient(int socket, string message);
 void setupNPCData();
 void runUsernameRequestResetDelay();
 
+void runUsernameRequestResetDelay(){
+
+}
+
 void initializeAllElements(){
     setupNPCData();
     cout << "Initiallizing NPCs: ";
     for (int i = 0; i < 7; i ++) cout << to_string(npcs.at(i).getNpcID()) << " ";
     cout << endl;
-     //Working to add dialogue into memory
-     //This outputs all the npc's dialogue:
+    //Working to add dialogue into memory
+    //This outputs all the npc's dialogue:
+    /*
     for (int i = 0; i < npcs.size(); i++) {
         for(int i2 = 0; i2 < npcs.at(i).getDialoguePartCount(); i2++){
             for(int i3 = 0; i3 < npcs.at(i).getDialogueCount(i2); i3++){
@@ -66,7 +71,9 @@ void initializeAllElements(){
             }
         }
     }
+    */
     //This specifically outputs the lines a certain NPC for both case 1 and 2 (or index 0 and 1)
+    /*
     cout << "size: " << npcs.at(0).getDialogueCount(0) << endl;
     cout << "size: " << npcs.at(0).getDialogueCount(1) << endl;
     for(int i = 0; i < npcs.at(0).getDialogueCount(0); i++){
@@ -77,6 +84,7 @@ void initializeAllElements(){
     }
 
     cout << endl;
+    */
 }
 
 void setupNPCData(){ //THIS fuction sets up all the NPC's for the user to interact with
@@ -91,6 +99,7 @@ void setupNPCData(){ //THIS fuction sets up all the NPC's for the user to intera
     NPC npc5("Zeltrölt", 4);
     NPC npc6("Huldennii", 5);
     NPC npc7("Ronni Seaburger", 6);
+    NPC npc8("Your Mom", 7);
 
     npcs.push_back(npc1);
     npcs.push_back(npc2);
@@ -99,6 +108,7 @@ void setupNPCData(){ //THIS fuction sets up all the NPC's for the user to intera
     npcs.push_back(npc5);
     npcs.push_back(npc6);
     npcs.push_back(npc7);
+    npcs.push_back(npc8);
 }
 
 
@@ -794,17 +804,17 @@ void sendToClient(int socket, string message){ //this function is the standard m
 
 //main function of the source.cpp file
 int main(int argc, char* argv[]){
-    //Richard enter your test code below:
+    //Enter your test code below: V ****
 
-    initializeAllElements();
     //runUsernameRequestResetDelay();
     
     //testingSend();
     
     
-    
-    communicate(argc, argv); //Start the servers function
+    //Enter test code above ^ *****
+    //This is the needed server code:
+    initializeAllElements(); //Initialize Server elements 
+    communicate(argc, argv); //Start the Servers function
     return 0; /* we never get here */
-    //Test coder3 account github submit.
 }
 

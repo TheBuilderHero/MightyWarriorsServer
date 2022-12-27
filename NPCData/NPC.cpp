@@ -29,17 +29,17 @@ NPC::NPC(std::string name, int assignedLandmark){
                 singleExceptionRun = true;
 
                 //Let user know that something went wrong with dialogue incrementation:
-                cout << "Warning! Initialization NPC while(getline(cin, line)) -> if(getDialogueNumber) -> Stoi(line) -> Missing Dialogue Number" << endl;
+                cout << "Warning! Initialization NPC while(getline(cin, line)) -> if(getDialogueNumber) -> Stoi(line) -> Missing Dialogue Number <name: "+ name +", iteration#:"+ to_string(dialogueNumber) +">" << endl;
             }
             catch(int failed){ //runs since there is a mission number but it is out of order
                 dialogueNumber = runningdialogueNumber;
                 
                 //Let user know that something went wrong with dialogue incrementation:
-                cout << "Warning! Initialization NPC while(getline(cin, line)) -> if(getDialogueNumber) -> Stoi(line) -> incrimentation to dialogue greater or less than 1" << endl;
+                cout << "Warning! Initialization NPC while(getline(cin, line)) -> if(getDialogueNumber) -> Stoi(line) -> incrimentation to dialogue greater or less than 1 <name: "+ name +", iteration#:"+ to_string(dialogueNumber) +">" << endl;
             }
             catch(...){
                 //Let user know that something went wrong:
-                cout << "Warning! Initialization NPC while(getline(cin, line)) -> if(getDialogueNumber) -> Stoi(line) -> Defalult Case" << endl;
+                cout << "Warning! Initialization NPC while(getline(cin, line)) -> if(getDialogueNumber) -> Stoi(line) -> Defalult Case <name: "+ name +", iteration#:"+ to_string(dialogueNumber) +">" << endl;
             }
         }
         if (line == "~"+name+"~"){

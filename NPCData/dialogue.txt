@@ -17,13 +17,14 @@ Okay, then stop coming to see me!
 ~/Yöl~
 
 ~Ronni Seaburger~
+0
 nope
 nope nope..
 Brah... What??!...
 ~/Ronni Seaburger~
 
 ~Zeltrölt~
-100
+0
 No
 Your Mom...
 Is......nvm
@@ -31,7 +32,7 @@ Is......nvm
 
 
 ~Zeltrölt~
-3
+1
 No2
 Your Mom...2
 Is......nvm2
@@ -44,7 +45,90 @@ Your Mom...3
 Is......nvm3
 ~/Zeltrölt~
 
+~Zeltrölt~
+3
+No3
+Your Mom...3
+Is......nvm3
+~/Zeltrölt~
+
+~Zeltrölt~
+4
+No3
+Your Mom...3
+Is......nvm3
+~/Zeltrölt~
+
+~Zeltrölt~
+5
+No3
+Your Mom...3
+Is......nvm3
+~/Zeltrölt~
+
+~Zeltrölt~
+6
+No3
+Your Mom...3
+Is......nvm3
+~/Zeltrölt~
+
+~Zeltrölt~
+7
+No7
+Your Mom...3
+Is......nvm3
+~/Zeltrölt~
+
 ~Inya~
 0
 Hi
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
 ~/Inya~
+
+~Your Mom~
+0
+Now
+You
+are
+Cool!
+~/Your Mom~
