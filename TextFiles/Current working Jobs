@@ -14,6 +14,7 @@ Dakota - (Paused) Adding passives to the game
                   Adding game zoom settings - in the menu
          Add advance quests for temp entity so that we can make the NPC missions have a reference to save back to the server.
          Use Quest class to better setup NPC quests.
+         There is an issue that sets your current City location back to (1,1) if you try to travel to (3,7)
          
 
 Richard - Update Psychic attacks
