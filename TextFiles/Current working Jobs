@@ -1,7 +1,7 @@
 Dakota - (Paused) Adding passives to the game 
          (Paused) Add a standard battle function that can be used for most if not all battle events. 
-         (In Progress) Changes in stats needs to be tracked on the client side so that we  can acurately track the new stats of a character. 
-                  - We need to start recarding that information in TempEntity.
+         (In Progress) Changes in stats need to be tracked on the client side so that we  can accurately track the new stats of a character. 
+                  - We need to start recording that information in TempEntity.
                   - Probably need to loop this into the Data Protection function.
          (In Progress) Finish properly constructing map functionality and city/object interactions
          Add intro to the game so that the player is given some basic info about it.
@@ -15,22 +15,18 @@ Dakota - (Paused) Adding passives to the game
          Add advance quests for temp entity so that we can make the NPC missions have a reference to save back to the server.
          Use Quest class to better setup NPC quests.
          There is an issue that sets your current City location back to (1,1) if you try to travel to (3,7)
+
+         Fix spelling mistakes
          
 
 Richard - Update Psychic attacks
-          Update combat system
-          Update weapon/stat reading on server (changing weapons changes stats)
-          Update system to handle multiple quests
-          Add monster group functionality
-          Reconnect quests to the new map
-          (In Progress) Add inventory handler and some cool items (like a lethal feather)
-              disappearing last items
-              possible lack of 'empty' option with 8 inventory items
-          
+          Reconnect quests to the new map, work on quests generally
+          Create working passives systems, adding passives to the game
+          Update menu navigation
+          Move battle handling to client side (no server messages for damage calculation)
                   
 
-Kyle - Monster Groups
-       (In Progress) get VSCode to work again
+Kyle - Figure out something useful to add to the game
        buy us all a pizza
        
        
@@ -38,15 +34,15 @@ Dominic - Story - Finish adding stories to account creation
           fixing map city locations (in progress)
           adding map region information (In Progress)
           Test all functionality and give imput and feedback.
+          Fix grammar and spelling mistakes
           Add graphics class (lol)    <--- Wow! just wow, Richard
           buy us all ice cream
 
 
 We still need to:
--add questing functionality, possibly through separate quest menu
--connect location data to travel menu
--connect location and quest saves to questing functionality
 -Keep Testing Stuff
+-Add More Quest Lines
+-Discuss the Flow of Combat (e.g. expected length, expected group size)
 
 
 ***Complete Items***
@@ -80,3 +76,7 @@ Dakota - Added saving of quest data to server
 Dakota - Added a class for data protection, so that when the console is closed the player's data will be saved.
 Dakota - Implimented a server case to save user data to the server making use of the subCipher functions.
 Dakota - Add fail safe for dialogue number system (so if a number is missiong or not incremented properly it will auto assign a number.
+Richard - Added monster groups
+Richard - Updated stats updating from weapon switching
+Richard - Inventory mostly functional
+Richard - Helped Kyle get VSCode working again!
