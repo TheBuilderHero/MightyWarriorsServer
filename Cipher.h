@@ -26,8 +26,10 @@ class Cipher {
         string subItem[22][22];//, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12; // declare the variables that are being used to store the message from the client // in some cases item2 is used.
         // the above variables may later be replaced with a more wide veriety of variables however, for testing we are using all strings
     public:
+        //the strings that are sent for the following are stored in convertSEND_TYPEToString
         enum SEND_TYPE { VECTOR_SEND };
-        enum DATA_TYPE { DIALOGUE_INFO, STAT_INFO, ENEMY_INFO };
+        //the strings that are sent for the following are stored in convertDATA_TYPEToString
+        enum DATA_TYPE { NONE, DIALOGUE_INFO, STAT_INFO, ENEMY_INFO, LOCATION_INFO, RACE_KIT_WEAPON_INFO, QUEST_PROGRESS, INVENTORY_INFO, ABILITY_TYPES_INFO, LEVEL_XP_INFO };
         //this function is intended to pull out the users request and the data associated with each request
         string decipher(char messageFromClient[], bool hasSubItems = false); //default does not have sub items
         string subDecipher(string subMessageFromClient, int rootItem);
@@ -81,17 +83,17 @@ class Cipher {
         std::string getItem(int itemNumberToReturn, int subItem = 0); //you do not need to enter a subItem if you did not make a request to server that gave you a subItem return.
         //layer 1:
         void vectorDeliminateLayer1Head(const enum SEND_TYPE &input = VECTOR_SEND);
-        void vectorDeliminateLayer1OpenNewInput(std::string input = "");
-        void vectorDeliminateLayer1OpenNewInput(const enum DATA_TYPE &input);
+        void vectorDeliminateLayer1OpenNewInputOrSwitchDownLayer(const enum DATA_TYPE &input);
+        void vectorDeliminateLayer1OpenNewInputOrSwitchDownLayer(std::string input = "");
         void vectorDeliminateLayer1EndInput();
         //layer 2:
-        void vectorDeliminateLayer2OpenNewInput(std::string input = "");
+        void vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(std::string input = "");
         void vectorDeliminateLayer2EndInput();
         //layer 3:
-        void vectorDeliminateLayer3OpenNewInput(std::string input = "");
+        void vectorDeliminateLayer3OpenNewInputOrSwitchDownLayer(std::string input = "");
         void vectorDeliminateLayer3EndInput();
-        //layer 3:
-        void vectorDeliminateLayer4OpenNewInput(std::string input);
+        //layer 4:
+        void vectorDeliminateLayer4OpenNewInputOrSwitchDownLayer(std::string input);
         void vectorDeliminateLayer4EndInput();
 
         //enumeration convertion:
@@ -105,10 +107,17 @@ class Cipher {
         std::string convertDATA_TYPEToString(const enum DATA_TYPE &input){
             //if these are changed we need to then update them on the client side:
             switch(input){
-                case 0: return "dialogue"; 
-                case 1: return "stats"; 
-                case 2: return "enemyinfo";
-                default: return ""; 
+                case 0: return "none"; 
+                case 1: return "dialogue"; 
+                case 2: return "stats"; 
+                case 3: return "enemyinfo";
+                case 4: return "locationinfo";
+                case 5: return "racekitweaponinfo";
+                case 6: return "questinfo";
+                case 7: return "inventoryinfo";
+                case 8: return "abilitytypeinfo";
+                case 9: return "levelxpinfo";
+                default: return "failed"; 
             }
         }
 };

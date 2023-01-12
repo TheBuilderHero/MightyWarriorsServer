@@ -661,7 +661,8 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
             ofstream locationFile;
             locationFile.open(getLocationPath(username));
             locationFile << delimiterLayer1 << username; // these are all adding data to the file with delimiterLayer1 seperation.
-            if (data2.length() > 0) {locationFile << delimiterLayer1 << data2;} else {locationFile << delimiterLayer1;} //Players current location
+            if (data2.length() > 0) {locationFile << delimiterLayer1 << data2;} else {locationFile << delimiterLayer1;} //Players current X location
+            if (data3.length() > 0) {locationFile << delimiterLayer1 << data3;} else {locationFile << delimiterLayer1;} //Players current Y location
             locationFile << delimiterLayer1;
             locationFile.close(); // done writting to file and now it is closed
             break;
@@ -896,8 +897,11 @@ void Cipher::userDataDeliminationRead(int updateValue, string username){
                     case 1: //first item after delimiterLayer1
                     if (output.length() > 0) username = output;
                     break;
-                    case 2://second item after delimiterLayer1      //Location
+                    case 2://second item after delimiterLayer1      //Location X
                     if (output.length() > 0) item[2] = output;
+                    break;
+                    case 3://second item after delimiterLayer1      //Location Y
+                    if (output.length() > 0) item[3] = output;
                     break;
                 }
                 loopPass++;
@@ -1105,10 +1109,10 @@ void Cipher::vectorDeliminateLayer1Head(const enum SEND_TYPE &input){ //adds del
     string sendID = convertSEND_TYPEToString(input);
     MESSAGE.emplace(MESSAGE.begin(),delimiterLayer1+sendID);
 }
-void Cipher::vectorDeliminateLayer1OpenNewInput(string input){ //adds delimiter to the begining only //can be used to place new information (note ends previous information entry field)
+void Cipher::vectorDeliminateLayer1OpenNewInputOrSwitchDownLayer(string input){ //adds delimiter to the begining only //can be used to place new information (note ends previous information entry field)
     MESSAGE.emplace_back(delimiterLayer1+input);
 }
-void Cipher::vectorDeliminateLayer1OpenNewInput(const enum DATA_TYPE &input){//breaks the vector up into chunks of information that the client can then distinguish between for different uses
+void Cipher::vectorDeliminateLayer1OpenNewInputOrSwitchDownLayer(const enum DATA_TYPE &input){//breaks the vector up into chunks of information that the client can then distinguish between for different uses
     string output = convertDATA_TYPEToString(input);
     MESSAGE.emplace_back(delimiterLayer1+output);
 
@@ -1118,21 +1122,21 @@ void Cipher::vectorDeliminateLayer1EndInput(){ //adds delimiter to the end of ve
 }
 
 //Layer 2:
-void Cipher::vectorDeliminateLayer2OpenNewInput(std::string input){ //breaks the vector up into chunks of information that the client can then distinguish between for different uses
+void Cipher::vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(std::string input){ //breaks the vector up into chunks of information that the client can then distinguish between for different uses
     MESSAGE.emplace_back(delimiterLayer2+input);
 }
 void Cipher::vectorDeliminateLayer2EndInput(){ //adds delimiter to the end of vector
     MESSAGE.emplace_back(delimiterLayer2);
 }
 //Layer 3:
-void Cipher::vectorDeliminateLayer3OpenNewInput(std::string input){ //breaks the vector up into chunks of information that the client can then distinguish between for different uses
+void Cipher::vectorDeliminateLayer3OpenNewInputOrSwitchDownLayer(std::string input){ //breaks the vector up into chunks of information that the client can then distinguish between for different uses
     MESSAGE.emplace_back(delimiterLayer3+input);
 }
 void Cipher::vectorDeliminateLayer3EndInput(){ //adds delimiter to the end of vector
     MESSAGE.emplace_back(delimiterLayer3);
 }
 //Layer 4:
-void Cipher::vectorDeliminateLayer4OpenNewInput(std::string input){ //breaks the vector up into chunks of information that the client can then distinguish between for different uses
+void Cipher::vectorDeliminateLayer4OpenNewInputOrSwitchDownLayer(std::string input){ //breaks the vector up into chunks of information that the client can then distinguish between for different uses
     MESSAGE.emplace_back(delimiterLayer4+input);
 }
 void Cipher::vectorDeliminateLayer4EndInput(){ //adds delimiter to the end of vector

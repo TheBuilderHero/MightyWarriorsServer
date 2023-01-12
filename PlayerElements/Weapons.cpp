@@ -39,13 +39,13 @@ void Weapons::loadWeaponData(string username){    //save the weapon bonus' to fi
     //cout << cipher.getItem(1) + "~" + cipher.getItem(2) + "~" + cipher.getItem(3) + "~" + cipher.getItem(4) + "~" + cipher.getItem(5) + "~" + cipher.getItem(6) + "~" + cipher.getItem(7) + "~" + cipher.getItem(8) + "~\n"; 
     //set all values based on file:
     try{
+        weaponID = stoi(cipher.getItem(2)); //changed from  (0,1)
         iron += stoi(cipher.getItem(3));
         wood += stoi(cipher.getItem(4));
         gems += stoi(cipher.getItem(5));
         feet += stoi(cipher.getItem(6));
         fruit += stoi(cipher.getItem(7));
         brains += stoi(cipher.getItem(8));
-        weaponID = stoi(cipher.getItem(0, 1));
     } catch(std::invalid_argument){
         cout << "failed: Weapons::loadWeaponData" << endl;
         cout << "writing new data and reattempting..." << endl;        
@@ -53,7 +53,7 @@ void Weapons::loadWeaponData(string username){    //save the weapon bonus' to fi
         weaponID = stoi(weapon);
     }
     
-    //cout << "Weapon read successful\n";
+    cout << "Weapon read successful\n" << to_string(weaponID) << endl;
 }
 void Weapons::saveWeaponData(string username){    //save the weapon bonus' to file:
     Cipher cipher;
@@ -171,6 +171,13 @@ void Weapons::setPlayerWeapon(int weaponChoice)
             accuracy = 20;
             break;
         default:
+            weaponType = "none";
+            weaponID = -1;
+            maxPhysicalDamage = -1;
+            maxMagicDamage = -1;
+            maxPsychicDamage = -1;
+            accuracy = -1;
+            cout << "Critical Failure: failed to Assign Valid Weapon!" << endl << "void Weapons::setPlayerWeapon(int weaponChoice) " << endl;
         break;
     }
 }

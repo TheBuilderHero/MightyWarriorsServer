@@ -36,10 +36,10 @@ std::string Players::getPlayerRace(std::string username, int raceChoice){ //retu
     }
 }
 std::string Players::getPlayerRace(std::string username){ //returns the user's race
-    Cipher code;
+    Cipher tempCode;
     ifstream raceInfo;
-    code.userDataDeliminationRead(2, username);
-    return code.getItem(2);
+    tempCode.userDataDeliminationRead(2, username);
+    return tempCode.getItem(2);
 }
 string Players::getHealthStat(std::string username, int baseHealth, int bonusHealth){ //this funciton calculates to total health stat of a user and makes it into a string to be sent to the client
     int totalHealthValue = baseHealth + bonusHealth;
@@ -47,15 +47,15 @@ string Players::getHealthStat(std::string username, int baseHealth, int bonusHea
 }
 string Players::getHealthStat(std::string username){ //this funciton calculates to total Health stat of a user and makes it into a string to be sent to the client
     Characters characters;
-    Cipher code;
+    Cipher tempCode;
     Players players;
     Kit kit;
     kit.pullKitStats(username);
-    code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
+    tempCode.userDataDeliminationRead(1, username); //sets the item# to the current stat values
     characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
     int fileHealth;
     try{
-        fileHealth = stoi(code.getItem(2));
+        fileHealth = stoi(tempCode.getItem(2));
     } catch(std::invalid_argument){
         cout << "failed stoi \"string Players::getHealthStat()\"" << endl;
     }
@@ -65,33 +65,37 @@ string Players::getHealthStat(std::string username){ //this funciton calculates 
 string Players::getPhysicalDamageStat(std::string username, bool outputMinAndMaxString){ //this funciton calculates to total Physical Damage stat of a user and makes it into a string to be sent to the client
     if (outputMinAndMaxString){ //outputs a string showing the min to max damage a player can hit for 
         Characters characters;
-        Cipher code;
+        Cipher tempCode;
         Players players;
         Kit kit;
-        kit.pullKitStats(username);
-        Weapons weapon(username);
-        code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
+        kit.pullKitStats(username);        
+        Weapons weapon(username, false);
+        tempCode.userDataDeliminationRead(1, username); //sets the item# to the current stat values
         characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
         int filedamage;
         try{
-            filedamage = stoi(code.getItem(5));
+            filedamage = stoi(tempCode.getItem(5));
         } catch(std::invalid_argument){
             cout << "failed stoi \"string Players::getPhysicalDamageStat()\"" << endl;
         }
         int totalPhysicalDamageValue = characters.getBasePhysicalDamage() + filedamage + kit.getPhysicalDamage();
+        cout << "PhysicalDamage" << endl;
+        cout << "total: " << totalPhysicalDamageValue << endl;
+        cout << "weapon min: " << weapon.getPhysicalDamageMin() << endl;
+        cout << "weapon max: " << weapon.getPhysicalDamageMax() << endl;
         return (to_string(totalPhysicalDamageValue + weapon.getPhysicalDamageMin()) + " - " + to_string(totalPhysicalDamageValue + weapon.getPhysicalDamageMax()));
     } else { 
         Characters characters;
-        Cipher code;
+        Cipher tempCode;
         Players players;
         Kit kit;
         kit.pullKitStats(username);
         Weapons weapon(username);
-        code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
+        tempCode.userDataDeliminationRead(1, username); //sets the item# to the current stat values
         characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
         int filedamage;
         try{
-            filedamage = stoi(code.getItem(5));
+            filedamage = stoi(tempCode.getItem(5));
         } catch(std::invalid_argument){
             cout << "failed stoi \"string Players::getPhysicalDamageStat()\"" << endl;
         }
@@ -103,32 +107,36 @@ string Players::getPhysicalDamageStat(std::string username, bool outputMinAndMax
 string Players::getMagicDamageStat(std::string username, bool outputMinAndMaxString){ //this funciton calculates to total Magic Damage stat of a user and makes it into a string to be sent to the client
     if (outputMinAndMaxString){ //outputs a string showing the min to max damage a player can hit for 
         Characters characters;
-        Cipher code;
+        Cipher tempCode;
         Players players;
         Kit kit;
         kit.pullKitStats(username);
-        Weapons weapon(username);
-        code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
+        Weapons weapon(username, false);
+        tempCode.userDataDeliminationRead(1, username); //sets the item# to the current stat values
         int statMagicDamage;
         try{
-            statMagicDamage = stoi(code.getItem(6));
+            statMagicDamage = stoi(tempCode.getItem(6));
         } catch(std::invalid_argument){
             cout << "failed stoi \"string Players::getMagicDamageStat()\"" << endl;
         }
         characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
         int totalMagicDamageValue = characters.getBaseMagicDamage() + statMagicDamage + kit.getMagicDamage();
+        cout << "MagicDamage" << endl;
+        cout << "total: " << totalMagicDamageValue << endl;
+        cout << "weapon min: " << weapon.getMagicDamageMin() << endl;
+        cout << "weapon max: " << weapon.getMagicDamageMax() << endl;
         return (to_string(totalMagicDamageValue + weapon.getMagicDamageMin()) + " - " + to_string(totalMagicDamageValue + weapon.getMagicDamageMax()));
     } else {
         Characters characters;
-        Cipher code;
+        Cipher tempCode;
         Players players;
         Kit kit;
         kit.pullKitStats(username);
         Weapons weapon(username);
-        code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
+        tempCode.userDataDeliminationRead(1, username); //sets the item# to the current stat values
         int statMagicDamage;
         try{
-            statMagicDamage = stoi(code.getItem(6));
+            statMagicDamage = stoi(tempCode.getItem(6));
         } catch(std::invalid_argument){
             cout << "failed stoi \"string Players::getMagicDamageStat()\"" << endl;
         }
@@ -140,33 +148,37 @@ string Players::getMagicDamageStat(std::string username, bool outputMinAndMaxStr
 string Players::getPsychicDamageStat(std::string username, bool outputMinAndMaxString){ //this funciton calculates to total Magic Damage stat of a user and makes it into a string to be sent to the client
     if (outputMinAndMaxString){ //outputs a string showing the min to max damage a player can hit for 
         Characters characters;
-        Cipher code;
+        Cipher tempCode;
         Players players;
         Kit kit;
         kit.pullKitStats(username);
-        Weapons weapon(username);
-        code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
+        Weapons weapon(username, false);
+        tempCode.userDataDeliminationRead(1, username); //sets the item# to the current stat values
         int statPsychicDamage;
         try{
-            statPsychicDamage = stoi(code.getItem(12));
+            statPsychicDamage = stoi(tempCode.getItem(12));
         } catch(std::invalid_argument){
             cout << "failed stoi \"string Players::getPyschicDamageStat()\"" << endl;
             statPsychicDamage = 0;
         }
         characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
         int totalPsychicDamageValue = characters.getBasePsychicDamage() + statPsychicDamage + kit.getPsychicDamage();
+        cout << "PsychicDamage" << endl;
+        cout << "total: " << totalPsychicDamageValue << endl;
+        cout << "weapon min: " << weapon.getPsychicDamageMin() << endl;
+        cout << "weapon max: " << weapon.getPsychicDamageMax() << endl;
         return (to_string(totalPsychicDamageValue + weapon.getPsychicDamageMin()) + " - " + to_string(totalPsychicDamageValue + weapon.getPsychicDamageMax()));
     } else {
         Characters characters;
-        Cipher code;
+        Cipher tempCode;
         Players players;
         Kit kit;
         kit.pullKitStats(username);
         Weapons weapon(username);
-        code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
+        tempCode.userDataDeliminationRead(1, username); //sets the item# to the current stat values
         int statPsychicDamage;
         try{
-            statPsychicDamage = stoi(code.getItem(12));
+            statPsychicDamage = stoi(tempCode.getItem(12));
         } catch(std::invalid_argument){
             cout << "failed stoi \"string Players::getPyschicDamageStat()\"" << endl;
             statPsychicDamage = 0;
@@ -182,15 +194,15 @@ string Players::getArmorStat(std::string username, int baseArmor, int bonusArmor
 }
 string Players::getArmorStat(std::string username){ //this funciton calculates to total Armor stat of a user and makes it into a string to be sent to the client
     Characters characters;
-    Cipher code;
+    Cipher tempCode;
     Players players;
     Kit kit;
     kit.pullKitStats(username);
-    code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
+    tempCode.userDataDeliminationRead(1, username); //sets the item# to the current stat values
     characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
     int statArmor;
     try{
-        statArmor = stoi(code.getItem(3));
+        statArmor = stoi(tempCode.getItem(3));
     } catch(std::invalid_argument){
         cout << "failed stoi \"string Players::getArmorStat()\"" << endl;
     }
@@ -203,15 +215,15 @@ string Players::getMagicResistanceStat(std::string username, int baseMagicResist
 }
 string Players::getMagicResistanceStat(std::string username){ //this funciton calculates to total MagicResistance stat of a user and makes it into a string to be sent to the client
     Characters characters;
-    Cipher code;
+    Cipher tempCode;
     Players players;
     Kit kit;
     kit.pullKitStats(username);
-    code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
+    tempCode.userDataDeliminationRead(1, username); //sets the item# to the current stat values
     characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
     int statMRFile;
     try{
-        statMRFile = stoi(code.getItem(4));
+        statMRFile = stoi(tempCode.getItem(4));
     } catch(std::invalid_argument){
         cout << "failed stoi \"string Players::getMagicResistanceStat()\"" << endl;
     }
@@ -224,15 +236,15 @@ string Players::getAgilityStat(std::string username, int baseAgility, int bonusA
 }
 string Players::getAgilityStat(std::string username){//this funciton calculates to total Agility stat of a user and makes it into a string to be sent to the client
     Characters characters;
-    Cipher code;
+    Cipher tempCode;
     Players players;
     Kit kit;
     kit.pullKitStats(username);
-    code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
+    tempCode.userDataDeliminationRead(1, username); //sets the item# to the current stat values
     characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
     int statAgilityFile;
     try{
-        statAgilityFile = stoi(code.getItem(7));
+        statAgilityFile = stoi(tempCode.getItem(7));
     } catch(std::invalid_argument){
         cout << "failed stoi \"string Players::getMagicResistanceStat()\"" << endl;
     }
@@ -245,15 +257,15 @@ string Players::getStealthStat(std::string username, int baseStealth, int bonusS
 }
 string Players::getStealthStat(std::string username){//this funciton calculates to total Stealth stat of a user and makes it into a string to be sent to the client
     Characters characters;
-    Cipher code;
+    Cipher tempCode;
     Players players;
     Kit kit;
     kit.pullKitStats(username);
-    code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
+    tempCode.userDataDeliminationRead(1, username); //sets the item# to the current stat values
     characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
     int statStealthFile;
     try{
-        statStealthFile = stoi(code.getItem(8));
+        statStealthFile = stoi(tempCode.getItem(8));
     } catch(std::invalid_argument){
         cout << "failed stoi \"string Players::getStealthStat()\"" << endl;
     }
@@ -266,34 +278,34 @@ string Players::getStaminaStat(std::string username, int baseStamina, int bonusS
 }
 string Players::getStaminaStat(std::string username){//this funciton calculates to total Stamina stat of a user and makes it into a string to be sent to the client
     Characters characters;
-    Cipher code;
+    Cipher tempCode;
     Players players;
     Kit kit;
     kit.pullKitStats(username);
-    code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
+    tempCode.userDataDeliminationRead(1, username); //sets the item# to the current stat values
     characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
     int statStaminaFile;
     try{
-        statStaminaFile = stoi(code.getItem(9));
+        statStaminaFile = stoi(tempCode.getItem(9));
     } catch(std::invalid_argument){
         cout << "failed stoi \"string Players::getStaminaStat()\"" << endl;
     }
     int totalStaminaValue = characters.getBaseStamina() + statStaminaFile;
     return to_string(totalStaminaValue);
 }
-string Players::getManaStat(std::string username, int baseMana, int bonusMana){//this funciton calculates to total NaturalEnergy stat of a user and makes it into a string to be sent to the client
+string Players::getNaturalEnergyStat(std::string username, int baseMana, int bonusMana){//this funciton calculates to total NaturalEnergy stat of a user and makes it into a string to be sent to the client
     int totalManaValue = baseMana + bonusMana;
     return to_string(totalManaValue);
 }
-string Players::getManaStat(std::string username){//this funciton calculates to total NaturalEnergy stat of a user and makes it into a string to be sent to the client
+string Players::getNaturalEnergyStat(std::string username){//this funciton calculates to total NaturalEnergy stat of a user and makes it into a string to be sent to the client
     Characters characters;
-    Cipher code;
+    Cipher tempCode;
     Players players;
-    code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
+    tempCode.userDataDeliminationRead(1, username); //sets the item# to the current stat values
     characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
     int statManaFile;
     try{
-        statManaFile = stoi(code.getItem(10));
+        statManaFile = stoi(tempCode.getItem(10));
     } catch(std::invalid_argument){
         cout << "failed stoi \"string Players::getMagicResistanceStat()\"" << endl;
     }
@@ -306,13 +318,13 @@ string Players::getMindStat(std::string username, int baseMind, int bonusMind){/
 }
 string Players::getMindStat(std::string username){//this funciton calculates to total NaturalEnergy stat of a user and makes it into a string to be sent to the client
     Characters characters;
-    Cipher code;
+    Cipher tempCode;
     Players players;
-    code.userDataDeliminationRead(1, username); //sets the item# to the current stat values
+    tempCode.userDataDeliminationRead(1, username); //sets the item# to the current stat values
     characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
     int statMindFile;
     try{
-        statMindFile = stoi(code.getItem(11));
+        statMindFile = stoi(tempCode.getItem(11));
     } catch(std::invalid_argument){
         cout << "failed stoi \"string Players::getMindStat()\"" << endl;
         statMindFile = 0;
@@ -322,11 +334,11 @@ string Players::getMindStat(std::string username){//this funciton calculates to 
 }
 int Players::getLevel(string username){//pulls level from user's file to return
     int playerLevel;
-    Cipher code;
-    code.userDataDeliminationRead(2, username);
+    Cipher tempCode;
+    tempCode.userDataDeliminationRead(2, username);
     int level;
     try{
-        level = stoi(code.getItem(4));
+        level = stoi(tempCode.getItem(4));
     } catch(std::invalid_argument){
         cout << "failed stoi \"int Players::getLevel()\"" << endl;
     }
@@ -334,32 +346,32 @@ int Players::getLevel(string username){//pulls level from user's file to return
 }
 double Players::getXP(string username){
     double playerCurrentXP;
-    Cipher code;
-    code.userDataDeliminationRead(2, username); //pulls XP from user's file to return
+    Cipher tempCode;
+    tempCode.userDataDeliminationRead(2, username); //pulls XP from user's file to return
     int xP;
     try{
-        xP = stoi(code.getItem(5));
+        xP = stoi(tempCode.getItem(5));
     } catch(std::invalid_argument){
         cout << "failed stoi \"double Players::getXP()\"" << endl;
     }
     return playerCurrentXP = xP;
 }
 void Players::levelUp(string username, int &playerLevel, double newXPAmount){
-    Cipher code;
+    Cipher tempCode;
     Players player;
     Kit kit;
     //since we are re-writing the file we need the following:
     string playerRace = player.getPlayerRace(username); //get the players kit
     string playerKit = kit.getPlayerKit(username); //get the players race
     playerLevel++; //increase player level by one
-    code.userDataDeliminationWrite(4, username, playerRace, playerKit, to_string(playerLevel), to_string(newXPAmount));
+    tempCode.userDataDeliminationWrite(4, username, playerRace, playerKit, to_string(playerLevel), to_string(newXPAmount));
 }
 void Players::updateXPAmount(string username, int playerLevel, double newXPAmount){
     Players player;
     Kit kit;
-    Cipher code;
+    Cipher tempCode;
     //since we are re-writing the file we need the following:
     string playerRace = player.getPlayerRace(username); //get the players kit
     string playerKit = kit.getPlayerKit(username); //get the players race
-    code.userDataDeliminationWrite(4, username, playerRace, playerKit, to_string(playerLevel), to_string(newXPAmount)); //save the new XP amount along with resaving race, kit, level
+    tempCode.userDataDeliminationWrite(4, username, playerRace, playerKit, to_string(playerLevel), to_string(newXPAmount)); //save the new XP amount along with resaving race, kit, level
 }

@@ -43,6 +43,9 @@ using namespace std;
 Cipher Delim; //just for the use of the delimiter.
 string delimiter = Delim.getDelimiterLayer1(); //a character that marks the beginning or end of a unit of data which is declared in the Cipher Class
 
+string playerStartingX = "1";
+string playerStartingY = "10";
+
 void dostuff(int); /* function prototype */
 void premessageSendLengthVerification(int socket, int MessageLength);
 void sendToClient(int socket, string message);
@@ -89,14 +92,14 @@ void setupNPCData(){ //THIS fuction sets up all the NPC's for the user to intera
     // Declare the NPC's in the game
     //
     
-    NPC npc1("Yöl", 127);
-    NPC npc2("Ggino", 217);
-    NPC npc3("Inya", 285);
-    NPC npc4("Nabban", 310);
-    NPC npc5("Zeltrölt", 310);
-    NPC npc6("Huldennii", 506);
-    NPC npc7("Ronni Seaburger", 637);
-    NPC npc8("Your Mom", 506);
+    NPC npc1("Yöl", 8,9);
+    NPC npc2("Ggino", 10,9);
+    NPC npc3("Inya", 8,11);
+    NPC npc4("Nabban", 10,11);
+    NPC npc5("Zeltrölt", 11,14);
+    NPC npc6("Huldennii", 24,10);
+    NPC npc7("Ronni Seaburger", 25,10);
+    NPC npc8("Your Mom", 26,10);
 
     npcs.push_back(npc1);
     npcs.push_back(npc2);
@@ -240,7 +243,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             string agility = players.getAgilityStat(code.getUsername());
             string stealth = players.getStealthStat(code.getUsername());
             string stamina = players.getStaminaStat(code.getUsername());
-            string naturalEnergy = players.getManaStat(code.getUsername());
+            string naturalEnergy = players.getNaturalEnergyStat(code.getUsername());
             string mind = players.getMindStat(code.getUsername());
             string psychicDam = players.getPsychicDamageStat(code.getUsername(), true);
 
@@ -371,7 +374,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             break;
         }
         case 17:{//update location data
-            code.userDataDeliminationWrite(7, code.getUsername(), code.getItem(2));
+            code.userDataDeliminationWrite(7, code.getUsername(), code.getItem(2), code.getItem(3));
             returnMessage = code.cipher("4", "wasAbleToSave");
             sendToClient(socket, returnMessage);// returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             
@@ -436,7 +439,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             string agility = players.getAgilityStat(code.getUsername());
             string stealth = players.getStealthStat(code.getUsername());
             string stamina = players.getStaminaStat(code.getUsername());
-            string naturalEnergy = players.getManaStat(code.getUsername());
+            string naturalEnergy = players.getNaturalEnergyStat(code.getUsername());
             string mind = players.getMindStat(code.getUsername());
             string psychicDam = players.getPsychicDamageStat(code.getUsername(), true);
 
@@ -488,7 +491,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             code.userDataDeliminationWrite(4, code.getUsername(), "", "", code.getItem(3,12), code.getItem(3,13));
 
             //update location data*******************************************************************************
-            code.userDataDeliminationWrite(7, code.getUsername(), code.getItem(3,14));
+            code.userDataDeliminationWrite(7, code.getUsername(), code.getItem(3,14), code.getItem(3,15));
 
             //update inventory
             code.decipher(messageFromClient);
@@ -567,26 +570,27 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
 
 
             //output all info for the NPCS to message vector to be sent to client
-            code.vectorDeliminateLayer1OpenNewInput(code.DIALOGUE_INFO); //sned type
-            code.vectorDeliminateLayer1OpenNewInput();
+            code.vectorDeliminateLayer1Head(code.VECTOR_SEND);
+            code.vectorDeliminateLayer1OpenNewInputOrSwitchDownLayer(code.DIALOGUE_INFO); //send type
+            code.vectorDeliminateLayer1OpenNewInputOrSwitchDownLayer();// need to use Layer1OpenNewInput again since we are changing layers
             for (int i = 0; i < npcs.size(); i++) {
-                code.vectorDeliminateLayer2OpenNewInput(npcs.at(i).getName());
-                code.vectorDeliminateLayer2OpenNewInput(to_string(npcs.at(i).getAssignedLandmark()));
-                code.vectorDeliminateLayer2OpenNewInput();
+                code.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(npcs.at(i).getName());
+                code.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(to_string(npcs.at(i).getAssignedLandmarkX()));
+                code.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(to_string(npcs.at(i).getAssignedLandmarkY()));
+                code.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer();
                 //all dialogue for NPC i:
                 for(int i2 = 0; i2 < npcs.at(i).getDialoguePartCount(); i2++){    
-                    code.vectorDeliminateLayer3OpenNewInput();
+                    code.vectorDeliminateLayer3OpenNewInputOrSwitchDownLayer();
                     for(int i3 = 0; i3 < npcs.at(i).getDialogueCount(i2); i3++){
-                        code.vectorDeliminateLayer4OpenNewInput(npcs.at(i).getDialogue(i2, i3));
+                        code.vectorDeliminateLayer4OpenNewInputOrSwitchDownLayer(npcs.at(i).getDialogue(i2, i3));
                         //code.vectorDeliminateBody(npcs.at(i).getDialogue(i2, i3));
                     }
                     code.vectorDeliminateLayer4EndInput();
                 }
-                if (npcs.at(i).getDialoguePartCount() == 0) code.vectorDeliminateLayer3OpenNewInput(); //make sure the sub delimination is always enclosed even when no text
+                if (npcs.at(i).getDialoguePartCount() == 0) code.vectorDeliminateLayer3OpenNewInputOrSwitchDownLayer(); //make sure the sub delimination is always enclosed even when no text
                 code.vectorDeliminateLayer3EndInput();
             }
             code.vectorDeliminateLayer2EndInput();
-            code.vectorDeliminateLayer1Head(code.VECTOR_SEND);
             code.vectorDeliminateLayer1EndInput();
 
             //reset returnMessage message = ""
@@ -642,6 +646,119 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
                 
                
             }*/
+            break;
+        }
+        case 28:{ //Load all player data and send using new vector function 
+            Cipher codeVector;
+            std::string tempUsername = code.getUsername();
+            codeVector.vectorDeliminateLayer1Head(codeVector.VECTOR_SEND);
+
+            //Load Player Stats:*******************************************************************************************************
+
+            //read the stats data from file:
+            codeVector.userDataDeliminationRead(1, tempUsername); //sets the items3 - 6 to the current stat values
+            characters.pullRaceStats(players.getPlayerRace(tempUsername), tempUsername);//set the stats of the Player for the race in their file
+            //add the stats data to message:
+            codeVector.vectorDeliminateLayer1OpenNewInputOrSwitchDownLayer(codeVector.STAT_INFO); //next input iem
+            codeVector.vectorDeliminateLayer1OpenNewInputOrSwitchDownLayer(); //use this if moving down to new lower layer
+            //moved to data layer 2
+            codeVector.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(players.getHealthStat(tempUsername));
+            codeVector.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(players.getArmorStat(tempUsername));
+            codeVector.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(players.getMagicResistanceStat(tempUsername));
+            codeVector.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(players.getPhysicalDamageStat(tempUsername, true));
+            codeVector.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(players.getMagicDamageStat(tempUsername, true));
+            codeVector.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(players.getAgilityStat(tempUsername));
+            codeVector.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(players.getStealthStat(tempUsername));
+            codeVector.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(players.getNaturalEnergyStat(tempUsername));
+            codeVector.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(players.getMindStat(tempUsername));
+            codeVector.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(players.getPsychicDamageStat(tempUsername, true));
+            codeVector.vectorDeliminateLayer2EndInput();
+            //move back up to layer 1
+            //get player location data************************************************************************************************
+            //read the location data from file
+            codeVector.userDataDeliminationRead(4, tempUsername);
+            //add the location data to message:
+            codeVector.vectorDeliminateLayer1OpenNewInputOrSwitchDownLayer(codeVector.LOCATION_INFO); //send type
+            codeVector.vectorDeliminateLayer1OpenNewInputOrSwitchDownLayer();
+            string mapX = codeVector.getItem(2);
+            string mapY = codeVector.getItem(3);
+            if (mapX != "0" && mapX != "0") {
+                codeVector.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(mapX); //X
+                codeVector.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(mapY); //Y
+            } else {
+                codeVector.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(playerStartingX); //X
+                codeVector.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(playerStartingY); //Y
+            }
+            codeVector.vectorDeliminateLayer2EndInput();
+            //move back up to layer 1
+            //sends the player's race, kit and, weapon**********************************************************************************************
+            //read the weapons data from file
+            Weapons weapons(tempUsername);
+            level = to_string(players.getLevel(tempUsername));// level is needed before XP but after weapons due to some sort of ordering thing
+            //add the race, kit and, weapon data to message:
+            codeVector.vectorDeliminateLayer1OpenNewInputOrSwitchDownLayer(codeVector.RACE_KIT_WEAPON_INFO); //send type
+            codeVector.vectorDeliminateLayer1OpenNewInputOrSwitchDownLayer();
+            codeVector.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(players.getPlayerRace(tempUsername));
+            codeVector.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(kit.getPlayerKit(tempUsername));
+            codeVector.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(weapons.getWeaponName());
+            codeVector.vectorDeliminateLayer2EndInput();
+            //move back up to layer 1
+            //sends the player's Level and XP info***********************************************************
+                //read the level and xp data from file
+                // level is needed before XP but after weapons due to some sort of ordering thing 
+            //add the Level and XP info data to message:
+            codeVector.vectorDeliminateLayer1OpenNewInputOrSwitchDownLayer(codeVector.LEVEL_XP_INFO); //send type
+            codeVector.vectorDeliminateLayer1OpenNewInputOrSwitchDownLayer();
+            codeVector.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(level);
+            codeVector.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(to_string(players.getXP(tempUsername))); //current xp
+            codeVector.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(to_string(battle.increaseXP(tempUsername, 0))); //xp till next level
+            codeVector.vectorDeliminateLayer2EndInput();
+            //move back up to layer 1
+            //sends the player's ability type info***********************************************************
+            //do not need to read the ability type info from a file
+            //add the Level and XP info data to message:
+            codeVector.vectorDeliminateLayer1OpenNewInputOrSwitchDownLayer(codeVector.ABILITY_TYPES_INFO); //send type
+            codeVector.vectorDeliminateLayer1OpenNewInputOrSwitchDownLayer();
+            codeVector.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(kit.getRaceDamageTypeForAbility(tempUsername, 'q'));
+            codeVector.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(kit.getRaceDamageTypeForAbility(tempUsername, 'w'));
+            codeVector.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(kit.getRaceDamageTypeForAbility(tempUsername, 'e'));
+            codeVector.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(kit.getRaceDamageTypeForAbility(tempUsername, 'r'));
+            codeVector.vectorDeliminateLayer2EndInput();
+            //move back up to layer 1
+            //current Quest Progress****************************************************************************************************
+            //read the quest progress data from file
+            codeVector.userDataDeliminationRead(5, tempUsername);//first number is the quest number, then second one is the progess number
+            //need to add a function which determines the current quest that the user is working to complete and has not complete.
+            
+            //please add here... then set that value to the variables below
+            
+            //add the Quest Progress info data to message:
+            codeVector.vectorDeliminateLayer1OpenNewInputOrSwitchDownLayer(codeVector.QUEST_PROGRESS); //send type
+            codeVector.vectorDeliminateLayer1OpenNewInputOrSwitchDownLayer();
+            codeVector.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(codeVector.getItem(2)); //quest number
+            codeVector.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(codeVector.getItem(3)); //quest progress
+            codeVector.vectorDeliminateLayer2EndInput();
+            //move back up to layer 1
+            //Inventory Information****************************************************************************************************
+            //read the Inventory data from file
+            codeVector.userDataDeliminationRead(6, tempUsername);
+            //add the Inventory data to message:
+            codeVector.vectorDeliminateLayer1OpenNewInputOrSwitchDownLayer(codeVector.INVENTORY_INFO); //send type
+            codeVector.vectorDeliminateLayer1OpenNewInputOrSwitchDownLayer(); //to lower layer
+            codeVector.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(codeVector.getItem(2)); //inventory data
+            codeVector.vectorDeliminateLayer2EndInput();
+            //moved back up to layer 1
+            //end vector:
+            codeVector.vectorDeliminateLayer1EndInput();
+
+            //reset returnMessage message = ""
+            returnMessage = "";
+            //add all items in MESSAGE vector to return message to client
+            for(int i = 0; i < codeVector.getMESSAGESize(); i++){
+                returnMessage += codeVector.getMESSAGE(i);
+            }
+            
+            sendToClient(socket, returnMessage);// returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             break;
         }
         case 0:{//check for version compatibility - This is done before using can continue to create account or logon

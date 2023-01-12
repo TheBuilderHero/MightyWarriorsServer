@@ -4,12 +4,12 @@
 
 class NPC{
     private:
-        int assignedLandmark;
+        int assignedLandmarkX, assignedLandmarkY;
         std::string name;
         int npcID;
         std::vector<std::vector<std::string>> dialogue;
     public:
-        NPC(std::string name, int assignedLandmark);
+        NPC(std::string name, int assignedLandmarkX, int assignedLandmarkY);
         std::string getDialoguePath() { return std::string("./NPCData/dialogue.txt"); }
         int getNpcID(){ return npcID; }
         std::string getDialogue(int number, int part){ return dialogue[number][part];}
@@ -17,5 +17,6 @@ class NPC{
         int getDialogueCount(int number) { int i = dialogue[number].size(); return i; }
         std::string getAllDialogue();
         std::string getName() { return name; }
-        int getAssignedLandmark(){ return assignedLandmark; }
+        int getAssignedLandmarkX(){ return assignedLandmarkX; }
+        int getAssignedLandmarkY(){ return assignedLandmarkY; }
 };

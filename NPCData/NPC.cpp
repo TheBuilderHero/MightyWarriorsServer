@@ -5,7 +5,7 @@
 
 using namespace std;
 
-NPC::NPC(std::string name, int assignedLandmark){
+NPC::NPC(std::string name, int assignedLandmarkX, int assignedLandmarkY){
     string line;
     ifstream dialogueFile;
     dialogueFile.open(getDialoguePath());
@@ -64,7 +64,8 @@ NPC::NPC(std::string name, int assignedLandmark){
             getDialogueNumber = false;
         }
     }
-    this->assignedLandmark = assignedLandmark;
+    this->assignedLandmarkX = assignedLandmarkX;
+    this->assignedLandmarkY = assignedLandmarkY;
     this->name = name;
     npcID = setUIDForNPC();
 }
