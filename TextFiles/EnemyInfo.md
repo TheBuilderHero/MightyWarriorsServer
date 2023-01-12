@@ -2,13 +2,12 @@ Stats, Names, Weapon info, and other item and enemy related information. - Domin
 
 	Enemy type and level:
 		
-		Basic:
-		Mild:
-		Medium:
+		Mild: 1-2
+		Medium: 3-4
 			1 - Mutant Elf
-		Hot:
-		super spicy:
-		Death:
+		Hot: 5-6
+		super spicy: 7-8
+		Death: 9-10
 			1 - The Builder
 			2 - The Phantom
 			3 - The Quak

@@ -553,7 +553,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             for(int i = 0; i < numberOfEnemies + 1; i++){
                 randomizer.at(i) = rand()%100;
 
-                cout << "Here's a random number: " << randomizer.at(i) << endl;
+                //cout << "Here's a random number: " << randomizer.at(i) << endl;
             }
             for(int i = 0; i < numberOfEnemies; i++){
                 enemyDamage.at(i) = battle.determineEnemyAttackOption(code.getUsername(), stoi(code.getItem(0, i+1)), code.getItem(4), randomizer.at(i+1));
