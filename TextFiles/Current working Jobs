@@ -1,22 +1,14 @@
-Dakota - (Paused) Adding passives to the game 
-         (Paused) Add a standard battle function that can be used for most if not all battle events. 
-         (In Progress) Changes in stats need to be tracked on the client side so that we  can accurately track the new stats of a character. 
+Dakota - (Paused) Add a standard battle function that can be used for most if not all battle events. 
+         (In Progress) Changes in stats need to be tracked on the client side so that we can accurately track the new stats of a character. 
                   - We need to start recording that information in TempEntity.
                   - Probably need to loop this into the Data Protection function.
          (In Progress) Finish properly constructing map functionality and city/object interactions
          Add intro to the game so that the player is given some basic info about it.
          Add adaptable dialogue function for interactions with objects and characters.
          Resolve issue with level being set to zero at some random point.
-         Resolve issue with non-base stats not being added to players total stats.
-         Group battle screen will put you into a single-unit battle screen when you try using your ultimate ability and are out of uses.
-                  Also, seems to make the destructor for the DataGuard run twice.
-         Add options menu-         
-                  Adding game zoom settings - in the menu
+         Resolve issue with non-base stats not being added to players total stats.         
          Add advance quests for temp entity so that we can make the NPC missions have a reference to save back to the server.
          Use Quest class to better setup NPC quests.
-         There is an issue that sets your current City location back to (1,1) if you try to travel to (3,7)
-         Update save and load to use X Y coordinates instead of location value.
-         Resolve issue with guard.updateGuardData(); crashing the game
 
          Fix spelling mistakes (Where?)
          
@@ -33,6 +25,8 @@ Kyle - Figure out something useful to add to the game
        
        
 Dominic - Story - Finish adding stories to account creation
+          fixing map city locations (in progress)
+          adding map region information (In Progress)
           Test all functionality and give imput and feedback.
           Fix grammar and spelling mistakes
           Add graphics class (lol)    <--- Wow! just wow, Richard
@@ -47,10 +41,6 @@ We still need to:
 
 ***Complete Items***
 VVVVVVVVVVVVVVVVVVVV
-
-Dominic -fixed map city locations
-Dominic -Added monster level regions
-Dominic -Posted said map in acssessable file
 
 ****UPDATES FROM RICHARD****
 Here's a list of stuff that I have done over the last couple days:
@@ -84,3 +74,8 @@ Richard - Added monster groups
 Richard - Updated stats updating from weapon switching
 Richard - Inventory mostly functional
 Richard - Helped Kyle get VSCode working again!
+Dakota - Resolved issue with guard.updateGuardData(); crashing the game; it seemed to be caused by assignment of name from one instance of tempentity to another.
+Dakota - Resolve issue that sets your current City location back to (1,1) if you try to travel to (3,7) through new map system.
+Dakota - Updated Save and Load player data to use X Y coordinates instead of location value.
+Dakota - Add options menu -> Specifially Adding game zoom settings in the menu
+Dakota - Complete implimentation of new map with complete removal of old.
