@@ -9,6 +9,7 @@ Dakota - (Paused) Add a standard battle function that can be used for most if no
          Resolve issue with non-base stats not being added to players total stats.         
          Add advance quests for temp entity so that we can make the NPC missions have a reference to save back to the server.
          Use Quest class to better setup NPC quests.
+         Resolve issue with logout causing DataGuard destructor to run twice.
 
          Fix spelling mistakes (Where?)
          
