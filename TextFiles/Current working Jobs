@@ -9,7 +9,6 @@ Dakota - (Paused) Add a standard battle function that can be used for most if no
          Resolve issue with non-base stats not being added to players total stats.         
          Add advance quests for temp entity so that we can make the NPC missions have a reference to save back to the server.
          Use Quest class to better setup NPC quests.
-         Resolve issue with logout causing DataGuard destructor to run twice.
 
          Fix spelling mistakes (Where?)
          
@@ -80,3 +79,4 @@ Dakota - Resolve issue that sets your current City location back to (1,1) if you
 Dakota - Updated Save and Load player data to use X Y coordinates instead of location value.
 Dakota - Add options menu -> Specifially Adding game zoom settings in the menu
 Dakota - Complete implimentation of new map with complete removal of old.
+Dakota - Resolved issue with logout causing DataGuard exit function to run twice by adding boolean for first time menu load.
