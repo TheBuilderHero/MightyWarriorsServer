@@ -1,1 +1,47 @@
+Quest giver: Nabban
+Nabban: hey! Please wait!
+	I need your help!
+	You’ve got to save my son!
+	He went out last night to the forest and never came back!
+	[yes/no pop up]
+	input yes or no
+	
+	[if yes]
 
+player: yes
+
+Nabban: Oh thank you! And please hurry, I do prefer him alive.
+
+enter Quest cave
+[Upon entering, prompt pre-movement text]
+ 
+the cave is cold and dark and the air is musty. Ahead you hear a cry for help
+
+[Upon player advance to boss, prompt text]
+
+you suddenly see a great woolly bear-sheep attacking a young boy.
+
+[prompt battle]
+[on battle complete, prompt text]
+
+Boy: you saved me! I thought I was a goner for sure!
+	My name is Vintan. I was gathering food cause our family has little.
+	I ran into the sheep-bear and got it mad
+	I’m sure my father sent you. Would you take me back to him?
+
+see Nabban
+[On meeting Nabban, prompt dialogue]
+
+Nabban: your alive! Thank you for bringing him back
+	hears [random loot] for your troubles
+	if you ever need anything, please just ask
+[end quest]
+[outside of quest, prompt this on dialogue interaction]
+
+ Nabban: if you need weapons, talk to Huldennii. He’s just short of the best at what he does.
+
+[or]
+
+	if you need to sell, Ronni Seaburger is a fair trader. Goods from everywhere.
+
+	                                                                                                                                                   
