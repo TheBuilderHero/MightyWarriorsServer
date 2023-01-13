@@ -1,10 +1,15 @@
+1. every new line in dialogue is an advance dialgue
+2. asterisk is instrucition to player
+3. bracket is instrucitons to coder
+
+
 Quest giver: Nabban
 Nabban: hey! Please wait!
 	I need your help!
 	You’ve got to save my son!
 	He went out last night to the forest and never came back!
 	[yes/no pop up]
-	input yes or no
+	*input yes or no*
 	
 	[if yes]
 
@@ -12,7 +17,8 @@ player: yes
 
 Nabban: Oh thank you! And please hurry, I do prefer him alive.
 
-enter Quest cave
+*enter Quest cave*
+
 [Upon entering, prompt pre-movement text]
  
 the cave is cold and dark and the air is musty. Ahead you hear a cry for help
@@ -29,7 +35,8 @@ Boy: you saved me! I thought I was a goner for sure!
 	I ran into the sheep-bear and got it mad
 	I’m sure my father sent you. Would you take me back to him?
 
-see Nabban
+*see Nabban*
+
 [On meeting Nabban, prompt dialogue]
 
 Nabban: your alive! Thank you for bringing him back
