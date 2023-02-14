@@ -1,20 +1,20 @@
 Please Note:
 Any Dialogue in this file should be in acending order from 0 to infinity.
 
-~Yöl~
+~Yol~
 0
-Hi my name is Yöl, wlecome to my shop
+Hi my name is Yol, wlecome to my shop
 Is there something which you are interested in buying?
 No, okay... See you later then.
-~/Yöl~
+~/Yol~
 
-~Yöl~
+~Yol~
 1
 You again...?
 I thought you did not want to buy anything from me...
 Do you want to buy something now?
 Okay, then stop coming to see me!
-~/Yöl~
+~/Yol~
 
 ~Ronni Seaburger~
 0
@@ -23,62 +23,62 @@ nope nope..
 Brah... What??!...
 ~/Ronni Seaburger~
 
-~Zeltrölt~
+~Zeltrolt~
 0
 No
 Your Mom...
 Is......nvm
-~/Zeltrölt~
+~/Zeltrolt~
 
 
-~Zeltrölt~
+~Zeltrolt~
 1
 No2
 Your Mom...2
 Is......nvm2
-~/Zeltrölt~
+~/Zeltrolt~
 
-~Zeltrölt~
+~Zeltrolt~
 2
 No3
 Your Mom...3
 Is......nvm3
-~/Zeltrölt~
+~/Zeltrolt~
 
-~Zeltrölt~
+~Zeltrolt~
 3
 No3
 Your Mom...3
 Is......nvm3
-~/Zeltrölt~
+~/Zeltrolt~
 
-~Zeltrölt~
+~Zeltrolt~
 4
 No3
 Your Mom...3
 Is......nvm3
-~/Zeltrölt~
+~/Zeltrolt~
 
-~Zeltrölt~
+~Zeltrolt~
 5
 No3
 Your Mom...3
 Is......nvm3
-~/Zeltrölt~
+~/Zeltrolt~
 
-~Zeltrölt~
+~Zeltrolt~
 6
 No3
 Your Mom...3
 Is......nvm3
-~/Zeltrölt~
+~/Zeltrolt~
 
-~Zeltrölt~
+~Zeltrolt~
 7
 No7
 Your Mom...3
 Is......nvm3
-~/Zeltrölt~
+~/Zeltrolt~
 
 ~Inya~
 0

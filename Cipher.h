@@ -30,6 +30,8 @@ class Cipher {
         enum SEND_TYPE { VECTOR_SEND };
         //the strings that are sent for the following are stored in convertDATA_TYPEToString
         enum DATA_TYPE { NONE, DIALOGUE_INFO, STAT_INFO, ENEMY_INFO, LOCATION_INFO, RACE_KIT_WEAPON_INFO, QUEST_PROGRESS, INVENTORY_INFO, ABILITY_TYPES_INFO, LEVEL_XP_INFO };
+        //
+        enum FILE_DATA_TYPE { QUEST_DATA };
         //this function is intended to pull out the users request and the data associated with each request
         string decipher(char messageFromClient[], bool hasSubItems = false); //default does not have sub items
         string subDecipher(string subMessageFromClient, int rootItem);
@@ -42,9 +44,13 @@ class Cipher {
 
         //This function writes inputs given from a user to file using the sperating delimiter //updateValue: 1 = inital setup race, kit, level, XP 2 = password 3 = user's stats overwrite 4 = level and XP update 5 = user stats update 6 = update weapons 7 = update location 8 = update the player quests progress
         void userDataDeliminationWrite(int updateValue, string username, string data2 = "", string data3 = "", string data4 = "", string data5 = "", string data6 = "", string data7 = "", string data8 = "", string data9 = "", string data10 = "", string data11 = "", string data12 = ""); 
+        //gonna try to move to a more dynamic setup
+        void dataDeliminationWrite(FILE_DATA_TYPE itemUpdateType, string username, vector<pair<int,string>> &linesToUpdateWithData); //int line to update was replaced with the pair of strings
         
         //currently no function but it will read from the user's data file
-        void userDataDeliminationRead(int updateValue, string username);
+        void userDataDeliminationRead(int updateValue, string username); 
+        //gonna try to move to a more dynamic setup
+        void dataDeliminationRead(FILE_DATA_TYPE returnItemType, string username, vector<string> &data);
 
         //Other Data management:
         void copyFile(std::string username, std::string pathOfCopyDestination);

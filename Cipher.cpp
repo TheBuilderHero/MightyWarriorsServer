@@ -719,6 +719,52 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
     }
 }
 
+//This function has not yet been tested aand may not work correctly
+void Cipher::dataDeliminationWrite(FILE_DATA_TYPE itemUpdateType, string username, vector<pair<int,string>> &linesToUpdateWithData){
+    switch(itemUpdateType){
+        case QUEST_DATA:{//update the players quest info in file
+            //pull current quest info from file if it exists:
+            vector<string> quest;
+            ifstream questFileTest;
+            questFileTest.open(getQuestPath(username)); //for testing purposes
+            if(questFileTest){ //if the file exists then we need to load the info into temp variables to be written back into the file
+                questFileTest.close();
+                dataDeliminationRead(QUEST_DATA,username,quest);//all quests are loaded into vector
+            }
+
+            //write new stats to file:
+            
+            sort(linesToUpdateWithData.begin(), linesToUpdateWithData.end()); //sorting the vector so that we will never have the issue with line number needing to be updated being missed.
+            ofstream questFile;
+            string line;
+            int updateIndex = 0; //it is an index
+            int lineNumber = 0; //it is an index
+            questFile.open(getQuestPath(username));
+            while(lineNumber != quest.size()){ //write all the quests back into the file (Need to replace "lineNumber != quest.size()" with something about linesToUpdateWithData so that it does not just no longer update when the file does not have any data.)
+                if(lineNumber == linesToUpdateWithData.at(updateIndex).first){ //line to update is first
+                    questFile << linesToUpdateWithData.at(lineNumber).second; //data is second
+                    updateIndex++;
+                } else {
+                    questFile << quest.at(lineNumber);
+                }
+                //This seems redundent and should probably be removed:
+                if (lineNumber == linesToUpdateWithData.at(lineNumber).first){ //update the line with info about the quest (Not sure what should be here, was "stoi(data2)" and changed it to )
+                    questFile << linesToUpdateWithData.at(lineNumber).second << endl; // removed data3 and replaced it with linesToUpdateWithData.at(lineNumber).second
+                } else if (quest[lineNumber].length() > 0) {
+                    questFile << quest[lineNumber] << endl; //write back the data
+                } else if(lineNumber == 0) {
+                    questFile <<delimiterLayer1<< username <<delimiterLayer1<< endl; //kept delimiterLayer1 addition for username only (probably add current mission to the same line)
+                } else {
+                    questFile << endl;
+                }
+                lineNumber++;
+            }
+            questFile.close(); // done writting to file and now it is closed
+            break;
+        }
+    }
+}
+
 void Cipher::userDataDeliminationRead(int updateValue, string username){
     ifstream userstats;
     ifstream userdata;
@@ -974,6 +1020,25 @@ void Cipher::userDataDeliminationRead(int updateValue, string username){
             inventoryFile.close();
             break;
             }
+    }
+}
+
+void Cipher::dataDeliminationRead(FILE_DATA_TYPE returnItemType, string username, vector<string> &data){ //returns a vector of quest data info with username at index 0 and quests 1,2,3, etc at their coresponding index's
+    switch(returnItemType){
+        case QUEST_DATA:{ //quest info
+            int loopPass = 0;
+            ifstream questFile;
+            string currentLine;
+            questFile.open(getQuestPath(username));
+            while(getline(questFile, currentLine)){
+                //every line represents the quest ID:
+                //first item line is username (index 0 = username)      //quest 1...
+                if (currentLine.length() > 0) data.at(loopPass) = currentLine;
+                loopPass++;
+            }
+            questFile.close();
+            break;
+        }
     }
 }
 

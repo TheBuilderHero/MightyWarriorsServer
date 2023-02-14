@@ -7,7 +7,7 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${file}",
+                "source.cpp",
                 "Characters.cpp",
                 "Players.cpp ",
                 "Enemies.cpp",

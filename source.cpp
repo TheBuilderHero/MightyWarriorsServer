@@ -92,14 +92,14 @@ void setupNPCData(){ //THIS fuction sets up all the NPC's for the user to intera
     // Declare the NPC's in the game
     //
     
-    NPC npc1("Yöl", 8,9);
-    NPC npc2("Ggino", 10,9);
-    NPC npc3("Inya", 8,11);
-    NPC npc4("Nabban", 10,11);
-    NPC npc5("Zeltrölt", 11,14);
-    NPC npc6("Huldennii", 24,10);
-    NPC npc7("Ronni Seaburger", 25,10);
-    NPC npc8("Your Mom", 26,10);
+    NPC npc1("Yol", 8,9,0,0);
+    NPC npc2("Ggino", 8,9,1,0);
+    NPC npc3("Inya", 8,9,2,0);
+    NPC npc4("Nabban", 8,9,3,0);
+    NPC npc5("Zeltrolt", 8,9,4,0);
+    NPC npc6("Huldennii", 8,9,5,0);
+    NPC npc7("Ronni Seaburger", 8,9,6,0);
+    NPC npc8("Your Mom", 8,9,7,0);
 
     npcs.push_back(npc1);
     npcs.push_back(npc2);
@@ -575,6 +575,8 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             code.vectorDeliminateLayer1OpenNewInputOrSwitchDownLayer();// need to use Layer1OpenNewInput again since we are changing layers
             for (int i = 0; i < npcs.size(); i++) {
                 code.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(npcs.at(i).getName());
+                code.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(to_string(npcs.at(i).getAssignedMapX()));
+                code.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(to_string(npcs.at(i).getAssignedMapY()));
                 code.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(to_string(npcs.at(i).getAssignedLandmarkX()));
                 code.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer(to_string(npcs.at(i).getAssignedLandmarkY()));
                 code.vectorDeliminateLayer2OpenNewInputOrSwitchDownLayer();
