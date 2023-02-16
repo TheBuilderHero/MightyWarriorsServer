@@ -92,6 +92,7 @@ void setupNPCData(){ //THIS fuction sets up all the NPC's for the user to intera
     // Declare the NPC's in the game
     //
     
+    //Enter these inputs: ("Name of the NPC", location on Map X, location on Map Y, In Landmark X, In Landmark Y)
     NPC npc1("Yol", 8,9,0,0);
     NPC npc2("Ggino", 8,9,1,0);
     NPC npc3("Inya", 8,9,2,0);
