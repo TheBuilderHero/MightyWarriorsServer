@@ -80,3 +80,4 @@ Dakota - Updated Save and Load player data to use X Y coordinates instead of loc
 Dakota - Add options menu -> Specifially Adding game zoom settings in the menu
 Dakota - Complete implimentation of new map with complete removal of old.
 Dakota - Resolved issue with logout causing DataGuard exit function to run twice by adding boolean for first time menu load.
+Dakota - Resolved issue with being able to logon if no username or password is entered. (Added password and username length checks)
