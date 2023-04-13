@@ -6,3 +6,5 @@ userdata/*
 .wget-hsts
 source.exe
 source
+.dotnet/*
+.bash_history
