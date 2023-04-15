@@ -730,6 +730,9 @@ void Cipher::dataDeliminationWrite(FILE_DATA_TYPE itemUpdateType, string usernam
             if(questFileTest){ //if the file exists then we need to load the info into temp variables to be written back into the file
                 questFileTest.close();
                 dataDeliminationRead(QUEST_DATA,username,quest);//all quests are loaded into vector
+            } else { //also should close if does not exist but just does not pull data.
+                questFileTest.close();
+                cout << "dataDeliminationWrite: Generating New Quest File..." << endl;
             }
 
             //write new stats to file:

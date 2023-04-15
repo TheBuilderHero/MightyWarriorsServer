@@ -58,32 +58,32 @@ void runUsernameRequestResetDelay(){
 
 void initializeAllElements(){
     setupNPCData();
-    cout << "Initiallizing NPCs: ";
-    for (int i = 0; i < 7; i ++) cout << to_string(npcs.at(i).getNpcID()) << " ";
-    cout << endl;
+    std::cout << "Initiallizing NPCs: ";
+    for (int i = 0; i < 7; i ++) std::cout << to_string(npcs.at(i).getNpcID()) << " ";
+    std::cout << endl;
     //Working to add dialogue into memory
     //This outputs all the npc's dialogue:
     /*
     for (int i = 0; i < npcs.size(); i++) {
         for(int i2 = 0; i2 < npcs.at(i).getDialoguePartCount(); i2++){
             for(int i3 = 0; i3 < npcs.at(i).getDialogueCount(i2); i3++){
-                cout << npcs.at(i).getDialogue(i2, i3) << endl;
+                std::cout << npcs.at(i).getDialogue(i2, i3) << endl;
             }
         }
     }
     */
     //This specifically outputs the lines a certain NPC for both case 1 and 2 (or index 0 and 1)
     /*
-    cout << "size: " << npcs.at(0).getDialogueCount(0) << endl;
-    cout << "size: " << npcs.at(0).getDialogueCount(1) << endl;
+    std::cout << "size: " << npcs.at(0).getDialogueCount(0) << endl;
+    std::cout << "size: " << npcs.at(0).getDialogueCount(1) << endl;
     for(int i = 0; i < npcs.at(0).getDialogueCount(0); i++){
-        cout << npcs.at(0).getDialogue(0, i) << endl;
+        std::cout << npcs.at(0).getDialogue(0, i) << endl;
     }
     for(int i = 0; i < npcs.at(0).getDialogueCount(1); i++){
-        cout << npcs.at(0).getDialogue(1, i) << endl;
+        std::cout << npcs.at(0).getDialogue(1, i) << endl;
     }
 
-    cout << endl;
+    std::cout << endl;
     */
 }
 
@@ -186,7 +186,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
     try{
         request = stoi(code.getTypeOfRequest());
     } catch(std::invalid_argument){
-        cout << "failed main: \"switch (request)\" in requestActions()" << endl;
+        std::cout << "failed main: \"switch (request)\" in requestActions()" << endl;
     }
     switch (request) {
         case 1:{//check new users entered username against list of usernames to make sure it is unique
@@ -250,7 +250,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
 
             //set the proper stat values for the input of the base stats (This is used in the following long statment)
             returnMessage = code.cipher("5", health, armor, magicResist, physicalDam, magicDam, agility, stealth, stamina, naturalEnergy, mind, psychicDam); // This very long input put into simple terms calculates stats by adding base to bonus then spitting it out as a string for Health, armor, magicResistance, physicalDamage, MagicDamage, Agility
-            //cout << "Return message write successful\n";
+            //std::cout << "Return message write successful\n";
             sendToClient(socket, returnMessage);// returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             
             break;
@@ -263,7 +263,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
                 test1 = stoi(code.getItem(3));
                 enemyNum = stoi(code.getItem(4));
             } catch(std::invalid_argument){
-                cout << "failed \"case 7:{//read the enemy stats for battle\"" << endl;
+                std::cout << "failed \"case 7:{//read the enemy stats for battle\"" << endl;
             }
             
             if(test1 == 1){
@@ -294,7 +294,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
                 tempRaceChoice = stoi(code.getItem(3));
                 tempKitChoice = stoi(code.getItem(4));
             } catch(std::invalid_argument){
-                cout << "failed \"case 8:{ //user race, kit, and weapon selection and write to file\"" << endl;
+                std::cout << "failed \"case 8:{ //user race, kit, and weapon selection and write to file\"" << endl;
             }
             Weapons weapons(code.getUsername(), true);
             weapons.setPlayerWeapon(tempWeaponChoice);
@@ -310,7 +310,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             try{
                 selectedOption = stoi(code.getItem(4));
             } catch(std::invalid_argument){
-                cout << "failed \"case 9:{//this takes the input of battle attacks to then reply with the damage amount.\"" << endl;
+                std::cout << "failed \"case 9:{//this takes the input of battle attacks to then reply with the damage amount.\"" << endl;
             }
             returnMessage = code.cipher("5", to_string(battle.determineOption(code.getUsername(), selectedOption, enemy.getEnemyPickedFromName(code.getItem(3)), stoi(code.getItem(5)))), to_string(battle.isEnemyBlocking()), to_string(battle.getBLOCK_REDUCTION_VALUE())); //get the damage for one of the abilites and cipher return message.
             sendToClient(socket, returnMessage);// returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
@@ -346,14 +346,14 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
         }
         case 14:{//updates the players level and XP
             //currently using the players level for the enemy's level for XP since they should be the same
-            //cout << code.getItem(3) << "\n";
+            //std::cout << code.getItem(3) << "\n";
             int enemyChoice;
             try{
                 enemyChoice = stoi(code.getItem(3));
             } catch(std::invalid_argument){
-                cout << "failed \"case 14:{//updates the players level and XP\"" << endl;
+                std::cout << "failed \"case 14:{//updates the players level and XP\"" << endl;
             }
-            //cout << enemy.getXPDrop(enemyChoice) << "\n";
+            //std::cout << enemy.getXPDrop(enemyChoice) << "\n";
             battle.increaseXP(code.getUsername(), enemy.getXPDrop(enemyChoice)); //hardset the enemies level to 1 since at this moment there is no level change for enemies
             returnMessage = code.cipher("4", to_string(players.getLevel(code.getUsername())));
             sendToClient(socket, returnMessage);// returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
@@ -502,6 +502,9 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             //update quest info***********************************************************************************
             code.userDataDeliminationWrite(8, code.getUsername(), code.getItem(2), code.getItem(3)); //first number is the quest number, then second one is the progess number
             */
+            // Maybe working quest save code:
+            //code.dataDeliminationWrite(code.QUEST_DATA, ) //this will not work... Need to make vector send for client to server.
+
 
             /* Still working to build the rest of the complete Data save code.
 
@@ -512,7 +515,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             try{
                 enemyChoice = stoi(code.getItem(3));
             } catch(std::invalid_argument){
-                cout << "failed \"case 14:{//updates the players level and XP\"" << endl;
+                std::cout << "failed \"case 14:{//updates the players level and XP\"" << endl;
             }
             battle.increaseXP(code.getUsername(), enemy.getXPDrop(enemyChoice)); //hardset the enemies level to 1 since at this moment there is no level change for enemies
 
@@ -554,7 +557,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             for(int i = 0; i < numberOfEnemies + 1; i++){
                 randomizer.at(i) = rand()%100;
 
-                //cout << "Here's a random number: " << randomizer.at(i) << endl;
+                //std::cout << "Here's a random number: " << randomizer.at(i) << endl;
             }
             for(int i = 0; i < numberOfEnemies; i++){
                 enemyDamage.at(i) = battle.determineEnemyAttackOption(code.getUsername(), stoi(code.getItem(0, i+1)), code.getItem(4), randomizer.at(i+1));
@@ -764,6 +767,11 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             sendToClient(socket, returnMessage);// returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             break;
         }
+        case 29: { //recive vector data from client
+            std::cout << "Vector Message from Client was Properly Received..." << endl;
+            std::cout << "Need to impliment decision making code to do with the data what needs to be done." << endl;
+            break;
+        }
         case 0:{//check for version compatibility - This is done before using can continue to create account or logon
             int gameVersionClient, gameMajorBuildClient, gameMinorBuildClient, gamePatchClient; //client game versions which we are going to test against the server's version
             try{
@@ -772,8 +780,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
                 gameMinorBuildClient = stoi(code.getItem(5));
                 gamePatchClient = stoi(code.getItem(6));
             } catch (std::invalid_argument){
-                cout << "failed \"case 7:{//read the enemy stats for battle\"" << endl;
-                cout << "jk lol you actually failed \"case 0:{//check compatibility\"" << endl;
+                std::cout << "failed \"case 0:{//check compatibility\"" << endl;
             }
             
             if (gameVersion == gameVersionClient){ //these nested if statements check to makte sure that the client version the user is using is the same as the valid client version on the server.
@@ -807,7 +814,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
             break;
         }
     }
-    cout << "Return Message from Server: " << returnMessage << endl;
+    std::cout << "Return Message from Server: " << returnMessage << endl;
 }
 
 //this function takes an input of port when starting the run process of the program
@@ -834,7 +841,7 @@ void communicate(int argc, char* argv[]) { // the job of this function is to ind
     listen(sockfd, 5);
     clilen = sizeof(cli_addr);
     
-    cout << "Server Successfully Running..." << endl << "Press \"ctrl + c\" to stop the running program\nServer Version: " << to_string(ServerVersion) << "." << to_string(ServerMajorBuild) << "." << to_string(ServerMinorBuild) << "." << to_string(ServerPatch) << endl; //I use this line to make sure the server is running and test the compiles
+    std::cout << "Server Successfully Running..." << endl << "Press \"ctrl + c\" to stop the running program\nServer Version: " << to_string(ServerVersion) << "." << to_string(ServerMajorBuild) << "." << to_string(ServerMinorBuild) << "." << to_string(ServerPatch) << endl; //I use this line to make sure the server is running and test the compiles
 
     while (1) {
         newsockfd = accept(sockfd,
@@ -874,19 +881,19 @@ void dostuff(int sock) {
         token = s.substr(0, pos);
         output = token;
         s.erase(0, pos);
-        //cout << n << endl;
-        //cout << output << endl;
+        //std::cout << n << endl;
+        //std::cout << output << endl;
         try{
             lengthOfMessage = stoi(output); //convert the output to int so we can use it as length
         } catch(invalid_argument){
-            cout << "void dostuff(int sock) { [specifically length check failed]" << endl;
+            std::cout << "void dostuff(int sock) { [specifically length check failed]" << endl;
         }
     }
     n = write(sock, output.c_str(), output.length()+1);//send confimation message back to the client (We know the length of the message which is about to be sent)
     if (n < 0) error("ERROR writing to socket");
     n = recv(sock, buffer, lengthOfMessage, MSG_WAITALL);
     if (n < 0) error("ERROR reading from socket");
-    //cout << n << endl;
+    //std::cout << n << endl;
 
 
     //test message from user to see if it is within the function of requestActions
@@ -906,7 +913,7 @@ void premessageSendLengthVerification(int sock, int MessageLength){
         ssConvert << buffer;
         responseVerified = ssConvert.str();
         //was for testing:
-        //cout << "Recv: " << responseVerified << endl;
+        //std::cout << "Recv: " << responseVerified << endl;
     }
 }
 
