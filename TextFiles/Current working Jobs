@@ -10,6 +10,11 @@ Dakota - (Paused) Add a standard battle function that can be used for most if no
          Add advance quests for temp entity so that we can make the NPC missions have a reference to save back to the server.
          Use Quest class to better setup NPC quests.
          Update vector send from client to server to send doubles instead of integers for both current and next level XP
+                  - One reason for adding this is so that we can load missions using a vector access scheme and then save missions back to server the same kind of way.
+                  - Need to finish implimenting the daveAllDataVector() function in the DataGuard class on the server to decide what to do with the information that is being sent to it.
+                  - Once done testing remove testing message.
+                  - Will need to clean up old QUEST array
+                  
 
          Fix spelling mistakes (Where?)
          
