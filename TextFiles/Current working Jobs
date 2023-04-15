@@ -14,7 +14,8 @@ Dakota - (Paused) Add a standard battle function that can be used for most if no
                   - Need to finish implimenting the daveAllDataVector() function in the DataGuard class on the server to decide what to do with the information that is being sent to it.
                   - Once done testing remove testing message.
                   - Will need to clean up old QUEST array
-                  
+         Change saving Mind stat and Heath stat back to server along with loading to client to not always just load the min and max stat to the same value.
+         Add different method for writting and reading stats from file on the server.
 
          Fix spelling mistakes (Where?)
          
