@@ -9,6 +9,7 @@ Dakota - (Paused) Add a standard battle function that can be used for most if no
          Resolve issue with non-base stats not being added to players total stats.         
          Add advance quests for temp entity so that we can make the NPC missions have a reference to save back to the server.
          Use Quest class to better setup NPC quests.
+         Update vector send from client to server to send doubles instead of integers for both current and next level XP
 
          Fix spelling mistakes (Where?)
          
@@ -80,3 +81,5 @@ Dakota - Updated Save and Load player data to use X Y coordinates instead of loc
 Dakota - Add options menu -> Specifially Adding game zoom settings in the menu
 Dakota - Complete implimentation of new map with complete removal of old.
 Dakota - Resolved issue with logout causing DataGuard exit function to run twice by adding boolean for first time menu load.
+Dakota - Resolved issue with being able to logon if no username or password is entered. (Added password and username length checks)
+Dakota - Added basic vector send functionality to the client side application to allow for sending dynamic amounts of data back to the server.
