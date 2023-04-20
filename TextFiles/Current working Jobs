@@ -16,6 +16,8 @@ Dakota - (Paused) Add a standard battle function that can be used for most if no
                   - Will need to clean up old QUEST array
          Change saving Mind stat and Heath stat back to server along with loading to client to not always just load the min and max stat to the same value.
          Add different method for writting and reading stats from file on the server.
+         Add mop to random story generation (race choice = 100)
+         Also add modifications to stories based on the input of kit and weapon.
 
          Fix spelling mistakes (Where?)
          
