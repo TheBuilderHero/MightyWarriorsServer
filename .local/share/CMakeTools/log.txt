@@ -1,0 +1,30 @@
+2023-05-23T07:06:12.909Z [debug] [main] Safe constructing new CMakeProject instance
+2023-05-23T07:06:12.910Z [debug] [variant] Constructing VariantManager
+2023-05-23T07:06:12.912Z [debug] [main] Constructing new CMakeProject instance
+2023-05-23T07:06:12.912Z [debug] [main] Starting CMake Tools second-phase init
+2023-05-23T07:06:13.005Z [info] [variant] Loaded new set of variants
+2023-05-23T07:06:13.016Z [debug] [kit] Not reading non-existent kits file: /opt/projectcode/MightyWarriors/.local/share/CMakeTools/cmake-tools-kits.json
+2023-05-23T07:06:13.020Z [debug] [kit] Not reading non-existent kits file: /opt/projectcode/Basic-Socket-Server/.vscode/cmake-kits.json
+2023-05-23T07:06:13.023Z [debug] [main] CMakeProject instance initialization complete.
+2023-05-23T07:06:13.114Z [debug] [main] Not starting CMake driver: no kit selected
+2023-05-23T07:08:42.591Z [debug] [main] Not starting CMake driver: no kit selected
+2023-05-23T07:09:52.269Z [debug] [main] Not starting CMake driver: no kit selected
+2023-05-23T07:10:04.457Z [debug] [main] Not starting CMake driver: no kit selected
+2023-05-23T07:10:25.245Z [debug] [main] Not starting CMake driver: no kit selected
+2023-05-23T07:10:34.363Z [debug] [main] Not starting CMake driver: no kit selected
+2023-05-23T07:10:43.537Z [debug] [main] Not starting CMake driver: no kit selected
+2023-05-23T07:10:45.275Z [debug] [main] Not starting CMake driver: no kit selected
+2023-05-23T07:11:54.573Z [debug] [main] Not starting CMake driver: no kit selected
+2023-05-23T07:12:02.997Z [debug] [main] Not starting CMake driver: no kit selected
+2023-05-23T07:12:12.266Z [debug] [main] Not starting CMake driver: no kit selected
+2023-05-23T07:12:22.266Z [debug] [main] Not starting CMake driver: no kit selected
+2023-05-23T07:12:29.434Z [debug] [main] Not starting CMake driver: no kit selected
+2023-05-23T07:12:42.084Z [debug] [main] Not starting CMake driver: no kit selected
+2023-05-23T07:13:32.249Z [debug] [main] Not starting CMake driver: no kit selected
+2023-05-23T07:13:43.591Z [debug] [main] Not starting CMake driver: no kit selected
+2023-05-23T07:13:54.383Z [debug] [main] Not starting CMake driver: no kit selected
+2023-05-23T07:14:47.510Z [debug] [main] Not starting CMake driver: no kit selected
+2023-05-23T07:15:09.970Z [debug] [main] Not starting CMake driver: no kit selected
+2023-05-23T07:15:31.632Z [debug] [main] Not starting CMake driver: no kit selected
+2023-05-23T07:15:40.000Z [debug] [main] Not starting CMake driver: no kit selected
+2023-05-23T07:18:45.555Z [debug] [extension] Deactivate CMakeTools
