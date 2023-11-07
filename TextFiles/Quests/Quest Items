@@ -4,4 +4,6 @@
     damage: .001
     damage is doubled every upgrade. caps at 20 upgrades
   magic stick
+   33% chance to amplify magic attacks 
+      used to build a wizard staff
     
