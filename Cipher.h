@@ -17,7 +17,7 @@ class Cipher {
         string search;
         //For the number of STATS to be send over communication from client to server:
         //update this when you change the number of stats sent from the client.
-        const unsigned short int TRANSMITTED_STAT_COUNT = 16;
+        const unsigned short int TRANSMITTED_STAT_COUNT = 17;
 
         //for min and max values:
         std::string delimiterMinMax = " - ";

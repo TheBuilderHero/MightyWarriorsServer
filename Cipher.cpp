@@ -877,6 +877,8 @@ void Cipher::writeToFile(FILE_DATA_TYPE itemUpdateType, string username, vector<
             } else {
                 cout << "writeToFile: Critical error opening file for data writeback..." << endl;
             }
+            //cout << "writeToFile: WORKING! file for data writeback..." << endl;
+            
 
             //close file:
             dataFile.close();
