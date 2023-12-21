@@ -74,10 +74,12 @@ quest 0
 
 	[Accept/decline]
 
-		decline
+		[decline]
 
 		I understand. you need some rest. Let me know when you’re up for it.
 
-		Accept
+		[Accept]
 
 		Great! That's a huge help. Here's some [random loot] for your travels, please hurry!
+
+quest 1
