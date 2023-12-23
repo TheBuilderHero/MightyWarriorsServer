@@ -1029,7 +1029,7 @@ void Cipher::userDataDeliminationRead(int updateValue, string username){
             userdata.close();
             break;
             }
-        case 3:{//get the weapon stat amounts
+        case 3:{ //get the weapon stat amounts
             weaponStats.open(getWeaponPath(username));
             weaponStats >> s;
             while ((pos = s.find(delimiterLayer1)) != std::string::npos) {
@@ -1069,7 +1069,7 @@ void Cipher::userDataDeliminationRead(int updateValue, string username){
             weaponStats.close();
             break;
             }
-        case 4:{//get the location saved to file
+        case 4:{ //get the location saved to file
             ifstream locationFile;
             locationFile.open(getLocationPath(username));
             locationFile >> s;
@@ -1137,7 +1137,7 @@ void Cipher::userDataDeliminationRead(int updateValue, string username){
             questFile.close();
             break;
         }
-        case 6:{//get saved inventory data
+        case 6:{ //get saved inventory data
             ifstream inventoryFile;
             inventoryFile.open(getInventoryPath(username));
             inventoryFile >> s;

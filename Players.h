@@ -12,6 +12,7 @@ class Players : Characters { //defining the player and all their caracteristics 
 
         std::string getHealthStat(std::string username, int baseHealth, int bonusHealth); //returns total health stat for player with input of base and bonus health.
         std::string getHealthStat(std::string username); //returns total health stat for player with input of base and bonus health.
+        std::string getCurrentHealthStat(std::string username); //returns the players current health from file data.
 
         std::string getPhysicalDamageStat(std::string username, bool outputMinAndMaxString = false);
         std::string getMagicDamageStat(std::string username, bool outputMinAndMaxString = false);
