@@ -747,6 +747,7 @@ void Cipher::readFromFile(FILE_DATA_TYPE itemUpdateType, string username, vector
 
 //This function has not yet been tested aand may not work correctly
 void Cipher::writeToFile(FILE_DATA_TYPE itemUpdateType, string username, vector<pair<int,string>> &linesToUpdateWithData){
+    //Still using userDataDeliminationWrite for account setup of RACE KIT AND OTHER.
     switch(itemUpdateType){
         case QUEST_DATA:{//update the players quest info in file
             //pull current quest info from file if it exists:
@@ -884,7 +885,19 @@ void Cipher::writeToFile(FILE_DATA_TYPE itemUpdateType, string username, vector<
             dataFile.close();
             break;
         }
-        case LOCATION_DATA:{ //add code:
+        case LOCATION_DATA:{//update the players location in file
+            //write new location to file:
+            if(linesToUpdateWithData.size() < 2){
+                cout << "CRITICAL FAILURE! Cipher::writeToFile --> case LOCATION_DATA: --> Not including both X and Y!" << endl;
+                break;
+            }
+            ofstream locationFile;
+            locationFile.open(getLocationPath(username));
+            locationFile << delimiterLayer1 << username; // these are all adding data to the file with delimiterLayer1 seperation.
+            if (linesToUpdateWithData.at(0).second.length() > 0) {locationFile << delimiterLayer1 << linesToUpdateWithData.at(0).second;} else {locationFile << delimiterLayer1;} //Players current X location
+            if (linesToUpdateWithData.at(1).second.length() > 0) {locationFile << delimiterLayer1 << linesToUpdateWithData.at(1).second;} else {locationFile << delimiterLayer1;} //Players current Y location
+            locationFile << delimiterLayer1;
+            locationFile.close(); // done writting to file and now it is closed
             break;
         }
         case RACE_KIT_WEAPON_DATA:{ //add code:
@@ -893,7 +906,14 @@ void Cipher::writeToFile(FILE_DATA_TYPE itemUpdateType, string username, vector<
         case QUEST_PROGRESS_DATA:{ //add code:
             break;
         }
-        case INVENTORY_DATA:{ //add code:
+        case INVENTORY_DATA:{  //update inventory
+            //write new inventory to file:
+            ofstream inventoryFile;
+            inventoryFile.open(getInventoryPath(username));
+            inventoryFile << delimiterLayer1 << username; // these are all adding data to the file with delimiterLayer1 seperation.
+            if (linesToUpdateWithData.at(0).second.length() > 0) {inventoryFile << delimiterLayer1 << linesToUpdateWithData.at(0).second;} else {inventoryFile << delimiterLayer1;} //Player's inventory
+            inventoryFile << delimiterLayer1;
+            inventoryFile.close(); // done writing to file and now it is closed
             break;
         }
         case ABILITY_TYPES_DATA:{ //add code:
