@@ -721,6 +721,7 @@ void Cipher::userDataDeliminationWrite(int updateValue, string username, string 
 }
 
 void Cipher::readFromFile(FILE_DATA_TYPE itemUpdateType, string username, vector<pair<int,string>> &readVector){
+    int loopPass = 0;
     switch(itemUpdateType){
         case STAT_DATA:{
             //Read all Data
@@ -737,8 +738,24 @@ void Cipher::readFromFile(FILE_DATA_TYPE itemUpdateType, string username, vector
                 }
                 cout << endl;
             } else {
-                cout << "void Cipher::readFromFile --> failed to open readFromFile..." << endl;
+                cout << "void Cipher::readFromFile --> failed to open readFromFile... STAT_DATA (Note, happens on first logon because file does not exist)" << endl;
             }
+            fileData.close();
+            break;
+        }
+        case QUEST_PROGRESS_DATA:{//quest info
+            ifstream questFile;
+            string currentLine;
+            questFile.open(getQuestPath(username));
+            if(questFile.is_open()){
+                int valueTemp = 0;
+                while(getline(questFile, currentLine)){
+                    readVector.emplace_back(valueTemp++,currentLine);
+                }
+            } else {
+                cout << "void Cipher::readFromFile --> failed to open readFromFile... QUEST_PROGRESS_DATA (Note, happens on first logon because file does not exist)" << endl;
+            }
+            questFile.close();
             break;
         }
 
@@ -797,7 +814,7 @@ void Cipher::writeToFile(FILE_DATA_TYPE itemUpdateType, string username, vector<
             vector<pair<int,string>> tempinfo;
             
             
-            cout << "update lines size=" << linesToUpdateWithData.size() << endl;
+            //cout << "update lines size=" << linesToUpdateWithData.size() << endl;
 
             readFromFile(STAT_DATA, username, tempinfo);
             //update the number of lines to what it should be:
@@ -809,18 +826,21 @@ void Cipher::writeToFile(FILE_DATA_TYPE itemUpdateType, string username, vector<
             //Note username is also passed in as item 0 in the array of data.
 
             //We always just overwrite stats with the latest stats. So I do not know why we have the check between the first Item of linestoupdate and tempinfo.
-            cout << "file line size=" << tempinfo.size() << endl;
+            //cout << "file line size=" << tempinfo.size() << endl;
             for(int i = 0; i < TRANSMITTED_STAT_COUNT; i++){ //for each update item we find it in tempinfo and update the value to the new value.
                 // trying another method since this will not work if the file is empty:
                 for(int j = 0; j < linesToUpdateWithData.size(); j++){
                     try{
                         if(linesToUpdateWithData.at(i).first == tempinfo.at(j).first){ //update the value of the specified stat
-                            tempinfo.at(j).second = linesToUpdateWithData.at(i).second;
+                            if(stoi(linesToUpdateWithData.at(i).second) > 0)
+                                tempinfo.at(j).second = to_string(stoi(tempinfo.at(j).second) + stoi(linesToUpdateWithData.at(i).second));
                             break;  
                         }
                     }catch(out_of_range){
                         cout << "WARNING --> writeToFile: STAT_DATA for loop lead to out_of_range vector call... " << endl;
                         tempinfo.emplace_back(linesToUpdateWithData.at(i).first, linesToUpdateWithData.at(i).second);
+                    }catch(std::invalid_argument){
+                        cout << "WARNING --> writeToFile: STAT_DATA for loop lead to STOI call... " << endl;
                     }
                 }
             }
@@ -832,29 +852,29 @@ void Cipher::writeToFile(FILE_DATA_TYPE itemUpdateType, string username, vector<
             if(dataFile.is_open()){
                 // write data to file
                     //write all stats to the file in order:
-                    cout << "DATA (Size=" + to_string(tempinfo.size()) + "): ";
+                    //cout << "DATA (Size=" + to_string(tempinfo.size()) + "): ";
                     //technically we could also be using the number of stats instead of tempinfo.size().
                     for(int i = 0; i < tempinfo.size(); i++){ 
-                        cout << " (LINE KEY:"+ to_string(i) +") --> [";
+                        //cout << " (LINE KEY:"+ to_string(i) +") --> [";
                         bool notFound = false;
                         for(int j = 0; j < tempinfo.size(); j++){
-                            cout << to_string(j);  
+                            //cout << to_string(j);  
                             if(tempinfo.at(j).first == i){
-                                cout << "{VALID}=" << tempinfo.at(j).second << "=";
+                                //cout << "{VALID}=" << tempinfo.at(j).second << "=";
                                 dataFile << tempinfo.at(i).second <<"\n";
                                 notFound = false;
                                 break;
                             } else {
                                 notFound = true;
                             }
-                            cout << ", ";
+                            //cout << ", ";
                         }
                         if(notFound){
                             dataFile << "0" << "\n"; //no value
                         }
-                        cout << "], ";
+                        //cout << "], ";
                     }
-                    cout << endl;
+                    //cout << endl;
                 /* This is when we have "bool existingFile = false;"
                 } else {
                     //write all stats to the file in order:
@@ -903,7 +923,86 @@ void Cipher::writeToFile(FILE_DATA_TYPE itemUpdateType, string username, vector<
         case RACE_KIT_WEAPON_DATA:{ //add code:
             break;
         }
-        case QUEST_PROGRESS_DATA:{ //add code:
+        case QUEST_PROGRESS_DATA:{ //update the players quest info in file
+            //pull current quest info from file if it exists:
+            //string quest[MAX_NUMBER_OF_QUESTS]; //we start at 1
+            vector<pair<int,string>> tempinfo;
+            
+            
+            //cout << "update lines size=" << linesToUpdateWithData.size() << endl;
+
+            readFromFile(QUEST_PROGRESS_DATA, username, tempinfo);
+            //update the number of lines to what it should be:
+            if(tempinfo.size() < MAX_NUMBER_OF_QUESTS) tempinfo.resize(MAX_NUMBER_OF_QUESTS);
+            //Set the lines to update with data to the same size as the lines read from the quest file.
+            linesToUpdateWithData.resize(tempinfo.size());
+
+            //write new stats to file:
+
+            
+            ofstream questFile;
+            string line;
+
+
+
+            linesToUpdateWithData.at(0).second = username; //always set first line to be username.
+            //Note username is also passed in as item 0 in the array of data.
+
+            //We always just overwrite quest with the latest quest data. So I do not know why we have the check between the first Item of linestoupdate and tempinfo.
+            //cout << "file line size=" << tempinfo.size() << endl;
+            for(int i = 0; i < MAX_NUMBER_OF_QUESTS; i++){ //for each update item we find it in tempinfo and update the value to the new value.
+                // trying another method since this will not work if the file is empty:
+                for(int j = 0; j < linesToUpdateWithData.size(); j++){
+                    try{
+                        if(linesToUpdateWithData.at(i).first == tempinfo.at(j).first){ //update the value of the specified stat
+                            tempinfo.at(j).second = linesToUpdateWithData.at(i).second;
+                            break;  
+                        }
+                    }catch(out_of_range){
+                        cout << "WARNING --> writeToFile: QUEST_PROGRESS_DATA for loop lead to out_of_range vector call... " << endl;
+                        tempinfo.emplace_back(linesToUpdateWithData.at(i).first, linesToUpdateWithData.at(i).second);
+                    }
+                }
+            }
+
+
+            //re-open file at location
+            questFile.open(getQuestPath(username));
+
+            if(questFile.is_open()){
+                // write data to file
+                //write all quests to the file in order:
+                //cout << "DATA (Size=" + to_string(tempinfo.size()) + "): ";
+                //technically we could also be using the number of quests instead of tempinfo.size().
+                for(int i = 0; i < tempinfo.size(); i++){ 
+                    //cout << " (LINE KEY:"+ to_string(i) +") --> [";
+                    bool notFound = false;
+                    for(int j = 0; j < tempinfo.size(); j++){
+                        //cout << to_string(j);  
+                        if(tempinfo.at(j).first == i){
+                            //cout << "{VALID}=" << tempinfo.at(j).second << "=";
+                            questFile << tempinfo.at(i).second <<"\n";
+                            notFound = false;
+                            break;
+                        } else {
+                            notFound = true;
+                        }
+                        //cout << ", ";
+                    }
+                    if(notFound){
+                        questFile << "0" << "\n"; //no value
+                    }
+                    //cout << "], ";
+                }
+                //cout << endl;
+
+            } else {
+                cout << "writeToFile: Critical error opening file for data writeback..." << endl;
+            }
+            
+
+            //close file:
+            questFile.close(); // done writting to file and now it is closed
             break;
         }
         case INVENTORY_DATA:{  //update inventory
@@ -1305,8 +1404,8 @@ void Cipher::deleteFile(string fullFilePath){ //this deletes a input file (Note,
     int i;
     for (i = 0; i < sizeof(charFilename); i++) {
         charFilename[i] = s[i];
-        cout << charFilename[i];
     }
+    cout << "Deleting file: " << fullFilePath << endl;
     system(charFilename);
 }
 

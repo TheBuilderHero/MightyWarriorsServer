@@ -109,11 +109,11 @@ string Players::getPhysicalDamageStat(std::string username, bool outputMinAndMax
         }
         int totalPhysicalDamageValue_min = characters.getBasePhysicalDamage() + filedamage_min + kit.getPhysicalDamage();
         int totalPhysicalDamageValue_max = characters.getBasePhysicalDamage() + filedamage_max + kit.getPhysicalDamage();
-        cout << "PhysicalDamage" << endl;
-        cout << "total min: " << totalPhysicalDamageValue_min << endl;
-        cout << "total max: " << totalPhysicalDamageValue_max << endl;
-        cout << "weapon min: " << weapon.getPhysicalDamageMin() << endl;
-        cout << "weapon max: " << weapon.getPhysicalDamageMax() << endl;
+        //cout << "PhysicalDamage" << endl;
+        //cout << "total min: " << totalPhysicalDamageValue_min << endl;
+        //cout << "total max: " << totalPhysicalDamageValue_max << endl;
+        //cout << "weapon min: " << weapon.getPhysicalDamageMin() << endl;
+        //cout << "weapon max: " << weapon.getPhysicalDamageMax() << endl;
         return (to_string(totalPhysicalDamageValue_min + weapon.getPhysicalDamageMin()) + " - " + to_string(totalPhysicalDamageValue_max + weapon.getPhysicalDamageMax()));
     } else { 
         Characters characters;
@@ -165,11 +165,11 @@ string Players::getMagicDamageStat(std::string username, bool outputMinAndMaxStr
         characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
         int totalMagicDamageValue_min = characters.getBaseMagicDamage() + statMagicDamage_min + kit.getMagicDamage();
         int totalMagicDamageValue_max = characters.getBaseMagicDamage() + statMagicDamage_max + kit.getMagicDamage();
-        cout << "MagicDamage" << endl;
-        cout << "total min: " << totalMagicDamageValue_min << endl;
-        cout << "total max: " << totalMagicDamageValue_max << endl;
-        cout << "weapon min: " << weapon.getMagicDamageMin() << endl;
-        cout << "weapon max: " << weapon.getMagicDamageMax() << endl;
+        // cout << "MagicDamage" << endl;
+        // cout << "total min: " << totalMagicDamageValue_min << endl;
+        // cout << "total max: " << totalMagicDamageValue_max << endl;
+        // cout << "weapon min: " << weapon.getMagicDamageMin() << endl;
+        // cout << "weapon max: " << weapon.getMagicDamageMax() << endl;
         return (to_string(totalMagicDamageValue_min + weapon.getMagicDamageMin()) + " - " + to_string(totalMagicDamageValue_max + weapon.getMagicDamageMax()));
     } else {
         Characters characters;
@@ -219,11 +219,11 @@ string Players::getPsychicDamageStat(std::string username, bool outputMinAndMaxS
         characters.pullRaceStats(players.getPlayerRace(username), username);//set the stats of the Player for the race in their file
         int totalPsychicDamageValue_min = characters.getBasePsychicDamage() + statPsychicDamage_min + kit.getPsychicDamage();
         int totalPsychicDamageValue_max = characters.getBasePsychicDamage() + statPsychicDamage_max + kit.getPsychicDamage();
-        cout << "PsychicDamage" << endl;
-        cout << "total min: " << totalPsychicDamageValue_min << endl;
-        cout << "total max: " << totalPsychicDamageValue_max << endl;
-        cout << "weapon min: " << weapon.getPsychicDamageMin() << endl;
-        cout << "weapon max: " << weapon.getPsychicDamageMax() << endl;
+        // cout << "PsychicDamage" << endl;
+        // cout << "total min: " << totalPsychicDamageValue_min << endl;
+        // cout << "total max: " << totalPsychicDamageValue_max << endl;
+        // cout << "weapon min: " << weapon.getPsychicDamageMin() << endl;
+        // cout << "weapon max: " << weapon.getPsychicDamageMax() << endl;
         return (to_string(totalPsychicDamageValue_min + weapon.getPsychicDamageMin()) + " - " + to_string(totalPsychicDamageValue_max + weapon.getPsychicDamageMax()));
     } else {
         Characters characters;

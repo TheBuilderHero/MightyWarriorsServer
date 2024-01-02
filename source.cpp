@@ -770,7 +770,7 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
         case 29: { //recive vector data from client
 
             try {
-                std::cout << "Vector Message from Client was Properly Received..." << endl;
+                //std::cout << "Vector Message from Client was Properly Received..." << endl;
                 std::cout << "Need to impliment decision making code to do with the data what needs to be done." << endl;
 
                 //CODE IMPLIMENTATION for decision making:
@@ -947,8 +947,8 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
                             statVec.emplace_back(16,psychicDamageMaxTemp);
 
                             //New function to write all the above to file:
-                            cout << "sendValue use: " << sendValue << endl;
-                            cout << "Username use: " << codeRVector.getUsername() << endl;
+                            //cout << "sendValue use: " << sendValue << endl;
+                            //cout << "Username use: " << codeRVector.getUsername() << endl;
                             codeRVector.writeToFile(codeRVector.STAT_DATA, codeRVector.getUsername(),statVec);
                         }
                         catch(invalid_argument){

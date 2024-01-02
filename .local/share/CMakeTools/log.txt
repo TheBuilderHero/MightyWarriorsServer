@@ -1,18 +1,18 @@
-2023-05-23T07:06:12.909Z [debug] [main] Safe constructing new CMakeProject instance
-2023-05-23T07:06:12.910Z [debug] [variant] Constructing VariantManager
-2023-05-23T07:06:12.912Z [debug] [main] Constructing new CMakeProject instance
-2023-05-23T07:06:12.912Z [debug] [main] Starting CMake Tools second-phase init
-2023-05-23T07:06:13.005Z [info] [variant] Loaded new set of variants
-2023-05-23T07:06:13.016Z [debug] [kit] Not reading non-existent kits file: /opt/projectcode/MightyWarriors/.local/share/CMakeTools/cmake-tools-kits.json
-2023-05-23T07:06:13.020Z [debug] [kit] Not reading non-existent kits file: /opt/projectcode/Basic-Socket-Server/.vscode/cmake-kits.json
-2023-05-23T07:06:13.023Z [debug] [main] CMakeProject instance initialization complete.
-2023-05-23T07:06:13.114Z [debug] [main] Not starting CMake driver: no kit selected
-2023-05-23T07:08:42.591Z [debug] [main] Not starting CMake driver: no kit selected
-2023-05-23T07:09:52.269Z [debug] [main] Not starting CMake driver: no kit selected
-2023-05-23T07:10:04.457Z [debug] [main] Not starting CMake driver: no kit selected
-2023-05-23T07:10:25.245Z [debug] [main] Not starting CMake driver: no kit selected
-2023-05-23T07:10:34.363Z [debug] [main] Not starting CMake driver: no kit selected
-2023-05-23T07:10:43.537Z [debug] [main] Not starting CMake driver: no kit selected
+2023-12-26T22:37:29.053Z [info] [proc] Executing command: cmake --version
+2023-12-26T22:37:29.096Z [warning] [proc] The command: cmake --version failed with error: Error: spawn cmake ENOENT
+2023-12-26T22:37:29.131Z [info] [proc] Executing command: cmake -E capabilities
+2023-12-26T22:37:29.136Z [warning] [proc] The command: cmake -E capabilities failed with error: Error: spawn cmake ENOENT
+2023-12-26T22:37:29.139Z [debug] [main] Safe constructing new CMakeProject instance
+2023-12-26T22:37:29.139Z [debug] [variant] Constructing VariantManager
+2023-12-26T22:37:29.140Z [debug] [main] Constructing new CMakeProject instance
+2023-12-26T22:37:29.141Z [debug] [main] Starting CMake Tools second-phase init
+2023-12-26T22:37:29.231Z [info] [variant] Loaded new set of variants
+2023-12-26T22:37:29.405Z [debug] [kit] Not reading non-existent kits file: /opt/projectcode/MightyWarriors/.local/share/CMakeTools/cmake-tools-kits.json
+2023-12-26T22:37:29.425Z [debug] [kit] Not reading non-existent kits file: /opt/discordbots/.vscode/cmake-kits.json
+2023-12-26T22:37:29.501Z [debug] [main] CMakeProject instance initialization complete.
+2023-12-26T22:37:29.947Z [debug] [main] Not starting CMake driver: no kit selected
+2023-12-26T22:38:53.907Z [debug] [extension] Deactivate CMakeTools
+ [debug] [main] Not starting CMake driver: no kit selected
 2023-05-23T07:10:45.275Z [debug] [main] Not starting CMake driver: no kit selected
 2023-05-23T07:11:54.573Z [debug] [main] Not starting CMake driver: no kit selected
 2023-05-23T07:12:02.997Z [debug] [main] Not starting CMake driver: no kit selected
