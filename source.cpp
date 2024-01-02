@@ -354,7 +354,10 @@ void requestActions(int socket, char messageFromClient[]) { //This function take
                 std::cout << "failed \"case 14:{//updates the players level and XP\"" << endl;
             }
             //std::cout << enemy.getXPDrop(enemyChoice) << "\n";
-            battle.increaseXP(code.getUsername(), enemy.getXPDrop(enemyChoice)); //hardset the enemies level to 1 since at this moment there is no level change for enemies
+            if(enemyChoice == -1){
+                battle.increaseXP(code.getUsername(), stoi(code.getItem(4)));
+            }else
+                battle.increaseXP(code.getUsername(), enemy.getXPDrop(enemyChoice)); //hardset the enemies level to 1 since at this moment there is no level change for enemies
             returnMessage = code.cipher("4", to_string(players.getLevel(code.getUsername())));
             sendToClient(socket, returnMessage);// returnMessage.c_str(), returnMessage.length()+1);//send message back to the client
             
