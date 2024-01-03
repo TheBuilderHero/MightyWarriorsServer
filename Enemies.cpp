@@ -230,7 +230,7 @@ void Enemies::mutantElf() {
     setBaseMind(10);
     setBasePsychicDamage(0);
     setLevel(1);
-    xpDrop = 20;
+    xpDrop = 50;
 }
 void Enemies::voidCat() {
     enemyNum = VOID_CAT; //this is the number associated with this enemy declared in the Enemies.h file
@@ -245,7 +245,7 @@ void Enemies::voidCat() {
     setBaseMind(1);
     setBasePsychicDamage(0);
     setLevel(1);
-    xpDrop = 300;
+    xpDrop = 250;
     //Radiation damage that mutants can inflict?
 }
 void Enemies::highwayRobber(){
@@ -261,7 +261,7 @@ void Enemies::highwayRobber(){
     setBaseMind(7);
     setBasePsychicDamage(0);
     setLevel(1);
-    xpDrop = 10;
+    xpDrop = 75;
 }
 void Enemies::orc(){
     enemyNum = ORC_ENEMY;
@@ -274,7 +274,7 @@ void Enemies::orc(){
     setBaseMind(6);
     setBasePsychicDamage(0);
     setLevel(1);
-    xpDrop = 10;
+    xpDrop = 90;
 }
 void Enemies::sasquatch(){
     enemyNum = SASQUATCH_ENEMY;
@@ -287,7 +287,7 @@ void Enemies::sasquatch(){
     setBaseMind(15);
     setBasePsychicDamage(0);
     setLevel(1);
-    xpDrop = 80;
+    xpDrop = 155;
 }
 void Enemies::skunk(){
     enemyNum = SKUNK_ENEMY;
@@ -301,7 +301,7 @@ void Enemies::skunk(){
     setBaseMind(5);
     setBasePsychicDamage(0);
     setLevel(1);
-    xpDrop = 7;
+    xpDrop = 35;
     //Skunk has very low armor and magic stats to compensate for toxic damage.
 }
 void Enemies::mutantSkunk(){
@@ -317,7 +317,7 @@ void Enemies::mutantSkunk(){
     setBaseMind(20);
     setBasePsychicDamage(2);
     setLevel(1);
-    xpDrop = 12;
+    xpDrop = 45;
 }
 void Enemies::giantRaccoon(){
     enemyNum = GIANT_RACCOON;
@@ -344,7 +344,7 @@ void Enemies::evilWizard(){
     setBaseMind(25);
     setBasePsychicDamage(5);
     setLevel(1);
-    xpDrop = 80;
+    xpDrop = 100;
 }
 void Enemies::witch(){
     enemyNum = WITCH_ENEMY;
@@ -357,7 +357,7 @@ void Enemies::witch(){
     setBaseMind(20);
     setBasePsychicDamage(6);
     setLevel(1);
-    xpDrop = 80;
+    xpDrop = 100;
 }
 void Enemies::mutantGhost(){
     enemyNum = MUTANT_GHOST;
@@ -370,7 +370,7 @@ void Enemies::mutantGhost(){
     setBaseMind(15);
     setBasePsychicDamage(5);
     setLevel(1);
-    xpDrop = 100;
+    xpDrop = 130;
 }
 void Enemies::wereWolf(){
     enemyNum = WERE_WOLF;
@@ -383,7 +383,7 @@ void Enemies::wereWolf(){
     setBaseMind(10);
     setBasePsychicDamage(0);
     setLevel(1);
-    xpDrop = 70;
+    xpDrop = 105;
 }
 void Enemies::normalPotato(){
     enemyNum = NORMAL_POTATO;
@@ -396,7 +396,7 @@ void Enemies::normalPotato(){
     setBaseMind(9999);
     setBasePsychicDamage(999);
     setLevel(1);
-    xpDrop = 9999;
+    xpDrop = 99999;
 }
 void Enemies::goblinMorg(){
     enemyNum = GOBLIN_MORG;
